@@ -15,13 +15,8 @@
 % svetujemo uporabo Overleaf.com - na tej spletni implementaciji LaTeXa ta vzorec zagotovo pravilno deluje
 %
 
-% !BIB program = biber
-\DocumentMetadata{
-  pdfstandard = A-4,
-  pdfversion  = 2.0,
-  lang        = en-US,
-  colorprofiles = {sRGB_v4_ICC_preference.icc}
-}
+% Združljivost s pdfa (sicer nekoliko starejšo različico 1.7)
+\DocumentMetadata{pdfstandard = a-2b, pdfversion  = 1.7}
 
 \documentclass[a4paper,12pt,openright]{book}
 %\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
@@ -114,7 +109,7 @@ Dober povzetek je kot mini diploma in vključuje: (1) kratek opis stanja tehnike
 \chapter{Uvod}
 Prvi koristen nasvet v zvezi uporabo \LaTeX{a} pri pisanju vašega diplomskega dela je, da v celoti preberete ta dokument!
 
-Datoteka {\tt diploma-FRI-vzorec.tex} na kratko opisuje, kako se pisanja diplomskega dela lotimo z uporabo programskega okolja \LaTeX~\cite{lamport,nenajkrajsi}.
+Datoteka na kratko opisuje, kako se pisanja diplomskega dela lotimo z uporabo programskega okolja \LaTeX~\cite{lamport,nenajkrajsi}.
 
 \LaTeX\ omogoča logično urejanje besedil, ki ima v primerjavi z vizualnim urejanjem številne prednosti, saj se problema urejanja besedil loti s programerskega stališča.
 Logično urejanje besedil omogoča večjo konsistentnost, uniformnost in prenosljivost besedil, predvsem pa nam omogoča lomljenje besed in posledično lepo obojestransko poravnavo. Obojestranska poravnava v vizualnih urejevalnikih povzroči kupe odvečnih in neenakomernih presledkov. 
@@ -170,11 +165,18 @@ Tipična struktura diplomske naloge na FRI obsega naslednje obvezne in priporoč
 
 \section{Slogovne smernice in priporočila}
 
-Pri pisanju diplomske naloge upoštevamo akademski slog, ki se močno razlikuje od poljudnega pisanja. Besedilo pišemo v prvi osebi množine (npr. \enquote{razvili smo}, \enquote{opazimo}), saj s tem poudarimo objektivnost raziskovalnega procesa, v katerega sta vključena študent in mentor.
+Zavedajte se, da vrstni red branja ne sledi vrstnemu redu pisanja zaključnega dela. Verjetno se boste lotili pisanja sorodnih del in metodologije pred eksperimenti ali rezultati, vsekakor pa pred uvodnim razdelkom ali povzetkom, ki ga zagotovo napišite povsem na koncu. Tega se zavedajo tudi bralci, zato se vam pri pisanju uvoda ni potrebno pretvarjati, da eksperimenti še niso bili opravljeni.
 
-Terminologija mora biti dosledna. Če se odločite za slovenski izraz, ga uporabljajte skozi celotno nalogo; mešanje slovenskih in angleških izrazov za isti pojem (npr. \textit{strojno učenje} in \textit{machine learning}) zmanjšuje berljivost. Bistvene ugotovitve je priporočljivo omeniti na več mestih, vendar v različnih ravneh podrobnosti: visokonivojsko v povzetku, motivacijsko v uvodu, tehnično v jedru in sintetično v zaključku.
-
-Vse trditve v nalogi morajo biti preverljive. To pomeni, da morajo temeljiti na lastnih izpeljavah ali testiranjih, če pa povzemate ugotovitve drugih, je navajanje vira obvezno. Dobra praksa je, da pred začetkom pisanja preberete nekaj najbolje ocenjenih diplomskih nalog iz preteklih let, saj so to najboljši zgledi za strukturiranje lastnih misli.
+\begin{itemize}
+    \item Strokovna besedila morajo biti nedvoumna, zato naj bodo stavki kratki, preprosti in razumljivi, terminologija dosledna. 
+    \item Pri pisanju zaključnega dela upoštevajte akademski slog, ki se močno razlikuje od poljudnega pisanja. Besedilo pišite v prvi osebi množine (npr. \enquote{razvili smo}, \enquote{opazimo}), saj s tem poudarite objektivnost raziskovalnega procesa, v katerega sta vključena študent in mentor. Dovoljena je tudi uporaba trpnika, ki pa je jezikovno okornejša (\enquote{razvit je bil}, \enquote{izdelano je bilo}). Prve osebe ednine (\enquote{razvil sem}, \enquote{izdelal sem}) ne uporabljajte oziroma jo uporabite izjemoma samo tam, kjer želite poudariti svojo osebno odločitev med več možnostmi. 
+    \item Vse trditve v nalogi morajo biti preverljive. To pomeni, da morajo temeljiti na lastnih izpeljavah ali testiranjih, če pa povzemate ugotovitve drugih, je navajanje vira obvezno.
+    \item Za posamezen pojem ali objekt uporabljajte v celotnem delu enako ime in oznako (če je potrebna). 
+    \item Če vpeljujete nove pojme, pazite, da so nedvoumno in natančno definirani. 
+    \item Uporabljajte uveljavljeno strokovno terminologijo. 
+    \item S pisanjem strokovnih besedil se razvija tudi slovenska strokovna terminologija. Pri strokovnih izrazih, ki še nimajo prevoda v slovenščino, po potrebi in v sodelovanju z mentorjem poiščite ustrezen slovenski prevod. 
+    \item Posebna pozornost naj velja prevodom iz angleščine. Pazite na slovenska slovnična pravila. Samostalniški prilastki so v slovenščini na desni strani osebka ali predmeta (SQL query $\rightarrow$ poizvedba SQL, API interface $\rightarrow$ vmesnik API, $x$-axis $\rightarrow$ os $x$), obratni vrstni red, kot je na primer SQL poizvedba, Windows strežnik ali ACME sistem, je napačen.
+\end{itemize}
 
 \chapter{Osnovni gradniki \LaTeX{a} in nasveti za pisanje}
 \label{ch:osnove}
@@ -242,21 +244,11 @@ Zelo enostavna je tudi izbira velikosti črk.
 
 \section{Skladnost s standardom PDF/A}
 
-Elektronsko verzijo diplome je potrebno oddati preko sistema STUDIS v formatu PDF/A ~\cite{howtopdfa,pdfa},
-natančneje v formatu PDF/A-1b.
-PDF/A format je namenjen dolgoročnemu arhiviranju elektronskih dokumentov.
-Dokument v formatu PDF/A mora vsebovati vse potrebne informacije za prikazovanje in tiskanje dokumenta. To pomeni, da mora dokument  vsebovati vso besedilo, vse slike, fonte in barvne informacije.
-
-Standard A-4 spoštuje tudi pravila iz A-1b. Če vam Studis nalaganje dokumenta vseeno zavrne nastavite prvo deklaracijo v tem dokumentu iz \texttt{pdfstandard = A-4} v \texttt{pdfstandard = A-1b}.
-
-V predlogi so poleg izvornega  dokumenta \texttt{diploma-FRI-vzorec.tex}, še vložena slika \texttt{galaksija.jpg}, datoteka \texttt{literatura.bib} za uporabljeno literaturo  ter
-ikone za licenco Creative Commons.
+Repozitorij Univerze v Ljubljani zahteva, da so oddana zaključna dela skladna s standardom PDF/A. V predlogi smo zagotovili skladnost s standardom PDF/A-2b. S predlogo žal ne moremo preprečiti, da bi uporabnik v diplomsko delo dodal elemente, ki niso skladni s standardom. Pred oddajo zaključnega dela zato uporabnikom priporočamo preverjanje skladnosti z ustreznimi preverjevalniki, npr. z orodjem veraPDF\footnote{\url{https://verapdf.org/}}.
 
 \section{Uporaba količin in enot}
 
 Pri tehničnem in strokovnem pisanju je zelo pomembno dosledno razlikovanje med količinami in njihovimi pripadajočimi merskimi enotami. Neustrezen zapis lahko vodi do napačne interpretacije podatkov in zmanjša strokovno vrednost dokumenta.
-
-\subsection{Definicije in pravila zapisa}
 
 \begin{description}
     \item[Količina] predstavlja lastnost sistema, strojne ali programske opreme, ki jo je mogoče kvantitativno določiti. Simbole količin (npr. $C$ za kapaciteto pomnilnika, $f$ za frekvenco procesorja, $B$ za pasovno širino) pišemo praviloma v \textbf{ležeči pisavi}.
@@ -507,6 +499,8 @@ Logika postavljanja dveh tabel ene ob drugo je popolnoma enaka kot pri slikah, l
 
 \begin{table}[htbp]
     \centering
+    \caption{Primerjava uspešnosti klasifikacije slik z različnimi arhitekturami globokih nevronskih mrež na dveh standardnih podatkovnih zbirkah. Pri metriki \textit{točnost} (angl.\ \textit{accuracy}) so boljše višje vrednosti (označeno s puščico $\uparrow$), pri metriki \textit{napaka} (angl.\ \textit{error rate}) pa so boljše nižje vrednosti (označeno s puščico $\downarrow$).}
+    \label{tab:rezultati_cv}
     \begin{subtable}[b]{0.48\textwidth}
         \centering
         \caption{Rezultati na zbirki CIFAR-10.}
@@ -540,9 +534,7 @@ Logika postavljanja dveh tabel ene ob drugo je popolnoma enaka kot pri slikah, l
         \end{tabular}%
         }
     \end{subtable}
-    \vspace{0.3cm}
-    \caption{Primerjava uspešnosti klasifikacije slik z različnimi arhitekturami globokih nevronskih mrež na dveh standardnih podatkovnih zbirkah. Pri metriki \textit{točnost} (angl.\ \textit{accuracy}) so boljše višje vrednosti (označeno s puščico $\uparrow$), pri metriki \textit{napaka} (angl.\ \textit{error rate}) pa so boljše nižje vrednosti (označeno s puščico $\downarrow$).}
-    \label{tab:rezultati_cv}
+
 \end{table}
 
 \chapter{Vključevanje programske kode in algoritmov}
@@ -551,7 +543,8 @@ Logika postavljanja dveh tabel ene ob drugo je popolnoma enaka kot pri slikah, l
 Svojo programsko kodo v poljubnem programskem jeziku najlažje vključimo s paketom \texttt{minted}. Okoli bloka \texttt{\textbackslash minted\{ \}} sicer lahko podamo klasični \texttt{\textbackslash listing\{ \}} in skupaj z dodanim \texttt{\textbackslash caption} dobimo vse potrebno za prikaz kode, vendar pa se takšen blok ne razteza pravilno skozi več strani. Ena od možnosti za rešitev je uporaba bloka \texttt{\textbackslash center\{ \}}, za napis pa \texttt{\textbackslash captionof\{ \}}, kot je prikazano pri obeh primerih izsekov kode~\ref{code:py} in~\ref{code:js}.
 
 \begin{center}
-
+\captionof{listing}{Kratek primer kode v programskem jeziku Python.}
+\label{code:py}
 \begin{minted}{python}
 def python_veverica():
     # Oh, kako je to lepo!
@@ -559,14 +552,14 @@ def python_veverica():
     print("Res izgleda čudovito.")
 \end{minted}
 
-\captionof{listing}{Kratek primer kode v programskem jeziku Python.}
-\label{code:py}
+
 \end{center}
 
 Kar je nadvse čudovito pri paketu \texttt{minted} je to, da lahko podamo dele kode znotraj vrstice, kot je npr. tole: \mintinline{python}{python_veverica()}.
 
 \begin{center}
-
+\captionof{listing}{Malo daljši primer programske kode v jeziku Javascript, ki se razteza skozi dve strani.}
+\label{code:js}
 \begin{minted}{javascript}
 async function pridobiUporabnika(id) {
     const url = `https://api.primer.fri/users/${id}`;
@@ -595,8 +588,7 @@ async function pridobiUporabnika(id) {
     }
 }
 \end{minted}
-\captionof{listing}{Malo daljši primer programske kode v jeziku Javascript, ki se razteza skozi dve strani.}
-\label{code:js}
+
 \end{center}
 
 Vodoravni črti pri začetku in koncu izseka, v kombinaciji s sivim ozadjem, vizualno sporočata morebitno raztezanje skozi več strani. To je razvidno pri izseku kode~\ref{code:js}.
