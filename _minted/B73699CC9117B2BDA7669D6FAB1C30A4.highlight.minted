@@ -1,0 +1,28 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{async}\PYG{+w}{ }\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{pridobiUporabnika}\PYG{p}{(}\PYG{n+nx}{id}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{url}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sb}{`https://api.primer.fri/users/}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{id}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{odgovor}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{fetch}\PYG{p}{(}\PYG{n+nx}{url}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{c+c1}{// Preverimo, če je statusni kod v območju 200\PYGZhy{}299}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n+nx}{odgovor}\PYG{p}{.}\PYG{n+nx}{ok}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{error}\PYG{p}{(}\PYG{l+s+sb}{`Napaka pri povezavi: }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{odgovor}\PYG{p}{.}\PYG{n+nx}{status}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{);}
+\PYG{+w}{            }\PYG{k}{throw}\PYG{+w}{ }\PYG{o+ow}{new}\PYG{+w}{ }\PYG{n+ne}{Error}\PYG{p}{(}\PYG{l+s+sb}{`Uporabnika z ID }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{id}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{ ni bilo mogoče najti.`}\PYG{p}{);}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{podatki}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{odgovor}\PYG{p}{.}\PYG{n+nx}{json}\PYG{p}{();}
+
+\PYG{+w}{        }\PYG{c+c1}{// Logiranje uspešnega prejema podatkov}
+\PYG{+w}{        }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{log}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Podatki so bili uspešno prejeti.\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{log}\PYG{p}{(}\PYG{l+s+sb}{`Ime uporabnika: }\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{podatki}\PYG{p}{.}\PYG{n+nx}{name}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{`}\PYG{p}{);}
+
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{podatki}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{napaka}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Tukaj ulovimo tako mrežne napake kot napake pri branju JSON\PYGZhy{}a}
+\PYG{+w}{        }\PYG{n+nx}{console}\PYG{p}{.}\PYG{n+nx}{warn}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Prišlo je do nepričakovane težave.\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{error}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{napaka}\PYG{p}{.}\PYG{n+nx}{message}\PYG{+w}{ }\PYG{p}{\PYGZcb{};}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

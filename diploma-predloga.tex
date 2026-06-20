@@ -26,31 +26,19 @@
 %  PODATKI O DIPLOMI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Vnesite vaše podatke in podatke mentorjev:
-\newcommand{\tauthor}{Matjaž Kralj}
-\newcommand{\temail}{kralj.matjaz@student.uni-lj.si}
-\newcommand{\tmentor}{viš.~pred./doc./izr.~prof./prof.~dr.~Peter Klepec}
-\newcommand{\tsomentor}{viš.~pred./doc./izr.~prof./prof.~dr.~Martin Krpan}
+\newcommand{\tauthor}{Nik Katanović Leban}
+\newcommand{\temail}{nk17425@student.uni-lj.si}
+\newcommand{\tmentor}{viš. pred. dr. Igor Rožanc}
 
-% Odkomentirajte pravi program:
 \newcommand{\tstopnja}%
-{ODKOMENTIRAJTE PRAVI PROGRAM IN ODSTRANITE TO VRSTICO}
-% {VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE}
-% {UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}
-% {INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}
-% {INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}
-% {INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}
+{VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE}
 
-% Odkomentirajte pravo institucijo:
 \newcommand{\tinst}%
 {Fakulteta za računalništvo in informatiko}
-% {Fakulteta za elektrotehniko}
-% {Fakulteta za upravo}
-% {Fakulteta za matematiko in fiziko}
 
-% Napišite pravo vrsto naloge:
-\newcommand{\tvrsta}{npr. Diplomska naloga na visokošolskem programu prve stopnje}
+\newcommand{\tvrsta}{Diplomska naloga na visokošolskem programu prve stopnje Računalništvo in informatika}
 
+% TODO: Ask Igor Rožanc what should i do about this.
 % Opis iz STUDISa:
 \newcommand{\tdescription}
 {Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. V nekaj stavkih bo opisal, kaj pričakuje
@@ -60,20 +48,16 @@ morda bo zapisal tudi ključno literaturo.}
 {The student shall transcribe the text of the diploma thesis topic from the student information system, where it was entered by the mentor. In a few sentences, they will describe what is expected of the candidate's thesis. What the objectives are, what methods should be used, and perhaps they will also list the key literature.}
 
 % Naslov:
-\newcommand{\ttitle}{Vzorec diplomskega dela}
-\newcommand{\ttitleEn}{Diploma thesis template}
+\newcommand{\ttitle}{Spletna aplikacija za prodajo in evalvacijo avtomobilov}
+\newcommand{\ttitleEn}{Web application for car sales and evaluation}
 
 % Ključne besede:
-\newcommand{\tkeywords}{računalnik, procesor, pomnilnik}
-\newcommand{\tkeywordsEn}{computer, processor, memory}
+\newcommand{\tkeywords}{spletna aplikacija, avtomobili, vrednotenje, React, Express.js, Node.js, PostgreSQL, REST API, Docker, GitHub Actions, TypeScript, Python, OAuth2, CI/CD}
+\newcommand{\tkeywordsEn}{web application, automobiles, evaluation, React, Express.js, Node.js, PostgreSQL, REST API, Docker, GitHub Actions, TypeScript, Python, OAuth2, CI/CD}
 
 % Zahvala (opcijsko):
 \newcommand{\tzahvala}
-{Na tem mestu zapišite, komu se zahvaljujete za pomoč pri izdelavi diplomske naloge oziroma pri vašem študiju nasploh. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.}
-
-% Posvetilo (opcijsko):
-\newcommand{\tposvetilo}
-{Svojemu dragemu računalniku.}
+{Rad bi se zahvalil svojemu mentorju Igorju Rožancu, za vso aktivno pomoč in svetovanje pri razvoju te diplomske naloge. Zahvalil bi se tudi vsem sodelavcem iz podjetja CargoX, ki so z mano delili svoje znanje in izkušnje, ter mi omogočili, da sem se lahko lotil tako zahtevnega projekta. Posebna zahvala gre moji družini, ki me je ves čas podpirala in mi stala ob strani.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  VKLJUČITEV NUJNIH ELEMENTOV 1/2
@@ -87,11 +71,10 @@ morda bo zapisal tudi ključno literaturo.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tpovzetek}
-{V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati med približno 100 in 200 besed, ta tukaj je odločno prekratek.
-Dober povzetek je kot mini diploma in vključuje: (1) kratek opis stanja tehnike in kaj so glavne težave oz. opis obravnavanega problema, (2) kako ste ta problem naslovili oz. kratek opis vašega pristopa za reševanje tega problema in (3) (najbolj uspešen) rezultat ali prispevek diplomske naloge.}
+{Diplomsko delo obravnava problem določanja primerne tržne vrednosti rabljenega avtomobila. Pri prodaji ali nakupu vozila uporabniki pogosto nimajo zadostnega pregleda nad trenutnim stanjem na trgu, zato težko ocenijo, ali je določena cena primerna. Posledično lahko vozilo kupijo po previsoki ceni ali ga prodajo pod njegovo dejansko tržno vrednostjo. Za reševanje tega problema sem razvil spletno aplikacijo za objavo in pregled avtomobilskih oglasov, ki uporabnikom omogoča enostavno in varno prodajo ter nakup vozil. Poleg tega je bil implementiran sistem za avtomatsko ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in primerjavi vozila s podobnimi vozili na trgu. Pri oceni vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik in prevoženi kilometri. Za pridobivanje podatkov so bili uporabljeni javno dostopni podatkovni viri ter postopki samodejnega zajema podatkov s spletnih strani za prodajo vozil. Zbrane podatke sistem obdela in uporabi za izračun ocenjene tržne vrednosti vozila. Rezultat diplomskega dela je delujoča spletna aplikacija s podporo za avtomatsko vrednotenje vozil, ki uporabnikom pomaga pri sprejemanju bolj informiranih odločitev pri nakupu ali prodaji avtomobila.}
 
 \newcommand{\tabstract}
-{This sample document presents the process of preparing a thesis using the \LaTeX\ environment. Your abstract should otherwise contain between approximately 100 and 200 words; the one provided here is far too short. A good abstract is like a mini-thesis and includes: (1) a brief description of the state of the art and the main issues or a description of the problem addressed, (2) how you addressed this problem or a brief description of your approach to solving it, and (3) the (most successful) result or contribution of the thesis.}
+{This work addresses the problem of determining the appropriate market value of a used vehicle. When buying or selling a car, users often lack sufficient insight into current market conditions, making it difficult to assess whether a listed price is fair. As a result, vehicles may be purchased at inflated prices or sold below their actual market value. To address this problem, a web application for publishing and browsing vehicle listings was developed, enabling users to buy and sell vehicles in a simple and secure manner. In addition, an automated vehicle valuation system was implemented. The system is based on collecting data from external sources, normalizing the acquired data, and comparing a vehicle with similar vehicles currently available on the market. The valuation process takes into account key vehicle characteristics, including brand, model, year of first registration, and mileage. The required data was obtained from publicly available datasets and through automated data collection from vehicle marketplace websites. The collected data is processed and used to estimate the market value of a vehicle. The result of this thesis is a functional web application with integrated vehicle valuation support that helps users make more informed decisions when buying or selling used vehicles.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  VKLJUČITEV NUJNIH ELEMENTOV 2/2
@@ -107,24 +90,80 @@ Dober povzetek je kot mini diploma in vključuje: (1) kratek opis stanja tehnike
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Uvod}
-Prvi koristen nasvet v zvezi uporabo \LaTeX{a} pri pisanju vašega diplomskega dela je, da v celoti preberete ta dokument!
+% TODO: add references to the text below
+Nakup in prodaja rabljenih avtomobilov predstavljata pomemben del avtomobilskega trga. Pri tem se uporabniki pogosto srečujejo s težavo določanja primerne tržne vrednosti vozila, 
+saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na trgu. Najpogostejši pristop je primerjava z obstoječimi oglasi podobnih vozil, vendar takšna metoda ni vedno 
+zanesljiva. Oglasi lahko vsebujejo nerealno visoke ali nizke cene, uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi lahko ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno vrednostjo ali ga kupijo po previsoki ceni. \\
 
-Datoteka na kratko opisuje, kako se pisanja diplomskega dela lotimo z uporabo programskega okolja \LaTeX~\cite{lamport,nenajkrajsi}.
+Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih. Zaradi tega njihove ocene
+ pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. Kar lahko vodi do istih problemov, kot so omenjeni zgoraj. \\
 
-\LaTeX\ omogoča logično urejanje besedil, ki ima v primerjavi z vizualnim urejanjem številne prednosti, saj se problema urejanja besedil loti s programerskega stališča.
-Logično urejanje besedil omogoča večjo konsistentnost, uniformnost in prenosljivost besedil, predvsem pa nam omogoča lomljenje besed in posledično lepo obojestransko poravnavo. Obojestranska poravnava v vizualnih urejevalnikih povzroči kupe odvečnih in neenakomernih presledkov. 
+Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na zbiranju
+ podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na trgu. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.\\
 
-Poglavje~\ref{ch:struktura} na kratko predstavi tipične sestavne dele diplomske naloge in slogovne smernice.
-V~\ref{ch:osnove}.~poglavju spoznamo osnovne gradnike \LaTeX{a}, nasvete za pisanje, standard PDF/A, uporabo količin in enot ter pravila za sklice in citiranje.
-V~\ref{ch:slo}.~poglavju opozarjamo na najpogostejše slovnične in tipografske napake, ki jih delamo v slovenščini.
-Poglavje~\ref{ch:plovke} predstavi vključevanje plovk: vstavljanje in formatiranje posameznih slik in tabel ter postavljanje večih elementov hkrati.
-V~\ref{ch:koda}.~poglavju spoznamo vključevanje programske kode in algoritmov.
-V~\ref{ch:mat}.~poglavju so predstavljeni matematično okolje, zapis matrik in sistemov enačb, besedilni konstrukti (kot so izreki in dokazi) ter sklicevanje nanje.
-V~\ref{ch:lit}.~poglavju se bomo srečali z iskanjem virov in sklicevanjem na literaturo z uporabo \BibLaTeX{a}.
-Na koncu sledijo še sklepne ugotovitve z opomnikom za preverjanje pred oddajo naloge.
+Hipoteza diplomskega dela je, da je mogoče s pomočjo zbranih tržnih podatkov in primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno tržne vrednosti vozila.
+ Dodatni cilj je preveriti, ali integracija takšnega sistema v spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
 
-Ta vzorec ni priročnik za uporabo \LaTeX{a}, saj razloži le nekatere osnovne ukaze, druge funkcionalnosti pa le omeni. Kako se jih uporablja
-pa naj bralec poišče drugje.
+V poglavju \ref{chap} je predstavljena analiza problema, pregled obstoječih rešitev in uporabljene tehnologije. Poglavje \ref{chap} opisuje načrtovanje sistema in arhitekturo aplikacije. Implementacija
+ posameznih komponent, vključno s sistemom za vrednotenje vozil, je predstavljena v poglavju \ref{chap}. V poglavju \ref{chap} so opisani postopki testiranja in rezultati evalvacije sistema. 
+ Diplomsko delo se zaključuje s sklepom in predlogi za nadaljnje izboljšave.
+
+\section{Opis arhitekture sistema}
+
+Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
+Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
+Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11. \\
+Za izvajanje posameznih komponent je uporabljena platforma Docker. \\
+\newpage
+Docker kontejnerji: 
+\begin{itemize}
+    \item Zaledni sistem
+    \item Postgres:16
+    \item redis:7
+    \item mailhog
+    \item Evalvacijski sistem
+\end{itemize}
+
+Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode in izvajanja testov je bil uporabljen sistem GitHub Actions, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
+Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy.
+
+\chapter{Pregled področja in sorodnih del}
+\label{ch:sorodna dela}
+Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov. Med najbolj znanimi evropskimi ponudniki sta mobile.de in AutoScout24,
+ ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. Za slovenski trg je najbolj razširjena platforma Avto.net, ki predstavlja osrednje
+  mesto za objavo in iskanje rabljenih vozil. Nekatere izmed omenjenih platform uporabnikom ponujajo tudi osnovno oceno primernosti cene vozila. Mobile.de na primer pri posameznih oglasih prikazuje informacijo o tem,
+   ali je cena vozila glede na primerljive oglase ugodna, primerna ali previsoka. Takšen pristop uporabnikom omogoča hitrejšo orientacijo na trgu, vendar praviloma ne ponuja možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih podatkov.
+\\
+Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je Eurotax, ki se pogosto uporablja v avtomobilski industriji, zavarovalništvu in pri trgovcih z vozili.
+ Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
+  Na ameriškem trgu sta razširjeni storitvi Kelley Blue Book in CARFAX. Kelley Blue Book uporabnikom omogoča oceno vrednosti vozila na podlagi tehničnih podatkov in tržnih analiz, medtem ko CARFAX poleg vrednotenja ponuja tudi vpogled v zgodovino vozila.
+   Obe storitvi sta prilagojeni predvsem severnoameriškemu trgu in zato nista neposredno uporabni za slovenski trg rabljenih vozil.
+\\
+Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
+ Namen razvite rešitve je združiti obe funkcionalnosti v enotni spletni aplikaciji, ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, dostopnih na trgu.
+
+\chapter{Tematsko ozadje}
+\label{ch:struktura}
+
+\section{Spletne aplikacije}
+Spletne aplikacije so sestavljene iz uporabniškega vmesnika (odjemalca) in strežniškega dela aplikacije (zalednega sistema). Uporabniški vmesnik uporabniku omogoča prikaz podatkov ter interakcijo z aplikacijo. 
+Njegova glavna naloga je zagotavljanje preglednega in uporabniku prijaznega dostopa do funkcionalnosti sistema. Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku.
+Sodobni uporabniški vmesniki so pogosto sestavljeni iz komponent. Komponenta predstavlja samostojen del uporabniškega vmesnika, ki ga je mogoče večkrat uporabiti na različnih mestih znotraj aplikacije. 
+Takšen pristop omogoča boljšo organizacijo kode, lažje vzdrževanje in večjo možnost ponovne uporabe funkcionalnosti. \\
+
+Strežniški del aplikacije je odgovoren za obdelavo zahtevkov, ki jih prejme od odjemalca, ter za vračanje ustreznih odgovorov. Poleg tega skrbi za izvajanje poslovne logike, preverjanje uporabniških pravic, avtentikacijo in avtorizacijo uporabnikov ter komunikacijo s podatkovno bazo.
+V večini sodobnih spletnih aplikacij strežniški del omogoča dostop do podatkov preko programskih vmesnikov (API). Eden izmed najbolj razširjenih pristopov je arhitekturni slog REST, ki omogoča standardizirano komunikacijo med različnimi sistemi. 
+Strežniški del aplikacije lahko vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov in beleženje dogodkov.
+Podatki spletne aplikacije se običajno shranjujejo v podatkovni bazi, ki omogoča trajno hranjenje informacij ter učinkovito poizvedovanje po njih. Strežniški del aplikacije tako predstavlja povezavo med uporabniškim vmesnikom in podatkovno bazo ter skrbi za varen in nadzorovan dostop do podatkov.
+\section{Relacijske podatkovne baze}
+
+\section{Evalvacijski sistem}
+\subsubsection{Vrednotenje vozil na podlagi primerljivih vozil}
+
+\subsubsection{Zajem in normalizacija podatkov}
+
+\section{Mikrostoritvena arhitektura}
+
 
 \chapter{Struktura diplomske naloge}
 \label{ch:struktura}
