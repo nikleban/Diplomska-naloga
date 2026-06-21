@@ -96,7 +96,7 @@ saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na trgu. Naj
 zanesljiva. Oglasi lahko vsebujejo nerealno visoke ali nizke cene, uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi lahko ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno vrednostjo ali ga kupijo po previsoki ceni. \\
 
 Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih. Zaradi tega njihove ocene
- pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. Kar lahko vodi do istih problemov, kot so omenjeni zgoraj. \\
+ pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. \\
 
 Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na zbiranju
  podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na trgu. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.\\
@@ -146,16 +146,37 @@ Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča pro
 \label{ch:struktura}
 
 \section{Spletne aplikacije}
-Spletne aplikacije so sestavljene iz uporabniškega vmesnika (odjemalca) in strežniškega dela aplikacije (zalednega sistema). Uporabniški vmesnik uporabniku omogoča prikaz podatkov ter interakcijo z aplikacijo. 
-Njegova glavna naloga je zagotavljanje preglednega in uporabniku prijaznega dostopa do funkcionalnosti sistema. Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku.
-Sodobni uporabniški vmesniki so pogosto sestavljeni iz komponent. Komponenta predstavlja samostojen del uporabniškega vmesnika, ki ga je mogoče večkrat uporabiti na različnih mestih znotraj aplikacije. 
-Takšen pristop omogoča boljšo organizacijo kode, lažje vzdrževanje in večjo možnost ponovne uporabe funkcionalnosti. \\
+Spletne aplikacije sestavljata uporabniški vmesnik (odjemalec) in strežniški del aplikacije (zaledni sistem). Takšna arhitektura omogoča ločitev skrbi, kjer vsak del sistema prevzame svojo vlogo v celotni aplikaciji \cite{richardson2007restful}.
+Uporabniški vmesnik omogoča prikaz podatkov ter interakcijo uporabnika z aplikacijo. Njegova glavna naloga je zagotavljanje preglednega, odzivnega in uporabniku prijaznega dostopa do funkcionalnosti sistema.
+ Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku, kar prispeva k boljši odzivnosti in uporabniški izkušnji \cite{flanagan2020javascript}.
+Sodobni uporabniški vmesniki so pogosto zasnovani na komponentni arhitekturi. Komponenta predstavlja samostojen in ponovno uporaben gradnik uporabniškega vmesnika, ki ga je mogoče vključiti na različnih mestih v aplikaciji.
+ Takšen pristop izboljšuje modularnost sistema, poenostavlja vzdrževanje kode ter omogoča boljšo ponovno uporabo funkcionalnosti \cite{react_component_model}. \\
 
-Strežniški del aplikacije je odgovoren za obdelavo zahtevkov, ki jih prejme od odjemalca, ter za vračanje ustreznih odgovorov. Poleg tega skrbi za izvajanje poslovne logike, preverjanje uporabniških pravic, avtentikacijo in avtorizacijo uporabnikov ter komunikacijo s podatkovno bazo.
-V večini sodobnih spletnih aplikacij strežniški del omogoča dostop do podatkov preko programskih vmesnikov (API). Eden izmed najbolj razširjenih pristopov je arhitekturni slog REST, ki omogoča standardizirano komunikacijo med različnimi sistemi. 
-Strežniški del aplikacije lahko vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov in beleženje dogodkov.
-Podatki spletne aplikacije se običajno shranjujejo v podatkovni bazi, ki omogoča trajno hranjenje informacij ter učinkovito poizvedovanje po njih. Strežniški del aplikacije tako predstavlja povezavo med uporabniškim vmesnikom in podatkovno bazo ter skrbi za varen in nadzorovan dostop do podatkov.
+Strežniški del aplikacije je odgovoren za obdelavo zahtevkov, ki jih prejme od odjemalca, ter za vračanje ustreznih odgovorov. Poleg tega izvaja poslovno logiko sistema, upravlja z dostopnimi pravicami uporabnikov ter skrbi za avtentikacijo in avtorizacijo.
+ Strežniški del je prav tako odgovoren za komunikacijo s podatkovno bazo, kjer se hranijo trajni podatki aplikacije \cite{fielding2000rest}. V sodobnih spletnih aplikacijah strežniški del pogosto omogoča dostop do podatkov preko programskih vmesnikov (vmesnik API).
+ Eden izmed najpogosteje uporabljenih arhitekturnih pristopov je REST, ki temelji na brezstanovnem (angl. stateless) načinu komunikacije med sistemi in uporablja standardne HTTP metode za izvajanje operacij nad viri \cite{fielding2000rest}.
+Poleg osnovne funkcionalnosti lahko strežniški del vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov ter beleženje dogodkov, kar prispeva k večji varnosti, stabilnosti in zmogljivosti sistema \cite{nginx_rate_limiting}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{client-server.png}
+\caption{Arhitektura spletne aplikacije tipa odjemalec--strežnik.}
+\label{fig:client-server}
+\end{figure}
+
+
 \section{Relacijske podatkovne baze}
+
+Relacijske podatkovne baze predstavljajo enega izmed najpogosteje uporabljenih pristopov za shranjevanje podatkov v spletnih aplikacijah. Temeljijo na relacijskem modelu, pri katerem so podatki organizirani v tabele,
+ ki predstavljajo posamezne entitete. Vsaka entiteta vsebuje atribute, s katerimi opisujemo njene lastnosti, posamezne vrstice pa predstavljajo konkretne primerke entitete. Relacijski model omogoča strukturirano in konsistentno
+  shranjevanje podatkov ter učinkovito izvajanje poizvedb nad velikimi količinami podatkov \cite{relational-databases}.
+Povezave med entitetami vzpostavimo s primarnimi in tujimi ključi. Primarni ključ enolično identificira posamezen zapis v tabeli, medtem ko tuji ključ omogoča povezovanje podatkov med različnimi tabelami. 
+Na ta način zmanjšamo podvajanje podatkov ter zagotovimo referenčno integriteto podatkovne baze \cite{relational-databases}.\\
+
+Pri razvoju sistema smo izbrali PostgreSQL, ki predstavlja odprtokodni objektno-relacijski sistem za upravljanje podatkovnih baz. PostgreSQL temelji na standardu SQL in ga razširja z naprednimi funkcionalnostmi,
+ ki omogočajo učinkovito delo tako s strukturiranimi kot tudi s polstrukturiranimi podatki \cite{postgresql-docs}.
+Med pomembnejšimi lastnostmi sistema PostgreSQL so podpora za transakcije ACID, napredne poizvedbe SQL, replikacija podatkov, mehanizmi za zagotavljanje integritete podatkov ter podpora za podatkovni format JSON oziroma JSONB.
+ Zaradi teh funkcionalnosti je PostgreSQL primeren za razvoj sodobnih spletnih aplikacij, ki zahtevajo visoko zmogljivost, zanesljivost in možnost nadaljnje razširljivosti sistema \cite{postgresql-docs,postgresql-about}.
 
 \section{Evalvacijski sistem}
 \subsubsection{Vrednotenje vozil na podlagi primerljivih vozil}
@@ -163,6 +184,13 @@ Podatki spletne aplikacije se običajno shranjujejo v podatkovni bazi, ki omogo�
 \subsubsection{Zajem in normalizacija podatkov}
 
 \section{Mikrostoritvena arhitektura}
+Mikrostoritvena arhitektura je arhitekturni vzorec, pri katerem se programski sistem razdeli na množico manjših, med seboj neodvisnih storitev, namesto da bi bil zgrajen kot ena sama, tesno povezana enota,
+ znana kot monolitna arhitektura \cite{dragoni-microservices}. Vsaka mikrostoritev implementira natančno določeno poslovno funkcionalnost in je razvita, nameščena ter skalirana neodvisno od preostalih storitev v sistemu. 
+ Komunikacija med posameznimi mikrostoritvami praviloma poteka prek dobro definiranih vmesnikov, kot so vmesniki API, sporočilne vrste ali drugi mehanizmi za izmenjavo podatkov \cite{newman-building-microservices}.
+
+Razdelitev sistema na več manjših, neodvisnih komponent prinaša več prednosti v primerjavi z monolitno arhitekturo \cite{newman-building-microservices}. Posamezne mikrostoritve je lažje testirati, saj imajo omejen in jasno določen obseg delovanja. 
+Prav tako je olajšano odkrivanje in odpravljanje napak, saj je napako mogoče hitreje lokalizirati znotraj posamezne storitve, namesto da bi jo iskali znotraj celotnega sistema. Neodvisnost storitev dodatno omogoča lažje vzdrževanje, 
+saj je mogoče posodobiti ali zamenjati eno mikrostoritev, ne da bi to vplivalo na delovanje ostalih mikrostoritev v sistemu, pod pogojem, da vmesnik za komunikacijo med njimi ostane nespremenjen \cite{dragoni-microservices}.
 
 
 \chapter{Struktura diplomske naloge}
@@ -177,17 +205,6 @@ Tipična struktura diplomske naloge na FRI obsega naslednje obvezne in priporoč
     
     \item[Izjava o avtorstvu] je formalni dokument, s katerim študent jamči, da je diplomsko delo plod lastnega dela in da so vsi uporabljeni viri ustrezno navedeni.
     
-    \item[Povzetek (slovenski in angleški)] je kratek, samostojen tekst (običajno omejen na približno 250 besed), ki povzame motivacijo, uporabljene metode in najpomembnejše rezultate. Na FRI je obvezen tudi prevod povzetka v angleščino (\textit{Abstract}), kar povečuje vidnost dela v mednarodnem okolju.
-    
-    \item[Ključne besede] so izbrani termini, ki se uporabljajo za indeksiranje naloge v digitalnih knjižnicah. Izbrati velja besede, ki specifično opisujejo tehnologije, algoritme ali področja (npr. strojno učenje, ogrodje React, generativni modeli).
-    
-    \item[Kazalo] vsebine. \LaTeX{} vsa kazala generira samodejno, kar zagotavlja, da so številke strani vedno usklajene z dejansko vsebino.
-    
-    \item[Uvodno poglavje] pripravi teren za razumevanje problema. V njem jasno opredelimo stanje področja, motivacijo za delo, cilje naloge in hipoteze, ki jih želimo preveriti. Uvod se običajno zaključi s kratko predstavitvijo vsebine po posameznih poglavjih, kar bralcu služi kot zemljevid. Pozorni bodite, da ne pišete števil poglavij ročno, ampak jih referencirate z \verb=\ref{xx}= in poskrbite, da imate pri naslovih poglavjih \verb=\label{xx}=.
-    
-    \item[Pregled področja in sorodnih del] je namenjen umeščanju naloge v obstoječ kontekst. Tukaj predstavite katere rešitve za izbrani problem že obstajajo in v čem se vaša rešitev razlikuje od tistih, ki so jih razvili drugi avtorji. Temeljit pregled literature pokaže vašo razgledanost na področju.
-    
-    \item[Osrednja poglavja] tvorijo hrbtenico naloge. Pri računalniških diplomah tipično zajemajo sledeča poglavja, vendar pa jih lahko razbijate na več ločenih poglavij in podpoglavij, jih poimenujete po svoje ali odstranite, povsem odvisno od področja v katerem delujete. O tem se predvsem posvetujte z mentorjem:
     \begin{itemize}
         \item \textbf{Metodologija oz. teoretične osnove:} Razlaga konceptov, potrebnih za razumevanje rešitve.
         \item \textbf{Analiza in načrtovanje:} Opis arhitekture rešitve, omejitev, zahtev ipd.
@@ -237,15 +254,15 @@ Nov odstavek začnemo tako, da izpustimo v izvornem besedilu prazno vrstico. Da 
 
 \section{Koristni nasveti pri pisanju v \LaTeX{u}}
 
-Programski paket \LaTeX\ je bil prvotno predstavljen v priročniku~\cite{lamport} in je v resnici nadgradnja sistema \TeX\ avtorja Donalda Knutha~\cite{knuth},
+Programski paket \LaTeX\ je bil prvotno predstavljen v priročniku~ in je v resnici nadgradnja sistema \TeX\ avtorja Donalda Knutha~
 znanega po svojih knjigah o umetnosti programiranja
-ter Knuth-Bendixovem algoritmu~\cite{knuth1983simple}.
+ter Knuth-Bendixovem algoritmu~
 \TeX\ in njegove izpeljanke so odprtokodni programi.
 
 Različnih implementacij \LaTeX{}a je cela vrsta, a priporočamo 
 spletno verzijo, ki poenostavi sodelovanje pri pisanju, Overleaf.
 
-Včasih smo si pri pisanju v \LaTeX{}u  pomagali predvsem s tiskanimi pri\-ro\-čni\-ki~\cite{lamport}, danes pa je enostavneje in hitreje, da ob vsakem problemu za pomoč enostavno povprašamo najljubši jezikovni model.
+Včasih smo si pri pisanju v \LaTeX{}u  pomagali predvsem s tiskanimi pri\-ro\-čni\-ki~ danes pa je enostavneje in hitreje, da ob vsakem problemu za pomoč enostavno povprašamo najljubši jezikovni model.
 
 \LaTeX\ včasih ne zna pravilno deliti slovenskih besed, ki vsebujejo črke s streši\-ca\-mi.
 Če taka beseda štrli preko desnega roba,  lahko \LaTeX{}u pokažemo, kje se tako besedo deli takole: \verb=ra\-ču\-nal\-ni\-štvo=.
@@ -335,14 +352,14 @@ Pri pisanju strokovnih besedil je nujno dosledno sklicevanje na slike, tabele, e
     
     \item \textbf{Sklicevanje (\texttt{\textbackslash ref}):} V besedilu se na označeni element skličemo z ukazom\verb|~\ref{ime_oznake}|. \LaTeX\ bo na tem mestu izpisal ustrezno številko. Če se sklicujemo na matematično enačbo, namesto tega uporabimo ukaz\verb|~\eqref{ime_oznake}|, ki številko enačbe samodejno obda z okroglimi oklepaji.
     
-    \item \textbf{Citiranje (\texttt{\textbackslash cite}):} Za navajanje virov iz bibliografske datoteke uporabimo ukaz\verb|~\cite{kljuc_vira}|.
+    \item \textbf{Citiranje (\texttt{\textbackslash cite}):} Za navajanje virov iz bibliografske datoteke uporabimo ukaz.
 \end{itemize}
 
 \textbf{Zelo pomembno pravilo:} Med besedo in samim sklicem ali citatom mora vedno stati \textbf{nedeljivi presledek}, ki ga v \LaTeX u označimo s tildo (\verb|~|). S tem preprečimo, da bi številka sklica ob prelomu vrstice padla sama v novo vrstico, kar je tipografsko nepravilno. 
 
 Pravilna raba v besedilu torej izgleda takole: 
 Kot lahko vidimo na sliki\verb|~\ref{sl:galaksija}|, velja enačba\verb|~\eqref{en:masa}|. 
-Podobno velja za literaturo: Algoritem je opisan v poglavju\verb|~\cite{knuth}|.
+Podobno velja za literaturo: Algoritem je opisan v poglavju
 
 \chapter{Pogoste napake pri pisanju v slovenščini}
 \label{ch:slo}
@@ -378,7 +395,7 @@ Pri pisanju strokovnih besedil v slovenščini se pogosto srečujemo s tipičnim
     
     \item \textbf{Vejice in stavčna zgradba:} Vejica loči stavke (povedke), razen če so zvezani z vezniki \textit{in, pa, ter, ne–ne, niti–niti, ali, bodisi, oziroma}. Čeprav velja pravilo \enquote{pred ki, ko, ker, da, če, vejica skače}, je potrebno paziti na vrivke in večbesedne veznike. V strokovnih besedilih je bolje pisati krajše in jasne stavke. Veliki jezikovni modeli vam bodo pri postavljanju vejic v veliko pomoč, za zares pravilno postavljanje pa svetujemo uporabo spletnega orodja CJVT vejice~(\url{https://orodja.cjvt.si/vejice/}).
     
-    \item \textbf{Terminologija in viri:} Za nove računalniške pojme si pomagamo z uveljavljenimi slovarji. Glavni viri so \textit{Islovar} Slovenskega društva Informatika~\cite{Islovar}, Slovar Slovenskega društva za razpoznavanje vzorcev~\cite{sdrv} ter osrednje jezikovno spletišče \textit{Fran}~\cite{fran}.
+    \item \textbf{Terminologija in viri:} Za nove računalniške pojme si pomagamo z uveljavljenimi slovarji. Glavni viri so \textit{Islovar} Slovenskega društva InformatikaSlovar Slovenskega društva za razpoznavanje vzorcev~ ter osrednje jezikovno spletišče \textit{Fran}
 \end{itemize}
 
 \chapter{Plovke: slike in tabele}
@@ -409,7 +426,7 @@ Knjižnica \url{https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ}
 pa omo\-go\-ča risanje raznovrstnih grafov neposredno v okolju \LaTeX .
 
 Na vse tabele in slike se moramo v besedilu sklicevati, saj kot plovke v oblikovanem besedilu niso nujno na istem mestu kot v izvornem besedilu.
-Pri sklicevanju na slike uporabimo veliko začetnico, npr. ''glej Sliko \ref{pic1}'', saj gre za ime slike.
+Pri sklicevanju na slike uporabimo veliko začetnico, npr. ''glej Sliko '', saj gre za ime slike.
 
 \section{Formati slik}
 
@@ -419,13 +436,13 @@ rasterske slike kot vektorske slike.
 \textbf{Za grafe in diagrame so najbolj primerne vektorske slike} v formatu {\tt .pdf}. Ne samo, da bo besedilo predstavljeno kot besedilo, ampak bodo slike lepe in berljive tudi ob veliki povečavi. Še več, shranjevanje v vektorski obliki od vas običajno ne zahteva nič dodatnega truda. Če npr. graf narišete v Pythonu, le poskrbite, da ga shranite kot {\tt .pdf} in ne kot npr. {\tt .png}, nikakor pa ne kot {\tt .jpg}.
 
 Če vključujete fotografije oz. nekaj česar niste narisali pa bo to verjetno shranjeno v rasterski obliki in shranjeno kot {\tt .jpg} ali {\tt .png}.
-Slika~\ref{pic1} je npr. v formatu {\tt .jpg}, vendar na povsem enak način vključite tudi npr. {\tt pdf}.
+Slika~ je npr. v formatu {\tt .jpg}, vendar na povsem enak način vključite tudi npr. {\tt pdf}.
 
 \begin{figure}
   \begin{center}
     \includegraphics[width=0.7\textwidth]{galaksija}
   \end{center}
-  \caption{Virtualno obogatena skulptura~\cite{vodnjak}. Rezultate računalniško generirane animacije z video projektorjem projeciramo na kamnito skulpturo, da ustvarimo vtis, kot da bi po skulpturi polzele vodne kapljice~\cite{video,solina2020skulpture}.}
+  \caption{Virtualno obogatena skulptura. Rezultate računalniško generirane animacije z video projektorjem projeciramo na kamnito skulpturo, da ustvarimo vtis, kot da bi po skulpturi polzele vodne kapljice}
   \label{pic1}
 \end{figure}
 
@@ -510,7 +527,7 @@ Za prehod v novo vrsto znotraj istega plavajočega objekta preprosto izpustimo p
 Če želimo ustvariti neprekinjeno mrežo povsem \textbf{brez vmesnih presledkov} (kot to prikazuje slika~\ref{sl:mreza_4x2_brez_presledkov}), moramo poskrbeti za dve stvari:
 \begin{enumerate}
     \item \textbf{Horizontalni presledki:} Širino določimo tako, da je vsota vseh širin v vrstici točno enaka \verb|1.0\textwidth| (npr. štiri slike s širino \verb|0.25\textwidth|). Na konec vsake vrstice z ukazom \verb|\includegraphics| moramo dodati znak za komentar (\verb|%|), s čimer preprečimo, da bi \LaTeX\ prelom vrstice interpretiral kot presledek.
-    \item \textbf{Vertikalni presledki:} Znotraj posebnega bloka moramo uporabiti ukaz \texttt{\textbackslash offinterlineskip}, ki v celoti izklopi samodejno vrivanje vertikalnega prostora med vrsticami. Pomembno je, da blok po zadnji sliki zapremo z \verb|}|, preden definiramo \texttt{\textbackslash caption}.
+    \item \textbf{Vertikalni presledki:} Znotraj posebnega bloka moramo uporabiti ukaz \texttt{\textbackslash offinterlineskip}, ki v celoti izklopi samodejno vrivanje vertikalnega prostora med vrsticami. Pomembno je, da blok po zadnji sliki zapremo z, preden definiramo \texttt{\textbackslash caption}.
 \end{enumerate}
 
 \begin{figure}[htbp]
@@ -727,33 +744,11 @@ Kadar je enačba predolga za eno vrstico, uporabimo okolje \texttt{split} znotra
 
 Znak \texttt{\&} določa točko poravnave (običajno pri enačaju), \texttt{\textbackslash\textbackslash} pa prehod v novo vrstico.
 
-\section{Sistemi enačb in primeri}
-
-Za zapis funkcij, ki so definirane po delih, ali za sisteme enačb z enim velikim oklepajem uporabljamo okolje \texttt{cases}:
-
-\begin{equation}
-    |x| = \begin{cases}
-        x,  & \text{če je } x \ge 0, \\
-        -x, & \text{če je } x < 0.
-    \end{cases}
-\end{equation}
-
-Opazimo uporabo ukaza \verb|\text{...}|, ki omogoča vstavljanje običajnega besedila (z vejicami in presledki) neposredno v matematično okolje, kar ohranja pravilno pokončno pisavo.
-
-\section{Splošna tipografska pravila v matematiki}
-
-Pri pisanju matematike upoštevamo naslednja pravila:
-\begin{itemize}
-    \item \textbf{Vejice in pike:} Enačbe so del povedi, zato morajo vsebovati ločila. Če se poved konča z enačbo, na koncu enačbe stoji pika.
-    \item \textbf{Standardne funkcije:} Funkcije, kot so $\sin, \cos, \ln, \max$, pišemo s pokončno pisavo z uporabo ustreznih ukazov (npr. \verb|\sin|), ne pa kot $sin$ (v ležeči pisavi), kar bi nakazovalo produkt spremenljivk $s, i$ in $n$.
-    \item \textbf{Presledki:} \LaTeX{} samodejno upravlja s presledki v matematiki. Ročno poseganje običajno ni potrebno, razen v redkih primerih, kjer uporabimo npr. \verb|\,| za majhen premik.
-\end{itemize}
-
 
 \chapter{Kaj pa literatura?}
 \label{ch:lit}
 
-Kot smo omenili že v uvodu, je pravi način za citiranje literature uporaba \BibLaTeX{a}~\cite{biblatex}.
+Kot smo omenili že v uvodu, je pravi način za citiranje literature uporaba \BibLaTeX{a}
 \BibLaTeX\ zagotovi, da pri določeni vrsti literature ne izpustimo
 nobene obvezne informacije
 in da vse informacije dosledno navajamo na enak način in po istem vrstnem redu.
@@ -761,13 +756,13 @@ in da vse informacije dosledno navajamo na enak način in po istem vrstnem redu.
 
 Osnovna ideja \BibLaTeX{a} je, da vse informacije o literaturi zapisujemo v posebno datoteko, v našem primeru je to \texttt{literatura.bib}.
 Vsakemu viru v tej datoteki določimo simbolično ime.
-V  našem primeru je v tej datoteki nekaj najbolj značilnih zvrsti literature, kot so knjige~\cite{lamport},
-članki v revijah~\cite{leonardo} in zbornikih konferenc~\cite{ciuha2010visualization},
-poglavja v knjigah~\cite{poglavje_springer},
-spletni viri~\cite{slovarji,video},
-tehnično poročilo~\cite{andersen2012kinect},
-diplome~\cite{diploma} itd.
-Diploma~\cite{diploma} iz leta 1990 je bila prva diploma na tedanji Fakulteti za elektrotehniko in računalništvo, ki je bila oblikovana z \LaTeX om.
+V  našem primeru je v tej datoteki nekaj najbolj značilnih zvrsti literature, kot so knjige
+članki v revijah~ in zbornikih konferenc~
+poglavja v knjigah~
+spletni viri~
+tehnično poročilo~
+diplome~ itd.
+Diplomaiz leta 1990 je bila prva diploma na tedanji Fakulteti za elektrotehniko in računalništvo, ki je bila oblikovana z \LaTeX om.
 Reference, ki so na spletnih straneh arhivirane v elektronski obliki, imajo običajno  \v stevilko DOI (\url{http://dx.doi.org}), ki jo zato tudi vključimo v izpis literature in tako bralcu elektronske verzije naše publikacije ponudimo neposredno povezavo do elektronske kopije te reference.
 
 Po vsaki spremembi pri sklicu na literaturo moramo najprej prevesti izvorno besedilo s prevajalnikom \LaTeX, nato s prevajalnikom  \BibLaTeX, ki ustvari datoteko  {\tt vzorec\_dip\_Seminar.bbl}, in nato še dvakrat s prevajalnikom  \LaTeX.
@@ -776,7 +771,7 @@ V okolju Overleaf je to večkratno prevajanje z različnimi prevajalniki uporabn
 Kako se spisek literature nato izpiše (ali so posamezni viri razvrščeni po vrstnem redu sklicevanja, ali po abecedi priimkov prvih avtorjev, ali se imena avtorjev pišejo pred priimki itd.) je odvisno od parametrov paketa \BibLaTeX.
 V diplomi bomo uporabili parametre
 \texttt{style=numeric}, kar pomeni, da bodo sklici na literaturo v besedilu označeni z zaporednimi številkami, za vrstni red izpisa referenc pa
-\texttt{sorting=nty}, kar pomeni, da bodo reference urejene po priimkih prvih avtorjev, nato po naslovu reference in nazadnje po letu izdaje~\cite{ctan}.
+\texttt{sorting=nty}, kar pomeni, da bodo reference urejene po priimkih prvih avtorjev, nato po naslovu reference in nazadnje po letu izdaje
 Zato je potrebno pri določenih zvrsteh literature, ki nima avtorjev, dodati parameter \texttt{key}, ki določi vrstni red vira po abecedi.
 
 Ko začenjamo uporabljati \BibLaTeX\ je lažje, če za urejanje datoteke \texttt{.bib} uporabljamo kar isti urejevalnik kot za urejanje datotek \texttt{.tex},
@@ -785,32 +780,6 @@ Ko začenjamo uporabljati \BibLaTeX\ je lažje, če za urejanje datoteke \texttt
 Le če se  na določen vir v besedilu tudi sklicujemo, se bo ta vir pojavil tudi v spisku literature.
 Tako je avtomatično zagotovljeno, da se na vsak vir v seznamu literature tudi sklicujemo v besedilu diplome.
 V datoteki \texttt{.bib} imamo sicer lahko veliko več virov za literaturo, kot jih bomo uporabili v diplomi.
-
-\section{Zbiranje virov za seznam literature}
-
-Vire v formatu \texttt{.bib}  lahko enostavno poiščemo in prekopiramo iz spletnih strani založnikov ali različnih akademskih spletnih portalov za iskanje znanstvene literature.
-Izvoz  referenc v Google učenjaku še dodatno poenostavimo, če v nastavitvah izberemo \BibTeX\ kot želeni format za izvoz navedb. Navedbe, ki jih  prekopiramo iz Google učenjaka in drugih podobnih akademskih portalov, moramo pred uporabo nujno preveriti, saj so taki navedki pogosto generirani povsem avtomatično in lahko vsebujejo napačne ali nepopolne podatke. Najpogosteje je napačen tip publikacije! Pri velikih jezikovnih modelih pa je lahko celotna referenca izmišljena!
-
-Pri sklicevanju na literaturo na koncu stavka moramo paziti, da je pika po ukazu \verb=\cite{ }=.
-Da \LaTeX\ ne bi delil vrstice ravno tako, da bi sklic na literaturo v oglatih oklepajih začel novo vrstico, moramo pred sklicem na literaturo dodati nedeljiv presledek (tilda): \verb=~\cite{ }= in ne navadnega presledka!
-
-Običajno se v besedilu sklicujemo  na nek vir ali več virov na koncu trdilnega stavka.
-Kadar pa omenimo avtorja nekega vira, pa sklic običajno vstavimo za njegovim priimkom.
-
-Dandanes  se skoraj  vsi pri iskanju informacij vedno najprej lotimo iskanja preko spleta ali velikih jezikovnih modelov. Rezultati takega iskanja pa so pogosto spletne strani, ki danes obstajajo, jutri pa jih morda ne bo več, ali pa vsaj ne v taki obliki, kot smo jo prebrali. Smisel navajanja literature pa je, da tudi po dolgih letih nekdo, ki bo bral vašo diplomo, lahko poišče vire, ki jih navajate v diplomi.
-
-Znanstveni rezultati, ki so objavljeni v obliki recenziranih člankov, bodisi v konferenčnih zbornikih, še bolje pa v znanstvenih revijah, so veliko bolj izčiščen in zanesljiv vir informacij, saj so taki članki šli skozi recenzijske postopke. Predvsem pa so taki članki stabilen vir informacij, saj se načeloma po njihovi objavi ne spreminjajo več. Skoraj vsi ti članki so dandanes dosegljivi tudi v elektronski obliki, bodisi v arhivih založnikov, univerzitetnih repozitorijih ali tudi na osebnih spletnih straneh njihovih avtorjev. Zato na spletu začenjamo iskati vire za strokovna besedila predvsem preko akademskih spletnih portalov, kot so npr. Google učenjak, Research Gate ali Academia, saj so na teh portalih rezultati iskanja le akademske publikacije. Pri velikih jezikovnih modelih bodite pozorni, saj so viri lahko izmišljeni. 
-
-Če je za dostop do nekega članka potrebno plačati, se obrnemo za pomoč in dodatne informacije na  našo knjižnico.
-
-Za označevanje člankov, ki so na voljo v elektronski obliki, se je v zadnjem času uveljavila oznaka DOI
-(\url{https://www.doi.org}), kar močno olajša iskanje teh referenc na spletu.
-Založniki tudi starejšim člankom, ki so na voljo v elektronski obliki, za nazaj določajo oznake DOI.
-Zato poskusite poiskati ustrezno oznako DOI za vsak članek, ki ga citirate in jo vključite v seznam literature.
-
-Če res ne gre drugače, pa je pomembno, da pri sklicevanju na običajni spletni vir vedno navedemo tudi datum, kdaj smo dostopali do tega vira.
-
-Z uporabo \BibLaTeX{a} je možno natisniti seznam literature posebej za določene vrste referenc, na primer za članke v znanstvenih revijah, članke v konferenčnih zbornikih in poglavja v knjigah, kot je prikazano tudi v tem vzorcu diplome.
 
 \chapter{Sklepne ugotovitve}
 
@@ -840,6 +809,26 @@ Uporaba \LaTeX{a} in \BibLaTeX{a} je pri diplomski nalogi \textbf{obvezna}!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\cleardoublepage
-\printbibliography[heading=bibintoc]
+\chapter*{Literatura}
+\addcontentsline{toc}{chapter}{Literatura}
 
+\defbibfilter{ostalo}{
+  not type=article
+  and not type=inproceedings
+}
+\printbibliography[
+  type=article,
+  title={Članki v revijah},
+  heading=subbibintoc
+]
+\printbibliography[
+  type=inproceedings,
+  title={Članki v zbornikih konferenc},
+  heading=subbibintoc
+]
+\printbibliography[
+  filter=ostalo,
+  title={Ostala literatura},
+  heading=subbibintoc
+]
 \end{document}
