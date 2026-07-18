@@ -98,11 +98,14 @@ zanesljiva. Oglasi lahko vsebujejo nerealno visoke ali nizke cene, uporabniki pa
 Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih. Zaradi tega njihove ocene
  pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. \\
 
-Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na zbiranju
- podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na trgu. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.\\
+Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji
+in analizi primerljivih vozil na trgu. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik prve
+registracije in število prevoženih kilometrov. Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, ki na platformi objavljajo lastne
+avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov postopno upadla, tržna vrednost vozil pa bo mogoče ocenjevati na podlagi
+oglasov zbranih znotraj platforme same.\\
 
 Hipoteza diplomskega dela je, da je mogoče s pomočjo zbranih tržnih podatkov in primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno tržne vrednosti vozila.
- Dodatni cilj je preveriti, ali integracija takšnega sistema v spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
+ Dodatni cilj je preveriti, ali integracija takšnega sistema v spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\
 
 V poglavju \ref{chap} je predstavljena analiza problema, pregled obstoječih rešitev in uporabljene tehnologije. Poglavje \ref{chap} opisuje načrtovanje sistema in arhitekturo aplikacije. Implementacija
  posameznih komponent, vključno s sistemom za vrednotenje vozil, je predstavljena v poglavju \ref{chap}. V poglavju \ref{chap} so opisani postopki testiranja in rezultati evalvacije sistema. 
@@ -112,8 +115,8 @@ V poglavju \ref{chap} je predstavljena analiza problema, pregled obstoječih re�
 
 Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
 Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
-Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11. \\
-Za izvajanje posameznih komponent je uporabljena platforma Docker. \\
+Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11.
+Za izvajanje posameznih komponent je uporabljena platforma Docker.
 \newpage
 Docker kontejnerji: 
 \begin{itemize}
@@ -124,7 +127,7 @@ Docker kontejnerji:
     \item Evalvacijski sistem
 \end{itemize}
 
-Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode in izvajanja testov je bil uporabljen sistem GitHub Actions, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
+Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
 Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy.
 
 \chapter{Pregled področja in sorodnih del}
@@ -146,21 +149,20 @@ Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča pro
 \label{ch:struktura}
 
 \section{Spletne aplikacije}
-Spletne aplikacije sestavljata uporabniški vmesnik (odjemalec) in strežniški del aplikacije (zaledni sistem). Takšna arhitektura omogoča ločitev skrbi, kjer vsak del sistema prevzame svojo vlogo v celotni aplikaciji \cite{richardson2007restful}.
+Spletne aplikacije sestavljata uporabniški vmesnik (odjemalec) in strežniški del aplikacije (zaledni sistem). Takšna arhitektura omogoča ločitev skrbi, kjer vsak del sistema prevzame svojo vlogo v celotni aplikaciji~\cite{richardson2007restful}.
 Uporabniški vmesnik omogoča prikaz podatkov ter interakcijo uporabnika z aplikacijo. Njegova glavna naloga je zagotavljanje preglednega, odzivnega in uporabniku prijaznega dostopa do funkcionalnosti sistema.
- Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku, kar prispeva k boljši odzivnosti in uporabniški izkušnji \cite{flanagan2020javascript}.
+ Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku, kar prispeva k boljši odzivnosti in uporabniški izkušnji~\cite{flanagan2020javascript}.
 Sodobni uporabniški vmesniki so pogosto zasnovani na komponentni arhitekturi. Komponenta predstavlja samostojen in ponovno uporaben gradnik uporabniškega vmesnika, ki ga je mogoče vključiti na različnih mestih v aplikaciji.
- Takšen pristop izboljšuje modularnost sistema, poenostavlja vzdrževanje kode ter omogoča boljšo ponovno uporabo funkcionalnosti \cite{react_component_model}. \\
-
+ Takšen pristop izboljšuje modularnost sistema, poenostavlja vzdrževanje kode ter omogoča boljšo ponovno uporabo funkcionalnosti~\cite{react_component_model}. \\
 Strežniški del aplikacije je odgovoren za obdelavo zahtevkov, ki jih prejme od odjemalca, ter za vračanje ustreznih odgovorov. Poleg tega izvaja poslovno logiko sistema, upravlja z dostopnimi pravicami uporabnikov ter skrbi za avtentikacijo in avtorizacijo.
- Strežniški del je prav tako odgovoren za komunikacijo s podatkovno bazo, kjer se hranijo trajni podatki aplikacije \cite{fielding2000rest}. V sodobnih spletnih aplikacijah strežniški del pogosto omogoča dostop do podatkov preko programskih vmesnikov (vmesnik API).
- Eden izmed najpogosteje uporabljenih arhitekturnih pristopov je REST, ki temelji na brezstanovnem (angl. stateless) načinu komunikacije med sistemi in uporablja standardne HTTP metode za izvajanje operacij nad viri \cite{fielding2000rest}.
-Poleg osnovne funkcionalnosti lahko strežniški del vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov ter beleženje dogodkov, kar prispeva k večji varnosti, stabilnosti in zmogljivosti sistema \cite{nginx_rate_limiting}.
+ Strežniški del je prav tako odgovoren za komunikacijo s podatkovno bazo, kjer se hranijo trajni podatki aplikacije~\cite{fielding2000rest}. V sodobnih spletnih aplikacijah strežniški del pogosto omogoča dostop do podatkov preko programskih vmesnikov (vmesnik API).
+ Eden izmed najpogosteje uporabljenih arhitekturnih pristopov je REST, ki temelji na brezstanovnem (angl. stateless) načinu komunikacije med sistemi in uporablja standardne HTTP metode za izvajanje operacij nad viri~\cite{fielding2000rest}.
+Poleg osnovne funkcionalnosti lahko strežniški del vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov ter beleženje dogodkov, kar prispeva k večji varnosti, stabilnosti in zmogljivosti sistema~\cite{nginx_rate_limiting}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{client-server.png}
-\caption{Arhitektura spletne aplikacije tipa odjemalec--strežnik.}
+\caption{Arhitektura spletne aplikacije tipa odjemalec--strežnik~\cite{darvish2020clientserver}.}
 \label{fig:client-server}
 \end{figure}
 
@@ -169,383 +171,320 @@ Poleg osnovne funkcionalnosti lahko strežniški del vključuje tudi dodatne meh
 
 Relacijske podatkovne baze predstavljajo enega izmed najpogosteje uporabljenih pristopov za shranjevanje podatkov v spletnih aplikacijah. Temeljijo na relacijskem modelu, pri katerem so podatki organizirani v tabele,
  ki predstavljajo posamezne entitete. Vsaka entiteta vsebuje atribute, s katerimi opisujemo njene lastnosti, posamezne vrstice pa predstavljajo konkretne primerke entitete. Relacijski model omogoča strukturirano in konsistentno
-  shranjevanje podatkov ter učinkovito izvajanje poizvedb nad velikimi količinami podatkov \cite{relational-databases}.
+  shranjevanje podatkov ter učinkovito izvajanje poizvedb nad velikimi količinami podatkov~\cite{relational-databases}.
 Povezave med entitetami vzpostavimo s primarnimi in tujimi ključi. Primarni ključ enolično identificira posamezen zapis v tabeli, medtem ko tuji ključ omogoča povezovanje podatkov med različnimi tabelami. 
-Na ta način zmanjšamo podvajanje podatkov ter zagotovimo referenčno integriteto podatkovne baze \cite{relational-databases}.\\
+Na ta način zmanjšamo podvajanje podatkov ter zagotovimo referenčno integriteto podatkovne baze~\cite{relational-databases}.\
 
 Pri razvoju sistema smo izbrali PostgreSQL, ki predstavlja odprtokodni objektno-relacijski sistem za upravljanje podatkovnih baz. PostgreSQL temelji na standardu SQL in ga razširja z naprednimi funkcionalnostmi,
- ki omogočajo učinkovito delo tako s strukturiranimi kot tudi s polstrukturiranimi podatki \cite{postgresql-docs}.
+ ki omogočajo učinkovito delo tako s strukturiranimi kot tudi s polstrukturiranimi podatki~\cite{postgresql-docs}.
 Med pomembnejšimi lastnostmi sistema PostgreSQL so podpora za transakcije ACID, napredne poizvedbe SQL, replikacija podatkov, mehanizmi za zagotavljanje integritete podatkov ter podpora za podatkovni format JSON oziroma JSONB.
- Zaradi teh funkcionalnosti je PostgreSQL primeren za razvoj sodobnih spletnih aplikacij, ki zahtevajo visoko zmogljivost, zanesljivost in možnost nadaljnje razširljivosti sistema \cite{postgresql-docs,postgresql-about}.
-
-\section{Evalvacijski sistem}
-\subsubsection{Vrednotenje vozil na podlagi primerljivih vozil}
-
-\subsubsection{Zajem in normalizacija podatkov}
+ Zaradi teh funkcionalnosti je PostgreSQL primeren za razvoj sodobnih spletnih aplikacij, ki zahtevajo visoko zmogljivost, zanesljivost in možnost nadaljnje razširljivosti sistema~\cite{postgresql-docs,postgresql-about}.
 
 \section{Mikrostoritvena arhitektura}
-Mikrostoritvena arhitektura je arhitekturni vzorec, pri katerem se programski sistem razdeli na množico manjših, med seboj neodvisnih storitev, namesto da bi bil zgrajen kot ena sama, tesno povezana enota,
- znana kot monolitna arhitektura \cite{dragoni-microservices}. Vsaka mikrostoritev implementira natančno določeno poslovno funkcionalnost in je razvita, nameščena ter skalirana neodvisno od preostalih storitev v sistemu. 
- Komunikacija med posameznimi mikrostoritvami praviloma poteka prek dobro definiranih vmesnikov, kot so vmesniki API, sporočilne vrste ali drugi mehanizmi za izmenjavo podatkov \cite{newman-building-microservices}.
+Mikrostoritvena arhitektura je arhitekturni vzorec, pri katerem se programski sistem razdeli na množico manjših, med seboj neodvisnih storitev, namesto da bi bil zgrajen kot ena tesno povezana enota,
+ znana kot monolitna arhitektura~\cite{dragoni-microservices}. Vsaka mikrostoritev implementira natančno določeno poslovno funkcionalnost in je razvita, nameščena ter skalirana neodvisno od preostalih storitev v sistemu. 
+ Komunikacija med posameznimi mikrostoritvami praviloma poteka prek dobro definiranih vmesnikov, kot so vmesniki API, sporočilne vrste ali drugi mehanizmi za izmenjavo podatkov~\cite{newman-building-microservices}.
 
-Razdelitev sistema na več manjših, neodvisnih komponent prinaša več prednosti v primerjavi z monolitno arhitekturo \cite{newman-building-microservices}. Posamezne mikrostoritve je lažje testirati, saj imajo omejen in jasno določen obseg delovanja. 
+Razdelitev sistema na več manjših, neodvisnih komponent prinaša več prednosti v primerjavi z monolitno arhitekturo~\cite{newman-building-microservices}. Posamezne mikrostoritve je lažje testirati, saj imajo omejen in jasno določen obseg delovanja. 
 Prav tako je olajšano odkrivanje in odpravljanje napak, saj je napako mogoče hitreje lokalizirati znotraj posamezne storitve, namesto da bi jo iskali znotraj celotnega sistema. Neodvisnost storitev dodatno omogoča lažje vzdrževanje, 
-saj je mogoče posodobiti ali zamenjati eno mikrostoritev, ne da bi to vplivalo na delovanje ostalih mikrostoritev v sistemu, pod pogojem, da vmesnik za komunikacijo med njimi ostane nespremenjen \cite{dragoni-microservices}.
-
-
-\chapter{Struktura diplomske naloge}
-\label{ch:struktura}
-
-Diplomska naloga ima sicer predvideno okvirno strukturo, dejanska struktura pa je precej odvisna od področja v katerem delujete, zato se glede tega nujno posvetujte z mentorjem. Ustaljena struktura sicer bralcu, predvsem pa mentorju in članom komisije, omogoča hitro navigacijo in preverjanje znanstvene integritete opravljenega dela.
-
-Tipična struktura diplomske naloge na FRI obsega naslednje obvezne in priporočene gradnike:
-
-\begin{description}
-    \item[Naslovna stran] poleg naslova v slovenščini in angleščini vsebuje še ime avtorja, mentorja, morebitnega somentorja ter letnico in kraj izdaje. Naslov mora biti jedrnat, a hkrati dovolj informativen, da bralec takoj prepozna domeno računalništva, ki jo naloga obravnava.
-    
-    \item[Izjava o avtorstvu] je formalni dokument, s katerim študent jamči, da je diplomsko delo plod lastnega dela in da so vsi uporabljeni viri ustrezno navedeni.
-    
-    \begin{itemize}
-        \item \textbf{Metodologija oz. teoretične osnove:} Razlaga konceptov, potrebnih za razumevanje rešitve.
-        \item \textbf{Analiza in načrtovanje:} Opis arhitekture rešitve, omejitev, zahtev ipd.
-        \item \textbf{Implementacija:} Opis rešitve, podrobnosti razvoja, uporabljene knjižnice in reševanje specifičnih tehničnih izzivov, vendar brez dejanskih številk.
-        \item \textbf{Eksperimenti, evalvacija in rezultati:} Testiranje rešitve, primerjava zmogljivosti ali uporabniška študija, predstavitev rezultatov in argumentacija. Tipično se to razbije na več poglavij, odvisno od količine izvedenih eksperimentov.
-    \end{itemize}
-    
-    \item[Zaključek] povzame dosežene cilje in poda kritično presojo opravljenega dela. Pomembno je, da izpostavite omejitve svoje rešitve in nakažete smeri za morebitno nadaljnje delo ali izboljšave.
-    
-    \item[Literatura in viri] je seznam vseh strokovnih in znanstvenih člankov, knjig in spletnih virov, na katere se sklicujete. Vsak vir v seznamu mora imeti ustrezen sklic v besedilu.
-    
-    \item[Priloge] so namenjene gradivu, ki bi preveč motilo tok besedila v osrednjem delu, a je pomembno za popolno razumevanje (npr. obsežni kosi programske kode, vprašalniki ali podrobni diagrami).
-\end{description}
-
-\section{Slogovne smernice in priporočila}
-
-Zavedajte se, da vrstni red branja ne sledi vrstnemu redu pisanja zaključnega dela. Verjetno se boste lotili pisanja sorodnih del in metodologije pred eksperimenti ali rezultati, vsekakor pa pred uvodnim razdelkom ali povzetkom, ki ga zagotovo napišite povsem na koncu. Tega se zavedajo tudi bralci, zato se vam pri pisanju uvoda ni potrebno pretvarjati, da eksperimenti še niso bili opravljeni.
-
-\begin{itemize}
-    \item Strokovna besedila morajo biti nedvoumna, zato naj bodo stavki kratki, preprosti in razumljivi, terminologija dosledna. 
-    \item Pri pisanju zaključnega dela upoštevajte akademski slog, ki se močno razlikuje od poljudnega pisanja. Besedilo pišite v prvi osebi množine (npr. \enquote{razvili smo}, \enquote{opazimo}), saj s tem poudarite objektivnost raziskovalnega procesa, v katerega sta vključena študent in mentor. Dovoljena je tudi uporaba trpnika, ki pa je jezikovno okornejša (\enquote{razvit je bil}, \enquote{izdelano je bilo}). Prve osebe ednine (\enquote{razvil sem}, \enquote{izdelal sem}) ne uporabljajte oziroma jo uporabite izjemoma samo tam, kjer želite poudariti svojo osebno odločitev med več možnostmi. 
-    \item Vse trditve v nalogi morajo biti preverljive. To pomeni, da morajo temeljiti na lastnih izpeljavah ali testiranjih, če pa povzemate ugotovitve drugih, je navajanje vira obvezno.
-    \item Za posamezen pojem ali objekt uporabljajte v celotnem delu enako ime in oznako (če je potrebna). 
-    \item Če vpeljujete nove pojme, pazite, da so nedvoumno in natančno definirani. 
-    \item Uporabljajte uveljavljeno strokovno terminologijo. 
-    \item S pisanjem strokovnih besedil se razvija tudi slovenska strokovna terminologija. Pri strokovnih izrazih, ki še nimajo prevoda v slovenščino, po potrebi in v sodelovanju z mentorjem poiščite ustrezen slovenski prevod. 
-    \item Posebna pozornost naj velja prevodom iz angleščine. Pazite na slovenska slovnična pravila. Samostalniški prilastki so v slovenščini na desni strani osebka ali predmeta (SQL query $\rightarrow$ poizvedba SQL, API interface $\rightarrow$ vmesnik API, $x$-axis $\rightarrow$ os $x$), obratni vrstni red, kot je na primer SQL poizvedba, Windows strežnik ali ACME sistem, je napačen.
-\end{itemize}
-
-\chapter{Osnovni gradniki \LaTeX{a} in nasveti za pisanje}
-\label{ch:osnove}
-
-\LaTeX\ bi lahko najbolj preprosto opisali kot programski jezik namenjen oblikovanju besedil.
-Tako kot vsak visokonivojski programski jezik ima tudi \LaTeX\  številne ukaze za oblikovanje  besedila in okolja, ki omogočajo strukturiranje besedila.
-
-Vsi \LaTeX ovi ukazi se začnejo z levo poševnico \texttt{\textbackslash}, okolja pa definiramo bodisi s parom zavitih oklepajev \{ in \} ali z ukazoma \texttt{\textbackslash begin\{ \}} in \texttt{\textbackslash end\{ \}}.
-Ukazi imajo lahko tudi argumente, obvezni argumenti so podani v zavitih oklepajih, opcijski argumenti pa v oglatih oklepajih.
-
-Z ukazi torej definiramo naslov in imena avtorjev besedila, poglavja in podpoglavja in po potrebi bolj podrobno strukturiramo besedila na spiske, navedke itd.
-Posebna okolja so namenjena zapisu matematičnih izrazov, kratki primeri so v naslednjem poglavju.
-
-Vse besedilne konstrukte lahko poimenujemo in se s pomočjo teh imen nato  kjerkoli v besedilu na njih  tudi sklicujemo.
-
-\LaTeX\ sam razporeja besede v odstavke tako, da optimizira razmike med besedami v celotnem odstavku.
-Nov odstavek začnemo tako, da izpustimo v izvornem besedilu prazno vrstico. Da besedilo skoči v novo vrstico pa ukažemo z dvema levima poševnicama.
-Število presledkov med besedami v izvornem besedilo ni pomembno.
-
-\section{Koristni nasveti pri pisanju v \LaTeX{u}}
-
-Programski paket \LaTeX\ je bil prvotno predstavljen v priročniku~ in je v resnici nadgradnja sistema \TeX\ avtorja Donalda Knutha~
-znanega po svojih knjigah o umetnosti programiranja
-ter Knuth-Bendixovem algoritmu~
-\TeX\ in njegove izpeljanke so odprtokodni programi.
-
-Različnih implementacij \LaTeX{}a je cela vrsta, a priporočamo 
-spletno verzijo, ki poenostavi sodelovanje pri pisanju, Overleaf.
-
-Včasih smo si pri pisanju v \LaTeX{}u  pomagali predvsem s tiskanimi pri\-ro\-čni\-ki~ danes pa je enostavneje in hitreje, da ob vsakem problemu za pomoč enostavno povprašamo najljubši jezikovni model.
-
-\LaTeX\ včasih ne zna pravilno deliti slovenskih besed, ki vsebujejo črke s streši\-ca\-mi.
-Če taka beseda štrli preko desnega roba,  lahko \LaTeX{}u pokažemo, kje se tako besedo deli takole: \verb=ra\-ču\-nal\-ni\-štvo=.
-Katere vrstice so predolge lahko vidimo tako, da dokument prevedemo s vključeno opcijo \texttt{draft}: \verb=\documentclass[a4paper, 12pt, draft]{book}=.
-
-V izvornem besedilu lahko začenjate vsak stavek v novi vrstici, saj \LaTeX\ sam razporeja besede po vrsticah postavljenega besedila.
-Na ta način je tudi iskanje po izvornem besedilu in popravljanje veliko hitrejše.
-Večina sistemov za \TeX{}iranje sicer omogoča s klikanjem enostavno prestopanje iz prevedenega besedila na ustrezno mesto v izvornem besedilu in obratno.
-
-Boljšo preglednost dosežemo tako kot pri pisanju programske kode -- z vizualnim urejanjem kode in izpuščanjem praznih vrstic.
-Pri spreminjanju in dodajanju izvornega besedila je najbolje pogosto prevajati, da se sproti prepričamo, če so naši nameni pravilno izpolnjeni.
-
-Kadar besedilo, ki je že bilo napisano z nekim vizualnim urejevalnikom (npr. z Wordom), želimo prenesti v \LaTeX, je tudi najbolje to delati postopoma s posameznimi bloki besedila,
-tako da lahko morebitne napake hitro identificiramo in odpravimo.
-Za prevajanje Wordovih datotek v \LaTeX\ -- in obratno -- sicer obstajajo prevajalniki, ki pa običajno ne generirajo tako čisto logične strukture besedila, kot jo sicer \LaTeX\ omogoča.
-Hiter in enostaven način prevedbe besedila, ki  zahteva sicer ročne dopolnitve, lahko poteka tudi tako, da besedilo urejeno z vizualnim urejevalnikom najprej shranimo v formatu pdf,
-nato pa to besedilo uvozimo v urejevalnik, kjer urejamo izvorno besedilo v formatu \LaTeX.
-
-\section{Pisave v \LaTeX u}
-
-V  \LaTeX ovem okolju lahko načeloma uporabljamo poljubne pisave.
-Izbira poljubne pisave pa ni tako enostavna kot v vizualnih urejevalnikih besedil.
-Posamezne oblikovno medseboj usklajene pisave so običajno združene v družine pisav.
-V \LaTeX u se privzeta družina pisav imenuje Computer Modern,
-kjer so poleg navadnih črk (roman v \LaTeX u) na voljo tudi kurzivne črke (\textit{italic} v \LaTeX u),
-krepke (\textbf{bold} v \LaTeX u), kapitelke (\textsc{small caps} v \LaTeX u), linearne črke ({\textsf{san serif} v \LaTeX u}), pisava pisalnega stroja (\texttt{typewriter} v \LaTeX u) in nekatere njihove kombinacije, npr. krepke linearne črke
-({\textbf{\textsf{san serif}} v \LaTeX u}).
-V istem dokumentu zaradi skladnega izleda uporabljamo običajno le pisave ene družine.
-Pomembna je tudi konsistentna raba večih pisav in da ne pretiravamo z mešanjem različnih pisav.
-
-Ko začenjamo uporabljati \LaTeX, je zato najbolj smiselno uporabljati kar privzete pisave, s katerimi je napisan tudi ta dokument.
-Z ustreznimi ukazi  lahko nato preklapljamo med navadnimi, kurzivnimi, krepkimi in drugimi pisavami.
-Zelo enostavna je tudi izbira velikosti črk.
-\LaTeX\  odlično podpira večjezičnost, tudi v sklopu istega dokumenta, saj obstajajo pisave za praktično vse jezike, tudi take, ki ne uporabljajo latinskih črk.
-
-\section{Skladnost s standardom PDF/A}
-
-Repozitorij Univerze v Ljubljani zahteva, da so oddana zaključna dela skladna s standardom PDF/A. V predlogi smo zagotovili skladnost s standardom PDF/A-2b. S predlogo žal ne moremo preprečiti, da bi uporabnik v diplomsko delo dodal elemente, ki niso skladni s standardom. Pred oddajo zaključnega dela zato uporabnikom priporočamo preverjanje skladnosti z ustreznimi preverjevalniki, npr. z orodjem veraPDF\footnote{\url{https://verapdf.org/}}.
-
-\section{Uporaba količin in enot}
-
-Pri tehničnem in strokovnem pisanju je zelo pomembno dosledno razlikovanje med količinami in njihovimi pripadajočimi merskimi enotami. Neustrezen zapis lahko vodi do napačne interpretacije podatkov in zmanjša strokovno vrednost dokumenta.
-
-\begin{description}
-    \item[Količina] predstavlja lastnost sistema, strojne ali programske opreme, ki jo je mogoče kvantitativno določiti. Simbole količin (npr. $C$ za kapaciteto pomnilnika, $f$ za frekvenco procesorja, $B$ za pasovno širino) pišemo praviloma v \textbf{ležeči pisavi}.
-    \item[Merska enota] je dogovorjena vrednost, s katero primerjamo isto vrsto količine. Simbole enot (npr. \unit{\byte}, \unit{\hertz}, \unit{\bit\per\second}) pišemo v \textbf{pokončni pisavi}.
-\end{description}
-
-Med številčno vrednostjo in pripadajočo enoto mora biti vedno prisoten \textbf{stični presledek} (tilda), tako kot pri citatih. To zagotavlja, da vrednost in enota ob morebitnem prelomu vrstice ostaneta skupaj.
-
-Za dosego standardiziranega zapisa v okolju \LaTeX{} uporabljamo paket \texttt{siunitx}. Ta omogoča avtomatsko upravljanje s presledki in decimalnimi ločili. Spodaj so navedeni primeri pravilne uporabe:
-
-\begin{itemize}
-    \item \textbf{Izpis vrednosti z enoto:} Ukaz \verb|\qty{100}{\giga\byte}| vrne \qty{100}{\giga\byte}.
-    \item \textbf{Posebni znaki:} Odstotke in stopinje pišemo s presledkom (za to že poskrbi \LaTeX), npr.:
-    \begin{itemize}
-         \item\verb|\qty{98}{\percent}| vrne \qty{98}{\percent},
-         \item\verb|\qty{85}{\degreeCelsius}| vrne \qty{85}{\degreeCelsius}.
-     \end{itemize}
-\end{itemize}
-
-V slovenščini kot decimalno ločilo uporabljamo vejico, kar v paketu \texttt{siunitx} nastavimo globalno z ukazom \texttt{output-decimal-marker = \{,\}}.
-
-Še primer rabe enot v besedilu: Pri obremenitvenem testu strežnika smo ugotovili, da pri frekvenci $f = \qty{3,5}{\giga\hertz}$ in obremenitvi \qty{98}{\percent} prepustnost omrežja doseže $B = \qty{1,2}{\giga\bit\per\second}$. Vse meritve so bile opravljene pri temperaturi procesorja $T = \qty{85}{\degreeCelsius} \pm \qty{1,5}{\degreeCelsius}$.
-
-\subsection{Računalnikarji, spoštujte SI!}
-Pri pisanju se zavedajte, da cel svet, z izjemo Liberije, Mjanmarja in Združenih držav Amerike, uradno uporablja Mednarodni sistem enot (SI), ki nam vsakodnevno lajša življenje. Ali ni čudovito reči, da ste letos prevozili \qty{23}{\mega\meter}, namesto nepoučenega dolgovezenja s \qty{23000}{\kilo\meter}?
-
-Pri zapisovanju velikosti v bajtih prihaja zaradi zgodovinskih razlogov do pogostih težav. Velja sledeče:
-\begin{itemize}
-\item Če ste uporabili desetiški pretvornik ($1000$), potem uporabite SI predpone: k (kilo), M (mega), G (giga), T (tera), tj. \unit{\kilo\byte}, \unit{\mega\byte}, \unit{\giga\byte}, \unit{\tera\byte}.
-\item Če ste uporabili dvojiški pretvornik ($1024$), potem uporabite dvojiške predpone: 
-kibi (\unit{Ki}), mebi (\unit{Mi}), gibi (\unit{Gi}), tebi (\unit{Ti}), 
-tj. \unit{\kibi\byte}, \unit{\mebi\byte}, \unit{\gibi\byte}, \unit{\tebi\byte}. 
-Naj vas ne zmoti dejstvo, da se veliko proizvajalcev in celo določeni operacijski 
-sistemi tega ne držijo (lahko da prihajajo iz katere od treh posebnih držav).
-\end{itemize}
-
-Seveda ne pozabite tudi na razliko v zapisu bajta \unit{\byte} in bita \unit{\bit}!
-
-\section{Sklici in citiranje}
-
-Pri pisanju strokovnih besedil je nujno dosledno sklicevanje na slike, tabele, enačbe in druga poglavja ter citiranje uporabljene literature. Sistem \LaTeX\ nam to močno olajša, saj ob prevajanju samodejno poskrbi za pravilno oštevilčenje. Uporabljamo naslednje osnovne ukaze:
-
-\begin{itemize}
-    \item \textbf{Označevanje (\texttt{\textbackslash label}):} Element, na katerega se želimo sklicevati, moramo najprej označiti z ukazom \verb|\label{ime_oznake}|. Priporočljivo je, da za boljšo preglednost uporabljate predpone, na primer \texttt{sl:} za slike, \texttt{tab:} za tabele, \texttt{en:} za enačbe in \texttt{pogl:} za poglavja (npr. \verb|\label{sl:galaksija}| ali \verb|\label{ch:osnove}|).
-    
-    \item \textbf{Sklicevanje (\texttt{\textbackslash ref}):} V besedilu se na označeni element skličemo z ukazom\verb|~\ref{ime_oznake}|. \LaTeX\ bo na tem mestu izpisal ustrezno številko. Če se sklicujemo na matematično enačbo, namesto tega uporabimo ukaz\verb|~\eqref{ime_oznake}|, ki številko enačbe samodejno obda z okroglimi oklepaji.
-    
-    \item \textbf{Citiranje (\texttt{\textbackslash cite}):} Za navajanje virov iz bibliografske datoteke uporabimo ukaz.
-\end{itemize}
-
-\textbf{Zelo pomembno pravilo:} Med besedo in samim sklicem ali citatom mora vedno stati \textbf{nedeljivi presledek}, ki ga v \LaTeX u označimo s tildo (\verb|~|). S tem preprečimo, da bi številka sklica ob prelomu vrstice padla sama v novo vrstico, kar je tipografsko nepravilno. 
-
-Pravilna raba v besedilu torej izgleda takole: 
-Kot lahko vidimo na sliki\verb|~\ref{sl:galaksija}|, velja enačba\verb|~\eqref{en:masa}|. 
-Podobno velja za literaturo: Algoritem je opisan v poglavju
-
-\chapter{Pogoste napake pri pisanju v slovenščini}
-\label{ch:slo}
-
-Pri pisanju strokovnih besedil v slovenščini se pogosto srečujemo s tipičnimi napakami, ki izvirajo iz vpliva tujih jezikov ali nepoznavanja tipografskih pravil \LaTeX u. Spodaj so zbrana ključna pravila, organizirana po kategorijah:
-
-\begin{itemize}
-    \item \textbf{Vrstni red besed in kratic:} Pridevniki, ki se ne sklanjajo (npr. kratice), morajo v slovenščini stati za samostalnikom. Pravilno pišemo \enquote{model CAD} in \textbf{ne} \enquote{CAD model}.
-    
-    \item \textbf{Sklanjanje tujih imen:} Pri sklanjanju tujih lastnih imen v slovenščini ne uporabljamo vezajev. Pravilno je \enquote{Applov operacijski sistem} in \textbf{ne} \enquote{Apple-ov}.
-    
-    \item \textbf{Ločila in stičnost:} Pika, klicaj in vprašaj so levostični (pred njimi ni presledka, za njimi pa je). Klicajev in vprašajev se v strokovnih besedilih načeloma izogibamo. Oklepaji so desnostični, zaklepaji pa levostični: \enquote{(takole)}.
-    
-    \item \textbf{Tropičje in naštevanje:} Tropičja enostavno v diplomah ne uporabljajte. V znanstvenih besedilih in diplomah uporabljamo itd. ali idr. in ne tropičja. Pozorni bodite, da lahko uporabite le npr. ali itd. in ne obeh v eni povedi.
-    
-    Za kasnejšo rabo tropičja v življenju pa vendarle velja sledeče. V slovenščini je tropičje praviloma nestično ločilo. V \LaTeX u ga zapišemo z ukazom \texttt{\textbackslash dots} in ne s tremi pikami. Primer: \enquote{pes, maček, rosomah, \dots} Izjema je tropičje, ki mu sledi drugo ločilo; takrat je levonestično, npr. \enquote{pes, maček, rosomah, \dots!}
-    
-    \item \textbf{Narekovaji:} So stična ločila. V \LaTeX u ne smemo uporabiti zgolj tipke \texttt{"} ali dveh \texttt{''}, saj se začetni in končni narekovaji ne bodo pravilno izrisali. Najboljša praksa je uporaba ukaza \texttt{\textbackslash enquote\{...\}}, ki samodejno postavi pravilne slovenske narekovaje: \enquote{spodaj devetice, zgoraj šestice}.
-    
-    \item \textbf{Vezaj in pomišljaj:} 
-    \begin{itemize}
-        \item \textbf{Vezaj (-):} Je levo in desno stičen, npr. \verb=slovensko-angleški= in označuje enakovredno razmerje med pojmoma. V kodi ga pišemo z enim znakom \texttt{-}.
-        \item \textbf{Pomišljaj (--):} V slovenščini in v (britanski) angleščini je nestičen (s presledki). V kodi ga zapišemo z dvema znakoma \texttt{--}, npr. \verb=Pozor -- hud pes! =
-        \item \textbf{Razponski pomišljaj (--):} Uporabljamo ga za razpone (npr. \enquote{od--do}), je stičen: \verb=strani 7--11= in se ga v kodi piše povsem enako kot pomišljaj (\verb=--=).
-        \item \textbf{Ameriški pomišljaj (---):} t.i. \textit{em-dash} je daljši, stičen in se v kodi piše s tremi znaki \verb=---=, opravlja pa povsem enako vlogo kot nestični pomišljaj v slovenščini oz. v britanski angleščini t.i. \textit{en-dash}, npr. \verb=Beware---vicious dog!= V slovenščini ga seveda ne uporabljajte.
-    \end{itemize}
-
-    \item \textbf{Presledki ob ločilih in kraticah:} \LaTeX\ privzeto uporablja t.i. francoski razmik, kar pomeni, da je presledek po koncu stavka malenkost večji od tistega med besedami. To vodi do dveh specifičnih težav:
-    \begin{itemize}
-        \item \textbf{Kratice sredi stavka:} Če piki za kratico (npr. \textit{prof.}, \textit{dr.}, \textit{itd.}) sledi presledek, bo \LaTeX\ to interpretiral kot konec stavka in vstavil predolg razmik. To preprečimo z uporabo tilde \texttt{\~} (stični presledek) ali poševnice s presledkom \texttt{\textbackslash\ }. Pravilno: \verb|prof.~dr.~Novak| ali \verb|npr.\ v tem primeru|.
-        \item \textbf{Kratice na koncu stavka:} Če se stavek konča z veliko črko (npr. kratica na koncu stavka), \LaTeX\ misli, da gre za kratico sredi stavka in vstavi premajhen razmik. Za pravilno interpretacijo konca stavka pred piko vstavimo ukaz \texttt{\textbackslash @}. \\Pravilno: \verb|Razvili so novo CPE\@. Sledila je testna faza.|
-    \end{itemize}
-    
-    \item \textbf{Vejice in stavčna zgradba:} Vejica loči stavke (povedke), razen če so zvezani z vezniki \textit{in, pa, ter, ne–ne, niti–niti, ali, bodisi, oziroma}. Čeprav velja pravilo \enquote{pred ki, ko, ker, da, če, vejica skače}, je potrebno paziti na vrivke in večbesedne veznike. V strokovnih besedilih je bolje pisati krajše in jasne stavke. Veliki jezikovni modeli vam bodo pri postavljanju vejic v veliko pomoč, za zares pravilno postavljanje pa svetujemo uporabo spletnega orodja CJVT vejice~(\url{https://orodja.cjvt.si/vejice/}).
-    
-    \item \textbf{Terminologija in viri:} Za nove računalniške pojme si pomagamo z uveljavljenimi slovarji. Glavni viri so \textit{Islovar} Slovenskega društva InformatikaSlovar Slovenskega društva za razpoznavanje vzorcev~ ter osrednje jezikovno spletišče \textit{Fran}
-\end{itemize}
-
-\chapter{Plovke: slike in tabele}
-\label{ch:plovke}
-
-Slike in daljše tabele praviloma vključujemo v dokument kot plovke.
-Pozicija plovke v končnem izdelku ni pogojena s tekom besedila, temveč z izgledom strani.
-\LaTeX\ bo skušal plovko postaviti samostojno, praviloma na mestu, kjer se pojavi v izvornem besedilu, sicer pa na
-vrhu strani, na kateri se na takšno plovko prvič sklicujemo.
-Pri tem pa bo na vsako stran končnega izdelka želel postaviti tudi sorazmerno velik del besedila.
-V skrajnem primeru, če imamo res preveč plovk na enem mestu besedila, ali če je plovka previsoka, se bo \LaTeX\ odločil za stran popolnoma zapolnjeno s plovkami.
-
-Poleg tega, da na položaj plovke vplivamo s tem, kam jo umestimo v izvorno besedilo, lahko na položaj plovke na posamezni strani prevedenega besedila dodatno vplivamo z opcijami \texttt{here, top} in \texttt{bottom}.
-Zelo velike slike je najbolje postaviti na posebno stran z opcijo \texttt{page}.
-Skaliranje slik po njihovi širini lahko prilagodimo širini strani tako, da kot enoto za širino uporabimo kar širino strani, npr. \verb=0.5\textwidth= bo raztegnilo sliko na polovico širine strani.
-Sliko lahko po potrebi tudi zavrtimo za 90 stopinj in jo razstegnemo na višino strani.
-Tako bodo podrobnosti na sliki lažje berljive in prostor na strani bo bolje izkoriščen.
-
-Na vse plovke se moramo v besedilu sklicevati, saj kot beseda plovka pove, plovke plovejo po besedilu in se ne pojavijo točno tam, kjer nastopajo v izvornem besedilu.
-Vendar naj bosta  sklic na plovko v besedilu in sama plovka v oblikovanem besedilu čim bližje skupaj, tako da bralcu ne bo potrebno listati po diplomi.
-Upoštevajte pa, da se naloge tiska dvostransko in da se hkrati vidi dve strani v dokumentu!
-Na to, kje se bo slika ali druga plovka pojavila v postavljenem besedilu lahko torej najbolj vplivamo tako, da v izvorni kodi plovko premikamo po besedilu nazaj ali naprej!
-
-Tabele je najbolje oblikovati kar neposredno v \LaTeX u, saj za oblikovanje tabel obstaja zelo fleksibilno okolje \texttt{tabular}.
-Slike pa je po drugi strani  pogosto najlažje oblikovati oziroma izdelati z drugimi orodji in programi, rezultate shraniti v formatu {\tt .pdf} ali {\tt .jpeg} in nato v \LaTeX u le vključiti ustrezno slikovno datoteko. Za pisanje besed, ki so vključene v slike, uporabite pisave/fonte, ki so čimbolj podobne pisavam v samem besedilu, ali še bolje shranite brez fonta in pustite \LaTeX u, da vključi svojega.
-
-Knjižnica \url{https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ}
-pa omo\-go\-ča risanje raznovrstnih grafov neposredno v okolju \LaTeX .
-
-Na vse tabele in slike se moramo v besedilu sklicevati, saj kot plovke v oblikovanem besedilu niso nujno na istem mestu kot v izvornem besedilu.
-Pri sklicevanju na slike uporabimo veliko začetnico, npr. ''glej Sliko '', saj gre za ime slike.
-
-\section{Formati slik}
-
-V dokument \LaTeX\ lahko vključimo slike različnih formatov, tako
-rasterske slike kot vektorske slike.
-
-\textbf{Za grafe in diagrame so najbolj primerne vektorske slike} v formatu {\tt .pdf}. Ne samo, da bo besedilo predstavljeno kot besedilo, ampak bodo slike lepe in berljive tudi ob veliki povečavi. Še več, shranjevanje v vektorski obliki od vas običajno ne zahteva nič dodatnega truda. Če npr. graf narišete v Pythonu, le poskrbite, da ga shranite kot {\tt .pdf} in ne kot npr. {\tt .png}, nikakor pa ne kot {\tt .jpg}.
-
-Če vključujete fotografije oz. nekaj česar niste narisali pa bo to verjetno shranjeno v rasterski obliki in shranjeno kot {\tt .jpg} ali {\tt .png}.
-Slika~ je npr. v formatu {\tt .jpg}, vendar na povsem enak način vključite tudi npr. {\tt pdf}.
-
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=0.7\textwidth]{galaksija}
-  \end{center}
-  \caption{Virtualno obogatena skulptura. Rezultate računalniško generirane animacije z video projektorjem projeciramo na kamnito skulpturo, da ustvarimo vtis, kot da bi po skulpturi polzele vodne kapljice}
-  \label{pic1}
-\end{figure}
-
-\section{Podnapisi k slikam in tabelam}
-
-Vsaki sliki ali tabeli moramo dodati podnapis, ki na pojasnjuje, kaj je na sliki ali tabeli, obrazloži vse morebitne okrajšave, pojasni glavna dognanja. Ne bojte se daljših opisov.
-Če nekdo le prelista diplomsko delo, naj bi že iz slik in njihovih podnapisov lahko na grobo razbral, kakšno temo naloga obravnava.
-
-Če slike povzamemo iz drugih virov, se moramo v podnapisu k taki sliki nujno sklicevati na ta vir!
-
-\section{Vključevanje več slik in tabel hkrati}
-
-Pri pisanju diplomske naloge se pogosto pojavi potreba po prikazovanju več slik ali tabel ene ob drugi. Za ta namen uporabljamo paket \texttt{subcaption}, ki predstavlja sodoben in podprt standard v \LaTeX u. 
-
-V spletnih virih in starih predlogah študenti prepogosto najdejo in uporabijo paketa \texttt{subfigure} ali \texttt{subfig}. Oba paketa sta zastarela in pogosto povzročata težave pri prevajanju ali konflikte z drugimi paketi (npr. pri generiranju hiperpovezav). Teh dveh paketov zato \textbf{ne uporabljajte}. Prav tako se za razporejanje slik v mrežo ne poslužujte paketa \texttt{TikZ}. Ta paket je sicer izjemno močno orodje, a je namenjen risanju vektorskih shem in je za preprosto razporejanje slik odločno preveč kompleksen.
-
-Za uporabo sodobnega pristopa v preambulo dokumenta dodajte ukaz \texttt{\textbackslash usepackage\{subcaption\}}.
-Paket nam ponuja dve okolji: \texttt{subfigure} za slike in \texttt{subtable} za tabele. Obe okolji v ozadju delujeta na podobnem principu kot standardno okolje \texttt{minipage} (ki ga v \LaTeX u pogosto uporabljamo za postavljanje povsem neodvisnih blokov vsebin enega ob drugega), saj obema podamo eksplicitno širino, ki jo bosta zavzela.
-
-Ker so slike in tabele plavajoči objekti, ne smemo nikoli predpostavljati, kje natančno na strani se bodo izrisale. Na vse elemente se v besedilu vedno sklicujemo izključno z ukazom \texttt{\textbackslash ref}, pred katerim uporabimo nedeljivi presledek (\verb|~|).
-
-\subsection{Več slik s podnaslovi}
-
-Kadar želimo vsaki sliki dodeliti svojo oznako (npr. a, b) in podnaslov, uporabimo okolje \texttt{subfigure}. Širino posamezne podslike določimo z ulomkom širine besedila, npr. \verb|0.48\textwidth|. Vmesni prostor do polne širine zapolnimo z ukazom \verb|\hfill|. Na sliki~\ref{sl:dve_sliki} lahko vidimo primer dveh slik, ki sta postavljeni ena ob drugi.
-
-\begin{figure}[htbp]
+saj je mogoče posodobiti ali zamenjati eno mikrostoritev, ne da bi to vplivalo na delovanje ostalih mikrostoritev v sistemu, pod pogojem, da vmesnik za komunikacijo med njimi ostane nespremenjen~\cite{dragoni-microservices}.
+
+
+\section{Zajem podatkov iz spletnih virov}
+Zajem podatkov iz spletnih virov predstavlja temeljni korak pri vrednotenju rabljenih vozil na trgu. 
+Kakovost, obseg in svežost zbranih podatkov neposredno
+vplivajo na zanesljivost modelov za ocenjevanje cen.~\cite{laender2002}. V splošnem ločimo tri
+pristope za pridobivanje podatkov iz spleta: izkoriščanje javno dostopnih
+podatkovnih zbirk, samodejni zajem podatkov s spletnih strani
+(ang.\ \emph{web scraping}) ter dostop prek vmesnikov API~\cite{laender2002}.
+
+\subsection{Javno dostopne podatkovne zbirke}
+
+Javno dostopne podatkovne zbirke predstavljajo enega najprimernejših virov za zbiranje strukturiranih podatkov,
+ saj so podatki v njih že organizirani, kategorizirani in pripravljeni za neposredno analitično obdelavo~\cite{janssen2012open}. Primeri takšnih zbirk so odprti vladni portali, kot sta Statistični urad Republike 
+ Slovenije (SURS)~\cite{surs} in Eurostat~\cite{eurostat}, akademski repozitoriji ter portali prometnih agencij.
+  Slabost tega pristopa je omejena razpoložljivost aktualnih tržnih podatkov. Javne zbirke navadno ne vsebujejo oglasov 
+  z aktualnimi prodajnimi cenami vozil, ki so nujno potrebni za ocenjevanje tržne vrednosti~\cite{gegic2019car}.
+Javne zbirke navadno ne vsebujejo oglasov z aktualnimi prodajnimi cenami vozil,
+ki so nujno potrebni za ocenjevanje tržne vrednosti~\cite{gegic2019car}.
+Za tuje trge sicer obstajajo javno dostopne zbirke oglasov, pridobljenih z
+oglasnih portalov, npr. nemški trg (eBay Kleinanzeigen)~\cite{ebay_de_dataset}, vendar za slovenski trg takšna javna zbirka
+ne obstaja.
+
+\subsection{Samodejni zajem podatkov s spletnih strani}
+
+Samodejni zajem podatkov s spletnih strani je postopek avtomatiziranega
+pridobivanja strukturiranih informacij iz spletnih strani z razčlenjevanjem
+njihove vsebine~\cite{laender2002}. Ta pristop se pogosto uporablja pri zbiranju
+oglasov za prodajo rabljenih vozil, saj je na voljo veliko portalov, ki
+vsebujejo obsežne zbirke takšnih oglasov. Iz vsakega oglasa je mogoče
+pridobiti strukturirane atribute vozila, kot so znamka, model, letnik
+izdelave, prevoženi kilometri, vrsta goriva, tip menjalnika in oglašena
+prodajna cena~\cite{gegic2019car}. Zajem poteka z orodji za avtomatizirano
+brskanje po spletnih straneh, ki simulirajo obisk uporabnika, ter z
+razčlenjevanjem strukture dokumenta HTML za izluščitev relevantnih
+podatkovnih polj~\cite{laender2002}.
+
+\subsection{Razčlenjevanje vsebine HTML}
+
+Spletna stran je v osnovi dokument v jeziku HTML
+(ang.\ \emph{HyperText Markup Language}), ki je organiziran v drevesno strukturo
+DOM (ang.\ \emph{Document Object Model})~\cite{olston2010}. Vsak element
+dokumenta, kot so naslovi, odstavki in podatkovne celice, je v tej strukturi
+predstavljen kot vozlišče, ki ima lahko starševska in podrejena vozlišča.
+Orodja za razčlenjevanje (ang.\ \emph{parsers}), kot sta knjižnici
+\texttt{BeautifulSoup} in \texttt{lxml} v jeziku Python, to strukturo pretvorijo
+v obliko, primerno za programsko obdelavo.
+
+Za izluščevanje podatkovnih elementov iz razčlenjene strukture se v praksi
+najpogosteje uporabljata dve vrsti izbirnikov: izbirniki CSS in izbirniki XPath~\cite{darmawan2022}. Izbirniki CSS so bili prvotno zasnovani za oblikovanje
+spletnih strani, a jih pri zajemu podatkov preusmerimo v poizvedovanje po
+strukturi DOM~\cite{olston2010}. Izbirniki XPath (ang.\ \emph{XML Path
+Language}) pa so namensko poizvedovalni jezik za navigacijo po drevesnih
+strukturah XML in HTML, ki poleg preprostega iskanja po oznakah in razredih
+podpira tudi premikanje navzgor po drevesu, iskanje po vsebini besedilnih
+vozlišč ter vgrajene funkcije, kot sta \texttt{contains()} in
+\texttt{position()}~\cite{darmawan2022}. V kontekstu zajemanja podatkov iz
+avtomobilskih oglasnih portalov to pomeni, da z izbirniki iz razčlenjenega
+dokumenta izluščimo posamezna podatkovna polja oglasa, kot so naziv vozila,
+cena, letnik, prevoženi kilometri in vrsta goriva.
+
+\chapter{Metodologija}
+Cilj diplomske naloge je bila izdelava spletne aplikacije, v kateri bodo uporabniki lahko
+objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
+tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
+različnih forumov in strokovnih člankov. Ko smo zaključili razvoj spletne aplikacije, smo
+se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem jeziku Python.
+Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
+ekosistemom knjižnic, namenjenih analizi podatkov.\\
+Pri izbiri orodij za razvoj uporabniškega vmesnika smo se odločili za ogrodje React.
+Odločitev je deloma temeljila na želji po pridobitvi novih znanj v okviru diplomskega dela,
+saj z Reactom pred tem nismo imeli izkušenj. React je eno izmed najpopularnejših ogrodij za
+razvoj uporabniških vmesnikov z eno največjih skupnosti, kar zagotavlja kakovostno
+dokumentacijo in dolgoročno podporo. Skupaj z Reactom smo uporabili jezik TypeScript, ki je
+nadgradnja jezika JavaScript~\cite{typescript}. TypeScript razvijalce prisili k
+eksplicitni deklaraciji tipov spremenljivk, kar bistveno zmanjša možnost napak med razvojem.\\
+Za razvoj zalednega sistema smo izbrali ogrodje Express.js, zgrajeno na platformi Node.js,
+ki omogoča hitro in enostavno izdelavo spletnih aplikacij. Odločitev je temeljila na
+predhodnih izkušnjah z ogrodjem ter na njegovi enostavni integraciji z vmesniki REST API.
+Zaledni sistem smo razvili v jeziku JavaScript, kar se je naknadno izkazalo za manj optimalno
+odločitev. Jezik TypeScript bi z dodatno varnostjo tipov prispeval k boljši zanesljivosti
+in vzdržljivosti kode.
+
+\section{Načrtovanje podatkovne baze}
+
+
+\subsection{Načrtovanje podatkovne baze aplikacije}
+Pri načrtovanju podatkovne baze smo morali natančno premisliti, kako shranjujemo
+oglase avtomobilov, saj je to ključnega pomena za učinkovito delovanje odločitvenega
+modela. Previsoka stopnja normalizacije bi upočasnila poizvedbe, prenizka pa bi
+vodila do podvajanja podatkov in posledičnih neskladnosti v bazi~\cite{elmasri2015fundamentals}.\\
+
+Entiteti Brand in CarModel sta izločeni v ločeni tabeli, ker med njima obstaja
+hierarhično razmerje ena-proti-mnogo: ena znamka (Brand) ima lahko poljubno število
+modelov (CarModel), vsak model pa pripada natanko eni znamki. Shranjevanje znamk
+in modelov kot vrednosti tipa \texttt{enum} ali prostega niza bi bilo neprimerno
+iz dveh razlogov. Prvič, število možnih vrednosti je preveliko za statično definicijo
+z \texttt{enum}. Drugič, prosti niz bi omogočal podvojene ali nekonsistentne vnose
+– na primer »Audi A3« in »audi a3 Sportback« bi bila obravnavana kot različni
+entiteti, čeprav gre za isti model. Z relacijsko vezavo prek tujih ključev je
+zagotovljen referenčni nadzor nad vnesenimi vrednostmi ter enotnost podatkov.\\
+
+Entiteta CarSpecifications je namerno ločena od entitete CarListing, ker vsebuje
+tehnične podrobnosti vozila, ki niso relevantne pri vsakem poizvedovanju. Pri prikazu
+seznama oglasov (npr. v podatkovni tabeli) zadostujejo le osnovni podatki iz entitete
+CarListing (cena, prevoženi kilometri, letnik …), specifikacije pa se naložijo le
+ob ogledu posameznega oglasa. Ta ločitev zmanjša količino podatkov, ki se prenesejo
+iz podatkovne baze pri pogostih poizvedbah, in s tem izboljša odzivnost aplikacije.\\
+
+Entiteta CarListingLike predstavlja asociativno tabelo, ki realizira razmerje
+mnogo-proti-mnogo med uporabniki in oglasi: en uporabnik lahko označi kot všečkano
+poljubno število oglasov, en oglas pa je lahko všečkan pri poljubnem številu
+uporabnikov. Tabela vsebuje tuji ključ na entiteto User in tuji ključ na entiteto
+CarListing, kar zagotavlja referenčno integriteto in preprečuje podvojene vnose.
+
+Entiteta User hrani standardne podatke o registriranih uporabnikih sistema.
+
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Podnaslov leve slike.}
-        \label{sl:leva}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Podnaslov desne slike.}
-        \label{sl:desna}
-    \end{subfigure}
-    \caption{Skupni naslov, ki opisuje obe sliki.}
-    \label{sl:dve_sliki}
+    \includegraphics[width=0.9\textwidth]{ErDiagramMain.png}
+    \caption{ER-diagram glavnih entitet aplikacije.}
+    \label{fig:er-diagram}
 \end{figure}
 
-Za prehod v novo vrsto znotraj istega plavajočega objekta preprosto izpustimo prazno vrstico in po želji dodamo nekaj vertikalnega prostora z ukazom \verb|\vspace|. Na tak način je zgrajena mreža štirih slik na sliki~\ref{sl:mreza_2x2}.
+\subsection{Načrtovanje podatkovne baze odločitvenega modela}
+V okviru iste podatkovne baze smo dodali ločeno shemo \texttt{market}, ki vsebuje
+dve tabeli, namenjeni zbiranju in obdelavi tržnih podatkov za sistem vrednotenja
+avtomobilov.\\
+Tabela \texttt{RawMarketListing} služi kot surov arhiv vseh oglasov, pridobljenih
+iz zunanjih virov – javno dostopnih zbirk podatkov, spletnih vmesnikov API in z
+zajemanjem spletnih strani. Tabela vsebuje naslednja
+polja: \texttt{source} identificira izvor podatkov (npr.\ ime portala ali vmesnika
+API), \texttt{externalId} je identifikator oglasa na izvornem sistemu, ki je določen
+statično v kodi in preprečuje podvojene vnose, \texttt{url} hrani
+neposredno povezavo do oglasa, \texttt{scraped\_at} je časovni žig trenutka zajema
+podatkov, \texttt{raw\_payload} pa vsebuje izvorni odgovor v obliki JSON brez
+kakršnekoli obdelave. Izvorni odgovor je namerno shranjen v celoti, kar omogoča
+kasnejšo ponovno obdelavo brez ponovnega zajema podatkov, če se normalizacijska
+logika spremeni.\\
+Tabela \texttt{NormalizedCarListing} vsebuje obdelano in normalizirano obliko
+surovega oglasa, vezano na tabelo \texttt{RawMarketListing} prek tujega ključa
+\texttt{raw\_listing\_id}. Razmerje med tabelama je ena-proti-mnogo: vsak surovi oglas
+ima lahko več normaliziranih zapisov. Polja so poenotena in tipizirana – cena, prevoženi
+kilometri in letnik so shranjeni kot \texttt{integer}, znamka, model, vrsta goriva,
+tip menjalnika, oblika karoserije in država pa kot \texttt{string}. Takšna
+poenotena struktura omogoča neposredno primerjavo oglasov iz različnih virov pri
+izračunu tržne vrednosti vozila.\\
+Ločitev na dve tabeli sledi vzorcu cevovoda surovih in normaliziranih podatkov
+(angl.\ \textit{raw/normalized pipeline})~\cite{kleppmann2017designing}: surovi
+podatki ostanejo nedotaknjeni kot revizijska sled in osnova za morebitno ponovno
+obdelavo, normalizirana oblika pa je tista, ki se uporablja v analitičnih poizvedbah.
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Zgoraj levo.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Zgoraj desno.}
-    \end{subfigure}
-    
-    \vspace{0.5cm} % Vertikalni razmik med vrsticama
-    
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Spodaj levo.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{galaksija.jpg}
-        \caption{Spodaj desno.}
-    \end{subfigure}
-    \caption{Mreža štirih slik s posameznimi podnaslovi.}
-    \label{sl:mreza_2x2}
+    \includegraphics[width=0.9\textwidth]{ErDiagramEvaluation.png}
+    \caption{ER-diagram entitet Evalvacijskega sistema.}
+    \label{fig:er-diagram-evaluation}
 \end{figure}
 
-\subsection{Več slik brez podnaslovov (mreža brez presledkov)}
+\section{Arhitektura zalednega sistema}
+Zaledni sistem smo oblikovali z modularno arhitekturo, ki omogoča jasno ločitev odgovornosti (separation of concerns), 
+kar olajša branje, vzdrževanje in nadaljnjo razširiteljnost kode~\cite{separation-concerns}. 
+Kot ogrodje za zaledni sistem smo izbrali Express.js, minimalistično ogrodje za Node.js, ki zagotavlja temeljne 
+funkcionalnosti za usmerjanje zahtev in upravljanje vmesnika HTTP, hkrati pa razvojnikom omogoča svobodno izbiro 
+specifičnih knjižnic glede na različne zahteve aplikacije~\cite{expressjs-docs}.
 
-Če individualni podnaslovi niso potrebni in želimo le en skupen naslov celotne mreže slik, okolja \texttt{subfigure} sploh ne potrebujemo. Slike preprosto naložimo znotraj navadnega \texttt{figure} okolja in določimo njihovo velikost. 
+\subsection{Modul za poizvedbe v podatkovni bazi}
+Za implementacijo podatkovnih modelov in poizvedkov na podatkovno bazo smo uporabili knjižnico Sequelize. Sequelize je vmesnik za 
+spreminjanje objektno-relacijskih preslikav (ORM – Object-Relational Mapping), ki omogoča preslikavo objektov iz programske kode v 
+relacijske strukture podatkovne baze ~\cite{sequelize-orm}. ORM pristop izboljšuje razvoj, saj omogoča programerjem, da delajo z objekti 
+namesto neposrednih poizvedb SQL, kar zmanjša napake in poveča berljivost kode~\cite{sequelize-orm} Prednosti ORM pristopa vključujejo tipsko varnost, 
+avtomatično generiranje poizvedb za različne podatkovne baze ter intuitivnejše upravljanje relacij med entitetami.\\
+Podatkovni modeli so v Sequelize definirani kot razredi, ki predstavljajo tabele v bazi podatkov~\cite{sequelize-orm}
+ Vsak model ima atribute, ki ustrezajo stolpcem v tabeli, ter metode za izvajanje temeljnih operacij s podatki (CRUD – Create, Read, Update, Delete). 
+ Ključno pri oblikovanju modelov je tudi postavitev indeksov na poljih, ki se pogosto pojavljajo v pogojih poizvedb (npr. ID avtomobila, izvor oglasa ali časovni žigi).
+  Dobro zasnovani indeksi so bistvenega pomena za zagotavljanje hitrih odgovorov poizvedb pri velikih količinah podatkov~\cite{database-indexing}.
+   Primer definirane modelne strukture je prikazan v Kodi~\ref{code:user-model}.
 
-Če želimo ustvariti neprekinjeno mrežo povsem \textbf{brez vmesnih presledkov} (kot to prikazuje slika~\ref{sl:mreza_4x2_brez_presledkov}), moramo poskrbeti za dve stvari:
-\begin{enumerate}
-    \item \textbf{Horizontalni presledki:} Širino določimo tako, da je vsota vseh širin v vrstici točno enaka \verb|1.0\textwidth| (npr. štiri slike s širino \verb|0.25\textwidth|). Na konec vsake vrstice z ukazom \verb|\includegraphics| moramo dodati znak za komentar (\verb|%|), s čimer preprečimo, da bi \LaTeX\ prelom vrstice interpretiral kot presledek.
-    \item \textbf{Vertikalni presledki:} Znotraj posebnega bloka moramo uporabiti ukaz \texttt{\textbackslash offinterlineskip}, ki v celoti izklopi samodejno vrivanje vertikalnega prostora med vrsticami. Pomembno je, da blok po zadnji sliki zapremo z, preden definiramo \texttt{\textbackslash caption}.
-\end{enumerate}
 
-\begin{figure}[htbp]
-    \centering
-    {
-    \offinterlineskip % Popolnoma izklopi vertikalni razmik med vrsticami znotraj tega bloka
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}\\%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    \includegraphics[width=0.25\textwidth]{galaksija.jpg}%
-    }
-    \caption{Mreža osmih slik brez vmesnih presledkov in z le enim skupnim naslovom.}
-    \label{sl:mreza_4x2_brez_presledkov}
+\begin{center}
+\captionof{listing}{Koda za vzpostavitev povezave z bazo podatkov.}
+\label{code:db-connection}
+\begin{minted}{javascript}
+import { Sequelize } from 'sequelize';
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  dialect: 'postgres',
+  logging: false,
+});
+
+export default sequelize;
+\end{minted}
+\end{center}
+
+
+\subsection{Avtentikacija in avtorizacija uporabnikov}
+Za avtentikacijo uporabnikov smo implementirali sistem, ki temelji na žetonih JWT (JSON Web Token), kar omogoča varen in enostaven prenos podatkov o uporabnikovi pristnosti~\cite{jwt-rfc7519}. 
+Žeton JWT je strukturiran dokument, sestavljen iz treh delov: glave (header), ki vsebuje metapodatke o vrsti kodiranja; podatkov (payload), ki nosijo informacije o uporabniku; in digitalnega podpisa, ki zagotavlja celovitost in pristnost žetona~\cite{jwt-rfc7519}.
+
+Postopek avtentikacije je razdeljen na dve fazi. V fazi registracije uporabnik vnese svoje geslo, ki ga pred shranitvijo v podatkovno bazo zgoščimo z algoritmom bcrypt
+ \cite{bcrypt-password}. Bcrypt je specializirana kriptografska funkcija, namenjena zgoščevanju gesel, ki vključuje samodejno upoštevajoče (salting) in je 
+ odpornejša na napade~\cite{bcrypt-password}. 
+ V fazi prijave uporabnik pošlje svoje geslo in e-poštni naslov. Zaledni sistem pridobi shranjeno zgoščeno geslo iz baze in ga primerjaj z novim zgoščenim geslom 
+ s pomočjo bcrypt funkcije za primerjavo. Če se gesla ujemata, zaledni sistem generira JWT žeton z informacijami o uporabniku in ga pošlje nazaj na 
+ uporabniški vmesnik, kjer ga uporabnik shrani v brskalniku (največkrat v shrambo seje – localStorage).\\
+
+Za zaščito poti API-ja smo implementirali middleware za preverjanje žetonov. Vmesnik je funkcija, ki se izvede pred vsakim zahtevkom in preveri,
+ ali je uporabnik poslal veljaven JWT žeton v zahtevku. Dodatna varnostna plast je nastavljena z časovnimi omejitvami žetona, ki zagotavlja, 
+ da je žeton veljaven samo za določen čas. Po preteku roka veljavnosti se mora uporabnik ponovno avtentificirati in pridobiti nov žeton,
+  kar zmanjšuje tveganje ob morebitnem razkritju stareših žetonov~\cite{jwt-security-best-practices}.
+
+\begin{center}
+\captionof{listing}{Koda za prijavo uporabnika.}
+\label{code:login}
+\begin{minted}{javascript}
+export const loginUserService = async ({ email, password }) => {
+  try {
+    if (!email || !password) throw new MissingUserDataError();
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) throw new AppError('Invalid email or password', 401);
+    
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) throw new AppError('Invalid email or password', 401);
+
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    await emailQueue.add('login', { type: 'login', to: user.email, userName: user.firstName });
+
+    return { user, token };
+  } catch (error) {
+    throw error;
+  }
+};
+\end{minted}
+\end{center}
+
+\subsection{Asinkrona obdelava podatkov (Celery)}
+Za naloge, ki zahtevajo obsežnejšo obdelavo podatkov ali imajo daljši čas
+izvajanja, smo implementirali asinkrono obdelavo z uporabo sistema čakalnih
+vrst nalog. Asinkroni pristop omogoča, da strežnik takoj odgovori na zahtevek,
+medtem ko se zahtevnejše operacije izvajajo v ozadju kot ločeni procesi. Na ta
+način se zmanjšuje čakalni čas uporabnika in izboljša splošna odzivnost
+aplikacije~\cite{async-processing-benefits}. Značilne naloge, ki zahtevajo
+asinkrono obdelavo, vključujejo zajemanje podatkov iz zunanjih virov,
+normalizacijo in transformacijo zajetih podatkov ter pošiljanje e-poštnih
+obvestil uporabnikom~\cite{async-processing-benefits} \\
+Za upravljanje čakalnih vrst nalog v okolju Node.js smo izbrali knjižnico
+BullMQ, ki zagotavlja zanesljivo upravljanje asinhronih nalog z vgrajeno
+podporo za ponovne poskuse (angl.\ \textit{retry}), časovne omejitve (angl.\
+\textit{timeout}) in obravnavo napak~\cite{bullmq-docs}. Sistem temelji na
+kombinaciji podatkovnega skladišča Redis in delavskih procesov. Redis v tej
+arhitekturi služi kot posrednik sporočil (angl.\ \textit{message broker}), ki
+hrani stanje nalog in omogoča koordinacijo med posameznimi delavskimi procesi
+~\cite{redis-data-store}.\\
+Konfiguracija sistema zahteva tri ključne korake. Najprej se vzpostavi
+povezava s strežnikom Redis, ki deluje kot posrednik med čakalno vrsto in
+delavci. Nato se opredelijo posamezne vrste nalog (angl.\ \textit{job types})
+z ustreznimi funkcijami za njihovo izvajanje. Na koncu se registrirajo
+delavski procesi, ki poslušajo dodeljene vrste nalog, jih obdelujejo in
+ustrezno posodabljajo stanje v skladišču Redis. S takšno zasnovo je
+zagotovljeno, da se dolgotrajne operacije ne izvajajo na glavni niti
+aplikacije, kar omogoča sočasno obdelavo in izboljšano razširljivost sistema.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{AsyncFlow.png}
+\caption{Asinkrona obdelava podatkov z uporabo čakalnih vrst nalog in delavskih procesov~\cite{je2023taskqueues}.}
+\label{fig:async-flow}
 \end{figure}
+
+
+\section{Arhitektura uporabniškega vmesnika}
+Uporabniški vmesnik smo oblikovali s pomočjo večih komponent, ki sestavljajo celotni uporabniški vmesnik. Pri 
+tem smo upoštevali pravila modulatrnosti, ki omogočajo ponovno uporabo komponent in lažje vzdrževanje kode.
+Vsaka komponenta je zasnovana tako, da dela eno stvar, ter prikazuje samo eno stvar. Komponente so čim
+manjše, kar vas prisili h temu da se komponenta res uporablja za eno stvar. Komponente si med sabo 
+izmenjujejo podatke, imaš starševske in podrejene komponente. Starš lahko pošilja podatke podrejenim komponentam,
+podrejena komponenta pa lahko pošilja podatke staršu preko funkcij, ki jih starš posreduje podrejenim komponentam.
+Kot ogrodje smo si izbrali React, saj je edden izmed najbolj razširjenih in poznanih frameworkou na svetu.\\
+
+
+
+
+
+
+\section{Evalvacijski sistem}
+
+
+\section{Infrastriuktura in avtomatizacija}
+
 
 \subsection{Več tabel ena ob drugi}
 
@@ -675,76 +614,6 @@ Naslov (\texttt{\textbackslash caption}) pri algoritmih običajno postavljamo na
 \end{algorithmic}
 \end{algorithm}
 
-\chapter{Matematično okolje in sklicevanje na besedilne konstrukte}
-\label{ch:mat}
-
-Poglejmo nekaj primerov pisanja enačb, sklicevanj nanje, podajanja dokazov, matrik, razbijanje enačb in nekaj splošnih tipografskih pravil v matematiki.
-\begin{izrek}
-  \label{iz:1}
-  Za vsako naravno število $n$ velja
-  \begin{equation}
-    n < 2^n.
-    \label{eq:1}
-  \end{equation}
-\end{izrek}
-
-\begin{dokaz}
-  Dokazovanje z indukcijo zahteva, da neenakost~\eqref{eq:1} najprej preverimo za najmanjše naravno število -- $0$.
-  Res, ker je $0 < 1 = 2^0$, je neenačba~\eqref{eq:1} za $n=0$ izpolnjena.
-
-  Enačbo~\eqref{eq:1} smo referencirali z \verb|~\eqref{eq:1}| in ne z \verb|~\ref{eq:1}|, saj nam slednji ne ovije reference v oklepaje. Brez oklepajev bi bralec lahko referenco na enačbo zamenjal z referenco na poglavje, z oglatimi oklepaji pa na sklic v literaturi.
-  
-  Za potrebe primera nadaljujmo z indukcijskim korakom. S predpostavko, da je neenakost~\eqref{eq:1} veljavna pri nekem naravnem številu $n$, je potrebno pokazati, da je ista neenakost v veljavi tudi pri njegovem nasledniku -- naravnem številu $n+1$.
-  Računajmo.
-  \begin{align}
-    n+1 & < 2^n + 1       \label{eq:2}\\
-    & \le 2^n + 2^n \label{eq:3}\\
-    & = 2^{n+1}       \nonumber
-  \end{align}
-  Neenakost~\eqref{eq:2} je posledica indukcijske predpostavke, neenakost~\eqref{eq:3} pa enostavno dejstvo, da je za vsako naravno število $n$ izraz $2^n$ vsaj tako velik kot 1.
-  S tem je dokaz Izreka~\ref{iz:1} zaključen.
-\end{dokaz}
-
-Ste opazili kako so indukcijski koraki lepo poravnani? Uporabili smo pomemben \texttt{align}. Ste opazili, da smo stavek pri neenakosti~\ref{eq:1} končali s piko? V primeru, da je enačba del povedi, kot npr.
- \begin{equation}
-    y = 2^x,
-    \label{eq:1b}
-  \end{equation}
-pa seveda dodamo vejico v samo enačbo, kot je prikazno pri~\eqref{eq:1b}.
-
-Za kakovostno tehnično pisanje pa moramo obvladati še zapis matrik in obdelavo zelo dolgih enačb.
-
-\section{Matrike}
-
-Za zapis matrik uporabljamo okolja iz paketa \texttt{amsmath}. Najpogosteje uporabljamo okolje \texttt{bmatrix} za matrike z oglatimi oklepaji ali \texttt{pmatrix} za matrike z okroglimi oklepaji.
-
-Primer zapisa matrike $A$:
-\begin{equation}
-    A = \begin{bmatrix}
-        a_{11} & a_{12} & \dots  & a_{1n} \\
-        a_{21} & a_{22} & \dots  & a_{2n} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        a_{m1} & a_{m2} & \dots  & a_{mn}
-    \end{bmatrix}.
-\end{equation}
-
-Pri tem elemente v vrstici ločimo z znakom \texttt{\&}, vrstice pa zaključimo z \texttt{\textbackslash\textbackslash}. Za različne vrste pik uporabljamo ukaze \verb|\dots| (vodoravne), \verb|\vdots| (navpične) in \verb|\ddots| (diagonalne).
-
-\section{Razbijanje dolgih enačb}
-
-Kadar je enačba predolga za eno vrstico, uporabimo okolje \texttt{split} znotraj okolja \texttt{equation}. To nam omogoča, da enačbo razbijemo na več vrstic, medtem ko celoten blok obdrži le eno skupno številko.
-
-\begin{equation}
-    \begin{split}
-        f(x) &= (a+b)^4 \\
-             &= a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4.
-    \end{split}
-    \label{eq:razcep}
-\end{equation}
-
-Znak \texttt{\&} določa točko poravnave (običajno pri enačaju), \texttt{\textbackslash\textbackslash} pa prehod v novo vrstico.
-
-
 \chapter{Kaj pa literatura?}
 \label{ch:lit}
 
@@ -821,14 +690,72 @@ Uporaba \LaTeX{a} in \BibLaTeX{a} je pri diplomski nalogi \textbf{obvezna}!
   title={Članki v revijah},
   heading=subbibintoc
 ]
+\newpage
 \printbibliography[
   type=inproceedings,
   title={Članki v zbornikih konferenc},
   heading=subbibintoc
 ]
+\newpage
 \printbibliography[
   filter=ostalo,
   title={Ostala literatura},
   heading=subbibintoc
 ]
+
+\chapter*{Dodatek}
+\addcontentsline{toc}{chapter}{Dodatek}
+
+\section*{Koda: Definicija modela User}
+
+\begin{center}
+\captionof{listing}{Definicija modela \texttt{User} z ORM knjižnico Sequelize.}
+\label{code:user-model}
+\begin{minted}{javascript}
+import { DataTypes } from "sequelize";
+import sequelize from "#/config/db.js";
+
+const User = sequelize.define(
+  "User",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    telephone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    soldCars: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+  },
+  { timestamps: true },
+);
+
+export default User;
+\end{minted}
+\end{center}
+
 \end{document}

@@ -1,0 +1,45 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{import}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k+kr}{from}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}sequelize\PYGZdq{}}\PYG{p}{;}
+\PYG{k}{import}\PYG{+w}{ }\PYG{n+nx}{sequelize}\PYG{+w}{ }\PYG{k+kr}{from}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZsh{}/config/db.js\PYGZdq{}}\PYG{p}{;}
+
+\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{User}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{sequelize}\PYG{p}{.}\PYG{n+nx}{define}\PYG{p}{(}
+\PYG{+w}{  }\PYG{l+s+s2}{\PYGZdq{}User\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nx}{id}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{INTEGER}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{autoIncrement}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{primaryKey}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{firstName}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{STRING}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{allowNull}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{lastName}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{STRING}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{email}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{STRING}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{allowNull}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{unique}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{validate}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{isEmail}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{      }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{telephone}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{STRING}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{allowNull}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{password}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{STRING}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{allowNull}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{soldCars}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nx}{type}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{DataTypes}\PYG{p}{.}\PYG{n+nx}{INTEGER}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nx}{defaultValue}\PYG{o}{:}\PYG{+w}{ }\PYG{l+m+mf}{0}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{  }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{timestamps}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{p}{);}
+
+\PYG{k}{export}\PYG{+w}{ }\PYG{k}{default}\PYG{+w}{ }\PYG{n+nx}{User}\PYG{p}{;}
+\end{MintedVerbatim}
