@@ -467,16 +467,97 @@ aplikacije, kar omogoča sočasno obdelavo in izboljšano razširljivost sistema
 
 
 \section{Arhitektura uporabniškega vmesnika}
-Uporabniški vmesnik smo oblikovali s pomočjo večih komponent, ki sestavljajo celotni uporabniški vmesnik. Pri 
-tem smo upoštevali pravila modulatrnosti, ki omogočajo ponovno uporabo komponent in lažje vzdrževanje kode.
-Vsaka komponenta je zasnovana tako, da dela eno stvar, ter prikazuje samo eno stvar. Komponente so čim
-manjše, kar vas prisili h temu da se komponenta res uporablja za eno stvar. Komponente si med sabo 
-izmenjujejo podatke, imaš starševske in podrejene komponente. Starš lahko pošilja podatke podrejenim komponentam,
-podrejena komponenta pa lahko pošilja podatke staršu preko funkcij, ki jih starš posreduje podrejenim komponentam.
-Kot ogrodje smo si izbrali React, saj je edden izmed najbolj razširjenih in poznanih frameworkou na svetu.\\
+Uporabniški vmesnik smo zasnovali iz več komponent, ki skupaj sestavljajo celoto. Pri tem smo upoštevali načela
+modularnosti, ki omogočajo ponovno uporabo komponent ter lažje vzdrževanje kode \cite{modular-programming}.
+Vsako komponento smo oblikovali tako, da opravlja natančno določeno nalogo in prikazuje omejen del vmesnika.
+S tem smo sledili načelu enotne odgovornosti, po katerem naj ima vsaka enota kode en sam razlog za spremembo
+\cite{single-responsibility}. Komponente smo namenoma ohranili majhne, saj majhen obseg naravno usmerja
+razvijalca k temu, da posamezna komponenta ostane osredotočena na eno samo funkcionalnost.
+Komponente si med seboj izmenjujejo podatke po hierarhiji nadrejenih in podrejenih komponent. Nadrejena
+komponenta posreduje podatke podrejenim komponentam prek lastnosti (angl.\ \textit{props}), podrejena
+komponenta pa nadrejeni sporoča spremembe prek povratnih funkcij, ki jih nadrejena komponenta posreduje
+navzdol.
+Kot ogrodje za izgradnjo uporabniškega vmesnika smo izbrali React, ki je eno izmed najbolj razširjenih
+in uveljavljenih ogrodij za razvoj spletnih vmesnikov \cite{react-docs}. V naslednjih podpoglavjih podrobneje
+predstavimo posamezne dele te arhitekture.\\
 
 
+\subsection{Odjemalska shramba}
+Določene podatke si mora odjemalec zapomniti, kar pomeni, da jih mora shraniti na svoji strani. Prednost
+odjemalske shrambe je, da odjemalcu ni treba nenehno pošiljati novih zahtevkov na strežnik, kar občutno
+zmanjša njegovo obremenitev. Značilen primer uporabe je shranjevanje žetona JWT, ki ga uporabnik prejme
+ob prijavi in ga nato pri vsakem zahtevku pošilja v glavi \cite{jwt-rfc7519}. Na ta način imamo podatke
+o prijavljenem uporabniku ves čas na voljo, dokler se ne odjavi ali dokler žeton JWT ne poteče.\\
+Odjemalska shramba je uporabna tudi pri večkoračnih postopkih, saj si lahko zapomnimo, do katerega koraka
+je uporabnik prišel. Če uporabnik namerno ali nenamerno zapre stran, ostane njegovo napredovanje ohranjeno
+in lahko z delom nadaljuje. Pri shranjevanju podatkov na odjemalcu moramo biti pozorni, da hranimo le
+neobčutljive podatke ter da stanje pravilno posodabljamo ob vsaki spremembi. Spletni brskalniki za trajno
+hrambo podatkov na strani odjemalca ponujajo več mehanizmov, med drugim \texttt{localStorage} in
+\texttt{sessionStorage}\cite{webstorage-spec}. V nasprotnem primeru se lahko stanje na odjemalčevi strani razlikuje od stanja
+na strežniku, kar vodi do težko odkrivljivih napak.\\
+Za odjemalsko shrambo smo uporabili knjižnico Zustand, ki je preprosta, kompaktna in dobro vzdrževana.
+Zustand temelji na minimalističnem pristopu k upravljanju stanja in za osnovno delovanje ne zahteva ovojnih
+komponent (angl.\ \textit{provider}), kar ga loči od nekaterih uveljavljenih rešitev, kot je Redux
+\cite{zustand-docs}. Stanje je organizirano v obliki t.\,i.\ shramb (angl.\ \textit{store}), do katerih
+dostopamo prek preprostih kavljev (angl.\ \textit{hooks}), pri čemer se ponovno izrišejo le tiste komponente,
+ki dejansko uporabljajo spremenjeni del stanja. Zaradi majhne velikosti in neodvisnosti od ogrodja React
+je knjižnica primerna tudi za projekte, pri katerih želimo ohraniti nizko zahtevnost in dobro zmogljivost.\\
 
+\subsection{Pisanje zahtevkov API}
+Za pošiljanje zahtevkov smo uporabili knjižnico Axios, ki je ena izmed najbolj razširjenih knjižnic za
+pošiljanje zahtevkov HTTP v okolju JavaScript \cite{axios-docs}. Nad njo smo izdelali ovojnico \texttt{api},
+ki iz okoljskih spremenljivk (angl.\ \textit{environment variables}) prebere naslov strežnika in ga uporabi
+kot osnovni naslov URL za vse zahtevke. Tak pristop nam omogoča, da osnovni naslov in skupne nastavitve
+določimo na enem mestu, s čimer se izognemo ponavljanju in poenostavimo morebitne kasnejše spremembe.
+
+\begin{center}
+\captionof{listing}{Ovojnica Axios za ustvarjanje odjemalca API.}
+\label{code:api-wrapper}
+\begin{minted}{javascript}
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  withCredentials: true,
+});
+
+export default api;
+\end{minted}
+\end{center}
+
+Ovojnico smo nato uporabili pri vsaki definiciji funkcije za pošiljanje zahtevka. Funkcija vrne polje
+\texttt{res.data}, ki vsebuje dejanski odgovor strežnika. Axios namreč vrne objekt s številnimi dodatnimi
+podatki, ki niso vedno potrebni, zato zaradi preglednosti kode vrnemo le vsebino odgovora\cite{axios-docs}. Po potrebi lahko
+dostopamo tudi do statusne kode strežnika, glave odgovora in konfiguracije zahtevka.\\
+
+\begin{center}
+\captionof{listing}{Primer definicije funkcije za pridobivanje znamk avtomobilov.}
+\label{code:api-call}
+\begin{minted}{javascript}
+export const fetchCarBrands = async () => {
+  const res = await api.get<{ brandNames: string[] }>("/api/cars/brands");
+  return res.data;
+};
+\end{minted}
+\end{center}
+
+
+\subsection{Vite kot razvojno in gradbeno orodje}
+Vsako izvorno kodo je treba pred prikazom v spletnem brskalniku ustrezno pripraviti oziroma zgraditi. To nalogo
+v našem projektu opravlja orodje Vite, ki omogoča hitro postavitev razvojnega okolja in gradnjo končne različice
+aplikacije \cite{vite-docs}. Za razliko od starejših orodij za združevanje kode (angl.\ \textit{bundler}), kot
+je Webpack, ki mora ob vsaki spremembi znova zgraditi večji del kode, Vite tega ne počne in je zato bistveno
+hitrejši.\\
+Delovanje orodja Vite temelji na dveh ključnih načelih. Prvo je izraba nativne podpore modulom ECMAScript
+(angl.\ \textit{ES modules}) v sodobnih brskalnikih. Ker sodobni brskalniki znajo neposredno razumeti module,
+uvožene v kodi, Vite med razvojem kode ne združuje, temveč posamezne module dostavi brskalniku po potrebi
+\cite{esmodules-mdn}. Drugo načelo je uporaba orodja esbuild za predhodno gradnjo odvisnosti JavaScript.
+Orodje esbuild je napisano v jeziku Go in je od 10 do 100-krat hitrejše od orodij za združevanje, napisanih
+v jeziku JavaScript \cite{esbuild-docs}.\\
+Pomembna prednost orodja Vite je zmožnost sprotnega osveževanja modulov (angl.\ \textit{Hot Module Replacement}),
+pri katerem se osveži le tisti del kode, ki se je spremenil, brez izgube trenutnega stanja in podatkov aplikacije.
+Ta zmožnost je pri razvoju izjemno pomembna, saj občutno pospeši povratno zanko med spremembo in prikazom ter
+tako poveča produktivnost. Vite v naši arhitekturi torej opravlja vlogo razvojnega in gradbenega sloja.
 
 
 

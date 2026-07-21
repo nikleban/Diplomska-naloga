@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{export}\PYG{+w}{ }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{fetchCarBrands}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{async}\PYG{+w}{ }\PYG{p}{()}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{res}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{await}\PYG{+w}{ }\PYG{n+nx}{api}\PYG{p}{.}\PYG{n+nx}{get}\PYG{o}{\PYGZlt{}}\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{brandNames}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{string}\PYG{p}{[]}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}/api/cars/brands\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{res}\PYG{p}{.}\PYG{n+nx}{data}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{MintedVerbatim}

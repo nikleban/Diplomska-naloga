@@ -1,0 +1,10 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{import}\PYG{+w}{ }\PYG{n+nx}{axios}\PYG{+w}{ }\PYG{k+kr}{from}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}axios\PYGZdq{}}\PYG{p}{;}
+
+\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{api}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{axios}\PYG{p}{.}\PYG{n+nx}{create}\PYG{p}{(\PYGZob{}}
+\PYG{+w}{  }\PYG{n+nx}{baseURL}\PYG{o}{:}\PYG{+w}{ }\PYG{k}{import}\PYG{p}{.}\PYG{n+nx}{meta}\PYG{p}{.}\PYG{n+nx}{env}\PYG{p}{.}\PYG{n+nx}{VITE\PYGZus{}API\PYGZus{}BASE\PYGZus{}URL}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n+nx}{withCredentials}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{p}{\PYGZcb{});}
+
+\PYG{k}{export}\PYG{+w}{ }\PYG{k}{default}\PYG{+w}{ }\PYG{n+nx}{api}\PYG{p}{;}
+\end{MintedVerbatim}
