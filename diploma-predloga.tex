@@ -117,7 +117,6 @@ Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strež
 Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11.
 Za izvajanje posameznih komponent je uporabljena platforma Docker.
-\newpage
 Docker kontejnerji: 
 \begin{itemize}
     \item Zaledni sistem
@@ -130,6 +129,23 @@ Docker kontejnerji:
 Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
 Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy.
 
+\begin{table}[H]
+\centering
+\caption{Pregled tehnologij, uporabljenih v posameznih komponentah sistema.}
+\label{tab:tehnologije}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+\textbf{Komponenta} & \textbf{Uporabljene tehnologije} \\
+\midrule
+Uporabniški vmesnik & React, TypeScript, Vite, Zustand, Axios \\
+Zaledni sistem & Node.js 24, Express.js, JavaScript, Sequelize (ORM), JWT, bcrypt, BullMQ, Redis \\
+Evalvacijski sistem & Python 3.11, FastAPI, Alembic, RapidFuzz \\
+Podatkovna baza & PostgreSQL 16 \\
+Infrastruktura in avtomatizacija & Docker, GitHub Actions, cron, Hetzner (VPS), Dokploy, MailHog \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \chapter{Pregled področja in sorodnih del}
 \label{ch:sorodna dela}
 Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov. Med najbolj znanimi evropskimi ponudniki sta mobile.de in AutoScout24,
@@ -141,7 +157,27 @@ Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje voz
  Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
   Na ameriškem trgu sta razširjeni storitvi Kelley Blue Book in CARFAX. Kelley Blue Book uporabnikom omogoča oceno vrednosti vozila na podlagi tehničnih podatkov in tržnih analiz, medtem ko CARFAX poleg vrednotenja ponuja tudi vpogled v zgodovino vozila.
    Obe storitvi sta prilagojeni predvsem severnoameriškemu trgu in zato nista neposredno uporabni za slovenski trg rabljenih vozil.
-\\
+\begin{table}[H]
+\centering
+\caption{Primerjava izbranih obstoječih rešitev za prodajo in vrednotenje vozil.}
+\label{tab:sorodne-resitve}
+\begin{tabularx}{\textwidth}{@{}l X c X@{}}
+\toprule
+\textbf{Rešitev} & \textbf{Geografski trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
+\midrule
+mobile.de & Evropa (več držav) & Da & Osnoven indikator cene \\
+AutoScout24 & Evropa (več držav) & Da & Priporočilo cene, pri objavi \\
+Avto.net & Slovenija & Da & Ne \\
+Eurotax & Mednarodno (industrija, zavarovalništvo, trgovci) & Ne & Da, podrobna (plačljiv dostop) \\
+Kelley Blue Book & ZDA & Ne & Da, podrobna (tehnični podatki, tržna analiza) \\
+CARFAX & ZDA & Ne & Da (vrednotenje in zgodovina vozila) \\
+\midrule
+\textbf{Predlagana rešitev} & Slovenija & Da & Da, primerjava s podobnimi vozili na trgu \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\clearpage
 Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
  Namen razvite rešitve je združiti obe funkcionalnosti v enotni spletni aplikaciji, ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, dostopnih na trgu.
 
@@ -562,197 +598,80 @@ tako poveča produktivnost. Vite v naši arhitekturi torej opravlja vlogo razvoj
 
 
 \section{Evalvacijski sistem}
+Evalvacijski sistem smo zasnovali kot samostojno storitev, ki smo jo razvili v programskem jeziku Python.
+ Začeli smo z osnovnim jezikom in postopno dodajali pakete glede na potrebe. Za komunikacijo z zalednim
+  sistemom smo potrebovali spletni strežnik, saj je zaledni sistem edini, ki ima dostop do evalvacijskega sistema.
+Za spletni strežnik in vmesnik API smo uporabili ogrodje FastAPI, ki omogoča enostavno izdelavo vmesnikov API v
+ jeziku Python \cite{fastapi-docs}. 
+\begin{center}
+\captionof{listing}{Primer definicije vmesnika API z ogrodjem FastAPI}
+\label{code:api-python}
+\begin{minted}{python}
+@app.get("/car-brands")
+def get_car_brands():
+    return getCarBrands()
+\end{minted}
+\end{center}
+Podatkovno bazo smo ločili v samostojno shemo z lastnimi modeli, s čimer 
+ smo se izognili morebitni zmedi pri poimenovanju in strukturi.
+Za migracijo tabel in podatkov smo dodali paket Alembic, ki je zmogljivo orodje za upravljanje
+ in posodabljanje podatkovnih baz \cite{alembic-docs}. Alembic sledi shemi podatkovne baze in samodejno 
+ ustvarja migracijske skripte, ki jih je mogoče verzionirati skupaj z izvorno kodo, kar zagotavlja ponovljivo 
+ in nadzorovano spreminjanje strukture podatkovne baze.
+Pri tem projektu smo se prvič srečali s tehnologijo cron. Cron je programska oprema, ki omogoča samodejno
+ izvajanje ukazov ob vnaprej določenih časovnih intervalih na strežniku ali v drugem okolju \cite{cron-man}.
+  Cron smo uporabili za zagon programov za samodejni zajem podatkov s spletnih strani za prodajo vozil. 
+  Ti programi se na strežniku izvajajo dnevno oziroma tedensko.
+
+\subsection{Algoritem za primerjavo vozil}
+Vse podatke, pridobljene z zajemom s spletnih strani ali z dostopom do javno dostopnih virov, smo morali
+najprej shraniti v nestrukturirani obliki, nato pa jih normalizirati. Za vsak spletni vir smo morali
+napisati ločen postopek normalizacije, saj morajo biti podatki, če jih želimo primerjati,
+normalizirani oziroma zapisani v enotni obliki. V nasprotnem primeru pri evalvaciji prihaja do diskrepanc.
+Za vsako vozilo smo shranili ceno, prevožene kilometre, znamko, model, moč motorja, vrsto menjalnika in vrsto goriva.~\ref{code:normalization-python}
+Pri normalizaciji smo morali vse te podatke sproti izpisovati in poskrbeti za zanesljiv sistem obvladovanja napak.
+Zlasti v začetni fazi razvoja namreč pogosto prihaja do napak, za njihovo učinkovito odpravljanje pa je potreben 
+podroben izpis poteka izvajanja \cite{logging-practices}.
+
+Poleg razlik v strukturi se posamezni viri med seboj razlikujejo tudi v zapisu posameznih vrednosti. Cene so na primer zapisane z ločilom tisočic, 
+ki jih je treba pred pretvorbo v število odstraniti; prevoženi kilometri so pri enem viru zapisani kot celo število, pri drugem pa kot niz z enoto 
+(na primer \enquote{123.456~km}); datum prve registracije je pri enem viru zapisan v obliki mesec/leto, pri drugem pa leto/mesec. Podobno je bilo 
+treba poenotiti kategorialne vrednosti, kot sta tip menjalnika in vrsta goriva, saj so viri te podatke podajali v različnih jezikih.
+
+Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov \cite{fuzzy-string-matching}. Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele. Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir, s čimer se sistem sproti \enquote{uči}. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju.
+
+\begin{center}
+\captionof{listing}{Ujemanje znamke s kanoničnim in približnim (fuzzy) ujemanjem}
+\label{code:brand-matching-python}
+\begin{minted}{python}
+def match_brand(raw: str, source: str):
+    normalized = normalize_text(raw)
+    brands = _get_all_brands()
+
+    for brand_id, canonical_name in brands:
+        if normalize_text(canonical_name) == normalized:
+            return brand_id, canonical_name
+
+    cached = _lookup_brand_alias(normalized, source)
+    if cached:
+        return cached
+
+    brand_names = [normalize_text(b[1]) for b in brands]
+    result = process.extractOne(normalized, brand_names, scorer=fuzz.WRatio)
+
+    if result is None or result[1] < 90:
+        print(f"[matching] No brand match for '{raw}', best score: {result[1] if result else 0}")
+        return None
+
+    brand_id, canonical_name = brands[result[2]]
+    _store_brand_alias(normalized, brand_id, canonical_name, source)
+    return brand_id, canonical_name
+\end{minted}
+\end{center}
+
 
 
 \section{Infrastriuktura in avtomatizacija}
-
-
-\subsection{Več tabel ena ob drugi}
-
-Logika postavljanja dveh tabel ene ob drugo je popolnoma enaka kot pri slikah, le da znotraj okolja \texttt{table} uporabimo okolje \texttt{subtable}. Edino pomembno pravilo, na katerega ne smete pozabiti, je: \textbf{podnaslovi tabel vedno sodijo nad tabelo}, medtem ko podnaslovi slik sodijo pod njo. 
-
-Če ugotovite, da je vsebina tabele preširoka in povzroča prekrivanje, lahko celotno okolje \texttt{tabular} ovijete v ukaz \texttt{\textbackslash resizebox\{\textbackslash linewidth\}\{!\}\{...\}}, ki tabelo proporcionalno pomanjša, da se natančno prilega širini podtabele. Tabela~\ref{tab:rezultati_cv} prikazuje ustrezen zapis na primeru vrednotenja modelov računalniškega vida.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Primerjava uspešnosti klasifikacije slik z različnimi arhitekturami globokih nevronskih mrež na dveh standardnih podatkovnih zbirkah. Pri metriki \textit{točnost} (angl.\ \textit{accuracy}) so boljše višje vrednosti (označeno s puščico $\uparrow$), pri metriki \textit{napaka} (angl.\ \textit{error rate}) pa so boljše nižje vrednosti (označeno s puščico $\downarrow$).}
-    \label{tab:rezultati_cv}
-    \begin{subtable}[b]{0.48\textwidth}
-        \centering
-        \caption{Rezultati na zbirki CIFAR-10.}
-        \label{tab:cifar10}
-        \resizebox{\linewidth}{!}{%
-        \begin{tabular}{lcc}
-            \hline
-            arhitektura & točnost ($\uparrow$) & napaka ($\downarrow$) \\
-            \hline
-            ResNet-18 & 93,5 \% & 6,5 \% \\
-            ResNet-50 & 95,2 \% & 4,8 \% \\
-            ViT-Base  & 97,8 \% & 2,2 \% \\
-            \hline
-        \end{tabular}%
-        }
-    \end{subtable}
-    \hfill
-    \begin{subtable}[b]{0.48\textwidth}
-        \centering
-        \caption{Rezultati na zbirki ImageNet.}
-        \label{tab:imagenet}
-        \resizebox{\linewidth}{!}{%
-        \begin{tabular}{lcc}
-            \hline
-            arhitektura & točnost ($\uparrow$) & napaka ($\downarrow$) \\
-            \hline
-            ResNet-18 & 69,7 \% & 30,3 \% \\
-            ResNet-50 & 76,1 \% & 23,9 \% \\
-            ViT-Base  & 84,2 \% & 15,8 \% \\
-            \hline
-        \end{tabular}%
-        }
-    \end{subtable}
-
-\end{table}
-
-\chapter{Vključevanje programske kode in algoritmov}
-\label{ch:koda}
-
-Svojo programsko kodo v poljubnem programskem jeziku najlažje vključimo s paketom \texttt{minted}. Okoli bloka \texttt{\textbackslash minted\{ \}} sicer lahko podamo klasični \texttt{\textbackslash listing\{ \}} in skupaj z dodanim \texttt{\textbackslash caption} dobimo vse potrebno za prikaz kode, vendar pa se takšen blok ne razteza pravilno skozi več strani. Ena od možnosti za rešitev je uporaba bloka \texttt{\textbackslash center\{ \}}, za napis pa \texttt{\textbackslash captionof\{ \}}, kot je prikazano pri obeh primerih izsekov kode~\ref{code:py} in~\ref{code:js}.
-
-\begin{center}
-\captionof{listing}{Kratek primer kode v programskem jeziku Python.}
-\label{code:py}
-\begin{minted}{python}
-def python_veverica():
-    # Oh, kako je to lepo!
-    x = -1
-    print("Res izgleda čudovito.")
-\end{minted}
-
-
-\end{center}
-
-Kar je nadvse čudovito pri paketu \texttt{minted} je to, da lahko podamo dele kode znotraj vrstice, kot je npr. tole: \mintinline{python}{python_veverica()}.
-
-\begin{center}
-\captionof{listing}{Malo daljši primer programske kode v jeziku Javascript, ki se razteza skozi dve strani.}
-\label{code:js}
-\begin{minted}{javascript}
-async function pridobiUporabnika(id) {
-    const url = `https://api.primer.fri/users/${id}`;
-    
-    try {
-        const odgovor = await fetch(url);
-        
-        // Preverimo, če je statusni kod v območju 200-299
-        if (!odgovor.ok) {
-            console.error(`Napaka pri povezavi: ${odgovor.status}`);
-            throw new Error(`Uporabnika z ID ${id} ni bilo mogoče najti.`);
-        }
-
-        const podatki = await odgovor.json();
-        
-        // Logiranje uspešnega prejema podatkov
-        console.log("Podatki so bili uspešno prejeti.");
-        console.log(`Ime uporabnika: ${podatki.name}`);
-        
-        return podatki;
-        
-    } catch (napaka) {
-        // Tukaj ulovimo tako mrežne napake kot napake pri branju JSON-a
-        console.warn("Prišlo je do nepričakovane težave.");
-        return { error: napaka.message };
-    }
-}
-\end{minted}
-
-\end{center}
-
-Vodoravni črti pri začetku in koncu izseka, v kombinaciji s sivim ozadjem, vizualno sporočata morebitno raztezanje skozi več strani. To je razvidno pri izseku kode~\ref{code:js}.
-
-\section{Vključevanje algoritmov (psevdokode)}
-
-Medtem ko paket \texttt{minted} uporabljamo za prikaz dejanske implementacije v specifičnem programskem jeziku, v diplomskih nalogah pogosto opisujemo samo logiko reševanja problema na višjem nivoju. Za zapis algoritmov v obliki psevdokode je standardna izbira kombinacija paketov \texttt{algorithm} in \texttt{algpseudocode} (slednji je del paketa \texttt{algorithmicx}).
-
-Za razliko od izsekov izvorne kode, algoritme običajno obravnavamo kot standardne plavajoče objekte (tako kot slike in tabele). To pomeni, da \LaTeX\ sam poišče optimalno mesto za njihov prikaz na strani. V besedilu se nanje sklicujemo z nedeljivim presledkom in ukazom \texttt{\textbackslash ref}, na primer: Algoritem~\ref{alg:evklid} prikazuje klasičen postopek za iskanje največjega skupnega delitelja.
-
-Naslov (\texttt{\textbackslash caption}) pri algoritmih običajno postavljamo na vrh, tik pod začetek okolja \texttt{algorithm}. Številka \texttt{[1]} ob ukazu \texttt{\textbackslash begin\{algorithmic\}} pa \LaTeX u sporoči, naj oštevilči vsako vrstico algoritma, kar nam olajša sklicevanje na posamezne korake v besedilu.
-
-\begin{algorithm}[htbp]
-\caption{Evklidov algoritem za iskanje največjega skupnega delitelja}
-\label{alg:evklid}
-\begin{algorithmic}[1] 
-    \Require $a \geq 0 \lor b \geq 0$ % Vhodni pogoji
-    \Ensure Največji skupni delitelj $a$ in $b$ % Izhod
-    \Statex % Prazna vrstica za boljšo preglednost
-    \Procedure{Evklid}{$a, b$}
-        \While{$b \neq 0$}
-            \State $t \gets b$
-            \State $b \gets a \bmod b$
-            \State $a \gets t$
-        \EndWhile
-        \State \textbf{return} $a$
-    \EndProcedure
-\end{algorithmic}
-\end{algorithm}
-
-\chapter{Kaj pa literatura?}
-\label{ch:lit}
-
-Kot smo omenili že v uvodu, je pravi način za citiranje literature uporaba \BibLaTeX{a}
-\BibLaTeX\ zagotovi, da pri določeni vrsti literature ne izpustimo
-nobene obvezne informacije
-in da vse informacije dosledno navajamo na enak način in po istem vrstnem redu.
-\BibLaTeX\ je nadgradnja starejšega sistema \BibTeX. Novejši sistem je bolje prilagojen slovenščini in navajanju spletnih virov. Sicer pa so starejše datoteke \texttt{.bib} kompatibilne z \BibLaTeX om.
-
-Osnovna ideja \BibLaTeX{a} je, da vse informacije o literaturi zapisujemo v posebno datoteko, v našem primeru je to \texttt{literatura.bib}.
-Vsakemu viru v tej datoteki določimo simbolično ime.
-V  našem primeru je v tej datoteki nekaj najbolj značilnih zvrsti literature, kot so knjige
-članki v revijah~ in zbornikih konferenc~
-poglavja v knjigah~
-spletni viri~
-tehnično poročilo~
-diplome~ itd.
-Diplomaiz leta 1990 je bila prva diploma na tedanji Fakulteti za elektrotehniko in računalništvo, ki je bila oblikovana z \LaTeX om.
-Reference, ki so na spletnih straneh arhivirane v elektronski obliki, imajo običajno  \v stevilko DOI (\url{http://dx.doi.org}), ki jo zato tudi vključimo v izpis literature in tako bralcu elektronske verzije naše publikacije ponudimo neposredno povezavo do elektronske kopije te reference.
-
-Po vsaki spremembi pri sklicu na literaturo moramo najprej prevesti izvorno besedilo s prevajalnikom \LaTeX, nato s prevajalnikom  \BibLaTeX, ki ustvari datoteko  {\tt vzorec\_dip\_Seminar.bbl}, in nato še dvakrat s prevajalnikom  \LaTeX.
-V okolju Overleaf je to večkratno prevajanje z različnimi prevajalniki uporabniku skrito. Zato tudi začetnim uporabnikom \LaTeX a svetujemo uporabo Overleafa.
-
-Kako se spisek literature nato izpiše (ali so posamezni viri razvrščeni po vrstnem redu sklicevanja, ali po abecedi priimkov prvih avtorjev, ali se imena avtorjev pišejo pred priimki itd.) je odvisno od parametrov paketa \BibLaTeX.
-V diplomi bomo uporabili parametre
-\texttt{style=numeric}, kar pomeni, da bodo sklici na literaturo v besedilu označeni z zaporednimi številkami, za vrstni red izpisa referenc pa
-\texttt{sorting=nty}, kar pomeni, da bodo reference urejene po priimkih prvih avtorjev, nato po naslovu reference in nazadnje po letu izdaje
-Zato je potrebno pri določenih zvrsteh literature, ki nima avtorjev, dodati parameter \texttt{key}, ki določi vrstni red vira po abecedi.
-
-Ko začenjamo uporabljati \BibLaTeX\ je lažje, če za urejanje datoteke \texttt{.bib} uporabljamo kar isti urejevalnik kot za urejanje datotek \texttt{.tex},
-čeprav obstajajo tudi posebni urejevalniki oziroma programi za delo z datotekami \texttt{.bib}.
-
-Le če se  na določen vir v besedilu tudi sklicujemo, se bo ta vir pojavil tudi v spisku literature.
-Tako je avtomatično zagotovljeno, da se na vsak vir v seznamu literature tudi sklicujemo v besedilu diplome.
-V datoteki \texttt{.bib} imamo sicer lahko veliko več virov za literaturo, kot jih bomo uporabili v diplomi.
-
-\chapter{Sklepne ugotovitve}
-
-Uporaba \LaTeX{a} in \BibLaTeX{a} je pri diplomski nalogi \textbf{obvezna}!
-
-
-\textbf{Preden diplomo oddate mentorjem, še enkrat preverite:}
-\begin{itemize}
-    \item pravilno rabo elementov (tako \LaTeX gradnikov kot tudi ločil kratic, pomišljajev itd.),
-    \item slovnico (lahko si pomagate s katerim od orodij),
-    \item da ni nobeno besedilo prilepljeno direktno iz velikega jezikovnega modela (čisto vse morate prebrati in preveriti, če že ne popraviti),
-    \item da je dovolj slikovnih elementov (preveč suhoparnega besedila ni za nikogar koristno),
-    \item da je vsaka slika in tabela ne samo podnaslovljena, ampak tudi referencirana v besedilu.
-\end{itemize}
-
-\textbf{Preden diplomo oddate na sistemu STUDIS, še enkrat preverite:}
-\begin{itemize}
-  \item če je izpisana pravilna smer študija, vaše ime, ime in naziv mentorja in somentorja,
-  \item če so vse besede pravilno deljene in da ne segajo preko desnega roba (poravnavo po vrsticah lahko kontrolirate tako, da izvorno datoteko enkrat testno prevedete z opcijo \texttt{draft}, kar vam pokaže  predolge vrstice),
-  \item če ste vkjučili pravilne verzije slik, predvsem pri grafih in diagramih vektorske ({\tt .pdf} ali {\tt .eps}) in ne rasterskih (npr. {\tt .jpg} ali {\tt .png}),
-  \item če ste naslovili vse napake in opozorila, ki se lahko pojavijo pri tvorjenju dokumenta (bodite pozorni predvsem na manjkajoče citate, ki jih lahko poiščete tudi z iskanjem vprašajev v končnem dokumentu).
-\end{itemize}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  LITERATURA
@@ -836,6 +755,45 @@ const User = sequelize.define(
 );
 
 export default User;
+\end{minted}
+\end{center}
+
+\begin{center}
+\captionof{listing}{Primer normalizacije podatkov}
+\label{code:normalization-python}
+\begin{minted}{python}
+def extract_data_from_raw_payload(raw
+    valid = True
+    data = {}
+
+    raw_brand = raw_payload.get("brand", None)
+    raw_model = raw_payload.get("model", None)
+
+    if not raw_brand:
+        valid = False
+    if not raw_model:
+        valid = False
+
+    if valid:
+        brand_match = match_brand(_preprocess(raw_brand), SOURCE)
+        if brand_match is None:
+            print(f"Could not match brand '{raw_brand}' for raw_id: {id}")
+            valid = False
+        else:
+            brand_id, brand_canonical = brand_match
+            data["brand_name"] = bran
+
+            model_match = match_model
+                _preprocess(raw_model), brand_id, brand_canonical, SOURCE
+            )
+            if model_match is None:
+                print(
+                    f"Could not match model '{raw_model}' (brand: '{brand_canonical}') for raw_id: {id}"
+                )
+                valid = False
+            else:
+                _, model_canonical = model_match
+                data["model_name"] =
 \end{minted}
 \end{center}
 

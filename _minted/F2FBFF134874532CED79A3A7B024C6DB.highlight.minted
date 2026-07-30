@@ -1,0 +1,24 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{match\PYGZus{}brand}\PYG{p}{(}\PYG{n}{raw}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{source}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+    \PYG{n}{normalized} \PYG{o}{=} \PYG{n}{normalize\PYGZus{}text}\PYG{p}{(}\PYG{n}{raw}\PYG{p}{)}
+    \PYG{n}{brands} \PYG{o}{=} \PYG{n}{\PYGZus{}get\PYGZus{}all\PYGZus{}brands}\PYG{p}{()}
+
+    \PYG{k}{for} \PYG{n}{brand\PYGZus{}id}\PYG{p}{,} \PYG{n}{canonical\PYGZus{}name} \PYG{o+ow}{in} \PYG{n}{brands}\PYG{p}{:}
+        \PYG{k}{if} \PYG{n}{normalize\PYGZus{}text}\PYG{p}{(}\PYG{n}{canonical\PYGZus{}name}\PYG{p}{)} \PYG{o}{==} \PYG{n}{normalized}\PYG{p}{:}
+            \PYG{k}{return} \PYG{n}{brand\PYGZus{}id}\PYG{p}{,} \PYG{n}{canonical\PYGZus{}name}
+
+    \PYG{n}{cached} \PYG{o}{=} \PYG{n}{\PYGZus{}lookup\PYGZus{}brand\PYGZus{}alias}\PYG{p}{(}\PYG{n}{normalized}\PYG{p}{,} \PYG{n}{source}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{cached}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{cached}
+
+    \PYG{n}{brand\PYGZus{}names} \PYG{o}{=} \PYG{p}{[}\PYG{n}{normalize\PYGZus{}text}\PYG{p}{(}\PYG{n}{b}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{k}{for} \PYG{n}{b} \PYG{o+ow}{in} \PYG{n}{brands}\PYG{p}{]}
+    \PYG{n}{result} \PYG{o}{=} \PYG{n}{process}\PYG{o}{.}\PYG{n}{extractOne}\PYG{p}{(}\PYG{n}{normalized}\PYG{p}{,} \PYG{n}{brand\PYGZus{}names}\PYG{p}{,} \PYG{n}{scorer}\PYG{o}{=}\PYG{n}{fuzz}\PYG{o}{.}\PYG{n}{WRatio}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{n}{result} \PYG{o+ow}{is} \PYG{k+kc}{None} \PYG{o+ow}{or} \PYG{n}{result}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{90}\PYG{p}{:}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}[matching] No brand match for \PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{raw}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZsq{}, best score: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{result}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{result}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{k}{return} \PYG{k+kc}{None}
+
+    \PYG{n}{brand\PYGZus{}id}\PYG{p}{,} \PYG{n}{canonical\PYGZus{}name} \PYG{o}{=} \PYG{n}{brands}\PYG{p}{[}\PYG{n}{result}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]]}
+    \PYG{n}{\PYGZus{}store\PYGZus{}brand\PYGZus{}alias}\PYG{p}{(}\PYG{n}{normalized}\PYG{p}{,} \PYG{n}{brand\PYGZus{}id}\PYG{p}{,} \PYG{n}{canonical\PYGZus{}name}\PYG{p}{,} \PYG{n}{source}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{brand\PYGZus{}id}\PYG{p}{,} \PYG{n}{canonical\PYGZus{}name}
+\end{MintedVerbatim}
