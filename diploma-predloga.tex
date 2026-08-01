@@ -117,6 +117,7 @@ Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strež
 Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11.
 Za izvajanje posameznih komponent je uporabljena platforma Docker.
+\clearpage
 Docker kontejnerji: 
 \begin{itemize}
     \item Zaledni sistem
@@ -669,9 +670,172 @@ def match_brand(raw: str, source: str):
 \end{minted}
 \end{center}
 
+Po zaključeni normalizaciji so vsi podatki o oglasih vozil poenoteni v enotno
+strukturo (znamka, model, letnik, prevožena kilometrina, cena itd.), kar je
+predpogoj za primerjavo posameznih oglasov.
+Na tej podlagi smo implementirali API \texttt{/valuate}, ki kot vhodne
+parametre sprejme znamko, model, letnik in prevoženo kilometrino vozila, za
+katero uporabnik želi oceno tržne vrednosti. V tej fazi smo se namenoma omejili
+zgolj na navedene štiri parametre, saj je bil primarni cilj dokazati, da
+algoritem deluje na konceptualni ravni (angl.\ \emph{proof of concept}), preden
+bi ga razširili na dodatne spremenljivke (npr.\ opremljenost, vrsto goriva,
+menjalnik, stanje vozila). Dodajanje večjega števila parametrov brez zadostne
+količine normaliziranih podatkov bi namreč vzorec primerljivih vozil dodatno
+skrčilo, zaradi česar bi jih hitro ostalo premalo za smiselno statistično oceno.\\
+Po svoji zasnovi algoritem ustreza pristopu primerljivih prodaj (angl.\
+\emph{comparable sales approach} oz.\ \emph{Comparative Market Analysis} --
+CMA), ki je uveljavljena metoda vrednotenja v nepremičninski in avtomobilski
+stroki~\cite{cma-appraisal}. Cene predmeta pri tem pristopu ne ocenjujemo na
+podlagi enega samega modela, temveč na podlagi množice podobnih, dejansko
+prodanih (oz.\ oglaševanih) primerkov, ki jim glede na stopnjo podobnosti
+pripišemo različno utež. V statističnem smislu gre za obliko metode
+$k$-najbližjih sosedov (angl.\ \emph{k-nearest neighbors}, k-NN)~\cite{knn-regression},
+ pri kateri namesto ostre meje
+\enquote{sosed / ni sosed} uporabimo zvezno utežno funkcijo, ki pada proti nič,
+ko se primerjano vozilo bolj razlikuje od ocenjevanega.
+
+\subsection{Filtriranje kandidatov iz podatkovne baze}
+\label{subsec:filtriranje}
+
+Prvi korak algoritma je poizvedba SQL, ki iz tabele\\
+\texttt{market.normalized\_market\_listing} izlušči kandidate za primerjavo.
+Znamko in model filtriramo strogo (po enakosti). Znamka in model sta kategorični spremenljivki, ki najmočneje
+določata segment in bazno ceno vozila.
+
+Numerični spremenljivki filtriramo z dovoljenim odstopanjem: pri kilometrini
+znaša $\pm 40\,000$~km (konstanta \texttt{KILOMETERS\_DIFFERENCE}), pri letniku
+pa $\pm 3$~leta (konstanta \texttt{YEAR\_DIFFERENCE}). Navedeni meji nista bili
+izbrani naključno, temveč predstavljata kompromis med natančnostjo in velikostjo
+vzorca. Ožje kot postavimo meji, bolj primerljiva so vrnjena vozila glede na
+ocenjevano vozilo, a hkrati manjši je vzorec, iz katerega algoritem izračuna
+oceno, kar poveča statistično negotovost. Gre za znano razmerje med
+pristranskostjo in varianco (angl.\ \emph{bias--variance trade-off})~\cite{bias-variance}.
+Ker je podatkovna baza normaliziranih podatkov v tej fazi razvoja še razmeroma
+majhna, smo se zavestno odločili za širši interval, da algoritem sploh pridobi
+dovolj velik vzorec za smiselno oceno. Ob prihodnji rasti podatkovne baze bi
+bilo smiselno ta interval zožiti oziroma ga narediti dinamičnega (npr.\
+odvisnega od števila zadetkov ožjega intervala), s čimer bi izboljšali
+natančnost ocene, ne da bi ta trpela zaradi premajhnega vzorca.
+
+\subsection{Točkovanje podobnosti posameznega vozila}
+\label{subsec:tockovanje}
+
+Za vsako vozilo iz filtrirane množice izračunamo oceno podobnosti (angl.\
+\emph{score}) glede na ocenjevano vozilo. Uporabili smo dve delni oceni, eno za
+kilometrino in eno za letnik, ki ju nato združimo v skupno oceno:
+
+\begin{center}
+\captionof{listing}{Izračun ocene podobnosti posameznega vozila}
+\label{code:car-scoring-python}
+\begin{minted}{python}
+def get_scores_of_each_car(data_compare: dict, cars: list) -> list[tuple]:
+    results = []
+    for car in cars:
+        absolute_dif = abs(int(car["kilometers"]) - int(data_compare["kilometers"]))
+        kilometers_score = max(0, 100 * (1 - absolute_dif / KILOMETERS_DIFFERENCE))
+
+        absolute_dif = abs(int(car["registration_year"]) - int(data_compare["year"]))
+        registration_year_score = max(0, 100 * (1 - absolute_dif / YEAR_DIFFERENCE))
+
+        total_score = kilometers_score * 0.6 + registration_year_score * 0.4
+        results.append((float(car["price"]), total_score))
+    return results
+\end{minted}
+\end{center}
+
+Obe delni oceni sta zasnovani po istem načelu: vozilo, ki je identično
+ocenjevanemu, prejme največjih 100 točk, vozilo na robu
+dovoljenega intervala (natanko $40\,000$~km ali 3 leta narazen) pa 0 točk. Med
+tema skrajnostma ocena linearno pada. Funkcija \texttt{max(0, ...)} zagotavlja,
+da ocena nikoli ne postane negativna. Ker vozila zunaj intervala zaradi
+filtriranja v poizvedbi SQL sploh ne pridejo do tega koraka, gre pri tem
+predvsem za varnostno mejo oziroma eksplicitno zagotovilo nenegatovnosti.\\
+Za linearno padajočo funkcijo (namesto eksponentne ali Gaussove) smo se odločili
+iz dveh razlogov. Prvič, zaradi enostavnosti in razložljivosti: linearna
+funkcija je najlažje razumljiva in preverljiva, kar je pri diplomskem delu, kjer
+je cilj dokazati delujoč koncept, pomembnejše od marginalnega izboljšanja
+natančnosti. Drugič, zaradi enostavnega umerjanja: z eno samo konstanto natančno
+določimo, kje ocena doseže ničlo.\\
+Skupno oceno podobnosti izračunamo kot uteženo vsoto obeh delnih ocen, pri čemer
+kilometrini pripišemo višjo utež ($60\,\%$) kot letniku ($40\,\%$).
+Vozili istega letnika se lahko močno razlikujeta po dejanski obrabi, če je eno
+prevozilo $50\,000$~km, drugo pa $200\,000$~km, medtem ko vozili s podobno
+kilometrino, a nekoliko različnim letnikom ostajata precej primerljivi.
+
+\subsection{Izračun ocenjene cene z uteženim povprečjem}
+\label{subsec:uteceno-povprecje}
+
+Ko vsa primerljiva vozila ovrednotimo z oceno podobnosti, končno ocenjeno ceno
+izračunamo kot uteženo povprečje njihovih cen, pri čemer je utež vsakega vozila
+prav njegova izračunana ocena podobnosti:
+
+\begin{equation}
+  \label{eq:weighted-mean}
+  \text{estimated\_price} =
+  \frac{\sum_i \text{price}_i \cdot \text{score}_i}{\sum_i \text{score}_i}
+\end{equation}
+
+Uporaba uteženega povprečja namesto navadnega aritmetičnega je ključna: če bi
+izračunali navadno povprečje cen vseh vozil znotraj intervala, bi vozilo,
+oddaljeno $39\,000$~km, prispevalo enako kot vozilo, oddaljeno le $500$~km, kar
+je neustrezno, saj je slednje veliko boljši pokazatelj dejanske cene. Z
+uteževanjem po vrednosti \texttt{total\_score} bolj podobna vozila sorazmerno
+bolj vplivajo na končno oceno, vozila na robu intervala pa prispevajo le malo,
+gre za standardno obliko uteženega povprečja (angl.\ \emph{weighted
+mean})~\cite{weighted-mean}, kjer vsota uteži v imenovalcu poskrbi za pravilno
+normalizacijo rezultata, tako da ta ostane v enotah cene ne glede na število
+vozil ali velikost njihovih ocen.\\
+Poleg ocenjene cene algoritem vrne tudi indeks zaupanja (angl.\
+\emph{confidence}), izračunan po enačbi:
+
+\begin{equation}
+  \label{eq:confidence}
+  \text{confidence} = \min\!\left(1{.}0,\ \frac{n}{20}\right),
+\end{equation}
+
+pri čemer je $n$ število vozil, najdenih znotraj filtriranih meja. Kar pove
+uporabniku, je to kako smo prepričani v ceno ki smo mu jo posredovli. Če je število
+primerjalnih vozil veliko, je indeks zaupanja bližje 1, če pa je število primerjalnih vozil majhno, 
+je indeks zaupanja bližje 0.
+
+\subsection{Povzetek utemeljitve pristopa}
+\label{subsec:povzetek-pristopa}
+
+Algoritem cene torej ne poskuša napovedati z enim samim \enquote{črnoškatlastim}
+modelom, temveč uporablja pregleden in razložljiv
+pristop primerljivih prodaj z uteženim povprečjem, pri katerem kategorični
+spremenljivki (znamka, model) določata strogo mejo primerljivosti, numerični
+spremenljivki (kilometrina, letnik) določata mehko, zvezno padajočo utež znotraj
+te meje, končna cena je uteženo povprečje, ki daje večjo težo bolj podobnim
+vozilom, indeks zaupanja pa uporabnika pregledno opozori na zanesljivost
+posamezne ocene, glede na velikost vzorca. Ta pristop smo izbrali predvsem zato,
+ker je pri omejeni količini normaliziranih podatkov enostavnejši, bolj razložljiv
+in lažje preverljiv kot kompleksnejši statistični ali strojno naučeni modeli,
+hkrati pa metodološko temelji na uveljavljeni praksi vrednotenja rabljenih vozil
+in nepremičnin s primerjavo podobnih primerov na trgu.~\cite{cma-appraisal}
 
 
 \section{Infrastriuktura in avtomatizacija}
+Poleg funkcionalne implementacije posameznih komponent je bil pomemben del
+razvoja tudi vzpostavitev infrastrukture, ki zagotavlja konsistentno delovanje
+sistema v različnih fazah njegovega življenjskega cikla. Od lokalnega razvoja,
+prek avtomatiziranega preverjanja kode, do namestitve v produkcijsko okolje.
+Namen tovrstne avtomatizacije je zmanjšati število ročnih posegov, ki so
+podvrženi napakam, in zagotoviti, da se aplikacija v vseh okoljih obnaša enako,
+ne glede na razlike v konfiguraciji posameznega razvijalčevega računalnika ali
+strežnika \cite{devops-handbook}. Tak pristop temelji na načelu konsistentnosti
+okolij (angl.\ \emph{environment parity}), po katerem naj bodo razvojno, testno
+in produkcijsko okolje čim bolj podobna, s čimer zmanjšamo tveganje napak, ki se
+pojavijo šele ob namestitvi \cite{twelve-factor}.
+
+\subsection{Kontejnerizacija razvojnega okolja}
+% the multi-service compose setup: api/frontend/db/redis/mailhog/evaluation, depends_on + healthcheck for startup ordering, named volumes for Postgres persistence and node_modules caching, bind mounts for hot-reload dev workflow.
+
+\subsection{Neprekinjena integracija (CI) z GitHub Actions}
+% pipeline triggered on PR to main, ephemeral postgres/redis service containers for the test run, pnpm caching, --frozen-lockfile. Good place to cite CI/CD literature generally, then show your workflow as the concrete implementation.
+
+\subsection{Namestitev in gostovanje}
+%  VPS hosting choice, what Dokploy actually automates for you (build/deploy from git, reverse proxy, env/secret management) vs. what you'd have had to script by hand otherwise.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  LITERATURA
