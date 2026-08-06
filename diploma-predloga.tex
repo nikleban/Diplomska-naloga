@@ -112,6 +112,7 @@ V poglavju \ref{chap} je predstavljena analiza problema, pregled obstoječih re�
  Diplomsko delo se zaključuje s sklepom in predlogi za nadaljnje izboljšave.
 
 \section{Opis arhitekture sistema}
+\label{sec:arhitektura}
 
 Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
 Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
@@ -829,13 +830,169 @@ in produkcijsko okolje čim bolj podobna, s čimer zmanjšamo tveganje napak, ki
 pojavijo šele ob namestitvi \cite{twelve-factor}.
 
 \subsection{Kontejnerizacija razvojnega okolja}
-% the multi-service compose setup: api/frontend/db/redis/mailhog/evaluation, depends_on + healthcheck for startup ordering, named volumes for Postgres persistence and node_modules caching, bind mounts for hot-reload dev workflow.
+Za kontejnerizacijo razvojnega okolja smo uporabili orodje Docker Compose, ki
+omogoča enostavnejšo vzpostavitev več med seboj povezanih kontejnerjev, naštetih
+v poglavju~\ref{sec:arhitektura}. Orodje deluje tako, da v datoteki
+\texttt{docker-compose.yml} opišemo vse storitve, ki jih aplikacija potrebuje,
+in njihove medsebojne odvisnosti, kar omogoča zagon celotnega okolja z enim
+samim ukazom. To je še posebej uporabno pri razvoju in testiranju. Za lokalno
+preizkušanje pošiljanja elektronske pošte smo uporabili orodje MailHog, ki
+odhodno pošto prestreže in jo prikaže v spletnem vmesniku, namesto da bi jo
+dejansko poslal na pravi naslov. Za zaledni in evalvacijski sistem smo napisali
+ločeni datoteki \texttt{Dockerfile}, v katerih določimo, na katerem jeziku
+oziroma okolju sistem temelji ter katere ukaze naj kontejner ob zagonu izvede.\\
+Ker se storitve med seboj zaganjajo z različnimi hitrostmi, smo za pravilno
+zaporedje zagona uporabili ključ \texttt{depends\_on} v kombinaciji z
+definicijami \texttt{healthcheck}. Brez tega bi se zaledni sistem lahko poskusil
+povezati s podatkovno bazo, še preden bi ta dejansko sprejemala povezave, kar bi
+ob zagonu okolja povzročilo napako. Storitve, od katerih so odvisne druge
+storitve, zato vsebujejo ukaz za preverjanje pripravljenosti (\texttt{pg\_isready}
+pri sistemu PostgreSQL oziroma \texttt{redis-cli ping} pri sistemu Redis),
+odvisne storitve pa se zaženejo šele, ko je preverjanje uspešno.\\
+Za shranjevanje podatkov smo uporabili poimenovane nosilce podatkov (angl.\
+\emph{named volumes}): eden skrbi za trajnost podatkovne baze med ponovnimi
+zagoni kontejnerjev, drugi pa predpomni mapo \texttt{node\_modules} znotraj
+zalednega kontejnerja, saj bi jo sicer prepisala prevezava map z gostitelja. Za
+samo razvojno izkušnjo, natančneje za samodejno osveževanje ob spremembah
+(angl.\ \emph{hot reload}), uporabljamo prevezavo map (angl.\ \emph{bind mount})
+iz gostiteljevega datotečnega sistema v kontejner, tako da se spremembe v izvorni
+kodi takoj odražajo v delovanju aplikacije, brez ponovne gradnje slike.\\
+Odjemalskega sistema v lokalno razvojno okolje namenoma nismo vključili, saj
+njegova vključitev zaradi nenehne ponovne gradnje slike ob vsaki spremembi
+bistveno upočasni razvoj, zato ga med razvojem poganjamo neposredno na
+gostitelju.\\
+Za produkcijsko okolje uporabljamo ločeno datoteko
+\texttt{docker-compose.prod.yml}, ki namesto lokalne gradnje slik uporablja
+vnaprej zgrajene slike iz registra vsebnikov (angl.\ \emph{container registry}),
+storitve poveže v skupno omrežje ter doda poimenovan nosilec podatkov za
+shranjevanje naloženih datotek.
 
-\subsection{Neprekinjena integracija (CI) z GitHub Actions}
-% pipeline triggered on PR to main, ephemeral postgres/redis service containers for the test run, pnpm caching, --frozen-lockfile. Good place to cite CI/CD literature generally, then show your workflow as the concrete implementation.
+\subsection{Neprekinjena integracija z orodjem GitHub Actions}
+Neprekinjena integracija (angl.\ \emph{continuous integration}, CI) je praksa,
+pri kateri se ob vsaki spremembi kode samodejno izvedejo preverjanja (testi,
+gradnja, statična analiza kode), s čimer napake odkrijemo čim prej, še preden se
+zlijejo v glavno vejo ali dosežejo druge razvijalce~\cite{fowler-ci}. Namesto da
+bi vsak razvijalec teste poganjal ročno pred združitvijo sprememb, jih namesto
+njega izvede strežnik, in sicer konsistentno ter vsakič na enak način.\\
+Za implementacijo neprekinjene integracije smo uporabili orodje GitHub Actions,
+GitHubov sistem za avtomatizacijo poteka dela. Njegovo delovanje temelji na
+naslednjih pojmih:
+
+\begin{itemize}
+    \item \textbf{Potek dela} (angl.\ \emph{workflow}) je datoteka \texttt{.yml}
+    v mapi \texttt{.github/workflows/}, ki določa, kdaj naj se nekaj izvede
+    (npr.\ ob dogodku \texttt{pull\_request} ali \texttt{push}) in katera
+    opravila naj se ob tem zaženejo.
+    \item \textbf{Opravilo} (angl.\ \emph{job}) se izvede na svežem virtualnem
+    strežniku (npr.\ \texttt{ubuntu-latest}), ki ga GitHub ob zagonu ustvari in
+    po zaključku izbriše.
+    \item \textbf{Koraki} (angl.\ \emph{steps}) znotraj opravila so zaporedni
+    ukazi. To so lahko neposredni lupinski ukazi (npr.\ \texttt{run: pnpm test})
+    ali vnaprej pripravljeni in ponovno uporabni gradniki (angl.\ \emph{actions}),
+    ki jih razvije GitHub ali skupnost. Tako npr.\ gradnik
+    \texttt{actions/checkout} prenese izvorno kodo, gradnik
+    \texttt{pnpm/action-setup} pa namesti upravitelja paketov pnpm. Namesto
+    lastnoročno napisane skripte za namestitev okolja Node, predpomnjenje
+    odvisnosti in nastavitev spremenljivke PATH tako uporabimo že obstoječi
+    gradnik.
+    \item \textbf{Storitve} (angl.\ \emph{services}) so pomožni kontejnerji, ki
+    tečejo vzporedno z opravilom. Uporabni so, kadar testi potrebujejo pravo
+    podatkovno bazo namesto njene simulacije (angl.\ \emph{mock}).
+\end{itemize}
+
+Potek dela, opredeljen v datoteki \texttt{ci.yml}, smo pripravili tako, da ob
+vsakem novem zahtevku za združitev (angl.\ \emph{pull request}) izvede vse teste
+zalednega sistema in preveri, ali se uspešno izvedejo. Potek dela v datoteki
+\texttt{docker-publish.yml} je zasnovan še korak dlje: ob zahtevku za združitev
+zgolj preveri, ali se slika Docker uspešno zgradi, ob združitvi v glavno vejo pa
+sliko dejansko zgradi, digitalno podpiše in objavi. Ta korak že sodi na področje
+neprekinjene dostave (angl.\ \emph{continuous delivery}, CD), torej samodejne
+distribucije zgrajenega artefakta~\cite{humble-cd}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{ci-cd.png}
+\caption{Samodejno izvajanje testov nad vejo v okolju GitHub Actions}
+\label{fig:ci-cd}
+\end{figure}
 
 \subsection{Namestitev in gostovanje}
-%  VPS hosting choice, what Dokploy actually automates for you (build/deploy from git, reverse proxy, env/secret management) vs. what you'd have had to script by hand otherwise.
+Za gostovanje smo izbrali eno izmed cenovno najugodnejših možnosti, in sicer
+najeti navidezni zasebni strežnik (angl.\ \emph{virtual private server}, VPS)
+pri ponudniku Hetzner. Strežnik razpolaga s 4~GB delovnega pomnilnika in dvema
+procesorskima jedroma, kar zadostuje za zagon vseh treh storitev. Po prijavi v
+strežnik smo najprej posodobili operacijski sistem na najnovejšo različico,
+nato pa namestili orodji Docker in Docker Compose.\\
+Za upravljanje aplikacije smo uporabili orodje Dokploy, ki omogoča enostavno
+uporabo datotek \texttt{docker-compose} v produkcijskem okolju in hkrati močno
+poenostavi postopek posodabljanja aplikacije. V njem lahko nastavimo tudi
+opravila, ki se izvajajo periodično, podobno kot storitev \texttt{cron}. Na
+strežnik je treba namestiti povezovalno komponento med orodjema Dokploy in
+Docker, nato pa Dokploy sam poskrbi za gradnjo aplikacije: iz repozitorija
+GitHub zajame najnovejšo različico kode in zgradi pripadajočo sliko neposredno
+na strežniku. Tak postopek omogoča, da se nova sprememba v produkcijskem okolju
+odrazi v nekaj minutah.\\
+Dokploy je odprtokodno in brezplačno orodje, najem strežnika pri ponudniku
+Hetzner pa predstavlja nizek mesečni strošek.
+
+
+\chapter{Sklep}
+\label{ch:sklep}
+
+Cilj diplomskega dela je bil razviti spletno aplikacijo, ki uporabnikom omogoča objavo in
+pregled oglasov rabljenih avtomobilov, ter vanjo vgraditi sistem za samodejno ocenjevanje
+tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
+razvili smo delujočo spletno aplikacijo z ločeno odjemalsko, zaledno in evalvacijsko
+komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi cevovod za zajem,
+normalizacijo in primerjavo tržnih podatkov ter algoritem za oceno cene, ki temelji na
+pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
+in~\ref{subsec:uteceno-povprecje}).\\
+Hipoteza diplomskega dela je bila, da je mogoče uporabniku na podlagi zbranih tržnih
+podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne
+vrednosti. Implementirani algoritem to hipotezo potrjuje na konceptualni ravni (angl.\
+\emph{proof of concept}). Sistem na podlagi znamke, modela, letnika in prevoženih
+kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
+zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil
+(razdelek~\ref{subsec:uteceno-povprecje}).
+Med izdelavo dela smo prepoznali več možnosti za nadaljnji razvoj, ki jih navajamo v
+nadaljevanju.
+\begin{itemize}
+    \item \textbf{Razširitev nabora vhodnih spremenljivk.} Ko bo na voljo dovolj
+    normaliziranih podatkov, bi bilo smiselno v algoritem vključiti dodatne parametre, kot
+    so oprema, vrsta goriva, tip menjalnika in stanje vozila, kar bi izboljšalo natančnost
+    ocene.
+    \item \textbf{Dinamično prilagajanje intervalov primerljivosti.} Namesto fiksnih mej bi
+    lahko intervale kilometrine in letnika prilagajali sproti glede na gostoto podatkov v
+    posameznem segmentu (na primer širši interval pri redkih modelih in ožji pri pogostih),
+    s čimer bi omilili razmerje med pristranskostjo in varianco, opisano v
+    razdelku~\ref{subsec:filtriranje}.
+    \item \textbf{Uvedba metod strojnega učenja.} Ko bo obseg lastnih, normaliziranih
+    podatkov zadosten, bi lahko sedanji, razložljivi pristop primerljivih prodaj dopolnili
+    ali nadomestili z modeli strojnega učenja (na primer regresijskimi modeli, naključnimi
+    gozdovi ali nevronskimi mrežami), ki bi lahko zajeli bolj kompleksne, nelinearne
+    odvisnosti med lastnostmi vozila in ceno \cite{bijalwan2015machine}.
+    \item \textbf{Zmanjšanje odvisnosti od zunanjih virov.} Z rastjo števila uporabnikov in
+    oglasov, objavljenih neposredno na platformi, bomo lahko delež zunanjih podatkov
+    postopno zmanjševali in ocene vse bolj gradili na podatkih, zbranih znotraj same
+    aplikacije, kar bo izboljšalo tako natančnost kot vzdržnost sistema, saj se s tem
+    zmanjša odvisnost od krhkih postopkov zajema s spletnih strani.
+    \item \textbf{Postopna migracija zalednega sistema na TypeScript.} Uvedba statičnega
+    preverjanja tipov bi dolgoročno izboljšala zanesljivost in vzdržljivost zalednega dela
+    aplikacije \cite{gao2017typescript}.
+    \item \textbf{Nadgradnja infrastrukture in spremljanja delovanja.} Smiselna nadaljnja
+    koraka sta uvedba centraliziranega beleženja dogodkov in spremljanja delovanja sistema
+    (angl.\ \emph{monitoring}) v produkcijskem okolju, kar bi olajšalo odkrivanje napak in
+    analizo obremenitve sistema, ter razširitev nabora avtomatiziranih testov na
+    evalvacijski in odjemalski del aplikacije, ki v tem trenutku nista pokrita enako
+    temeljito kot zaledni sistem, za katerega teste ob vsakem zahtevku za združitev že
+    izvaja orodje GitHub Actions.
+\end{itemize}
+Skupno gledano diplomsko delo dokazuje, da je zastavljeni koncept spletne aplikacije za
+prodajo vozil z vgrajenim, razložljivim sistemom za ocenjevanje tržne vrednosti izvedljiv
+in tehnično smiseln. Predstavlja trdno osnovo, na kateri je mogoče v prihodnosti graditi
+natančnejši, bolj podatkovno bogat in temeljiteje evalviran sistem.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  LITERATURA
