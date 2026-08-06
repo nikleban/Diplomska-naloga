@@ -90,26 +90,51 @@ morda bo zapisal tudi ključno literaturo.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Uvod}
-% TODO: add references to the text below
-Nakup in prodaja rabljenih avtomobilov predstavljata pomemben del avtomobilskega trga. Pri tem se uporabniki pogosto srečujejo s težavo določanja primerne tržne vrednosti vozila, 
-saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na trgu. Najpogostejši pristop je primerjava z obstoječimi oglasi podobnih vozil, vendar takšna metoda ni vedno 
-zanesljiva. Oglasi lahko vsebujejo nerealno visoke ali nizke cene, uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi lahko ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno vrednostjo ali ga kupijo po previsoki ceni. \\
 
-Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih. Zaradi tega njihove ocene
- pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. \\
+Nakup in prodaja rabljenih avtomobilov predstavljata pomemben del avtomobilskega trga.
+Pri tem se kupci in prodajalci pogosto srečujejo s težavo določanja primerne tržne
+vrednosti vozila, saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na
+trgu. Asimetrija informacij med udeleženci je še posebej izrazita na trgu rabljenih vozil,
+kjer je vsako vozilo unikatno glede na svoje stanje, opremo in zgodovino
+uporabe~\cite{gegic2019car}. Najpogostejši pristop k oceni vrednosti je zato primerjava z
+obstoječimi oglasi podobnih vozil, torej t.\,i.\ pristop primerljivih prodaj (angl.\
+\emph{comparable sales approach})~\cite{cma-appraisal}, vendar samostojno izvajanje takšne
+primerjave ni vedno zanesljivo. Oglasi lahko vsebujejo nerealno visoke ali nizke cene,
+uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi glede na te podatke lahko
+ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno
+vrednostjo ali ga kupijo po previsoki ceni.\\
 
-Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji
-in analizi primerljivih vozil na trgu. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik prve
-registracije in število prevoženih kilometrov. Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, ki na platformi objavljajo lastne
-avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov postopno upadla, tržna vrednost vozil pa bo mogoče ocenjevati na podlagi
-oglasov zbranih znotraj platforme same.\\
+Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive,
+prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
+pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. Podroben pregled
+in primerjava obstoječih rešitev sta predstavljena v poglavju~\ref{ch:sorodna dela}
+(razpredelnica~\ref{tab:sorodne-resitve}).\\
 
-Hipoteza diplomskega dela je, da je mogoče s pomočjo zbranih tržnih podatkov in primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno tržne vrednosti vozila.
- Dodatni cilj je preveriti, ali integracija takšnega sistema v spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\
+Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih
+oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
+zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na
+trgu~\cite{laender2002}. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti
+vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.
+Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, ki na platformi
+objavljajo lastne avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov
+postopno upadla, tržna vrednost vozil pa bo mogoče ocenjevati na podlagi oglasov, zbranih
+znotraj platforme same.\\
 
-V poglavju \ref{chap} je predstavljena analiza problema, pregled obstoječih rešitev in uporabljene tehnologije. Poglavje \ref{chap} opisuje načrtovanje sistema in arhitekturo aplikacije. Implementacija
- posameznih komponent, vključno s sistemom za vrednotenje vozil, je predstavljena v poglavju \ref{chap}. V poglavju \ref{chap} so opisani postopki testiranja in rezultati evalvacije sistema. 
- Diplomsko delo se zaključuje s sklepom in predlogi za nadaljnje izboljšave.
+Hipoteza diplomskega dela je, da je mogoče s pomočjo zbranih tržnih podatkov in
+primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno
+tržne vrednosti vozila. Dodatni cilj je preveriti, ali integracija takšnega sistema v
+spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
+
+Preostanek diplomskega dela je organiziran na naslednji način. Poglavje~\ref{ch:sorodna dela}
+podaja pregled obstoječih spletnih tržnic in specializiranih storitev za vrednotenje
+vozil ter jih primerja s predlagano rešitvijo. Poglavje~\ref{ch:struktura} predstavi
+teoretična izhodišča in tehnologije, na katerih temelji razvita rešitev, med drugim
+arhitekturo odjemalec--strežnik, relacijske podatkovne baze, mikrostoritveno arhitekturo ter
+postopke zajema podatkov s spletnih virov. Poglavje~\ref{ch:metodologija} opiše metodologijo
+dela: načrtovanje podatkovne baze in arhitekture sistema, implementacijo zalednega in
+odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infrastrukturo in
+avtomatizacijo namestitve. Diplomsko delo se zaključi s poglavjem~\ref{ch:sklep}, ki povzame
+dosežene rezultate, kritično presodi omejitve rešitve in nakaže smeri za nadaljnje delo.
 
 \section{Opis arhitekture sistema}
 \label{sec:arhitektura}
@@ -288,6 +313,7 @@ dokumenta izluščimo posamezna podatkovna polja oglasa, kot so naziv vozila,
 cena, letnik, prevoženi kilometri in vrsta goriva.
 
 \chapter{Metodologija}
+\label{ch:metodologija}
 Cilj diplomske naloge je bila izdelava spletne aplikacije, v kateri bodo uporabniki lahko
 objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
 tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
