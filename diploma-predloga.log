@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  6 AUG 2026 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  6 AUG 2026 21:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1517,7 +1517,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \scan_stop: 
-l.43 ...ki v zbornikih konferenc}{45}{section*.30}
+l.43 ...ki v zbornikih konferenc}{45}{section*.27}
                                                   % [7
 
 ])
@@ -1580,129 +1580,105 @@ een already used, duplicate ignored
                    \scan_stop: 
 l.158 \clearemptydoublepage
                             [12])
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 94--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
-
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--106
-
- []
-
-
-Underfull \vbox (badness 2689) has occurred while \output is active []
-
-
-Underfull \vbox (badness 2689) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1
 
 
 
 ]
-
-LaTeX Warning: Reference `chap' on page 2 undefined on input line 110.
-
-
-LaTeX Warning: Reference `chap' on page 2 undefined on input line 110.
-
-
-LaTeX Warning: Reference `chap' on page 2 undefined on input line 111.
-
-
-LaTeX Warning: Reference `chap' on page 2 undefined on input line 111.
-
-[2] [3
-
-] [4
+[2] [3] [4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/bx/n/12 Geografski
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/bx/n/12 Ocena vre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Evropa (ve£
  []
 
 
-Underfull \hbox (badness 2521) in paragraph at lines 179--179
+Underfull \hbox (badness 2521) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Osnoven in-di-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Evropa (ve£
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Priporo£ilo
  []
 
 
-Underfull \hbox (badness 2368) in paragraph at lines 179--179
+Underfull \hbox (badness 2368) in paragraph at lines 201--201
 \T1/cmr/m/n/12 cene, pri ob-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Mednarodno
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 va-ro-val-ni-²tvo,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 (pla-£ljiv do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 (teh-ni£ni po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 datki, tr-ºna
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 179--179
+Underfull \hbox (badness 1354) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Da (vre-dno-te-
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 179--179
+Underfull \hbox (badness 1688) in paragraph at lines 201--201
 \T1/cmr/m/n/12 nje in zgo-do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\T1/cmr/m/n/12 Da, pri-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 mer-java s
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 \T1/cmr/m/n/12 po-dob-nimi
  []
 
@@ -1712,7 +1688,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
+ [5
+
+]
 [6] [7
 
 ] [8
@@ -1724,10 +1702,10 @@ Underfull \vbox (badness 1430) has occurred while \output is active []
 Underfull \vbox (badness 1430) has occurred while \output is active []
 
  [9]
-<./slike/client-server.png, id=176, 2449.15pt x 991.705pt>
+<./slike/client-server.png, id=188, 2449.15pt x 991.705pt>
 File: ./slike/client-server.png Graphic file (type png)
 <use ./slike/client-server.png>
-Package pdftex.def Info: ./slike/client-server.png  used on input line 202.
+Package pdftex.def Info: ./slike/client-server.png  used on input line 224.
 (pdftex.def)             Requested size: 312.00119pt x 126.32344pt.
 
 [10 <./slike/client-server.png>] [11] [12] [13] [14
@@ -1739,32 +1717,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-Underfull \hbox (badness 10000) in paragraph at lines 316--320
+Underfull \hbox (badness 10000) in paragraph at lines 338--342
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--330
+Underfull \hbox (badness 10000) in paragraph at lines 343--352
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--337
+Underfull \hbox (badness 10000) in paragraph at lines 353--359
 
  []
 
 [16]
-<./slike/ErDiagramMain.png, id=261, 641.39626pt x 470.9595pt>
+<./slike/ErDiagramMain.png, id=269, 641.39626pt x 470.9595pt>
 File: ./slike/ErDiagramMain.png Graphic file (type png)
 <use ./slike/ErDiagramMain.png>
-Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 348.
+Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 370.
 (pdftex.def)             Requested size: 350.99762pt x 257.73499pt.
  [17 <./slike/ErDiagramMain.png>]
-<./slike/ErDiagramEvaluation.png, id=270, 498.06075pt x 347.49825pt>
+<./slike/ErDiagramEvaluation.png, id=278, 498.06075pt x 347.49825pt>
 File: ./slike/ErDiagramEvaluation.png Graphic file (type png)
 <use ./slike/ErDiagramEvaluation.png>
-Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 38
-3.
+Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 40
+5.
 (pdftex.def)             Requested size: 350.99762pt x 244.90144pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1775,16 +1753,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [18]
 [19 <./slike/ErDiagramEvaluation.png>]
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 409.
+t line 431.
 \pydata@fh@0=\write6
 \openout6 = `_55F9811064D628AD6F94DD8FFA30621C.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260806180106 55F9811064D628AD6F94DD
+runsystem(latexminted config  --timestamp 20260806215322 55F9811064D628AD6F94DD
 8FFA30621C)...executed.
 
 
 (_55F9811064D628AD6F94DD8FFA30621C.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260806180106 55F9811064D628AD6
+runsystem(latexminted cleanconfig  --timestamp 20260806215322 55F9811064D628AD6
 F94DD8FFA30621C)...executed.
 
 
@@ -1797,32 +1775,28 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 ) [20]
-Underfull \hbox (badness 10000) in paragraph at lines 430--436
-
- []
-
 (_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [21]) [22]
-<./slike/AsyncFlow.png, id=332, 1104.125pt x 1078.0275pt>
+<./slike/AsyncFlow.png, id=339, 1104.125pt x 1078.0275pt>
 File: ./slike/AsyncFlow.png Graphic file (type png)
 <use ./slike/AsyncFlow.png>
-Package pdftex.def Info: ./slike/AsyncFlow.png  used on input line 501.
+Package pdftex.def Info: ./slike/AsyncFlow.png  used on input line 520.
 (pdftex.def)             Requested size: 331.50238pt x 323.67393pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 508--521
+Underfull \hbox (badness 10000) in paragraph at lines 527--539
 
  []
 
 [23 <./slike/AsyncFlow.png>]
 
-LaTeX Warning: Citation 'zustand-docs' on page 24 undefined on input line 539.
+LaTeX Warning: Citation 'zustand-docs' on page 24 undefined on input line 556.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 524--543
+Underfull \hbox (badness 10000) in paragraph at lines 542--560
 
  []
 
 [24] (_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted)
-Underfull \hbox (badness 10000) in paragraph at lines 566--570
+Underfull \hbox (badness 10000) in paragraph at lines 583--587
 
  []
 
@@ -1830,49 +1804,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 566--570
 (_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted)
 
 LaTeX Warning: Citation 'logging-practices' on page 27 undefined on input line 
-636.
+652.
 
 [27]
 
 LaTeX Warning: Citation 'fuzzy-string-matching' on page 28 undefined on input l
-ine 643.
+ine 659.
 
 [28] (_minted/F2FBFF134874532CED79A3A7B024C6DB.highlight.minted) [29]
-Overfull \hbox (14.38814pt too wide) in paragraph at lines 701--705
+Overfull \hbox (14.38814pt too wide) in paragraph at lines 717--721
 \T1/cmtt/m/n/12 market.normalized_market_listing \T1/cmr/m/n/12 iz-lu-²£i kan-d
 i-date za pri-mer-javo. Znamko
  []
 
 [30] (_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.minted) [31]
-Overfull \hbox (3.5887pt too wide) in paragraph at lines 779--791
+Overfull \hbox (3.5887pt too wide) in paragraph at lines 795--807
 []\T1/cmr/m/n/12 Uporaba ute-ºe-nega pov-pre-£ja na-me-sto na-va-dnega arit-me-
 ti£-nega je klju£na:
  []
 
 [32] [33]
-Overfull \hbox (10.77663pt too wide) in paragraph at lines 833--869
+Overfull \hbox (10.77663pt too wide) in paragraph at lines 849--885
 \T1/cmr/m/n/12 na-²te-tih v po-glavju [][]1.1[][]. Orodje de-luje tako, da v da
 -to-teki \T1/cmtt/m/n/12 docker-compose.yml
  []
 
 
-Overfull \hbox (17.99617pt too wide) in paragraph at lines 833--869
+Overfull \hbox (17.99617pt too wide) in paragraph at lines 849--885
 \T1/cmr/m/n/12 Za pro-duk-cij-sko oko-lje upo-ra-bljamo lo-£eno da-to-teko \T1/
 cmtt/m/n/12 docker-compose.prod.yml\T1/cmr/m/n/12 ,
  []
 
 [34]
-Overfull \hbox (23.36858pt too wide) in paragraph at lines 882--886
+Overfull \hbox (23.36858pt too wide) in paragraph at lines 898--902
 []\T1/cmr/bx/n/12 Potek dela \T1/cmr/m/n/12 (angl. \T1/cmr/m/it/12 wor-kflow\T1
 /cmr/m/n/12 ) je da-to-teka \T1/cmtt/m/n/12 .yml \T1/cmr/m/n/12 v mapi \T1/cmtt
 /m/n/12 .github/workflows/\T1/cmr/m/n/12 ,
  []
 
 [35]
-<./slike/ci-cd.png, id=460, 864.22874pt x 437.83575pt>
+<./slike/ci-cd.png, id=466, 864.22874pt x 437.83575pt>
 File: ./slike/ci-cd.png Graphic file (type png)
 <use ./slike/ci-cd.png>
-Package pdftex.def Info: ./slike/ci-cd.png  used on input line 914.
+Package pdftex.def Info: ./slike/ci-cd.png  used on input line 930.
 (pdftex.def)             Requested size: 312.00119pt x 158.06168pt.
  [36 <./slike/ci-cd.png>] [37] [38
 
@@ -1889,7 +1863,7 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (16.97412pt too wide) in paragraph at lines 1013--1013
+Overfull \hbox (16.97412pt too wide) in paragraph at lines 1029--1029
 \T1/cmr/m/n/12 pa-ra-me-tric Re-gres-sion^^P. V: \T1/cmr/m/it/12 The Ame-ri-can
  Sta-ti-sti-cian \T1/cmr/m/n/12 46.3 (1992), str. 175^^U
  []
@@ -1905,7 +1879,7 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (4.49577pt too wide) in paragraph at lines 1019--1019
+Overfull \hbox (4.49577pt too wide) in paragraph at lines 1035--1035
 []\T1/cmr/m/n/12 Niels Pro-vos in Da-vid Ma-zières. ^^R  A Future-Adaptable Pas
 -sword Scheme^^P.
  []
@@ -1921,66 +1895,50 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (29.55502pt too wide) in paragraph at lines 1025--1025
-\T1/cmtt/m/n/12 @21je0710 / task -[] queues -[] and -[] background -[] jobs -[]
- a -[] backend -[] developers -[]
- []
-
-
-Overfull \hbox (3.72275pt too wide) in paragraph at lines 1025--1025
+Overfull \hbox (3.72275pt too wide) in paragraph at lines 1041--1041
 []\T1/cmr/m/n/12 Sequelize Con-tri-bu-tors. \T1/cmr/m/it/12 Seque-lize Do-cu-me
 n-ta-tion\T1/cmr/m/n/12 . Do-sto-pano: ju-nij 2024.
  []
 
 [46]
-Overfull \hbox (7.75374pt too wide) in paragraph at lines 1025--1025
+Overfull \hbox (7.75374pt too wide) in paragraph at lines 1041--1041
 \T1/cmtt/m/n/12 articles / continuousIntegration . html$[][]\T1/cmr/m/n/12 . Do
 -sto-pano: 2026-08-01. 2006. 
  []
 
-[47]
-Overfull \hbox (4.03032pt too wide) in paragraph at lines 1025--1025
-[]\T1/cmr/m/n/12 Michael Jo-nes, John Bra-dley in Nat Sa-ki-mura. \T1/cmr/m/it/
-12 JSON Web To-ken (JWT)\T1/cmr/m/n/12 .
- []
 
-
-Overfull \hbox (12.8271pt too wide) in paragraph at lines 1025--1025
+Overfull \hbox (12.8271pt too wide) in paragraph at lines 1041--1041
 \T1/cmr/m/it/12 Ideas Be-h-ind Re-li-a-ble, Sca-la-ble, and Ma-in-ta-in-a-ble S
 y-stems\T1/cmr/m/n/12 . 1. izd. O'Reilly
  []
 
-
-Overfull \hbox (2.65779pt too wide) in paragraph at lines 1025--1025
+[47]
+Overfull \hbox (2.65779pt too wide) in paragraph at lines 1041--1041
 []\T1/cmr/m/n/12 Sam Ne-wman. \T1/cmr/m/it/12 Bu-il-ding Mi-cro-ser-vi-ces: De-
 si-gning Fine-Grained Sy-stems\T1/cmr/m/n/12 .
  []
 
-[48] [49] [50] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted
-[51
+[48] [49] [50
 
-]) (_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [52]) [53]
+] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted
+[51]) (_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [52]) [53]
 (diploma-predloga.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package logreq Info: Writing requests to 'diploma-predloga.run.xml'.
 \openout1 = `diploma-predloga.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40510 strings out of 467509
- 930460 string characters out of 5408780
- 1962344 words of memory out of 5000000
- 68966 multiletter control sequences out of 15000+600000
+ 40496 strings out of 467509
+ 929893 string characters out of 5408780
+ 1961144 words of memory out of 5000000
+ 68958 multiletter control sequences out of 15000+600000
  672178 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,12n,84p,1346b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,11n,84p,1346b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit
 1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tctt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -2013,9 +1971,9 @@ cmmi8.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmr12.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on diploma-predloga.pdf (65 pages, 1240523 bytes).
+Output written on diploma-predloga.pdf (65 pages, 1240209 bytes).
 PDF statistics:
- 1615 PDF objects out of 1728 (max. 8388607)
- 239 named destinations out of 1000 (max. 500000)
+ 1612 PDF objects out of 1728 (max. 8388607)
+ 233 named destinations out of 1000 (max. 500000)
  16121 words of extra memory for PDF output out of 17280 (max. 10000000)
 
