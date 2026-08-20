@@ -48,12 +48,12 @@ morda bo zapisal tudi ključno literaturo.}
 {The student shall transcribe the text of the diploma thesis topic from the student information system, where it was entered by the mentor. In a few sentences, they will describe what is expected of the candidate's thesis. What the objectives are, what methods should be used, and perhaps they will also list the key literature.}
 
 % Naslov:
-\newcommand{\ttitle}{Spletna aplikacija za prodajo in evalvacijo avtomobilov}
-\newcommand{\ttitleEn}{Web application for car sales and evaluation}
+\newcommand{\ttitle}{Prototip za prodajo in evalvacijo avtomobilov}
+\newcommand{\ttitleEn}{Prototype for car sales and evaluation}
 
 % Ključne besede:
-\newcommand{\tkeywords}{spletna aplikacija, avtomobili, vrednotenje, React, Express.js, Node.js, PostgreSQL, REST API, Docker, GitHub Actions, TypeScript, Python, OAuth2, CI/CD}
-\newcommand{\tkeywordsEn}{web application, automobiles, evaluation, React, Express.js, Node.js, PostgreSQL, REST API, Docker, GitHub Actions, TypeScript, Python, OAuth2, CI/CD}
+\newcommand{\tkeywords}{spletna aplikacija, avtomobili, vrednotenje, React, Express.js, Node.js, PostgreSQL, Docker}
+\newcommand{\tkeywordsEn}{web application, automobiles, evaluation, React, Express.js, Node.js, PostgreSQL, Docker}
 
 % Zahvala (opcijsko):
 \newcommand{\tzahvala}
@@ -71,10 +71,10 @@ morda bo zapisal tudi ključno literaturo.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tpovzetek}
-{Diplomsko delo obravnava problem določanja primerne tržne vrednosti rabljenega avtomobila. Pri prodaji ali nakupu vozila uporabniki pogosto nimajo zadostnega pregleda nad trenutnim stanjem na trgu, zato težko ocenijo, ali je določena cena primerna. Posledično lahko vozilo kupijo po previsoki ceni ali ga prodajo pod njegovo dejansko tržno vrednostjo. Za reševanje tega problema sem razvil spletno aplikacijo za objavo in pregled avtomobilskih oglasov, ki uporabnikom omogoča enostavno in varno prodajo ter nakup vozil. Poleg tega je bil implementiran sistem za avtomatsko ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in primerjavi vozila s podobnimi vozili na trgu. Pri oceni vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik in prevoženi kilometri. Za pridobivanje podatkov so bili uporabljeni javno dostopni podatkovni viri ter postopki samodejnega zajema podatkov s spletnih strani za prodajo vozil. Zbrane podatke sistem obdela in uporabi za izračun ocenjene tržne vrednosti vozila. Rezultat diplomskega dela je delujoča spletna aplikacija s podporo za avtomatsko vrednotenje vozil, ki uporabnikom pomaga pri sprejemanju bolj informiranih odločitev pri nakupu ali prodaji avtomobila.}
+{Diplomsko delo obravnava problem določanja primerne tržne vrednosti rabljenega avtomobila. Pri prodaji ali nakupu vozila uporabniki pogosto nimajo zadostnega pregleda nad trenutnim stanjem na trgu, zato težko ocenijo, ali je določena cena primerna. Posledično lahko vozilo kupijo po previsoki ceni ali ga prodajo pod njegovo dejansko tržno vrednostjo. Za reševanje tega problema smo razvili prototip za objavo in pregled avtomobilskih oglasov, ki uporabnikom omogoča enostavno in varno prodajo ter nakup vozil, ki vsebuje tudi sistem za avtomatsko ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in primerjavi vozila s podobnimi vozili na trgu. Pri oceni vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik in prevoženi kilometri. Za pridobivanje podatkov so bili uporabljeni javno dostopni podatkovni viri ter postopki samodejnega zajema podatkov s spletnih strani za prodajo vozil. Zbrane podatke sistem obdela in uporabi za izračun ocenjene tržne vrednosti vozila. Rezultat diplomskega dela je delujoč prototip s podporo za avtomatsko vrednotenje vozil, ki uporabnikom pomaga pri sprejemanju bolj informiranih odločitev pri nakupu ali prodaji avtomobila.}
 
 \newcommand{\tabstract}
-{This work addresses the problem of determining the appropriate market value of a used vehicle. When buying or selling a car, users often lack sufficient insight into current market conditions, making it difficult to assess whether a listed price is fair. As a result, vehicles may be purchased at inflated prices or sold below their actual market value. To address this problem, a web application for publishing and browsing vehicle listings was developed, enabling users to buy and sell vehicles in a simple and secure manner. In addition, an automated vehicle valuation system was implemented. The system is based on collecting data from external sources, normalizing the acquired data, and comparing a vehicle with similar vehicles currently available on the market. The valuation process takes into account key vehicle characteristics, including brand, model, year of first registration, and mileage. The required data was obtained from publicly available datasets and through automated data collection from vehicle marketplace websites. The collected data is processed and used to estimate the market value of a vehicle. The result of this thesis is a functional web application with integrated vehicle valuation support that helps users make more informed decisions when buying or selling used vehicles.}
+{This work addresses the problem of determining the appropriate market value of a used vehicle. When buying or selling a car, users often lack sufficient insight into current market conditions, making it difficult to assess whether a listed price is fair. As a result, vehicles may be purchased at inflated prices or sold below their actual market value. To address this problem, a web application for publishing and browsing vehicle listings was developed, enabling users to buy and sell vehicles in a simple and secure manner, which includes an automated vehicle valuation system. The system is based on the collection of data from external sources, normalization of the acquired data, and comparison of a vehicle with similar vehicles currently available on the market. The valuation process takes into account key vehicle characteristics, including brand, model, year of first registration, and mileage. The required data was obtained from publicly available datasets and through automated data collection from vehicle marketplace websites. The collected data is processed and used to estimate the market value of a vehicle. The result of this thesis is a functional web application with integrated vehicle valuation support that helps users make more informed decisions when buying or selling used vehicles.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  VKLJUČITEV NUJNIH ELEMENTOV 2/2
@@ -94,54 +94,49 @@ morda bo zapisal tudi ključno literaturo.}
 Nakup in prodaja rabljenih avtomobilov predstavljata pomemben del avtomobilskega trga.
 Pri tem se kupci in prodajalci pogosto srečujejo s težavo določanja primerne tržne
 vrednosti vozila, saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na
-trgu. Asimetrija informacij med udeleženci je še posebej izrazita na trgu rabljenih vozil,
-kjer je vsako vozilo unikatno glede na svoje stanje, opremo in zgodovino
-uporabe~\cite{gegic2019car}. Najpogostejši pristop k oceni vrednosti je zato primerjava z
-obstoječimi oglasi podobnih vozil, torej t.\,i.\ pristop primerljivih prodaj (angl.\
-\emph{comparable sales approach})~\cite{cma-appraisal}, vendar samostojno izvajanje takšne
-primerjave ni vedno zanesljivo. Oglasi lahko vsebujejo nerealno visoke ali nizke cene,
+trgu. Raznolikost informacij je še posebej izrazita,
+ker je vsako vozilo unikatno glede na svoje stanje, opremo in zgodovino
+uporabe~\cite{gegic2019car,eurotax}. Najpogostejši pristop k oceni vrednosti je zato primerjava
+ primerljivih prodaj podobnih vozil iz obstoječih oglasov, vendar je samostojno izvajanje takšne
+primerjave časovno potratno in nezanesljivo. Oglasi lahko vsebujejo nerealno visoke ali nizke cene,
 uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi glede na te podatke lahko
 ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno
-vrednostjo ali ga kupijo po previsoki ceni.\\
-Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive,
-prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
-pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil. Podroben pregled
-in primerjava obstoječih rešitev sta predstavljena v poglavju~\ref{ch:sorodna dela}
-(razpredelnica~\ref{tab:sorodne-resitve}).\\
-Cilj diplomskega dela je razvoj spletne aplikacije za objavo in pregled avtomobilskih
-oglasov ter razvoj sistema za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
+vrednostjo ali pa ga kupijo po previsoki ceni.\\
+Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, podroben pregled
+in primerjava obstoječih rešitev je predstavljeno v poglavju~\ref{ch:sorodna dela}.
+Kaže, da so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
+pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil.\\
+Cilj diplomskega dela je razvoj prototipa za objavo in pregled avtomobilskih
+oglasov, ki vsebuje tudi sistem za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
 zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na
 trgu~\cite{laender2002}. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti
 vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.
-Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, ki na platformi
-objavljajo lastne avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov
+Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, da na platformi
+objavijo lastne avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov
 postopno upadla, tržno vrednost vozil pa bo mogoče ocenjevati na podlagi oglasov, zbranih
 znotraj platforme same.\\
-
-Hipoteza diplomskega dela je, da je mogoče s pomočjo zbranih tržnih podatkov in
+Diplomsko delo temelji na hipotezi, da je mogoče s pomočjo zbranih tržnih podatkov in
 primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno
-tržne vrednosti vozila. Dodatni cilj je preveriti, ali integracija takšnega sistema v
-spletno aplikacijo izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
-Preostanek diplomskega dela je organiziran na naslednji način. Poglavje~\ref{ch:sorodna dela}
-podaja pregled obstoječih spletnih tržnic in specializiranih storitev za vrednotenje
-vozil ter jih primerja s predlagano rešitvijo. Poglavje~\ref{ch:struktura} predstavi
-teoretična izhodišča in tehnologije, na katerih temelji razvita rešitev, med drugim
-arhitekturo odjemalec--strežnik, relacijske podatkovne baze, mikrostoritveno arhitekturo ter
+tržne vrednosti vozila. Pri tem želimo preveriti, ali integracija takšnega sistema v
+prototip izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
+Preostanek diplomskega dela je organiziran na naslednji način. Poglavje~\ref{ch:struktura} predstavi
+teoretična izhodišča in tehnologije, na katerih temelji razvita rešitev, predvsem pa
 postopke zajemanja podatkov s spletnih virov. Poglavje~\ref{ch:metodologija} opiše metodologijo
 dela: načrtovanje podatkovne baze in arhitekture sistema, implementacijo zalednega in
 odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infrastrukturo in
-avtomatizacijo namestitve. Diplomsko delo se zaključi s poglavjem~\ref{ch:sklep}, v katerem so
-povzeti doseženi rezultati, kritična presoja omejitev rešitve in nakaže smeri za nadaljnje izboljšave.
-
+avtomatizacijo namestitve. Diplomsko delo se zaključi s povzetkom doseženih rezultatov,
+ kritično presojo omejitev rešitve in smeri za nadaljnje izboljšave.
+% TODO: Add poglavje analiza, simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi.
 \section{Opis arhitekture sistema}
 \label{sec:arhitektura}
-
-Spletna aplikacija je sestavljena iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
-Uporabniški vmesnik je razvit z uporabo knjižnice React in programskega jezika TypeScript v okolju Node.js različice 24. Zaledni sistem je razvit z uporabo ogrodja Express v programskem jeziku JavaScript v okolju Node.js različice 24. 
-Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11.
-Za izvajanje posameznih komponent je uporabljena platforma Docker.
+% ------------------------------------------------------------------do tukaj
+Prototip je sestavljen iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
+Uporabniški vmesnik je razvit z uporabo knjižnice React~\cite{react-docs} in programskega jezika TypeScript~\cite{typescript} v okolju Node.js različice 24~\cite{nodejs}. Zaledni sistem je razvit z uporabo ogrodja Express~\cite{expressjs-docs}
+ v programskem jeziku JavaScript v okolju Node.js različice 24~\cite{nodejs}.
+Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11~\cite{python3.11}.
+Za izvajanje posameznih komponent je uporabljena platforma Docker~\cite{docker}.
 \clearpage
-Docker kontejnerji: 
+Docker vsebniki:
 \begin{itemize}
     \item Zaledni sistem
     \item Postgres:16
@@ -150,8 +145,8 @@ Docker kontejnerji:
     \item Evalvacijski sistem
 \end{itemize}
 
-Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
-Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy.
+Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions~\cite{github-actions-docs}, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
+Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner~\cite{hetzner}. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy~\cite{dokploy}.
 
 \begin{table}[H]
 \centering
@@ -161,11 +156,11 @@ Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner
 \toprule
 \textbf{Komponenta} & \textbf{Uporabljene tehnologije} \\
 \midrule
-Uporabniški vmesnik & React, TypeScript, Vite, Zustand, Axios \\
-Zaledni sistem & Node.js 24, Express.js, JavaScript, Sequelize (ORM), JWT, bcrypt, BullMQ, Redis \\
-Evalvacijski sistem & Python 3.11, FastAPI, Alembic, RapidFuzz \\
-Podatkovna baza & PostgreSQL 16 \\
-Infrastruktura in avtomatizacija & Docker, GitHub Actions, cron, Hetzner (VPS), Dokploy, MailHog \\
+Uporabniški vmesnik & React~\cite{react-docs}, TypeScript~\cite{typescript}, Vite~\cite{vite-docs}, Zustand~\cite{zustand-docs}, Axios~\cite{axios-docs} \\
+Zaledni sistem & Node.js 24~\cite{nodejs}, Express.js~\cite{expressjs-docs}, JavaScript~\cite{flanagan2020javascript}, Sequelize (ORM)~\cite{sequelize-orm}, JWT~\cite{jwt-rfc7519}, bcrypt~\cite{bcrypt-password}, BullMQ~\cite{bullmq-docs}, Redis~\cite{redis-data-store} \\
+Evalvacijski sistem & Python 3.11~\cite{python3.11}, FastAPI~\cite{fastapi-docs}, Alembic~\cite{alembic-docs}, RapidFuzz~\cite{rapidfuzz-docs} \\
+Podatkovna baza & PostgreSQL 16~\cite{postgresql-docs,postgresql-about} \\
+Infrastruktura in avtomatizacija & Docker~\cite{docker}, GitHub Actions~\cite{github-actions-docs}, cron~\cite{cron-man}, Hetzner (VPS)~\cite{hetzner}, Dokploy~\cite{dokploy}, MailHog~\cite{mailhog} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -203,7 +198,7 @@ CARFAX & ZDA & Ne & Da (vrednotenje in zgodovina vozila) \\
 
 \clearpage
 Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
- Namen razvite rešitve je združiti obe funkcionalnosti v enotni spletni aplikaciji, ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, dostopnih na trgu.
+ Namen razvite rešitve je združiti obe funkcionalnosti v enotnem prototipu, ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, dostopnih na trgu.
 
 \chapter{Tematsko ozadje}
 \label{ch:struktura}
@@ -310,10 +305,10 @@ cena, letnik, prevoženi kilometri in vrsta goriva.
 
 \chapter{Metodologija}
 \label{ch:metodologija}
-Cilj diplomske naloge je bila izdelava spletne aplikacije, v kateri bodo uporabniki lahko
+Cilj diplomske naloge je bila izdelava prototipa, v katerem bodo uporabniki lahko
 objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
 tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
-različnih forumov in strokovnih člankov. Ko smo zaključili razvoj spletne aplikacije, smo
+različnih forumov in strokovnih člankov. Ko smo zaključili razvoj prototipa, smo
 se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem jeziku Python.
 Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
 ekosistemom knjižnic, namenjenih analizi podatkov.\\
@@ -656,7 +651,7 @@ ki jih je treba pred pretvorbo v število odstraniti; prevoženi kilometri so pr
 (na primer \enquote{123.456~km}); datum prve registracije je pri enem viru zapisan v obliki mesec/leto, pri drugem pa leto/mesec. Podobno je bilo 
 treba poenotiti kategorialne vrednosti, kot sta tip menjalnika in vrsta goriva, saj so viri te podatke podajali v različnih jezikih.
 
-Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}. Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele. Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir, s čimer se sistem sproti \enquote{uči}. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju.
+Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}. Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}~\cite{rapidfuzz-docs}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele. Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir, s čimer se sistem sproti \enquote{uči}. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju.
 
 \begin{center}
 \captionof{listing}{Ujemanje znamke s kanoničnim in približnim (fuzzy) ujemanjem}
@@ -845,18 +840,18 @@ okolij (angl.\ \emph{environment parity}), po katerem naj bodo razvojno, testno
 in produkcijsko okolje čim bolj podobna, s čimer zmanjšamo tveganje napak, ki se
 pojavijo šele ob namestitvi~\cite{twelve-factor}.
 
-\subsection{Kontejnerizacija razvojnega okolja}
-Za kontejnerizacijo razvojnega okolja smo uporabili orodje Docker Compose, ki
-omogoča enostavnejšo vzpostavitev več med seboj povezanih kontejnerjev, naštetih
+\subsection{Vsebnikizacija razvojnega okolja}
+Za vsebnikizacijo razvojnega okolja smo uporabili orodje Docker Compose~\cite{docker-compose-docs}, ki
+omogoča enostavnejšo vzpostavitev več med seboj povezanih vsebnikov, naštetih
 v poglavju~\ref{sec:arhitektura}. Orodje deluje tako, da v datoteki
 \texttt{docker-compose.yml} opišemo vse storitve, ki jih aplikacija potrebuje,
 in njihove medsebojne odvisnosti, kar omogoča zagon celotnega okolja z enim
 samim ukazom. To je še posebej uporabno pri razvoju in testiranju. Za lokalno
-preizkušanje pošiljanja elektronske pošte smo uporabili orodje MailHog, ki
+preizkušanje pošiljanja elektronske pošte smo uporabili orodje MailHog~\cite{mailhog}, ki
 odhodno pošto prestreže in jo prikaže v spletnem vmesniku, namesto da bi jo
 dejansko poslal na pravi naslov. Za zaledni in evalvacijski sistem smo napisali
 ločeni datoteki \texttt{Dockerfile}, v katerih določimo, na katerem jeziku
-oziroma okolju sistem temelji ter katere ukaze naj kontejner ob zagonu izvede.\\
+oziroma okolju sistem temelji ter katere ukaze naj vsebnik ob zagonu izvede.\\
 Ker se storitve med seboj zaganjajo z različnimi hitrostmi, smo za pravilno
 zaporedje zagona uporabili ključ \texttt{depends\_on} v kombinaciji z
 definicijami \texttt{healthcheck}. Brez tega bi se zaledni sistem lahko poskusil
@@ -867,11 +862,11 @@ pri sistemu PostgreSQL oziroma \texttt{redis-cli ping} pri sistemu Redis),
 odvisne storitve pa se zaženejo šele, ko je preverjanje uspešno.\\
 Za shranjevanje podatkov smo uporabili poimenovane nosilce podatkov (angl.\
 \emph{named volumes}): eden skrbi za trajnost podatkovne baze med ponovnimi
-zagoni kontejnerjev, drugi pa predpomni mapo \texttt{node\_modules} znotraj
-zalednega kontejnerja, saj bi jo sicer prepisala prevezava map z gostitelja. Za
+zagoni vsebnikov, drugi pa predpomni mapo \texttt{node\_modules} znotraj
+zalednega vsebnika, saj bi jo sicer prepisala prevezava map z gostitelja. Za
 samo razvojno izkušnjo, natančneje za samodejno osveževanje ob spremembah
 (angl.\ \emph{hot reload}), uporabljamo prevezavo map (angl.\ \emph{bind mount})
-iz gostiteljevega datotečnega sistema v kontejner, tako da se spremembe v izvorni
+iz gostiteljevega datotečnega sistema v vsebnik, tako da se spremembe v izvorni
 kodi takoj odražajo v delovanju aplikacije, brez ponovne gradnje slike.\\
 Odjemalskega sistema v lokalno razvojno okolje namenoma nismo vključili, saj
 njegova vključitev zaradi nenehne ponovne gradnje slike ob vsaki spremembi
@@ -890,7 +885,7 @@ gradnja, statična analiza kode), s čimer napake odkrijemo čim prej, še prede
 zlijejo v glavno vejo ali dosežejo druge razvijalce~\cite{fowler-ci}. Namesto da
 bi vsak razvijalec teste poganjal ročno pred združitvijo sprememb, jih namesto
 njega izvede strežnik, in sicer konsistentno ter vsakič na enak način.\\
-Za implementacijo neprekinjene integracije smo uporabili orodje GitHub Actions,
+Za implementacijo neprekinjene integracije smo uporabili orodje GitHub Actions~\cite{github-actions-docs},
 GitHubov sistem za avtomatizacijo poteka dela. Njegovo delovanje temelji na
 naslednjih pojmih:
 
@@ -911,7 +906,7 @@ naslednjih pojmih:
     lastnoročno napisane skripte za namestitev okolja Node, predpomnjenje
     odvisnosti in nastavitev spremenljivke PATH tako uporabimo že obstoječi
     gradnik.
-    \item \textbf{Storitve} (angl.\ \emph{services}) so pomožni kontejnerji, ki
+    \item \textbf{Storitve} (angl.\ \emph{services}) so pomožni vsebniki, ki
     tečejo vzporedno z opravilom. Uporabni so, kadar testi potrebujejo pravo
     podatkovno bazo namesto njene simulacije (angl.\ \emph{mock}).
 \end{itemize}
@@ -935,11 +930,11 @@ distribucije zgrajenega artefakta~\cite{humble-cd}.
 \subsection{Namestitev in gostovanje}
 Za gostovanje smo izbrali eno izmed cenovno najugodnejših možnosti, in sicer
 najeti navidezni zasebni strežnik (angl.\ \emph{virtual private server}, VPS)
-pri ponudniku Hetzner. Strežnik razpolaga s 4~GB delovnega pomnilnika in dvema
+pri ponudniku Hetzner~\cite{hetzner}. Strežnik razpolaga s 4~GB delovnega pomnilnika in dvema
 procesorskima jedroma, kar zadostuje za zagon vseh treh storitev. Po prijavi v
 strežnik smo najprej posodobili operacijski sistem na najnovejšo različico,
 nato pa namestili orodji Docker in Docker Compose.\\
-Za upravljanje aplikacije smo uporabili orodje Dokploy, ki omogoča enostavno
+Za upravljanje aplikacije smo uporabili orodje Dokploy~\cite{dokploy}, ki omogoča enostavno
 uporabo datotek \texttt{docker-compose} v produkcijskem okolju in hkrati močno
 poenostavi postopek posodabljanja aplikacije. V njem lahko nastavimo tudi
 opravila, ki se izvajajo periodično, podobno kot storitev \texttt{cron}. Na
@@ -955,10 +950,10 @@ Hetzner pa predstavlja nizek mesečni strošek.
 \chapter{Sklep}
 \label{ch:sklep}
 
-Cilj diplomskega dela je bil razviti spletno aplikacijo, ki uporabnikom omogoča objavo in
+Cilj diplomskega dela je bil razviti prototip, ki uporabnikom omogoča objavo in
 pregled oglasov rabljenih avtomobilov, ter vanjo vgraditi sistem za samodejno ocenjevanje
 tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
-razvili smo delujočo spletno aplikacijo z ločeno odjemalsko, zaledno in evalvacijsko
+razvili smo delujoč prototip z ločeno odjemalsko, zaledno in evalvacijsko
 komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi cevovod za zajem,
 normalizacijo in primerjavo tržnih podatkov ter algoritem za oceno cene, ki temelji na
 pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
@@ -1003,7 +998,7 @@ nadaljevanju.
     temeljito kot zaledni sistem, za katerega teste ob vsakem zahtevku za združitev že
     izvaja orodje GitHub Actions.
 \end{itemize}
-Skupno gledano diplomsko delo dokazuje, da je zastavljeni koncept spletne aplikacije za
+Skupno gledano diplomsko delo dokazuje, da je zastavljeni koncept prototipa za
 prodajo vozil z vgrajenim, razložljivim sistemom za ocenjevanje tržne vrednosti izvedljiv
 in tehnično smiseln. Predstavlja trdno osnovo, na kateri je mogoče v prihodnosti graditi
 natančnejši, bolj podatkovno bogat in temeljiteje evalviran sistem.
