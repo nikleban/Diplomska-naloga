@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  6 AUG 2026 21:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  22 AUG 2026 20:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1387,29 +1387,7 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'diploma-predloga.bbl' found.
- (diploma-predloga.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                fuzzy-string-matching
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                logging-practices
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                zustand-docs
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
+ (diploma-predloga.bbl)
 Package biblatex Info: Reference section=0 on input line 67.
 Package biblatex Info: Reference segment=0 on input line 67.
 
@@ -1517,7 +1495,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \scan_stop: 
-l.43 ...ki v zbornikih konferenc}{45}{section*.27}
+l.43 ...ction}{Ostala literatura}{42}{section*.37}
                                                   % [7
 
 ])
@@ -1534,12 +1512,6 @@ l.118 \clearemptydoublepage
 Overfull \hbox (14.76207pt too wide) in paragraph at lines 135--137
 \T1/cmr/bx/n/12 Klju£ne be-sede: \T1/cmr/m/n/12 sple-tna apli-ka-cija, av-to-mo
 -bili, vre-dno-te-nje, Re-act, Express.js,
- []
-
-
-Overfull \hbox (13.45837pt too wide) in paragraph at lines 135--137
-\T1/cmr/m/n/12 Node.js, Po-stgre-SQL, REST API, Doc-ker, Gi-t-Hub Ac-ti-ons, Ty
-pe-Script, Python,
  []
 
 
@@ -1568,21 +1540,15 @@ l.154 \newpage
                [11
 
 ]
-Overfull \hbox (13.45837pt too wide) in paragraph at lines 155--158
-\T1/cmr/m/n/12 Node.js, Post-greSQL, REST API, Docker, GitHub Ac-tions, Type-Sc
-ript, Python,
- []
-
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \scan_stop: 
 l.158 \clearemptydoublepage
                             [12])
-Underfull \hbox (badness 10000) in paragraph at lines 94--120
 
- []
+LaTeX Warning: Reference `ch:metodologija' on page 1 undefined on input line 12
+4.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1595,91 +1561,59 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-[2] [3] [4
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/bx/n/12 Geografski
+[2]
+Underfull \hbox (badness 3428) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Evropa, naj-bolj
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/bx/n/12 Ocena vre-
+Underfull \hbox (badness 6961) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Osnoven in-di-ka-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Evropa (ve£
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
  []
 
 
-Underfull \hbox (badness 2521) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Osnoven in-di-
+Underfull \hbox (badness 2035) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Priporo£ilo cene
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Evropa (ve£
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Priporo£ilo
+Underfull \hbox (badness 2158) in paragraph at lines 160--160
+\T1/cmr/m/n/12 Slo-ve-nija, ’vica,
  []
 
 
-Underfull \hbox (badness 2368) in paragraph at lines 201--201
-\T1/cmr/m/n/12 cene, pri ob-
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T1/cmr/m/n/12 Zelo na-tan£no
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Mednarodno
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+\T1/cmr/m/n/12 in po-drobno
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 va-ro-val-ni-²tvo,
+Underfull \hbox (badness 2671) in paragraph at lines 160--160
+\T1/cmr/m/n/12 po-ro-£ilo o ceni,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 (pla-£ljiv do-
+Underfull \hbox (badness 1635) in paragraph at lines 160--160
+\T1/cmr/m/n/12 saj so-de-lu-jejo z
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 (teh-ni£ni po-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 datki, tr-ºna
- []
-
-
-Underfull \hbox (badness 1354) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Da (vre-dno-te-
- []
-
-
-Underfull \hbox (badness 1688) in paragraph at lines 201--201
-\T1/cmr/m/n/12 nje in zgo-do-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-[]|\T1/cmr/m/n/12 Da, pri-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 mer-java s
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 201--201
-\T1/cmr/m/n/12 po-dob-nimi
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+\T1/cmr/m/n/12 ²te-vilke po-i-²£e
  []
 
 
@@ -1688,81 +1622,111 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5
+ [3
 
 ]
-[6] [7
+[4] [5
 
-] [8
+] [6
 
-]
-Underfull \vbox (badness 1430) has occurred while \output is active []
-
-
-Underfull \vbox (badness 1430) has occurred while \output is active []
-
- [9]
-<./slike/client-server.png, id=188, 2449.15pt x 991.705pt>
-File: ./slike/client-server.png Graphic file (type png)
-<use ./slike/client-server.png>
-Package pdftex.def Info: ./slike/client-server.png  used on input line 224.
-(pdftex.def)             Requested size: 312.00119pt x 126.32344pt.
-
-[10 <./slike/client-server.png>] [11] [12] [13] [14
+] [7] [8] [9] [10
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 240--247
+
+ []
+
+[11] [12]
+Underfull \hbox (badness 3449) in paragraph at lines 285--285
+[]|\T1/cmr/m/n/12 Node.js 24 [[][]44[][]], Express.js [[][]10[][]], Ja-
+ []
+
+
+Underfull \hbox (badness 4492) in paragraph at lines 285--285
+\T1/cmr/m/n/12 va-Script [[][]20[][]], Seque-lize (ORM) [[][]11[][]],
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--285
+[]|\T1/cmr/m/n/12 Docker [[][]14[][]], Gi-t-Hub Ac-ti-ons [[][]25[][]],
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 285--285
+\T1/cmr/m/n/12 cron [[][]58[][]], He-t-zner (VPS) [[][]28[][]], Do-
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
-Underfull \hbox (badness 10000) in paragraph at lines 338--342
+ [13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 292--297
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 343--352
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 353--359
-
- []
-
-[16]
-<./slike/ErDiagramMain.png, id=269, 641.39626pt x 470.9595pt>
+<./slike/ErDiagramMain.png, id=346, 641.39626pt x 470.9595pt>
 File: ./slike/ErDiagramMain.png Graphic file (type png)
 <use ./slike/ErDiagramMain.png>
-Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 370.
+Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 300.
 (pdftex.def)             Requested size: 350.99762pt x 257.73499pt.
- [17 <./slike/ErDiagramMain.png>]
-<./slike/ErDiagramEvaluation.png, id=278, 498.06075pt x 347.49825pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Underfull \hbox (badness 10000) in paragraph at lines 305--314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--321
+
+ []
+
+[15 <./slike/ErDiagramMain.png>]
+<./slike/ErDiagramEvaluation.png, id=377, 498.06075pt x 347.49825pt>
 File: ./slike/ErDiagramEvaluation.png Graphic file (type png)
 <use ./slike/ErDiagramEvaluation.png>
-Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 40
-5.
+Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 33
+6.
 (pdftex.def)             Requested size: 350.99762pt x 244.90144pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 331--339
+
+ []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-[19 <./slike/ErDiagramEvaluation.png>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+Overfull \hbox (43.92282pt too wide) in paragraph at lines 350--365
+\T1/cmr/m/n/12 ogla-sov, ki so ve-zani na ta-belo \T1/cmtt/m/n/12 RawMarketList
+ing \T1/cmr/m/n/12 prek tu-jega klju£a \T1/cmtt/m/n/12 raw_listing_id\T1/cmr/m/
+n/12 .
+ []
+
+[17 <./slike/ErDiagramEvaluation.png>] [18]
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 431.
+t line 384.
 \pydata@fh@0=\write6
 \openout6 = `_55F9811064D628AD6F94DD8FFA30621C.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260806215322 55F9811064D628AD6F94DD
+runsystem(latexminted config  --timestamp 20260822202449 55F9811064D628AD6F94DD
 8FFA30621C)...executed.
 
 
 (_55F9811064D628AD6F94DD8FFA30621C.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260806215322 55F9811064D628AD6
+runsystem(latexminted cleanconfig  --timestamp 20260822202449 55F9811064D628AD6
 F94DD8FFA30621C)...executed.
 
 
@@ -1774,83 +1738,59 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) [20]
-(_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [21]) [22]
-<./slike/AsyncFlow.png, id=339, 1104.125pt x 1078.0275pt>
-File: ./slike/AsyncFlow.png Graphic file (type png)
-<use ./slike/AsyncFlow.png>
-Package pdftex.def Info: ./slike/AsyncFlow.png  used on input line 520.
-(pdftex.def)             Requested size: 331.50238pt x 323.67393pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 527--539
+) [19]
+(_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [20])
+Underfull \hbox (badness 10000) in paragraph at lines 470--481
 
  []
 
-[23 <./slike/AsyncFlow.png>]
-
-LaTeX Warning: Citation 'zustand-docs' on page 24 undefined on input line 556.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 542--560
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 485--503
 
  []
 
-[24] (_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted)
-Underfull \hbox (badness 10000) in paragraph at lines 583--587
-
+[22] (_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted) [23]
+(_minted/6CE3C6D87E11620A2AD9084611D3D17D.highlight.minted) [24]
+(_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted) [25] [26]
+(_minted/F2FBFF134874532CED79A3A7B024C6DB.highlight.minted) [27]
+Overfull \hbox (65.6581pt too wide) in paragraph at lines 665--669
+\T1/cmr/m/n/12 Prvi ko-rak al-go-ritma je po-i-zvedba SQL, ki iz ta-bele \T1/cm
+tt/m/n/12 market.normalized_market_listing
  []
 
-[25] (_minted/6CE3C6D87E11620A2AD9084611D3D17D.highlight.minted) [26]
-(_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted)
-
-LaTeX Warning: Citation 'logging-practices' on page 27 undefined on input line 
-652.
-
-[27]
-
-LaTeX Warning: Citation 'fuzzy-string-matching' on page 28 undefined on input l
-ine 659.
-
-[28] (_minted/F2FBFF134874532CED79A3A7B024C6DB.highlight.minted) [29]
-Overfull \hbox (14.38814pt too wide) in paragraph at lines 717--721
-\T1/cmtt/m/n/12 market.normalized_market_listing \T1/cmr/m/n/12 iz-lu-²£i kan-d
-i-date za pri-mer-javo. Znamko
- []
-
-[30] (_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.minted) [31]
-Overfull \hbox (3.5887pt too wide) in paragraph at lines 795--807
+[28] (_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.minted) [29]
+Overfull \hbox (3.5887pt too wide) in paragraph at lines 742--753
 []\T1/cmr/m/n/12 Uporaba ute-ºe-nega pov-pre-£ja na-me-sto na-va-dnega arit-me-
 ti£-nega je klju£na:
  []
 
-[32] [33]
-Overfull \hbox (10.77663pt too wide) in paragraph at lines 849--885
-\T1/cmr/m/n/12 na-²te-tih v po-glavju [][]1.1[][]. Orodje de-luje tako, da v da
--to-teki \T1/cmtt/m/n/12 docker-compose.yml
+[30]
+Overfull \hbox (3.55794pt too wide) in paragraph at lines 779--813
+\T1/cmr/m/n/12 Za vseb-ni-ki-za-cijo ra-zvoj-nega oko-lja smo upo-ra-bili orodj
+e Doc-ker Com-pose [[][]15[][]],
  []
 
 
-Overfull \hbox (17.99617pt too wide) in paragraph at lines 849--885
+Overfull \hbox (17.99617pt too wide) in paragraph at lines 779--813
 \T1/cmr/m/n/12 Za pro-duk-cij-sko oko-lje upo-ra-bljamo lo-£eno da-to-teko \T1/
 cmtt/m/n/12 docker-compose.prod.yml\T1/cmr/m/n/12 ,
  []
 
-[34]
-Overfull \hbox (23.36858pt too wide) in paragraph at lines 898--902
+[31] [32]
+Overfull \hbox (23.36858pt too wide) in paragraph at lines 826--830
 []\T1/cmr/bx/n/12 Potek dela \T1/cmr/m/n/12 (angl. \T1/cmr/m/it/12 wor-kflow\T1
 /cmr/m/n/12 ) je da-to-teka \T1/cmtt/m/n/12 .yml \T1/cmr/m/n/12 v mapi \T1/cmtt
 /m/n/12 .github/workflows/\T1/cmr/m/n/12 ,
  []
 
-[35]
-<./slike/ci-cd.png, id=466, 864.22874pt x 437.83575pt>
+<./slike/ci-cd.png, id=575, 864.22874pt x 437.83575pt>
 File: ./slike/ci-cd.png Graphic file (type png)
 <use ./slike/ci-cd.png>
-Package pdftex.def Info: ./slike/ci-cd.png  used on input line 930.
+Package pdftex.def Info: ./slike/ci-cd.png  used on input line 858.
 (pdftex.def)             Requested size: 312.00119pt x 158.06168pt.
- [36 <./slike/ci-cd.png>] [37] [38
+[33] [34 <./slike/ci-cd.png>] [35
 
-] [39] [40] [41] [42
+] [36] [37] [38
 
 ]
 
@@ -1863,12 +1803,12 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (16.97412pt too wide) in paragraph at lines 1029--1029
+Overfull \hbox (16.97412pt too wide) in paragraph at lines 957--957
 \T1/cmr/m/n/12 pa-ra-me-tric Re-gres-sion^^P. V: \T1/cmr/m/it/12 The Ame-ri-can
  Sta-ti-sti-cian \T1/cmr/m/n/12 46.3 (1992), str. 175^^U
  []
 
-[43] [44]
+[39] [40]
 
 Package biblatex Warning: Split bibliography detected.
 (biblatex)                Many simple split bibliography setups with
@@ -1879,12 +1819,12 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (4.49577pt too wide) in paragraph at lines 1035--1035
+Overfull \hbox (4.49577pt too wide) in paragraph at lines 963--963
 []\T1/cmr/m/n/12 Niels Pro-vos in Da-vid Ma-zières. ^^R  A Future-Adaptable Pas
 -sword Scheme^^P.
  []
 
-[45]
+[41]
 
 Package biblatex Warning: Split bibliography detected.
 (biblatex)                Many simple split bibliography setups with
@@ -1895,58 +1835,62 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (3.72275pt too wide) in paragraph at lines 1041--1041
+Overfull \hbox (3.72275pt too wide) in paragraph at lines 969--969
 []\T1/cmr/m/n/12 Sequelize Con-tri-bu-tors. \T1/cmr/m/it/12 Seque-lize Do-cu-me
 n-ta-tion\T1/cmr/m/n/12 . Do-sto-pano: ju-nij 2024.
  []
 
-[46]
-Overfull \hbox (7.75374pt too wide) in paragraph at lines 1041--1041
+[42]
+Overfull \hbox (7.75374pt too wide) in paragraph at lines 969--969
 \T1/cmtt/m/n/12 articles / continuousIntegration . html$[][]\T1/cmr/m/n/12 . Do
 -sto-pano: 2026-08-01. 2006. 
  []
 
-
-Overfull \hbox (12.8271pt too wide) in paragraph at lines 1041--1041
+[43]
+Overfull \hbox (12.8271pt too wide) in paragraph at lines 969--969
 \T1/cmr/m/it/12 Ideas Be-h-ind Re-li-a-ble, Sca-la-ble, and Ma-in-ta-in-a-ble S
 y-stems\T1/cmr/m/n/12 . 1. izd. O'Reilly
  []
 
-[47]
-Overfull \hbox (2.65779pt too wide) in paragraph at lines 1041--1041
-[]\T1/cmr/m/n/12 Sam Ne-wman. \T1/cmr/m/it/12 Bu-il-ding Mi-cro-ser-vi-ces: De-
-si-gning Fine-Grained Sy-stems\T1/cmr/m/n/12 .
+[44]
+Overfull \hbox (14.08875pt too wide) in paragraph at lines 969--969
+[]\T1/cmr/m/n/12 RapidFuzz Con-tri-bu-tors. \T1/cmr/m/it/12 Ra-pi-dFuzz Do-cu-m
+en-ta-tion\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / rapidfuzz .
  []
 
-[48] [49] [50
+[45] [46] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted [47
 
-] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted
-[51]) (_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [52]) [53]
+])
+(_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [48]) [49]
 (diploma-predloga.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package logreq Info: Writing requests to 'diploma-predloga.run.xml'.
 \openout1 = `diploma-predloga.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40496 strings out of 467509
- 929893 string characters out of 5408780
- 1961144 words of memory out of 5000000
- 68958 multiletter control sequences out of 15000+600000
- 672178 words of font info for 97 fonts, out of 8000000 for 9000
+ 40545 strings out of 467509
+ 931333 string characters out of 5408780
+ 1960119 words of memory out of 5000000
+ 68979 multiletter control sequences out of 15000+600000
+ 672491 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,11n,84p,1346b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,12n,84p,1348b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit
 1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tctt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi600\ectt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
 pen/ec/dpi600\ecrm0600.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\nikka\AppData\Local\MiKT
+/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\nikka\AppData\Local\MiKT
 eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\nikka\AppData\Loca
 l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsl1200.pk> <C:\Users\nikka\AppDat
 a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\nikka\
@@ -1971,9 +1915,9 @@ cmmi8.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmr12.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on diploma-predloga.pdf (65 pages, 1240209 bytes).
+Output written on diploma-predloga.pdf (61 pages, 624947 bytes).
 PDF statistics:
- 1612 PDF objects out of 1728 (max. 8388607)
- 233 named destinations out of 1000 (max. 500000)
- 16121 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 1764 PDF objects out of 2073 (max. 8388607)
+ 261 named destinations out of 1000 (max. 500000)
+ 16615 words of extra memory for PDF output out of 17280 (max. 10000000)
 

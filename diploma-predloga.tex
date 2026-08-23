@@ -126,13 +126,133 @@ dela: načrtovanje podatkovne baze in arhitekture sistema, implementacijo zaledn
 odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infrastrukturo in
 avtomatizacijo namestitve. Diplomsko delo se zaključi s povzetkom doseženih rezultatov,
  kritično presojo omejitev rešitve in smeri za nadaljnje izboljšave.
-% TODO: Add poglavje analiza, simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi.
+% TODO: Add poglavje analiza, simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi. Dodaj poglavje in primerjaj z ostalimi!
 \section{Opis arhitekture sistema}
 \label{sec:arhitektura}
 % ------------------------------------------------------------------do tukaj
+
+\chapter{Pregled področja in sorodnih del}
+\label{ch:sorodna dela}
+% TODO: Dodaj slike, primerjaj boljše da si bralec zna predstavljati zagotovo mobile.de in avto.net
+Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov. Med najbolj znanimi evropskimi ponudniki sta mobile.de~\cite{mobile-de} in AutoScout24~\cite{autoscout24},
+ ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. Za slovenski trg je najbolj razširjena platforma Avto.net~\cite{avto-net}, ki predstavlja osrednje
+  mesto za objavo in iskanje rabljenih vozil. Nekatere izmed omenjenih platform uporabnikom ponujajo tudi osnovno oceno primernosti cene vozila. Mobile.de~\cite{mobile-de} na primer pri posameznih oglasih prikazuje informacijo o tem,
+   ali je cena vozila glede na primerljive oglase ugodna, primerna ali previsoka. Takšen pristop uporabnikom omogoča hitrejšo orientacijo na trgu, vendar praviloma ne ponuja možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih podatkov.
+\\
+Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je Eurotax~\cite{eurotax}, ki se pogosto uporablja v avtomobilski industriji, zavarovalništvu in pri trgovcih z vozili.
+ Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
+  Na ameriškem trgu je najbolj razširjena storitev CARFAX~\cite{carfax}, ki poleg vrednotenja ponuja tudi vpogled v zgodovino vozila.
+   Storitev je prilagojeni predvsem severnoameriškemu trgu in zato ni neposredno uporabna za slovenski trg rabljenih vozil.
+\begin{table}[H]
+\centering
+\caption{Primerjava izbranih obstoječih rešitev za prodajo in vrednotenje vozil.}
+\label{tab:sorodne-resitve}
+\begin{tabularx}{\textwidth}{@{}l X c X@{}}
+\toprule
+\textbf{Rešitev} & \textbf{Geografski trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
+\midrule
+mobile.de \cite{mobile-de} & Evropa, najbolj razširjen na nemškem trgu & Da & Osnoven indikator cene (zeleno -- ugodna, rdeče -- precenjena) \\
+AutoScout24 \cite{autoscout24} & Evropa--Nemčija, Belgija, Italija & Da & Priporočilo cene ob objavi oglasa \\
+Avto.net \cite{avto-net} & Slovenija & Da & Avtonet nima indikatorja ali priporočila za ceno \\
+Eurotax \cite{eurotax} & Evropa--Nemčija, Slovenija, Švica, Italija & Ne & Zelo natančno in podrobno poročilo o ceni, saj sodelujejo z zavarovalnicami \\
+CARFAX \cite{carfax} & ZDA & Ne & Na podlagi VIN številke poišče zgodovino vozila (nesreče, tehnični pregledi) in oceni njegovo vrednost \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\clearpage
+Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
+ Namen naše rešitve je združiti obe funkcionalnosti v enotnem prototipu,
+  ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, ki so dostopne na trgu.
+
+% TODO: To poglavje mora imeti ccs 5 strani
+
+\chapter{Tematsko Ozadje}
+\label{ch:struktura}
+% TODO: predstavi kaj bos v temu poglavju povedal na kratko
+
+% TODO: Predstavi kaj je oglas, slike, atribute, izbrane specifične tehnologije
+\section{Zajem podatkov iz spletnih virov}
+Zajem podatkov iz spletnih virov predstavlja temeljni korak pri našem pristopu za vrednotenje rabljenih vozil na trgu. 
+Kakovost, obseg in starost zbranih podatkov neposredno
+vpliva na zanesljivost modelov za ocenjevanje cen~\cite{laender2002}. V splošnem ločimo tri
+pristope za pridobivanje podatkov iz spleta: izkoriščanje javno dostopnih
+podatkovnih zbirk, samodejni zajem podatkov s spletnih strani
+(ang.\ \emph{web scraping}) ter dostop prek vmesnikov API~\cite{laender2002}.
+
+\subsection{Javno dostopne podatkovne zbirke}
+
+Javno dostopne podatkovne zbirke predstavljajo enega najprimernejših virov za zbiranje strukturiranih podatkov,
+ saj so podatki v njih že organizirani, kategorizirani in pripravljeni za neposredno analitično obdelavo~\cite{janssen2012open}. Primeri takšnih zbirk so odprti vladni portali, kot sta Statistični urad Republike 
+ Slovenije (SURS)~\cite{surs} in Eurostat~\cite{eurostat}, akademski repozitoriji ter portali prometnih agencij.
+  Slabost tega pristopa je omejena razpoložljivost aktualnih tržnih podatkov.
+Javne zbirke navadno ne vsebujejo oglasov z aktualnimi prodajnimi cenami vozil,
+ki so nujno potrebni za ocenjevanje tržne vrednosti~\cite{gegic2019car}.
+Za tuje trge sicer obstajajo javno dostopne zbirke oglasov, pridobljenih z
+oglasnih portalov, npr. nemški trg (eBay Kleinanzeigen)~\cite{ebay_de_dataset}, vendar za slovenski trg takšna javna zbirka
+ne obstaja.
+
+\subsection{Dostop preko vmesnikov API}
+% TODO: Dodaj še nekaj besed/opisa o temu
+
+
+\subsection{Samodejni zajem podatkov s spletnih strani}
+
+Samodejni zajem podatkov s spletnih strani je postopek avtomatiziranega
+pridobivanja strukturiranih informacij iz spletnih strani z razčlenjevanjem
+njihove vsebine~\cite{laender2002}. Ta pristop se pogosto uporablja pri zbiranju
+oglasov za prodajo rabljenih vozil, saj je na voljo veliko portalov, ki
+vsebujejo obsežne zbirke takšnih oglasov. Iz vsakega oglasa je mogoče
+pridobiti strukturirane atribute vozila, kot so znamka, model, letnik
+izdelave, prevoženi kilometri, vrsta goriva, tip menjalnika in oglašena
+prodajna cena~\cite{gegic2019car}. Zajem poteka z orodji za avtomatizirano
+brskanje po spletnih straneh, kot so Playwright~\cite{playwright-docs} ali Selenium~\cite{selenium-docs}, ki simulirajo obisk uporabnika, ter z
+razčlenjevanjem strukture dokumenta HTML za izluščitev relevantnih
+podatkovnih polj~\cite{laender2002}. Problem zajema podatkov na tak način je ta,
+da se morajo lastniki spletnih strani strinjati z tem, saj so podatki njihova last.
+
+\subsection{Razčlenjevanje vsebine HTML}
+
+Spletna stran je v osnovi dokument v jeziku HTML
+(ang.\ \emph{HyperText Markup Language}), ki je organiziran v drevesno strukturo
+DOM (ang.\ \emph{Document Object Model})~\cite{olston2010}. Vsak element
+dokumenta, kot so naslovi, odstavki in podatkovne celice, je v tej strukturi
+predstavljen kot vozlišče, ki ima lahko starševska in podrejena vozlišča.
+Orodja za razčlenjevanje, (kot sta knjižnici
+\texttt{BeautifulSoup}~\cite{beautifulsoup-docs} in \texttt{lxml}~\cite{lxml-docs} v jeziku Python), to strukturo pretvorijo
+v obliko, primerno za programsko obdelavo.
+
+Za izluščevanje podatkovnih elementov iz razčlenjene strukture se v praksi
+najpogosteje uporabljata dve vrsti izbirnikov: izbirniki CSS in izbirniki XPath~\cite{darmawan2022}. Izbirniki CSS so bili prvotno zasnovani za oblikovanje
+spletnih strani, a jih pri zajemu podatkov preusmerimo v poizvedovanje po
+strukturi DOM~\cite{olston2010}. Izbirniki XPath (ang.\ \emph{XML Path
+Language}) pa so namenski poizvedovalni jezik za navigacijo po drevesnih
+strukturah XML in HTML, ki poleg preprostega iskanja po oznakah in razredih
+vsebuje tudi premikanje navzgor po drevesu, iskanje po vsebini besedilnih
+vozlišč ter vgrajene funkcije, (kot sta \texttt{contains()} in
+\texttt{position()}~\cite{darmawan2022}). V kontekstu zajemanja podatkov iz
+avtomobilskih oglasnih portalov to pomeni, da lahko izbirniki iz razčlenjenega
+dokumenta izluščimo posamezna podatkovna polja oglasa, kot so naziv vozila,
+cena, letnik, prevoženi kilometri in vrsta goriva.
+
+\chapter{Ravoj rešitve}
+\label{ch:ravoj rešitve}
+Cilj diplomske naloge je bila izdelava prototipa, v katerem bodo uporabniki lahko
+objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
+tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
+različnih forumov in strokovnih člankov. Ko smo zaključili razvoj prototipa, smo
+se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem jeziku Python.
+Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
+ekosistemom knjižnic, namenjenih analizi podatkov.\\
+
+\section{Zahtevki}
+% TODO: dodaj funkcionalne zahtevke, nefukncionalne
+
+\section{Arhitektura}
+% TODO: dodaj sliko, nabor tehnologij. Brez ponavljanja
 Prototip je sestavljen iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
 Uporabniški vmesnik je razvit z uporabo knjižnice React~\cite{react-docs} in programskega jezika TypeScript~\cite{typescript} v okolju Node.js različice 24~\cite{nodejs}. Zaledni sistem je razvit z uporabo ogrodja Express~\cite{expressjs-docs}
- v programskem jeziku JavaScript v okolju Node.js različice 24~\cite{nodejs}.
+ v programskem jeziku JavaScript~\cite{flanagan2020javascript} v okolju Node.js različice 24~\cite{nodejs}.
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11~\cite{python3.11}.
 Za izvajanje posameznih komponent je uporabljena platforma Docker~\cite{docker}.
 \clearpage
@@ -165,200 +285,15 @@ Infrastruktura in avtomatizacija & Docker~\cite{docker}, GitHub Actions~\cite{gi
 \end{tabularx}
 \end{table}
 
-\chapter{Pregled področja in sorodnih del}
-\label{ch:sorodna dela}
-Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov. Med najbolj znanimi evropskimi ponudniki sta mobile.de in AutoScout24,
- ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. Za slovenski trg je najbolj razširjena platforma Avto.net, ki predstavlja osrednje
-  mesto za objavo in iskanje rabljenih vozil. Nekatere izmed omenjenih platform uporabnikom ponujajo tudi osnovno oceno primernosti cene vozila. Mobile.de na primer pri posameznih oglasih prikazuje informacijo o tem,
-   ali je cena vozila glede na primerljive oglase ugodna, primerna ali previsoka. Takšen pristop uporabnikom omogoča hitrejšo orientacijo na trgu, vendar praviloma ne ponuja možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih podatkov.
-\\
-Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je Eurotax, ki se pogosto uporablja v avtomobilski industriji, zavarovalništvu in pri trgovcih z vozili.
- Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
-  Na ameriškem trgu sta razširjeni storitvi Kelley Blue Book in CARFAX. Kelley Blue Book uporabnikom omogoča oceno vrednosti vozila na podlagi tehničnih podatkov in tržnih analiz, medtem ko CARFAX poleg vrednotenja ponuja tudi vpogled v zgodovino vozila.
-   Obe storitvi sta prilagojeni predvsem severnoameriškemu trgu in zato nista neposredno uporabni za slovenski trg rabljenih vozil.
-\begin{table}[H]
-\centering
-\caption{Primerjava izbranih obstoječih rešitev za prodajo in vrednotenje vozil.}
-\label{tab:sorodne-resitve}
-\begin{tabularx}{\textwidth}{@{}l X c X@{}}
-\toprule
-\textbf{Rešitev} & \textbf{Geografski trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
-\midrule
-mobile.de & Evropa (več držav) & Da & Osnoven indikator cene \\
-AutoScout24 & Evropa (več držav) & Da & Priporočilo cene, pri objavi \\
-Avto.net & Slovenija & Da & Ne \\
-Eurotax & Mednarodno (industrija, zavarovalništvo, trgovci) & Ne & Da, podrobna (plačljiv dostop) \\
-Kelley Blue Book & ZDA & Ne & Da, podrobna (tehnični podatki, tržna analiza) \\
-CARFAX & ZDA & Ne & Da (vrednotenje in zgodovina vozila) \\
-\midrule
-\textbf{Predlagana rešitev} & Slovenija & Da & Da, primerjava s podobnimi vozili na trgu \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\clearpage
-Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
- Namen razvite rešitve je združiti obe funkcionalnosti v enotnem prototipu, ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, dostopnih na trgu.
-
-\chapter{Tematsko ozadje}
-\label{ch:struktura}
-
-\section{Spletne aplikacije}
-Spletne aplikacije sestavljata uporabniški vmesnik (odjemalec) in strežniški del aplikacije (zaledni sistem). Takšna arhitektura omogoča ločitev skrbi, kjer vsak del sistema prevzame svojo vlogo v celotni aplikaciji~\cite{richardson2007restful}.
-Uporabniški vmesnik omogoča prikaz podatkov ter interakcijo uporabnika z aplikacijo. Njegova glavna naloga je zagotavljanje preglednega, odzivnega in uporabniku prijaznega dostopa do funkcionalnosti sistema.
- Poleg prikaza podatkov skrbi tudi za zajem uporabniških vnosov, komunikacijo s strežniškim delom aplikacije ter lokalno shranjevanje določenih podatkov v spletnem brskalniku, kar prispeva k boljši odzivnosti in uporabniški izkušnji~\cite{flanagan2020javascript}.
-Sodobni uporabniški vmesniki so pogosto zasnovani na komponentni arhitekturi. Komponenta predstavlja samostojen in ponovno uporaben gradnik uporabniškega vmesnika, ki ga je mogoče vključiti na različnih mestih v aplikaciji.
- Takšen pristop izboljšuje modularnost sistema, poenostavlja vzdrževanje kode ter omogoča boljšo ponovno uporabo funkcionalnosti~\cite{react_component_model}. \\
-Strežniški del aplikacije je odgovoren za obdelavo zahtevkov, ki jih prejme od odjemalca, ter za vračanje ustreznih odgovorov. Poleg tega izvaja poslovno logiko sistema, upravlja z dostopnimi pravicami uporabnikov ter skrbi za avtentikacijo in avtorizacijo.
- Strežniški del je prav tako odgovoren za komunikacijo s podatkovno bazo, kjer se hranijo trajni podatki aplikacije~\cite{fielding2000rest}. V sodobnih spletnih aplikacijah strežniški del pogosto omogoča dostop do podatkov preko programskih vmesnikov (vmesnik API).
- Eden izmed najpogosteje uporabljenih arhitekturnih pristopov je REST, ki temelji na brezstanovnem (angl. stateless) načinu komunikacije med sistemi in uporablja standardne HTTP metode za izvajanje operacij nad viri~\cite{fielding2000rest}.
-Poleg osnovne funkcionalnosti lahko strežniški del vključuje tudi dodatne mehanizme, kot so omejevanje števila zahtevkov (angl. \textit{rate limiting}), predpomnjenje podatkov ter beleženje dogodkov, kar prispeva k večji varnosti, stabilnosti in zmogljivosti sistema~\cite{nginx_rate_limiting}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{client-server.png}
-\caption{Arhitektura spletne aplikacije tipa odjemalec--strežnik~\cite{darvish2020clientserver}.}
-\label{fig:client-server}
-\end{figure}
-
-
-\section{Relacijske podatkovne baze}
-
-Relacijske podatkovne baze predstavljajo enega izmed najpogosteje uporabljenih pristopov za shranjevanje podatkov v spletnih aplikacijah. Temeljijo na relacijskem modelu, pri katerem so podatki organizirani v tabele,
- ki predstavljajo posamezne entitete. Vsaka entiteta vsebuje atribute, s katerimi opisujemo njene lastnosti, posamezne vrstice pa predstavljajo konkretne primerke entitete. Relacijski model omogoča strukturirano in konsistentno
-  shranjevanje podatkov ter učinkovito izvajanje poizvedb nad velikimi količinami podatkov~\cite{elmasri2015fundamentals}.
-Povezave med entitetami vzpostavimo s primarnimi in tujimi ključi. Primarni ključ enolično identificira posamezen zapis v tabeli, medtem ko tuji ključ omogoča povezovanje podatkov med različnimi tabelami. 
-Na ta način zmanjšamo podvajanje podatkov ter zagotovimo referenčno integriteto podatkovne baze~\cite{elmasri2015fundamentals}.\
-
-Pri razvoju sistema smo izbrali PostgreSQL, ki predstavlja odprtokodni objektno-relacijski sistem za upravljanje podatkovnih baz. PostgreSQL temelji na standardu SQL in ga razširja z naprednimi funkcionalnostmi,
- ki omogočajo učinkovito delo tako s strukturiranimi kot tudi s polstrukturiranimi podatki~\cite{postgresql-docs}.
-Med pomembnejšimi lastnostmi sistema PostgreSQL so podpora za transakcije ACID, napredne poizvedbe SQL, replikacija podatkov, mehanizmi za zagotavljanje integritete podatkov ter podpora za podatkovni format JSON oziroma JSONB.
- Zaradi teh funkcionalnosti je PostgreSQL primeren za razvoj sodobnih spletnih aplikacij, ki zahtevajo visoko zmogljivost, zanesljivost in možnost nadaljnje razširljivosti sistema~\cite{postgresql-docs,postgresql-about}.
-
-\section{Mikrostoritvena arhitektura}
-Mikrostoritvena arhitektura je arhitekturni vzorec, pri katerem se programski sistem razdeli na množico manjših, med seboj neodvisnih storitev, namesto da bi bil zgrajen kot ena tesno povezana enota,
- znana kot monolitna arhitektura~\cite{dragoni-microservices}. Vsaka mikrostoritev implementira natančno določeno poslovno funkcionalnost in je razvita, nameščena ter skalirana neodvisno od preostalih storitev v sistemu. 
- Komunikacija med posameznimi mikrostoritvami praviloma poteka prek dobro definiranih vmesnikov, kot so vmesniki API, sporočilne vrste ali drugi mehanizmi za izmenjavo podatkov~\cite{newman-building-microservices}.
-
-Razdelitev sistema na več manjših, neodvisnih komponent prinaša več prednosti v primerjavi z monolitno arhitekturo~\cite{newman-building-microservices}. Posamezne mikrostoritve je lažje testirati, saj imajo omejen in jasno določen obseg delovanja. 
-Prav tako je olajšano odkrivanje in odpravljanje napak, saj je napako mogoče hitreje lokalizirati znotraj posamezne storitve, namesto da bi jo iskali znotraj celotnega sistema. Neodvisnost storitev dodatno omogoča lažje vzdrževanje, 
-saj je mogoče posodobiti ali zamenjati eno mikrostoritev, ne da bi to vplivalo na delovanje ostalih mikrostoritev v sistemu, pod pogojem, da vmesnik za komunikacijo med njimi ostane nespremenjen~\cite{dragoni-microservices}.
-
-
-\section{Zajem podatkov iz spletnih virov}
-Zajem podatkov iz spletnih virov predstavlja temeljni korak pri vrednotenju rabljenih vozil na trgu. 
-Kakovost, obseg in svežost zbranih podatkov neposredno
-vplivajo na zanesljivost modelov za ocenjevanje cen.~\cite{laender2002}. V splošnem ločimo tri
-pristope za pridobivanje podatkov iz spleta: izkoriščanje javno dostopnih
-podatkovnih zbirk, samodejni zajem podatkov s spletnih strani
-(ang.\ \emph{web scraping}) ter dostop prek vmesnikov API~\cite{laender2002}.
-
-\subsection{Javno dostopne podatkovne zbirke}
-
-Javno dostopne podatkovne zbirke predstavljajo enega najprimernejših virov za zbiranje strukturiranih podatkov,
- saj so podatki v njih že organizirani, kategorizirani in pripravljeni za neposredno analitično obdelavo~\cite{janssen2012open}. Primeri takšnih zbirk so odprti vladni portali, kot sta Statistični urad Republike 
- Slovenije (SURS)~\cite{surs} in Eurostat~\cite{eurostat}, akademski repozitoriji ter portali prometnih agencij.
-  Slabost tega pristopa je omejena razpoložljivost aktualnih tržnih podatkov.
-Javne zbirke navadno ne vsebujejo oglasov z aktualnimi prodajnimi cenami vozil,
-ki so nujno potrebni za ocenjevanje tržne vrednosti~\cite{gegic2019car}.
-Za tuje trge sicer obstajajo javno dostopne zbirke oglasov, pridobljenih z
-oglasnih portalov, npr. nemški trg (eBay Kleinanzeigen)~\cite{ebay_de_dataset}, vendar za slovenski trg takšna javna zbirka
-ne obstaja.
-
-\subsection{Samodejni zajem podatkov s spletnih strani}
-
-Samodejni zajem podatkov s spletnih strani je postopek avtomatiziranega
-pridobivanja strukturiranih informacij iz spletnih strani z razčlenjevanjem
-njihove vsebine~\cite{laender2002}. Ta pristop se pogosto uporablja pri zbiranju
-oglasov za prodajo rabljenih vozil, saj je na voljo veliko portalov, ki
-vsebujejo obsežne zbirke takšnih oglasov. Iz vsakega oglasa je mogoče
-pridobiti strukturirane atribute vozila, kot so znamka, model, letnik
-izdelave, prevoženi kilometri, vrsta goriva, tip menjalnika in oglašena
-prodajna cena~\cite{gegic2019car}. Zajem poteka z orodji za avtomatizirano
-brskanje po spletnih straneh, ki simulirajo obisk uporabnika, ter z
-razčlenjevanjem strukture dokumenta HTML za izluščitev relevantnih
-podatkovnih polj~\cite{laender2002}.
-
-\subsection{Razčlenjevanje vsebine HTML}
-
-Spletna stran je v osnovi dokument v jeziku HTML
-(ang.\ \emph{HyperText Markup Language}), ki je organiziran v drevesno strukturo
-DOM (ang.\ \emph{Document Object Model})~\cite{olston2010}. Vsak element
-dokumenta, kot so naslovi, odstavki in podatkovne celice, je v tej strukturi
-predstavljen kot vozlišče, ki ima lahko starševska in podrejena vozlišča.
-Orodja za razčlenjevanje (ang.\ \emph{parsers}), kot sta knjižnici
-\texttt{BeautifulSoup} in \texttt{lxml} v jeziku Python, to strukturo pretvorijo
-v obliko, primerno za programsko obdelavo.
-
-Za izluščevanje podatkovnih elementov iz razčlenjene strukture se v praksi
-najpogosteje uporabljata dve vrsti izbirnikov: izbirniki CSS in izbirniki XPath~\cite{darmawan2022}. Izbirniki CSS so bili prvotno zasnovani za oblikovanje
-spletnih strani, a jih pri zajemu podatkov preusmerimo v poizvedovanje po
-strukturi DOM~\cite{olston2010}. Izbirniki XPath (ang.\ \emph{XML Path
-Language}) pa so namensko poizvedovalni jezik za navigacijo po drevesnih
-strukturah XML in HTML, ki poleg preprostega iskanja po oznakah in razredih
-podpira tudi premikanje navzgor po drevesu, iskanje po vsebini besedilnih
-vozlišč ter vgrajene funkcije, kot sta \texttt{contains()} in
-\texttt{position()}~\cite{darmawan2022}. V kontekstu zajemanja podatkov iz
-avtomobilskih oglasnih portalov to pomeni, da z izbirniki iz razčlenjenega
-dokumenta izluščimo posamezna podatkovna polja oglasa, kot so naziv vozila,
-cena, letnik, prevoženi kilometri in vrsta goriva.
-
-\chapter{Metodologija}
-\label{ch:metodologija}
-Cilj diplomske naloge je bila izdelava prototipa, v katerem bodo uporabniki lahko
-objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
-tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
-različnih forumov in strokovnih člankov. Ko smo zaključili razvoj prototipa, smo
-se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem jeziku Python.
-Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
-ekosistemom knjižnic, namenjenih analizi podatkov.\\
-Pri izbiri orodij za razvoj uporabniškega vmesnika smo se odločili za ogrodje React.
-Odločitev je deloma temeljila na želji po pridobitvi novih znanj v okviru diplomskega dela,
-saj z Reactom pred tem nismo imeli izkušenj. React je eno izmed najpopularnejših ogrodij za
-razvoj uporabniških vmesnikov z eno največjih skupnosti, kar zagotavlja kakovostno
-dokumentacijo in dolgoročno podporo. Skupaj z Reactom smo uporabili jezik TypeScript, ki je
-nadgradnja jezika JavaScript~\cite{typescript}. TypeScript razvijalce prisili k
-eksplicitni deklaraciji tipov spremenljivk, kar bistveno zmanjša možnost napak med razvojem.\\
-Za razvoj zalednega sistema smo izbrali ogrodje Express.js, zgrajeno na platformi Node.js,
-ki omogoča hitro in enostavno izdelavo spletnih aplikacij. Odločitev je temeljila na
-predhodnih izkušnjah z ogrodjem ter na njegovi enostavni integraciji z vmesniki REST API.
-Zaledni sistem smo razvili v jeziku JavaScript, kar se je naknadno izkazalo za manj optimalno
-odločitev. Jezik TypeScript bi z dodatno varnostjo tipov prispeval k boljši zanesljivosti
-in vzdržljivosti kode.
-
 \section{Načrtovanje podatkovne baze}
 
 
 \subsection{Načrtovanje podatkovne baze aplikacije}
 Pri načrtovanju podatkovne baze smo morali natančno premisliti, kako shranjujemo
 oglase avtomobilov, saj je to ključnega pomena za učinkovito delovanje odločitvenega
-modela. Previsoka stopnja normalizacije bi upočasnila poizvedbe, prenizka pa bi
-vodila do podvajanja podatkov in posledičnih neskladnosti v bazi~\cite{elmasri2015fundamentals}.\\
-
-Entiteti Brand in CarModel sta izločeni v ločeni tabeli, ker med njima obstaja
-hierarhično razmerje ena-proti-mnogo: ena znamka (Brand) ima lahko poljubno število
-modelov (CarModel), vsak model pa pripada natanko eni znamki. Shranjevanje znamk
-in modelov kot vrednosti tipa \texttt{enum} ali prostega niza bi bilo neprimerno
-iz dveh razlogov. Prvič, število možnih vrednosti je preveliko za statično definicijo
-z \texttt{enum}. Drugič, prosti niz bi omogočal podvojene ali nekonsistentne vnose
--- na primer \enquote{Audi A3} in \enquote{audi a3 Sportback} bi bila obravnavana kot različni
-entiteti, čeprav gre za isti model. Z relacijsko vezavo prek tujih ključev je
-zagotovljen referenčni nadzor nad vnesenimi vrednostmi ter enotnost podatkov.\\
-
-Entiteta CarSpecifications je namerno ločena od entitete CarListing, ker vsebuje
-tehnične podrobnosti vozila, ki niso relevantne pri vsakem poizvedovanju. Pri prikazu
-seznama oglasov (npr. v podatkovni tabeli) zadostujejo le osnovni podatki iz entitete
-CarListing (cena, prevoženi kilometri, letnik …), specifikacije pa se naložijo le
-ob ogledu posameznega oglasa. Ta ločitev zmanjša količino podatkov, ki se prenesejo
-iz podatkovne baze pri pogostih poizvedbah, in s tem izboljša odzivnost aplikacije.\\
-
-Entiteta CarListingLike predstavlja asociativno tabelo, ki realizira razmerje
-mnogo-proti-mnogo med uporabniki in oglasi: en uporabnik lahko označi kot všečkano
-poljubno število oglasov, en oglas pa je lahko všečkan pri poljubnem številu
-uporabnikov. Tabela vsebuje tuji ključ na entiteto User in tuji ključ na entiteto
-CarListing, kar zagotavlja referenčno integriteto in preprečuje podvojene vnose.
-
-Entiteta User hrani standardne podatke o registriranih uporabnikih sistema.
+modela. Previsoka stopnja normalizacije bi lahko upočasnila poizvedbe, prenizka pa bi
+vodila do podvajanja podatkov in posledičnih neskladnosti v bazi~\cite{elmasri2015fundamentals}. Zasnovani
+podatkovni načrt je predstavljen na sliki~\ref{fig:er-diagram}.\\
 
 \begin{figure}[H]
     \centering
@@ -367,59 +302,82 @@ Entiteta User hrani standardne podatke o registriranih uporabnikih sistema.
     \label{fig:er-diagram}
 \end{figure}
 
+Entiteti \texttt{Brand} in \texttt{CarModel} sta izločeni v ločeni tabeli, ker med njima obstaja
+hierarhično razmerje ena-proti-mnogo: ena znamka (\texttt{Brand}) ima lahko poljubno število
+modelov (\texttt{CarModel}), vsak model pa pripada natanko eni znamki. Shranjevanje znamk
+in modelov kot vrednosti tipa \texttt{enum} ali prostega niza bi bilo neprimerno
+iz dveh razlogov. Število možnih vrednosti je namreč preveliko za statično definicijo
+z \texttt{enum}, prosti niz pa bi omogočal podvojene ali nekonsistentne vnose
+(na primer \enquote{Audi A3} in \enquote{audi a3 Sportback} bi bila obravnavana kot različni
+entiteti, čeprav gre za isti model). Z relacijsko vezavo prek tujih ključev je
+zagotovljen referenčni nadzor nad vnesenimi vrednostmi ter enotnost podatkov.\\
+
+Entiteta \texttt{CarSpecifications} je namerno ločena od entitete \texttt{CarListing}, ker vsebuje
+tehnične podrobnosti vozila, ki niso relevantne pri vsakem poizvedovanju. Pri prikazu
+seznama oglasov (npr. v podatkovni tabeli) zadostujejo le osnovni podatki iz entitete
+\texttt{CarListing} (cena, prevoženi kilometri in letnik), podrobne specifikacije pa se naložijo le
+ob ogledu posameznega oglasa. Ta ločitev zmanjša količino podatkov, ki se prenesejo
+iz podatkovne baze pri pogostih poizvedbah, in s tem izboljša odzivnost aplikacije.\\
+
+Entiteta \texttt{CarListingLike} predstavlja asociativno tabelo, ki realizira razmerje
+mnogo-proti-mnogo med uporabniki in oglasi: en uporabnik lahko všečka
+poljubno število oglasov, en oglas pa je lahko všeč pri poljubnem številu
+uporabnikov. Tabela vsebuje tuji ključ na entiteto \texttt{User} in tuji ključ na entiteto
+\texttt{CarListing}, kar zagotavlja referenčno integriteto in preprečuje podvojene vnose.
+
+Entiteta \texttt{User} hrani ključne podatke o registriranih uporabnikih sistema.
+
 \subsection{Načrtovanje podatkovne baze odločitvenega modela}
 V okviru iste podatkovne baze smo dodali ločeno shemo \texttt{market}, ki vsebuje
-dve tabeli, namenjeni zbiranju in obdelavi tržnih podatkov za sistem vrednotenja
-avtomobilov.\\
-Tabela \texttt{RawMarketListing} služi kot surov arhiv vseh oglasov, pridobljenih
+dve tabeli. Namenjeni zbiranju in obdelavi tržnih podatkov za sistem vrednotenja
+avtomobilov~\ref{fig:er-diagram-evaluation}..\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{ErDiagramEvaluation.png}
+    \caption{ER-diagram evalvacijskega sistema.}
+    \label{fig:er-diagram-evaluation}
+\end{figure}
+Tabela \texttt{RawMarketListing} služi kot neobdelan arhiv vseh oglasov, ki so pridobljeni
 iz zunanjih virov – javno dostopnih zbirk podatkov, spletnih vmesnikov API in z
-zajemanjem spletnih strani. Tabela vsebuje naslednja
-polja: \texttt{source} identificira izvor podatkov (npr.\ ime portala ali vmesnika
-API), \texttt{externalId} je identifikator oglasa na izvornem sistemu, ki je določen
-statično v kodi in preprečuje podvojene vnose, \texttt{url} hrani
-neposredno povezavo do oglasa, \texttt{scraped\_at} je časovni žig trenutka zajema
-podatkov, \texttt{raw\_payload} pa vsebuje izvorni odgovor v obliki JSON brez
-kakršnekoli obdelave. Izvorni odgovor je namerno shranjen v celoti, kar omogoča
+zajemanjem spletnih strani. Tabela vsebuje naslednja polja:
+\begin{itemize}
+    \item \texttt{source} določa izvor podatkov (npr.\ ime portala ali vmesnika API),
+    \item \texttt{externalId} je identifikator oglasa na izvornem sistemu, ki je določen statično v kodi in preprečuje podvojene vnose,
+    \item \texttt{url} hrani neposredno povezavo do oglasa,
+    \item \texttt{scraped\_at} je časovni žig trenutka zajema podatkov,
+    \item \texttt{raw\_payload} vsebuje izvorni odgovor v obliki JSON brez kakršnekoli obdelave.
+\end{itemize}
+Izvorni odgovor je namerno shranjen v celoti, kar omogoča
 kasnejšo ponovno obdelavo brez ponovnega zajema podatkov, če se normalizacijska
 logika spremeni.\\
 Tabela \texttt{NormalizedCarListing} vsebuje obdelano in normalizirano obliko
-surovega oglasa, vezano na tabelo \texttt{RawMarketListing} prek tujega ključa
+oglasov, ki so vezani na tabelo \texttt{RawMarketListing} prek tujega ključa
 \texttt{raw\_listing\_id}. Razmerje med tabelama je ena-proti-mnogo: vsak surovi oglas
-ima lahko več normaliziranih zapisov. Polja so poenotena in tipizirana – cena, prevoženi
+ima lahko več normaliziranih zapisov. Polja so poenotena in tipizirana; cena, prevoženi
 kilometri in letnik so shranjeni kot \texttt{integer}, znamka, model, vrsta goriva,
 tip menjalnika, oblika karoserije in država pa kot \texttt{string}. Takšna
 poenotena struktura omogoča neposredno primerjavo oglasov iz različnih virov pri
 izračunu tržne vrednosti vozila.\\
-Ločitev na dve tabeli sledi vzorcu cevovoda surovih in normaliziranih podatkov
+Ločitev na dve tabeli predstavlja cevovoda surovih in normaliziranih podatkov
 (angl.\ \textit{raw/normalized pipeline})~\cite{kleppmann2017designing}: surovi
 podatki ostanejo nedotaknjeni kot revizijska sled in osnova za morebitno ponovno
 obdelavo, normalizirana oblika pa je tista, ki se uporablja v analitičnih poizvedbah.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{ErDiagramEvaluation.png}
-    \caption{ER-diagram entitet Evalvacijskega sistema.}
-    \label{fig:er-diagram-evaluation}
-\end{figure}
-
 \section{Arhitektura zalednega sistema}
-Zaledni sistem smo oblikovali z modularno arhitekturo, ki omogoča jasno ločitev odgovornosti (separation of concerns), 
+Zaledni sistem smo oblikovali z modularno arhitekturo, ki omogoča jasno ločitev odgovornosti (angl.\ \textit{separation of concerns}), 
 kar olajša branje, vzdrževanje in nadaljnjo razširiteljnost kode~\cite{separation-concerns}. 
-Kot ogrodje za zaledni sistem smo izbrali Express.js, minimalistično ogrodje za Node.js, ki zagotavlja temeljne 
-funkcionalnosti za usmerjanje zahtev in upravljanje vmesnika HTTP, hkrati pa razvojnikom omogoča svobodno izbiro 
-specifičnih knjižnic glede na različne zahteve aplikacije~\cite{expressjs-docs}.
-
+% TODO: Dodaj sliko nato sledi opis delov
 \subsection{Modul za poizvedbe v podatkovni bazi}
-Za implementacijo podatkovnih modelov in poizvedkov na podatkovno bazo smo uporabili knjižnico Sequelize. Sequelize je vmesnik za 
-spreminjanje objektno-relacijskih preslikav (ORM – Object-Relational Mapping), ki omogoča preslikavo objektov iz programske kode v 
-relacijske strukture podatkovne baze ~\cite{sequelize-orm}. ORM pristop izboljšuje razvoj, saj omogoča programerjem, da delajo z objekti 
-namesto neposrednih poizvedb SQL, kar zmanjša napake in poveča berljivost kode~\cite{sequelize-orm} Prednosti ORM pristopa vključujejo tipsko varnost, 
+Za implementacijo podatkovnih modelov in poizvedb na podatkovno bazo smo uporabili knjižnico Sequelize~\cite{sequelize-orm}. Sequelize~\cite{sequelize-orm} je vmesnik za 
+spreminjanje objektno-relacijskih preslikav (angl.\ \textit{Object-Relational Mapping}), ki omogoča preslikavo objektov iz programske kode v 
+relacijske strukture podatkovne baze~\cite{sequelize-orm}. Tak pristop izboljšuje razvoj, saj omogoča programerjem, da namesto neposrednih poizvedb SQL delajo z objekti,
+ kar zmanjša napake in poveča berljivost kode Prednosti pristopa vključujejo tipsko varnost, 
 avtomatično generiranje poizvedb za različne podatkovne baze ter intuitivnejše upravljanje relacij med entitetami.\\
 Podatkovni modeli so v Sequelize definirani kot razredi, ki predstavljajo tabele v bazi podatkov~\cite{sequelize-orm}
  Vsak model ima atribute, ki ustrezajo stolpcem v tabeli, ter metode za izvajanje temeljnih operacij s podatki (CRUD – Create, Read, Update, Delete). 
- Ključno pri oblikovanju modelov je tudi postavitev indeksov na poljih, ki se pogosto pojavljajo v pogojih poizvedb (npr. ID avtomobila, izvor oglasa ali časovni žigi).
+ Ključno pri oblikovanju modelov je tudi postavitev indeksov na poljih, ki se pogosto pojavljajo pri poizvedbah (npr. ID avtomobila, izvor oglasa ali časovni žigi).
   Dobro zasnovani indeksi so bistvenega pomena za zagotavljanje hitrih odgovorov poizvedb pri velikih količinah podatkov~\cite{database-indexing}.
-   Primer definirane modelne strukture je prikazan v Kodi~\ref{code:user-model}.
+   Primer vzpoztavitve povezave z bazo podatkov je v kodi~\ref{code:db-connection}.
 
 
 \begin{center}
@@ -442,16 +400,15 @@ export default sequelize;
 
 \subsection{Avtentikacija in avtorizacija uporabnikov}
 Za avtentikacijo uporabnikov smo implementirali sistem, ki temelji na žetonih JWT (JSON Web Token), kar omogoča varen in enostaven prenos podatkov o uporabnikovi pristnosti~\cite{jwt-rfc7519}. 
-Žeton JWT je strukturiran dokument, sestavljen iz treh delov: glave (header), ki vsebuje metapodatke o vrsti kodiranja; podatkov (payload), ki nosijo informacije o uporabniku; in digitalnega podpisa, ki zagotavlja celovitost in pristnost žetona~\cite{jwt-rfc7519}.
-Postopek avtentikacije je razdeljen na dve fazi. V fazi registracije uporabnik vnese svoje geslo, ki ga pred shranitvijo v podatkovno bazo zgoščimo z algoritmom bcrypt~\cite{bcrypt-password}. Bcrypt je specializirana kriptografska funkcija, namenjena zgoščevanju gesel, ki vključuje samodejno upoštevajoče (salting) in je 
- odpornejša na napade~\cite{bcrypt-password}. 
- V fazi prijave uporabnik pošlje svoje geslo in e-poštni naslov. Zaledni sistem pridobi shranjeno zgoščeno geslo iz baze in ga primerja z novim zgoščenim geslom 
- s pomočjo funkcije bcrypt za primerjavo. Če se gesla ujemata, zaledni sistem generira žeton JWT z informacijami o uporabniku in ga pošlje nazaj na
- uporabniški vmesnik, kjer ga uporabnik shrani v brskalniku (največkrat v shrambo seje – localStorage).\\
-Za zaščito poti vmesnika API smo implementirali middleware za preverjanje žetonov. Vmesnik je funkcija, ki se izvede pred vsakim zahtevkom in preveri,
- ali je uporabnik poslal veljaven žeton JWT v zahtevku. Dodatna varnostna plast je nastavljena s časovnimi omejitvami žetona, ki zagotavlja,
+Žeton JWT je strukturiran dokument, sestavljen iz treh delov: glave (ang.\ \textit{header}), ki vsebuje metapodatke o vrsti kodiranja; \textit{podatkov} (ang.\ \textit{payload}), ki nosijo informacije o uporabniku; in \textit{digitalnega podpisa}, ki zagotavlja celovitost in pristnost žetona~\cite{jwt-rfc7519}.
+Postopek avtentikacije je razdeljen na dve fazi. V fazi registracije uporabnik vnese svoje geslo, ki ga pred shranitvijo v podatkovno bazo zgostimo z algoritmom bcrypt~\cite{bcrypt-password}. Bcrypt je specializirana kriptografska funkcija, namenjena zgoščevanju gesel~\cite{bcrypt-password}. 
+ V fazi prijave uporabnik pošlje svoje geslo in e-poštni naslov. Zaledni sistem pridobi shranjeno zgoščeno geslo iz baze in ga primerja z novim zgoščenim geslom.
+  Če se gesli ujemata, zaledni sistem generira žeton JWT z informacijami o uporabniku in ga vrne
+ uporabniškemu vmesniku, kjer ga uporabnik shrani v brskalniku največkrat v shrambo seje (angl. \ \textit{localStorage}).\\
+Za zaščito poti vmesnika API smo implementirali sredinski sistem za preverjanje žetonov. Vmesnik je funkcija, ki se izvede pred vsakim zahtevkom in preveri,
+ ali je uporabnik v zahtevku poslal veljaven žeton JWT. Dodatna varnostna plast je nastavljena s časovnimi omejitvami žetona, ki zagotavlja,
  da je žeton veljaven samo za določen čas. Po preteku roka veljavnosti se mora uporabnik ponovno avtentificirati in pridobiti nov žeton,
-  kar zmanjšuje tveganje ob morebitnem razkritju starejših žetonov~\cite{jwt-security-best-practices}.
+  kar zmanjšuje tveganje ob morebitnem razkritju starejših žetonov~\cite{jwt-security-best-practices} Koda za prijavo uporabnika je prikayana v naslednji kodi~\ref{code:login}.
 
 \begin{center}
 \captionof{listing}{Koda za prijavo uporabnika.}
@@ -483,55 +440,46 @@ export const loginUserService = async ({ email, password }) => {
 \end{minted}
 \end{center}
 
-\subsection{Asinkrona obdelava podatkov (Celery)}
+\subsection{Asinhrona obdelava podatkov}
 Za naloge, ki zahtevajo obsežnejšo obdelavo podatkov ali imajo daljši čas
-izvajanja, smo implementirali asinkrono obdelavo z uporabo sistema čakalnih
-vrst nalog. Asinkroni pristop omogoča, da strežnik takoj odgovori na zahtevek,
+izvajanja, smo implementirali asinhrono obdelavo z uporabo sistema čakalnih
+vrst nalog. Ta pristop omogoča, da strežnik takoj odgovori na zahtevek,
 medtem ko se zahtevnejše operacije izvajajo v ozadju kot ločeni procesi. Na ta
-način se zmanjšuje čakalni čas uporabnika in izboljša splošna odzivnost
+način se izboljša splošna odzivnost
 aplikacije~\cite{kleppmann2017designing}. Značilne naloge, ki zahtevajo
-asinkrono obdelavo, vključujejo zajemanje podatkov iz zunanjih virov,
+asinhrono obdelavo, obsegajo zajemanje podatkov iz zunanjih virov,
 normalizacijo in transformacijo zajetih podatkov ter pošiljanje e-poštnih
 obvestil uporabnikom~\cite{kleppmann2017designing} \\
 Za upravljanje čakalnih vrst nalog v okolju Node.js smo izbrali knjižnico
-BullMQ, ki zagotavlja zanesljivo upravljanje asinhronih nalog z vgrajeno
+BullMQ~\cite{bullmq-docs}, ki zagotavlja zanesljivo upravljanje tovrstnih nalog z vgrajeno
 podporo za ponovne poskuse (angl.\ \textit{retry}), časovne omejitve (angl.\
 \textit{timeout}) in obravnavo napak~\cite{bullmq-docs}. Sistem temelji na
-kombinaciji podatkovnega skladišča Redis in delavskih procesov. Redis v tej
+kombinaciji podatkovnega skladišča Redis~\cite{redis-data-store} in delovnih procesov. Redis v tej
 arhitekturi služi kot posrednik sporočil (angl.\ \textit{message broker}), ki
-hrani stanje nalog in omogoča koordinacijo med posameznimi delavskimi procesi
+hrani stanje nalog in omogoča koordinacijo med posameznimi delovnimi procesi
 ~\cite{redis-data-store}.\\
 Konfiguracija sistema zahteva tri ključne korake. Najprej se vzpostavi
-povezava s strežnikom Redis, ki deluje kot posrednik med čakalno vrsto in
-delavci. Nato se opredelijo posamezne vrste nalog (angl.\ \textit{job types})
-z ustreznimi funkcijami za njihovo izvajanje. Na koncu se registrirajo
-delavski procesi, ki poslušajo dodeljene vrste nalog, jih obdelujejo in
+povezava s strežnikom Redis~\cite{redis-data-store}. Na koncu se registrirajo
+delovni procesi, ki poslušajo dodeljene vrste nalog, jih obdelujejo in
 ustrezno posodabljajo stanje v skladišču Redis. S takšno zasnovo je
 zagotovljeno, da se dolgotrajne operacije ne izvajajo na glavni niti
 aplikacije, kar omogoča sočasno obdelavo in izboljšano razširljivost sistema.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{AsyncFlow.png}
-\caption{Asinkrona obdelava podatkov z uporabo čakalnih vrst nalog in delavskih procesov~\cite{je2023taskqueues}.}
-\label{fig:async-flow}
-\end{figure}
 
 
 \section{Arhitektura uporabniškega vmesnika}
 Uporabniški vmesnik smo zasnovali iz več komponent, ki skupaj sestavljajo celoto. Pri tem smo upoštevali načela
 modularnosti, ki omogočajo ponovno uporabo komponent ter lažje vzdrževanje kode~\cite{modular-programming}.
 Vsako komponento smo oblikovali tako, da opravlja natančno določeno nalogo in prikazuje omejen del vmesnika.
-S tem smo sledili načelu enotne odgovornosti, po katerem naj ima vsaka enota kode en sam razlog za spremembo~\cite{single-responsibility}. Komponente smo namenoma ohranili majhne, saj majhen obseg naravno usmerja
+Komponente smo namenoma ohranili majhne, saj majhen obseg naravno usmerja
 razvijalca k temu, da posamezna komponenta ostane osredotočena na eno samo funkcionalnost.
 Komponente si med seboj izmenjujejo podatke po hierarhiji nadrejenih in podrejenih komponent. Nadrejena
 komponenta posreduje podatke podrejenim komponentam prek lastnosti (angl.\ \textit{props}), podrejena
 komponenta pa nadrejeni sporoča spremembe prek povratnih funkcij, ki jih nadrejena komponenta posreduje
 navzdol.
-Kot ogrodje za izgradnjo uporabniškega vmesnika smo izbrali React, ki je eno izmed najbolj razširjenih
-in uveljavljenih ogrodij za razvoj spletnih vmesnikov~\cite{react-docs}. V naslednjih podpoglavjih podrobneje
+Kot ogrodje za izgradnjo uporabniškega vmesnika smo izbrali React~\cite{react-docs}. V naslednjih podpoglavjih podrobneje
 predstavimo posamezne dele te arhitekture.\\
 
+% TODO: Dodaj sliko in sklic
 
 \subsection{Odjemalska shramba}
 Določene podatke si mora odjemalec zapomniti, kar pomeni, da jih mora shraniti na svoji strani. Prednost
@@ -545,20 +493,21 @@ in lahko z delom nadaljuje. Pri shranjevanju podatkov na odjemalcu moramo biti p
 neobčutljive podatke ter da stanje pravilno posodabljamo ob vsaki spremembi. Spletni brskalniki za trajno
 hrambo podatkov na strani odjemalca ponujajo več mehanizmov, med drugim \texttt{localStorage} in
 \texttt{sessionStorage}~\cite{webstorage-spec}. V nasprotnem primeru se lahko stanje na odjemalčevi strani razlikuje od stanja
-na strežniku, kar vodi do težko odkrivljivih napak.\\
-Za odjemalsko shrambo smo uporabili knjižnico Zustand, ki je preprosta, kompaktna in dobro vzdrževana.
-Zustand temelji na minimalističnem pristopu k upravljanju stanja in za osnovno delovanje ne zahteva ovojnih
-komponent (angl.\ \textit{provider}), kar ga loči od nekaterih uveljavljenih rešitev, kot je Redux~\cite{zustand-docs}. Stanje je organizirano v obliki t.\,i.\ shramb (angl.\ \textit{store}), do katerih
+na strežniku, kar lahko vodi do napak.\\
+Za odjemalsko shrambo smo uporabili knjižnico Zustand~\cite{zustand-docs}, ki je preprosta, kompaktna in dobro vzdrževana.
+Zustand~\cite{zustand-docs} temelji na minimalističnem pristopu k upravljanju stanja in za osnovno delovanje ne zahteva ovojnih
+komponent (angl.\ \textit{provider}), kar ga loči od nekaterih uveljavljenih rešitev, kot je Redux~\cite{redux-docs}. Stanje je organizirano v obliki t.\,i.\ shramb (angl.\ \textit{store}), do katerih
 dostopamo prek preprostih kavljev (angl.\ \textit{hooks}), pri čemer se ponovno izrišejo le tiste komponente,
 ki dejansko uporabljajo spremenjeni del stanja. Zaradi majhne velikosti in neodvisnosti od ogrodja React
 je knjižnica primerna tudi za projekte, pri katerih želimo ohraniti nizko zahtevnost in dobro zmogljivost.\\
 
-\subsection{Pisanje zahtevkov API}
+\subsection{Zahtevki API}
 Za pošiljanje zahtevkov smo uporabili knjižnico Axios, ki je ena izmed najbolj razširjenih knjižnic za
-pošiljanje zahtevkov HTTP v okolju JavaScript~\cite{axios-docs}. Nad njo smo izdelali ovojnico \texttt{api},
+pošiljanje zahtevkov HTTP v okolju JavaScript~\cite{flanagan2020javascript,axios-docs}. Nad njo smo izdelali ovojnico \texttt{api},
 ki iz okoljskih spremenljivk (angl.\ \textit{environment variables}) prebere naslov strežnika in ga uporabi
 kot osnovni naslov URL za vse zahtevke. Tak pristop nam omogoča, da osnovni naslov in skupne nastavitve
-določimo na enem mestu, s čimer se izognemo ponavljanju in poenostavimo morebitne kasnejše spremembe.
+določimo na enem mestu, s čimer se izognemo ponavljanju in poenostavimo morebitne kasnejše spremembe. Na sliki~\ref{code:api-wrapper}
+ je prikazana koda ovojnice, ki jo nato uvozimo v vsako datoteko, kjer definiramo funkcije za pošiljanje zahtevkov.
 
 \begin{center}
 \captionof{listing}{Ovojnica Axios za ustvarjanje odjemalca API.}
@@ -578,7 +527,8 @@ export default api;
 Ovojnico smo nato uporabili pri vsaki definiciji funkcije za pošiljanje zahtevka. Funkcija vrne polje
 \texttt{res.data}, ki vsebuje dejanski odgovor strežnika. Axios namreč vrne objekt s številnimi dodatnimi
 podatki, ki niso vedno potrebni, zato zaradi preglednosti kode vrnemo le vsebino odgovora~\cite{axios-docs}. Po potrebi lahko
-dostopamo tudi do statusne kode strežnika, glave odgovora in konfiguracije zahtevka.\\
+dostopamo tudi do statusne kode strežnika, glave odgovora in konfiguracije zahtevka. Primer definicije funkcije za
+pridobivanje znamk avtomobilov je prikazan v sliki~\ref{code:api-call}.
 
 \begin{center}
 \captionof{listing}{Primer definicije funkcije za pridobivanje znamk avtomobilov.}
@@ -592,30 +542,28 @@ export const fetchCarBrands = async () => {
 \end{center}
 
 
-\subsection{Vite kot razvojno in gradbeno orodje}
+\subsection{Razvojno orodje Vite}
 Vsako izvorno kodo je treba pred prikazom v spletnem brskalniku ustrezno pripraviti oziroma zgraditi. To nalogo
-v našem projektu opravlja orodje Vite, ki omogoča hitro postavitev razvojnega okolja in gradnjo končne različice
-aplikacije~\cite{vite-docs}. Za razliko od starejših orodij za združevanje kode (angl.\ \textit{bundler}), kot
-je Webpack, ki mora ob vsaki spremembi znova zgraditi večji del kode, Vite tega ne počne in je zato bistveno
+v našem projektu opravlja orodje Vite~\cite{vite-docs}, ki omogoča hitro postavitev razvojnega okolja in izgradnjo končne različice
+aplikacije. Za razliko od starejših orodij za združevanje kode (angl.\ \textit{bundler}) (kot
+je Webpack~\cite{webpack-docs}, ki mora ob vsaki spremembi znova zgraditi večji del kode), Vite tega ne počne in je zato bistveno
 hitrejši.\\
-Delovanje orodja Vite temelji na dveh ključnih načelih. Prvo je izraba nativne podpore modulom ECMAScript
-(angl.\ \textit{ES modules}) v sodobnih brskalnikih. Ker sodobni brskalniki znajo neposredno razumeti module,
-uvožene v kodi, Vite med razvojem kode ne združuje, temveč posamezne module dostavi brskalniku po potrebi~\cite{esmodules-mdn}. Drugo načelo je uporaba orodja esbuild za predhodno gradnjo odvisnosti JavaScript.
-Orodje esbuild je napisano v jeziku Go in je od 10 do 100-krat hitrejše od orodij za združevanje, napisanih
-v jeziku JavaScript~\cite{esbuild-docs}.\\
+Delovanje orodja Vite~\cite{vite-docs} temelji na dveh ključnih načelih. Prvo je izraba nativne podpore modulom ECMAScript~\cite{esmodules-mdn}
+(angl.\ \textit{ES modules}) v sodobnih brskalnikih. Ker sodobni brskalniki neposredno razumejo uvožene module,
+ Vite med razvojem kode ne združuje, temveč posamezne module dostavi brskalniku po potrebi~\cite{vite-docs,esmodules-mdn}. Drugo načelo je uporaba orodja esbuild~\cite{esbuild-docs} za predhodno izgradnjo odvisnosti JavaScript~\cite{flanagan2020javascript}.
+Orodje je napisano v jeziku Go~\cite{golang-docs} in je od 10 do 100-krat hitrejše od orodij za združevanje, ki so napisania
+v jeziku JavaScript~\cite{flanagan2020javascript,esbuild-docs}.\\
 Pomembna prednost orodja Vite je zmožnost sprotnega osveževanja modulov (angl.\ \textit{Hot Module Replacement}),
 pri katerem se osveži le tisti del kode, ki se je spremenil, brez izgube trenutnega stanja in podatkov aplikacije.
 Ta zmožnost je pri razvoju izjemno pomembna, saj občutno pospeši povratno zanko med spremembo in prikazom ter
-tako poveča produktivnost. Vite v naši arhitekturi torej opravlja vlogo razvojnega in gradbenega sloja.
-
-
+tako poveča produktivnost.
 
 \section{Evalvacijski sistem}
 Evalvacijski sistem smo zasnovali kot samostojno storitev, ki smo jo razvili v programskem jeziku Python.
- Začeli smo z osnovnim jezikom in postopno dodajali pakete glede na potrebe. Za komunikacijo z zalednim
+ Pri razvoju smo z osnovnim jezikom in postopno dodajali pakete glede na potrebe. Za komunikacijo z zalednim
   sistemom smo potrebovali spletni strežnik, saj je zaledni sistem edini, ki ima dostop do evalvacijskega sistema.
 Za spletni strežnik in vmesnik API smo uporabili ogrodje FastAPI, ki omogoča enostavno izdelavo vmesnikov API v
- jeziku Python~\cite{fastapi-docs}.
+ jeziku Python~\cite{fastapi-docs}. Na sliki je prikazan primer definicije vmesnika API, ki vrne seznam znamk avtomobilov iz podatkovne baze~\ref{code:api-python}.
 \begin{center}
 \captionof{listing}{Primer definicije vmesnika API z ogrodjem FastAPI}
 \label{code:api-python}
@@ -631,30 +579,36 @@ Za migracijo tabel in podatkov smo dodali paket Alembic, ki je zmogljivo orodje 
  in posodabljanje podatkovnih baz~\cite{alembic-docs}. Alembic sledi shemi podatkovne baze in samodejno 
  ustvarja migracijske skripte, ki jih je mogoče verzionirati skupaj z izvorno kodo, kar zagotavlja ponovljivo 
  in nadzorovano spreminjanje strukture podatkovne baze.
-Pri tem projektu smo se prvič srečali s tehnologijo cron. Cron je programska oprema, ki omogoča samodejno
- izvajanje ukazov ob vnaprej določenih časovnih intervalih na strežniku ali v drugem okolju~\cite{cron-man}.
+Pri tem projektu smo se prvič srečali s tehnologijo cron~\cite{cron-man}. Ta omogoča samodejno
+ izvajanje ukazov ob vnaprej določenih časovnih intervalih na strežniku ali v drugem okolju.
   Cron smo uporabili za zagon programov za samodejni zajem podatkov s spletnih strani za prodajo vozil. 
   Ti programi se na strežniku izvajajo dnevno oziroma tedensko.
 
 \subsection{Algoritem za primerjavo vozil}
-Vse podatke, pridobljene z zajemom s spletnih strani ali z dostopom do javno dostopnih virov, smo morali
-najprej shraniti v nestrukturirani obliki, nato pa jih normalizirati. Za vsak spletni vir smo morali
-napisati ločen postopek normalizacije, saj morajo biti podatki, če jih želimo primerjati,
-normalizirani oziroma zapisani v enotni obliki. V nasprotnem primeru pri evalvaciji prihaja do diskrepanc.
-Za vsako vozilo smo shranili ceno, prevožene kilometre, znamko, model, moč motorja, vrsto menjalnika in vrsto goriva.~\ref{code:normalization-python}
-Pri normalizaciji smo morali vse te podatke sproti izpisovati in poskrbeti za zanesljiv sistem obvladovanja napak.
+% TODO: Dodaj sliko algoritma, kako deluje
+Vse podatke, ki so pridobljeni z zajemom s spletnih strani ali z dostopom do javno dostopnih virov, smo morali
+najprej shraniti v nestrukturirani obliki, nato pa jih normalizirati oziroma zapisati v enotno obliko. Za vsak spletni vir smo morali
+napisati ločen postopek normalizacije.
+Za vsako vozilo smo shranili ceno, prevožene kilometre, znamko, model, moč motorja, vrsto menjalnika in vrsto goriva.
+Pri normalizaciji smo vse te podatke sproti izpisovali in poskrbeli za zanesljiv sistem obvladovanja napak.
 Zlasti v začetni fazi razvoja namreč pogosto prihaja do napak, za njihovo učinkovito odpravljanje pa je potreben 
 podroben izpis poteka izvajanja~\cite{logging-practices}.
 
-Poleg razlik v strukturi se posamezni viri med seboj razlikujejo tudi v zapisu posameznih vrednosti. Cene so na primer zapisane z ločilom tisočic, 
-ki jih je treba pred pretvorbo v število odstraniti; prevoženi kilometri so pri enem viru zapisani kot celo število, pri drugem pa kot niz z enoto 
-(na primer \enquote{123.456~km}); datum prve registracije je pri enem viru zapisan v obliki mesec/leto, pri drugem pa leto/mesec. Podobno je bilo 
-treba poenotiti kategorialne vrednosti, kot sta tip menjalnika in vrsta goriva, saj so viri te podatke podajali v različnih jezikih.
+Poleg razlik v strukturi se posamezni viri med seboj razlikujejo tudi v zapisu posameznih vrednosti. Cene so lahko zapisane z ločilom tisočic, 
+ki jih je treba pred pretvorbo v število odstraniti. Prevoženi kilometri so pri enem viru zapisani kot celo število, pri drugem pa kot niz z enoto 
+(na primer \enquote{123.456~km}). Datum prve registracije je pri enem viru zapisan v obliki \textit{mesec/leto}, pri drugem pa \textit{leto/mesec}. Podobno je bilo 
+treba poenotiti kategorije, za tip menjalnika in vrsto goriva, saj so viri te podatke podajali v različnih jezikih.
 
-Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}. Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}~\cite{rapidfuzz-docs}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele. Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir, s čimer se sistem sproti \enquote{uči}. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju.
+Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače
+ (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). 
+ Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri
+  tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}.
+   Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}~\cite{rapidfuzz-docs}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele.
+    Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir,
+     s čimer se sistem sproti uči. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju. Del kode, ki izvaja ujemanje znamke, je prikazan v kodi~\ref{code:brand-matching-python}.
 
 \begin{center}
-\captionof{listing}{Ujemanje znamke s kanoničnim in približnim (fuzzy) ujemanjem}
+\captionof{listing}{Ujemanje znamke s dejanskim in približnim (ang.\ \textit{fuzzy}) ujemanjem}
 \label{code:brand-matching-python}
 \begin{minted}{python}
 def match_brand(raw: str, source: str):
@@ -695,10 +649,9 @@ menjalnik, stanje vozila). Dodajanje večjega števila parametrov brez zadostne
 količine normaliziranih podatkov bi namreč vzorec primerljivih vozil dodatno
 skrčilo, zaradi česar bi jih hitro ostalo premalo za smiselno statistično oceno.\\
 Po svoji zasnovi algoritem ustreza pristopu primerljivih prodaj (angl.\
-\emph{comparable sales approach} oz.\ \emph{Comparative Market Analysis} --
-CMA), ki je uveljavljena metoda vrednotenja v nepremičninski in avtomobilski
+\emph{comparable sales approach}), ki je uveljavljena metoda vrednotenja v nepremičninski in avtomobilski
 stroki~\cite{cma-appraisal}. Cene predmeta pri tem pristopu ne ocenjujemo na
-podlagi enega samega modela, temveč na podlagi množice podobnih, dejansko
+podlagi enega samega primerka, temveč na podlagi množice podobnih, dejansko
 prodanih (oz.\ oglaševanih) primerkov, ki jim glede na stopnjo podobnosti
 pripišemo različno utež. V statističnem smislu gre za obliko metode
 $k$-najbližjih sosedov (angl.\ \emph{k-nearest neighbors}, k-NN)~\cite{knn-regression},
@@ -709,32 +662,32 @@ ko se primerjano vozilo bolj razlikuje od ocenjevanega.
 \subsection{Filtriranje kandidatov iz podatkovne baze}
 \label{subsec:filtriranje}
 
-Prvi korak algoritma je poizvedba SQL, ki iz tabele\\
+Prvi korak algoritma je poizvedba SQL, ki iz tabele
 \texttt{market.normalized\_market\_listing} izlušči kandidate za primerjavo.
-Znamko in model filtriramo strogo (po enakosti). Znamka in model sta kategorični spremenljivki, ki najmočneje
+Znamko in model filtriramo strogo (po enakosti), saj najmočneje
 določata segment in bazno ceno vozila.
 
 Numerični spremenljivki filtriramo z dovoljenim odstopanjem: pri kilometrini
 znaša $\pm 40\,000$~km (konstanta \texttt{KILOMETERS\_DIFFERENCE}), pri letniku
 pa $\pm 3$~leta (konstanta \texttt{YEAR\_DIFFERENCE}). Navedeni meji nista bili
 izbrani naključno, temveč predstavljata kompromis med natančnostjo in velikostjo
-vzorca. Ožje kot postavimo meji, bolj primerljiva so vrnjena vozila glede na
-ocenjevano vozilo, a hkrati manjši je vzorec, iz katerega algoritem izračuna
+vzorca. Če meji postavimo ožje, so vrnjena vozila bolj primerljiva glede na ocenjevano vozilo, a je 
+hkrati manjši vzorec, iz katerega algoritem izračuna
 oceno, kar poveča statistično negotovost. Gre za znano razmerje med
 pristranskostjo in varianco (angl.\ \emph{bias--variance trade-off})~\cite{bias-variance}.
 Ker je podatkovna baza normaliziranih podatkov v tej fazi razvoja še razmeroma
 majhna, smo se zavestno odločili za širši interval, da algoritem sploh pridobi
 dovolj velik vzorec za smiselno oceno. Ob prihodnji rasti podatkovne baze bi
-bilo smiselno ta interval zožiti oziroma ga narediti dinamičnega (npr.\
-odvisnega od števila zadetkov ožjega intervala), s čimer bi izboljšali
-natančnost ocene, ne da bi ta trpela zaradi premajhnega vzorca.
+bilo smiselno ta interval zožiti oziroma ga določiti dinamično (v\
+odvistnosti od števila zadetkov ožjega intervala), s čimer bi izboljšali
+natančnost ocene, brez da bi ta izhajala iz premajhnega vzorca.
 
 \subsection{Točkovanje podobnosti posameznega vozila}
 \label{subsec:tockovanje}
 
 Za vsako vozilo iz filtrirane množice izračunamo oceno podobnosti (angl.\
-\emph{score}) glede na ocenjevano vozilo. Uporabili smo dve delni oceni, eno za
-kilometrino in eno za letnik, ki ju nato združimo v skupno oceno:
+\emph{score}) glede na ocenjevano vozilo. Uporabili smo dve delni oceni, (eno za
+kilometrino in eno za letnik), ki ju nato združimo v skupno oceno. Koda~\ref{code:car-scoring-python} predstavlja ta del izračuna.
 
 \begin{center}
 \captionof{listing}{Izračun ocene podobnosti posameznega vozila}
@@ -756,23 +709,22 @@ def get_scores_of_each_car(data_compare: dict, cars: list) -> list[tuple]:
 \end{center}
 
 Obe delni oceni sta zasnovani po istem načelu: vozilo, ki je identično
-ocenjevanemu, prejme največjih 100 točk, vozilo na robu
-dovoljenega intervala (natanko $40\,000$~km ali 3 leta narazen) pa 0 točk. Med
+ocenjevanemu, prejme največ 100 točk, vozilo na robu
+dovoljenega intervala (z odstopanja natanko $40\,000$~km ali 3 leta) pa 0 točk. Med
 tema skrajnostma ocena linearno pada. Funkcija \texttt{max(0, ...)} zagotavlja,
 da ocena nikoli ne postane negativna. Ker vozila zunaj dovoljenega intervala
 zaradi filtriranja v poizvedbi SQL sploh ne pridejo do tega koraka, gre pri
 tem predvsem za dodatno varnostno mejo.\\
-Za linearno padajočo funkcijo (namesto eksponentne ali Gaussove) smo se odločili
-iz dveh razlogov. Prvič, zaradi enostavnosti in razložljivosti: linearna
-funkcija je najlažje razumljiva in preverljiva, kar je pri diplomskem delu, kjer
-je cilj dokazati delujoč koncept, pomembnejše od marginalnega izboljšanja
-natančnosti. Drugič, zaradi enostavnega umerjanja: z eno samo konstanto natančno
+Za linearno padajočo funkcijo (namesto eksponentne) smo se odločili
+iz dveh razlogov. Najprej, zaradi enostavnosti in jasnosti, linearna
+funkcija je jlažje razumljiva in preverljiva, kar je za prikaz delujočega koncepta, pomembnejše od mogočega izboljšanja
+natančnosti. Drugi razlog enostavno umerjanje, saj z eno samo konstanto natančno
 določimo, kje ocena doseže ničlo.\\
 Skupno oceno podobnosti izračunamo kot uteženo vsoto obeh delnih ocen, pri čemer
 kilometrini pripišemo višjo utež ($60\,\%$) kot letniku ($40\,\%$).
-Vozili istega letnika se lahko močno razlikujeta po dejanski obrabi, če je eno
-prevozilo $50\,000$~km, drugo pa $200\,000$~km, medtem ko vozili s podobno
-kilometrino, a nekoliko različnim letnikom ostajata precej primerljivi.
+Vozili istega letnika se tako bolj razlikujeta po dejanski obrabi, če je prvo
+prevozilo $50\,000$~km, drugo pa $200\,000$~km. Vozili s podobno
+kilometrino, a nekoliko različnim letnikom pa ostajata bolj primerljivi.
 
 \subsection{Izračun ocenjene cene z uteženim povprečjem}
 \label{subsec:uteceno-povprecje}
@@ -783,224 +735,206 @@ prav njegova izračunana ocena podobnosti:
 
 \begin{equation}
   \label{eq:weighted-mean}
-  \text{estimated\_price} =
-  \frac{\sum_i \text{price}_i \cdot \text{score}_i}{\sum_i \text{score}_i}
+  \texttt{estimated\_price} =
+  \frac{\sum_i \texttt{price}_i \cdot \texttt{score}_i}{\sum_i \texttt{score}_i}
 \end{equation}
 
 Uporaba uteženega povprečja namesto navadnega aritmetičnega je ključna: če bi
-izračunali navadno povprečje cen vseh vozil znotraj intervala, bi vozilo,
-oddaljeno $39\,000$~km, prispevalo enako kot vozilo, oddaljeno le $500$~km, kar
+izračunali navadno povprečje cen vseh vozil znotraj intervala, bi vozilo z $39\,000$~km več, prispevalo enako kot vozilo, ki ima le $500$~km,. To
 je neustrezno, saj je slednje veliko boljši pokazatelj dejanske cene. Z
 uteževanjem po vrednosti \texttt{total\_score} bolj podobna vozila sorazmerno
-bolj vplivajo na končno oceno, vozila na robu intervala pa prispevajo le malo,
-gre za standardno obliko uteženega povprečja (angl.\ \emph{weighted
+bolj vplivajo na končno oceno, vozila na robu intervala pa prispevajo le malo.
+Gre za standardno obliko uteženega povprečja (angl.\ \emph{weighted
 mean})~\cite{weighted-mean}, kjer vsota uteži v imenovalcu poskrbi za pravilno
 normalizacijo rezultata, tako da ta ostane v enotah cene ne glede na število
 vozil ali velikost njihovih ocen.\\
 Poleg ocenjene cene algoritem vrne tudi indeks zaupanja (angl.\
-\emph{confidence}), izračunan po enačbi:
+\emph{confidence}), ki je izračunan po enačbi:
 
 \begin{equation}
   \label{eq:confidence}
-  \text{confidence} = \min\!\left(1{.}0,\ \frac{n}{20}\right),
+  \texttt{confidence} = \min\!\left(1{.}0,\ \frac{n}{20}\right),
 \end{equation}
 
-pri čemer je $n$ število vozil, najdenih znotraj filtriranih meja. Kar pove
-uporabniku, je to kako smo prepričani v ceno, ki smo mu jo posredovli. Če je število
-primerjalnih vozil veliko, je indeks zaupanja bližje 1, če pa je število primerjalnih vozil majhno, 
+pri čemer je $n$ število vozil, najdenih znotraj filtriranih meja. To pove
+uporabniku stopnjo zaupanja v ceno, ki smo mu jo posredovali. Če je število
+primerjalnih vozil veliko, je indeks zaupanja bližje 1, sicer pa
 je indeks zaupanja bližje 0.
 
-\subsection{Povzetek utemeljitve pristopa}
-\label{subsec:povzetek-pristopa}
 
-Algoritem cene torej ne poskuša napovedati z enim samim \enquote{črnoškatlastim}
-modelom, temveč uporablja pregleden in razložljiv
-pristop primerljivih prodaj z uteženim povprečjem, pri katerem kategorični
-spremenljivki (znamka, model) določata strogo mejo primerljivosti, numerični
-spremenljivki (kilometrina, letnik) določata mehko, zvezno padajočo utež znotraj
-te meje, končna cena je uteženo povprečje, ki daje večjo težo bolj podobnim
-vozilom, indeks zaupanja pa uporabnika pregledno opozori na zanesljivost
-posamezne ocene, glede na velikost vzorca. Ta pristop smo izbrali predvsem zato,
-ker je pri omejeni količini normaliziranih podatkov enostavnejši, bolj razložljiv
-in lažje preverljiv kot kompleksnejši statistični ali strojno naučeni modeli,
-hkrati pa metodološko temelji na uveljavljeni praksi vrednotenja rabljenih vozil
-in nepremičnin s primerjavo podobnih primerov na trgu.~\cite{cma-appraisal}
-
-
-\section{Infrastriuktura in avtomatizacija}
-Poleg funkcionalne implementacije posameznih komponent je bil pomemben del
+\section{Infrastruktura in avtomatizacija}
+Poleg implementacije posameznih komponent je bil pomemben del
 razvoja tudi vzpostavitev infrastrukture, ki zagotavlja konsistentno delovanje
-sistema v različnih fazah njegovega življenjskega cikla. Od lokalnega razvoja,
+sistema v različnih fazah njegovega življenjskega cikla; od lokalnega razvoja,
 prek avtomatiziranega preverjanja kode, do namestitve v produkcijsko okolje.
 Namen tovrstne avtomatizacije je zmanjšati število ročnih posegov, ki so
 podvrženi napakam, in zagotoviti, da se aplikacija v vseh okoljih obnaša enako,
-ne glede na razlike v konfiguraciji posameznega razvijalčevega računalnika ali
-strežnika~\cite{devops-handbook}. Tak pristop temelji na načelu konsistentnosti
+ne glede na razlike v konfiguraciji računalnika ali
+strežnika~\cite{devops-handbook}. Tak pristop temelji na načelu usklajenosti
 okolij (angl.\ \emph{environment parity}), po katerem naj bodo razvojno, testno
-in produkcijsko okolje čim bolj podobna, s čimer zmanjšamo tveganje napak, ki se
+in produkcijsko okolje čim bolj podobna, s čimer zmanjšamo tveganje za napake, ki se
 pojavijo šele ob namestitvi~\cite{twelve-factor}.
 
 \subsection{Vsebnikizacija razvojnega okolja}
 Za vsebnikizacijo razvojnega okolja smo uporabili orodje Docker Compose~\cite{docker-compose-docs}, ki
-omogoča enostavnejšo vzpostavitev več med seboj povezanih vsebnikov, naštetih
-v poglavju~\ref{sec:arhitektura}. Orodje deluje tako, da v datoteki
-\texttt{docker-compose.yml} opišemo vse storitve, ki jih aplikacija potrebuje,
+omogoča enostavnejšo vzpostavitev več med seboj povezanih vsebnikov. Orodje deluje tako, da v datoteki
+\texttt{docker-compose.yml} opišemo vse potrebne storitve
 in njihove medsebojne odvisnosti, kar omogoča zagon celotnega okolja z enim
 samim ukazom. To je še posebej uporabno pri razvoju in testiranju. Za lokalno
 preizkušanje pošiljanja elektronske pošte smo uporabili orodje MailHog~\cite{mailhog}, ki
-odhodno pošto prestreže in jo prikaže v spletnem vmesniku, namesto da bi jo
-dejansko poslal na pravi naslov. Za zaledni in evalvacijski sistem smo napisali
-ločeni datoteki \texttt{Dockerfile}, v katerih določimo, na katerem jeziku
-oziroma okolju sistem temelji ter katere ukaze naj vsebnik ob zagonu izvede.\\
+odhodno pošto prestreže in jo prikaže v spletnem vmesniku, brez
+dejanskega pošiljanja na pravi naslov. Za zaledni in evalvacijski sistem smo napisali
+ločeni datoteki \texttt{Dockerfile}, v katerih določimo, jezik
+ter okolje sistema ter katere ukaze naj vsebnik ob zagonu izvede.\\
 Ker se storitve med seboj zaganjajo z različnimi hitrostmi, smo za pravilno
-zaporedje zagona uporabili ključ \texttt{depends\_on} v kombinaciji z
-definicijami \texttt{healthcheck}. Brez tega bi se zaledni sistem lahko poskusil
-povezati s podatkovno bazo, še preden bi ta dejansko sprejemala povezave, kar bi
-ob zagonu okolja povzročilo napako. Storitve, od katerih so odvisne druge
-storitve, zato vsebujejo ukaz za preverjanje pripravljenosti (\texttt{pg\_isready}
-pri sistemu PostgreSQL oziroma \texttt{redis-cli ping} pri sistemu Redis),
-odvisne storitve pa se zaženejo šele, ko je preverjanje uspešno.\\
+zaporedje zagona uporabili \texttt{depends\_on} v kombinaciji z
+definicijami \texttt{healthcheck}. Brez tega bi se zaledni sistem lahko poskusil prezgodaj
+povezati s podatkovno bazo, kar bi
+ob zagonu okolja povzročilo napako. Odvisne storitve, zato vsebujejo ukaz za preverjanje pripravljenosti (\texttt{pg\_isready}
+pri sistemu PostgreSQL oziroma \texttt{redis-cli ping} pri sistemu Redis~\cite{redis-data-store})
+ in se zaženejo šele, ko je preverjanje uspešno.\\
 Za shranjevanje podatkov smo uporabili poimenovane nosilce podatkov (angl.\
-\emph{named volumes}): eden skrbi za trajnost podatkovne baze med ponovnimi
+\emph{named volumes}): prvi skrbi za trajnost podatkovne baze med ponovnimi
 zagoni vsebnikov, drugi pa predpomni mapo \texttt{node\_modules} znotraj
-zalednega vsebnika, saj bi jo sicer prepisala prevezava map z gostitelja. Za
-samo razvojno izkušnjo, natančneje za samodejno osveževanje ob spremembah
+zalednega vsebnika, saj bi jo sicer prepisala mapa gostitelja. Za
+osveževanje ob spremembah
 (angl.\ \emph{hot reload}), uporabljamo prevezavo map (angl.\ \emph{bind mount})
 iz gostiteljevega datotečnega sistema v vsebnik, tako da se spremembe v izvorni
-kodi takoj odražajo v delovanju aplikacije, brez ponovne gradnje slike.\\
+kodi takoj odražajo v delovanju aplikacije.\\
 Odjemalskega sistema v lokalno razvojno okolje namenoma nismo vključili, saj
-njegova vključitev zaradi nenehne ponovne gradnje slike ob vsaki spremembi
-bistveno upočasni razvoj, zato ga med razvojem poganjamo neposredno na
+njegova vključitev zaradi nenehnih ponovnih izgradenj slike ob vsaki spremembi
+bistveno upočasni razvoj. Med razvojem, ga tako poganjamo neposredno na
 gostitelju.\\
 Za produkcijsko okolje uporabljamo ločeno datoteko
-\texttt{docker-compose.prod.yml}, ki namesto lokalne gradnje slik uporablja
-vnaprej zgrajene slike iz registra vsebnikov (angl.\ \emph{container registry}),
-storitve poveže v skupno omrežje ter doda poimenovan nosilec podatkov za
+\texttt{docker-compose.prod\allowbreak.yml}, ki namesto lokalne gradnje slik uporablja
+vnaprej zgrajene slike iz registra vsebnikov (angl.\ \emph{container registry}).
+Storitve poveže v skupno omrežje ter doda poimenovan nosilec podatkov za
 shranjevanje naloženih datotek.
 
-\subsection{Neprekinjena integracija z orodjem GitHub Actions}
-Neprekinjena integracija (angl.\ \emph{continuous integration}, CI) je praksa,
-pri kateri se ob vsaki spremembi kode samodejno izvedejo preverjanja (testi,
-gradnja, statična analiza kode), s čimer napake odkrijemo čim prej, še preden se
-zlijejo v glavno vejo ali dosežejo druge razvijalce~\cite{fowler-ci}. Namesto da
-bi vsak razvijalec teste poganjal ročno pred združitvijo sprememb, jih namesto
-njega izvede strežnik, in sicer konsistentno ter vsakič na enak način.\\
-Za implementacijo neprekinjene integracije smo uporabili orodje GitHub Actions~\cite{github-actions-docs},
-GitHubov sistem za avtomatizacijo poteka dela. Njegovo delovanje temelji na
-naslednjih pojmih:
+\subsection{Neprekinjena integracija}
+Neprekinjena integracija (angl.\ \emph{continuous integration}) je praksa,
+pri kateri se ob vsaki spremembi kode samodejno izvedejo preverjanja (testiranje,
+izgradnja, statična analiza kode). Na ta način napake odkrijemo, še preden se
+zlijejo v glavno vejo ali dosežejo druge razvijalce~\cite{fowler-ci}. Namesto ročnega testiranja razvijalca pred združitvijo sprememb, 
+teste izvede strežnik, vedno na enak način.\\
+Za implementacijo neprekinjene integracije smo uporabili orodje GitHub Actions~\cite{github-actions-docs}. Njegovo delovanje opredeljujejo nadlednji pojmi:
 
 \begin{itemize}
-    \item \textbf{Potek dela} (angl.\ \emph{workflow}) je datoteka \texttt{.yml}
-    v mapi \texttt{.github/workflows/}, ki določa, kdaj naj se nekaj izvede
-    (npr.\ ob dogodku \texttt{pull\_request} ali \texttt{push}) in katera
-    opravila naj se ob tem zaženejo.
+    \item \textbf{Potek dela} (angl.\ \emph{workflow}) je določen v datoteki \texttt{.yml}
+    v mapi \texttt{.github\allowbreak/workflows/}, ki določa, kdaj naj se
+    (npr.\ ob dogodku \texttt{pull\_request} ali \texttt{push}) sprožijo določena
+    opravila.
     \item \textbf{Opravilo} (angl.\ \emph{job}) se izvede na svežem virtualnem
     strežniku (npr.\ \texttt{ubuntu-latest}), ki ga GitHub ob zagonu ustvari in
     po zaključku izbriše.
     \item \textbf{Koraki} (angl.\ \emph{steps}) znotraj opravila so zaporedni
     ukazi. To so lahko neposredni lupinski ukazi (npr.\ \texttt{run: pnpm test})
     ali vnaprej pripravljeni in ponovno uporabni gradniki (angl.\ \emph{actions}),
-    ki jih razvije GitHub ali skupnost. Tako npr.\ gradnik
+    ki jih razvije GitHub ali skupnost. Tako gradnik
     \texttt{actions/checkout} prenese izvorno kodo, gradnik
-    \texttt{pnpm/action-setup} pa namesti upravitelja paketov pnpm. Namesto
-    lastnoročno napisane skripte za namestitev okolja Node, predpomnjenje
-    odvisnosti in nastavitev spremenljivke PATH tako uporabimo že obstoječi
+    \texttt{pnpm/action-setup} pa namesti upravitelja paketov. Namesto
+    lastnoročno napisane skripte (za namestitev okolja Node, predpomnjenje
+    odvisnosti in nastavitev spremenljivke PATH) tako uporabimo že obstoječi
     gradnik.
     \item \textbf{Storitve} (angl.\ \emph{services}) so pomožni vsebniki, ki
-    tečejo vzporedno z opravilom. Uporabni so, kadar testi potrebujejo pravo
+    tečejo vzporedno z opravilom. Uporabni so, takrat ko testi potrebujejo pravo
     podatkovno bazo namesto njene simulacije (angl.\ \emph{mock}).
 \end{itemize}
 
-Potek dela, opredeljen v datoteki \texttt{ci.yml}, smo pripravili tako, da ob
-vsakem novem zahtevku za združitev (angl.\ \emph{pull request}) izvede vse teste
-zalednega sistema in preveri, ali se uspešno izvedejo. Potek dela v datoteki
-\texttt{docker-publish.yml} je zasnovan še korak dlje: ob zahtevku za združitev
-zgolj preveri, ali se slika Docker uspešno zgradi, ob združitvi v glavno vejo pa
-sliko dejansko zgradi, digitalno podpiše in objavi. Ta korak že sodi na področje
-neprekinjene dostave (angl.\ \emph{continuous delivery}, CD), torej samodejne
-distribucije zgrajenega artefakta~\cite{humble-cd}.
+Potek dela v datoteki \texttt{ci.yml}, smo določili tako, da se ob
+vsakem novem zahtevku za združitev (angl.\ \emph{pull request}) izvedejo vsi testi
+zalednega sistema ob tem se preveri, ali se uspešno izvedejo. Potek dela v datoteki
+\texttt{docker-publish.yml} je zasnovan še korak dlje: ob zahtevku za združitev se
+zgolj preveri, ali se slika Docker uspešno zgradi, ob združitvi v glavno vejo pa se
+sliko tudi dejansko zgradi, digitalno podpiše in objavi. Ta korak že sodi na področje
+neprekinjene dostave (angl.\ \emph{continuous delivery}), torej samodejne
+distribucije zgrajene programske rešitve~\cite{humble-cd}. V naslednji sliki je prikazan 
+primer izgradnje in izvajanja testov na cevovodu~ref{code:ci-cd}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{ci-cd.png}
-\caption{Samodejno izvajanje testov nad vejo v okolju GitHub Actions}
+\caption{Samodejno izvajanje testov nad vejo na cevovodu}
 \label{fig:ci-cd}
 \end{figure}
 
 \subsection{Namestitev in gostovanje}
-Za gostovanje smo izbrali eno izmed cenovno najugodnejših možnosti, in sicer
-najeti navidezni zasebni strežnik (angl.\ \emph{virtual private server}, VPS)
+Za gostovanje smo izbrali eno izmed cenovno najugodnejših možnosti in sicer
+najeti navidezni zasebni strežnik (angl.\ \emph{virtual private server})
 pri ponudniku Hetzner~\cite{hetzner}. Strežnik razpolaga s 4~GB delovnega pomnilnika in dvema
-procesorskima jedroma, kar zadostuje za zagon vseh treh storitev. Po prijavi v
+procesorskima jedroma, kar zadostuje za zagon vseh treh storitev. Po prvi prijavi v
 strežnik smo najprej posodobili operacijski sistem na najnovejšo različico,
 nato pa namestili orodji Docker in Docker Compose.\\
 Za upravljanje aplikacije smo uporabili orodje Dokploy~\cite{dokploy}, ki omogoča enostavno
 uporabo datotek \texttt{docker-compose} v produkcijskem okolju in hkrati močno
 poenostavi postopek posodabljanja aplikacije. V njem lahko nastavimo tudi
-opravila, ki se izvajajo periodično, podobno kot storitev \texttt{cron}. Na
-strežnik je treba namestiti povezovalno komponento med orodjema Dokploy in
-Docker, nato pa Dokploy sam poskrbi za gradnjo aplikacije: iz repozitorija
+opravila, ki se izvajajo periodično, (podobno kot storitev \texttt{cron}). Na
+strežnik je treba namestiti še povezovalno komponento med orodjema Dokploy in
+Docker, nato pa Dokploy sam poskrbi za izgradnjo aplikacije: iz repozitorija
 GitHub zajame najnovejšo različico kode in zgradi pripadajočo sliko neposredno
-na strežniku. Tak postopek omogoča, da se nova sprememba v produkcijskem okolju
+na strežniku. Tak postopek omogoča, da se vsaka sprememba v produkcijskem okolju
 odrazi v nekaj minutah.\\
 Dokploy je odprtokodno in brezplačno orodje, najem strežnika pri ponudniku
 Hetzner pa predstavlja nizek mesečni strošek.
+% TODO: Kontkretnejše predstavi stroške in podaj sliko da vidimo kako izgleda vse
+
+
+% TODO: Manjka Analiza, prikaz rešitve, primerja z obstoječimi ršitvami, simulacija prijave, mnenje uporabnikov, zaznamke ob testiranju in uporabi
+\chapter{Analiza}
+
 
 
 \chapter{Sklep}
 \label{ch:sklep}
-
-Cilj diplomskega dela je bil razviti prototip, ki uporabnikom omogoča objavo in
+% TODO: med cilji za naprej + rešitev za praktične težave, izpostavi ključne rezultate, analizo narejenegae
+Cilj diplomskega dela je bil na podlagi jassno opredeljenih zahtev razviti prototip, ki uporabnikom omogoča objavo in
 pregled oglasov rabljenih avtomobilov, ter vanjo vgraditi sistem za samodejno ocenjevanje
 tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
-razvili smo delujoč prototip z ločeno odjemalsko, zaledno in evalvacijsko
-komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi cevovod za zajem,
-normalizacijo in primerjavo tržnih podatkov ter algoritem za oceno cene, ki temelji na
+delujoč prototip z ločeno odjemalsko, zaledno in evalvacijsko
+komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi "cevovod" za zajem,
+normalizacijo in primerjavo tržnih podatkov po
 pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
 in~\ref{subsec:uteceno-povprecje}).\\
 Hipoteza diplomskega dela je bila, da je mogoče uporabniku na podlagi zbranih tržnih
 podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne
-vrednosti. Implementirani algoritem to hipotezo potrjuje na konceptualni ravni (angl.\
-\emph{proof of concept}). Sistem na podlagi znamke, modela, letnika in prevoženih
+vrednosti. Sistem na podlagi znamke, modela, letnika in prevoženih
 kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
-zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil
-(razdelek~\ref{subsec:uteceno-povprecje}).
+zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil.
 Med izdelavo dela smo prepoznali več možnosti za nadaljnji razvoj, ki jih navajamo v
 nadaljevanju.
 \begin{itemize}
     \item \textbf{Razširitev nabora vhodnih spremenljivk.} Ko bo na voljo dovolj
-    normaliziranih podatkov, bi bilo smiselno v algoritem vključiti dodatne parametre, kot
+    normaliziranih podatkov, bi bilo smiselno v algoritem vključiti dodatne parametre, (kot
     so oprema, vrsta goriva, tip menjalnika in stanje vozila, kar bi izboljšalo natančnost
-    ocene.
+    ocene). % TODO: Naslovi probleme dostop do podatkov, velike količine, omejitve
     \item \textbf{Dinamično prilagajanje intervalov primerljivosti.} Namesto fiksnih mej bi
     lahko intervale kilometrine in letnika prilagajali sproti glede na gostoto podatkov v
     posameznem segmentu (na primer širši interval pri redkih modelih in ožji pri pogostih),
-    s čimer bi omilili razmerje med pristranskostjo in varianco, opisano v
-    razdelku~\ref{subsec:filtriranje}.
+    s čimer bi omilili razmerje med pristranskostjo in varianco.
     \item \textbf{Uvedba metod strojnega učenja.} Ko bo obseg lastnih, normaliziranih
     podatkov zadosten, bi lahko sedanji, razložljivi pristop primerljivih prodaj dopolnili
     ali nadomestili z modeli strojnega učenja (na primer regresijskimi modeli, naključnimi
-    gozdovi ali nevronskimi mrežami), ki bi lahko zajeli bolj kompleksne, nelinearne
+    gozdovi ali nevronskimi mrežami), ki bi lahko predstavili bolj zahtevne, nelinearne
     odvisnosti med lastnostmi vozila in ceno~\cite{gegic2019car}.
     \item \textbf{Zmanjšanje odvisnosti od zunanjih virov.} Z rastjo števila uporabnikov in
-    oglasov, objavljenih neposredno na platformi, bomo lahko delež zunanjih podatkov
-    postopno zmanjševali in ocene vse bolj gradili na podatkih, zbranih znotraj same
-    aplikacije, kar bo izboljšalo tako natančnost kot vzdržnost sistema, saj se s tem
+    oglasov, na platformi, bomo lahko delež zunanjih podatkov
+    postopno zmanjševali in ocene vse bolj gradili na podatkih, ki so zbrani znotraj same
+    aplikacije. To bo izboljšalo tako natančnost kot vzdržnost sistema, saj se s tem
     zmanjša odvisnost od krhkih postopkov zajema s spletnih strani.
     \item \textbf{Postopna migracija zalednega sistema na TypeScript.} Uvedba statičnega
     preverjanja tipov bi dolgoročno izboljšala zanesljivost in vzdržljivost zalednega dela
     aplikacije~\cite{gao2017typescript}.
     \item \textbf{Nadgradnja infrastrukture in spremljanja delovanja.} Smiselna nadaljnja
     koraka sta uvedba centraliziranega beleženja dogodkov in spremljanja delovanja sistema
-    (angl.\ \emph{monitoring}) v produkcijskem okolju, kar bi olajšalo odkrivanje napak in
+    (angl.\ \emph{monitoring}) v produkcijskem okolju. To bi olajšalo odkrivanje napak in
     analizo obremenitve sistema, ter razširitev nabora avtomatiziranih testov na
     evalvacijski in odjemalski del aplikacije, ki v tem trenutku nista pokrita enako
     temeljito kot zaledni sistem, za katerega teste ob vsakem zahtevku za združitev že
     izvaja orodje GitHub Actions.
 \end{itemize}
 Skupno gledano diplomsko delo dokazuje, da je zastavljeni koncept prototipa za
-prodajo vozil z vgrajenim, razložljivim sistemom za ocenjevanje tržne vrednosti izvedljiv
-in tehnično smiseln. Predstavlja trdno osnovo, na kateri je mogoče v prihodnosti graditi
+prodajo vozil z vgrajenim, razložljivim sistemom za ocenjevanje tržne vrednosti tehnično izvedljiv.
+ Predstavlja trdno osnovo, na kateri je mogoče v prihodnosti graditi
 natančnejši, bolj podatkovno bogat in temeljiteje evalviran sistem.
 
 
