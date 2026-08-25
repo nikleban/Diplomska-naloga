@@ -953,6 +953,29 @@
       \field{title}{The Appraisal of Real Estate}
       \field{year}{2020}
     \endentry
+    \entry{cpp-standard}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0828a8408614177181026ea908d5594a}{%
+           family={{ISO/IEC}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{0828a8408614177181026ea908d5594a}
+      \strng{fullhash}{0828a8408614177181026ea908d5594a}
+      \strng{fullhashraw}{0828a8408614177181026ea908d5594a}
+      \strng{bibnamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authorbibnamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authornamehash}{0828a8408614177181026ea908d5594a}
+      \strng{authorfullhash}{0828a8408614177181026ea908d5594a}
+      \strng{authorfullhashraw}{0828a8408614177181026ea908d5594a}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.iso.org/standard/79358.html}}
+      \field{note}{Mednarodni standard programskega jezika C++}
+      \field{title}{{ISO/IEC} 14882:2020 -- Programming languages -- {C++}}
+      \field{year}{2020}
+    \endentry
     \entry{janssen2012open}{article}{}{}
       \name{author}{3}{}{%
         {{hash=c1fd42806e363295bda101989363522c}{%
@@ -1120,6 +1143,29 @@
       \field{title}{Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems}
       \field{year}{2017}
     \endentry
+    \entry{supertest-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=574a1b688fa4a9d71d262ed9da431c25}{%
+           family={{Ladjs Contributors}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{fullhash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{fullhashraw}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{bibnamehash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{authorbibnamehash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{authornamehash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{authorfullhash}{574a1b688fa4a9d71d262ed9da431c25}
+      \strng{authorfullhashraw}{574a1b688fa4a9d71d262ed9da431c25}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/ladjs/supertest}}
+      \field{note}{Uradna dokumentacija}
+      \field{title}{{SuperTest} -- Super-agent driven library for testing {HTTP} servers}
+      \field{year}{2024}
+    \endentry
     \entry{laender2002}{article}{}{}
       \name{author}{4}{}{%
         {{hash=c22a54e7ccbbc720cf4c7101e609654e}{%
@@ -1192,6 +1238,29 @@
       \field{howpublished}{\url{https://github.com/mailhog/MailHog}}
       \field{note}{Uradno programsko skladišče}
       \field{title}{{MailHog}}
+      \field{year}{2024}
+    \endentry
+    \entry{jest-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=6c56f762d9ebe73063cd2d157e97351f}{%
+           family={{Meta Open Source}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{fullhash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{fullhashraw}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{bibnamehash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{authorbibnamehash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{authornamehash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{authorfullhash}{6c56f762d9ebe73063cd2d157e97351f}
+      \strng{authorfullhashraw}{6c56f762d9ebe73063cd2d157e97351f}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://jestjs.io/}}
+      \field{note}{Uradna dokumentacija}
+      \field{title}{{Jest} -- Delightful {JavaScript} Testing}
       \field{year}{2024}
     \endentry
     \entry{react-docs}{misc}{}{}
@@ -1618,6 +1687,29 @@
       \field{title}{{RapidFuzz} Documentation}
       \field{year}{2024}
     \endentry
+    \entry{react-hook-form-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5f0c733a03710ee9a9f97bd11df24392}{%
+           family={{React Hook Form Contributors}},
+           familyi={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{fullhash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{fullhashraw}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{bibnamehash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{authorbibnamehash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{authornamehash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{authorfullhash}{5f0c733a03710ee9a9f97bd11df24392}
+      \strng{authorfullhashraw}{5f0c733a03710ee9a9f97bd11df24392}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://react-hook-form.com/}}
+      \field{note}{Uradna dokumentacija}
+      \field{title}{{React Hook Form} -- Performant, flexible and extensible forms}
+      \field{year}{2024}
+    \endentry
     \entry{redis-data-store}{online}{}{}
       \name{author}{1}{}{%
         {{hash=5931ee9e163586335d0830f3e4a0df39}{%
@@ -1789,6 +1881,29 @@
       \verb https://www.stat.si/StatWeb/
       \endverb
     \endentry
+    \entry{tanstack-query-docs}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9dd55379b93ec80f16ff6253eb004a35}{%
+           family={{TanStack}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{fullhash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{fullhashraw}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{bibnamehash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{authorbibnamehash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{authornamehash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{authorfullhash}{9dd55379b93ec80f16ff6253eb004a35}
+      \strng{authorfullhashraw}{9dd55379b93ec80f16ff6253eb004a35}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://tanstack.com/query/latest}}
+      \field{note}{Uradna dokumentacija}
+      \field{title}{{TanStack Query} -- Powerful asynchronous state management}
+      \field{year}{2024}
+    \endentry
     \entry{cron-man}{online}{}{}
       \name{author}{1}{}{%
         {{hash=d0897c02997f6b92f132b399c58a61d3}{%
@@ -1815,64 +1930,6 @@
       \endverb
       \verb{url}
       \verb https://man7.org/linux/man-pages/man5/crontab.5.html
-      \endverb
-    \endentry
-    \entry{postgresql-about}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=917cf2b2062aec0c604dbecc106084cd}{%
-           family={{The PostgreSQL Global Development Group}},
-           familyi={T\bibinitperiod}}}%
-      }
-      \strng{namehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{fullhash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{fullhashraw}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{bibnamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorbibnamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authornamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorfullhash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorfullhashraw}{917cf2b2062aec0c604dbecc106084cd}
-      \field{extraname}{1}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Dostopano: 21. 6. 2026}
-      \field{title}{About PostgreSQL}
-      \field{year}{2025}
-      \verb{urlraw}
-      \verb https://www.postgresql.org/about/
-      \endverb
-      \verb{url}
-      \verb https://www.postgresql.org/about/
-      \endverb
-    \endentry
-    \entry{postgresql-docs}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=917cf2b2062aec0c604dbecc106084cd}{%
-           family={{The PostgreSQL Global Development Group}},
-           familyi={T\bibinitperiod}}}%
-      }
-      \strng{namehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{fullhash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{fullhashraw}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{bibnamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorbibnamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authornamehash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorfullhash}{917cf2b2062aec0c604dbecc106084cd}
-      \strng{authorfullhashraw}{917cf2b2062aec0c604dbecc106084cd}
-      \field{extraname}{2}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Dostopano: 21. 6. 2026}
-      \field{title}{PostgreSQL Documentation: What Is PostgreSQL?}
-      \field{year}{2025}
-      \verb{urlraw}
-      \verb https://www.postgresql.org/docs/current/intro-whatis.html
-      \endverb
-      \verb{url}
-      \verb https://www.postgresql.org/docs/current/intro-whatis.html
       \endverb
     \endentry
     \entry{vite-docs}{misc}{}{}

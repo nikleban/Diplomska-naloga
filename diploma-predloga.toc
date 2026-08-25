@@ -5,40 +5,47 @@
 \contentsline {chapter}{Abstract}{}{chapter*.2}%
 \babel@toc {slovene}{}\relax 
 \contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Opis arhitekture sistema}{2}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Pregled področja in sorodnih del}{3}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Tematsko Ozadje}{7}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Zajem podatkov iz spletnih virov}{7}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Javno dostopne podatkovne zbirke}{7}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Dostop preko vmesnikov API}{8}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Samodejni zajem podatkov s spletnih strani}{8}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Razčlenjevanje vsebine HTML}{8}{subsection.3.1.4}%
-\contentsline {chapter}{\numberline {4}Ravoj rešitve}{11}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Zahtevki}{11}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Arhitektura}{11}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Načrtovanje podatkovne baze}{14}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Načrtovanje podatkovne baze aplikacije}{14}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Načrtovanje podatkovne baze odločitvenega modela}{16}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Arhitektura zalednega sistema}{18}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Modul za poizvedbe v podatkovni bazi}{18}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Avtentikacija in avtorizacija uporabnikov}{19}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Asinhrona obdelava podatkov}{21}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Arhitektura uporabniškega vmesnika}{21}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Odjemalska shramba}{22}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Zahtevki API}{23}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Razvojno orodje Vite}{24}{subsection.4.5.3}%
-\contentsline {section}{\numberline {4.6}Evalvacijski sistem}{25}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Algoritem za primerjavo vozil}{26}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Filtriranje kandidatov iz podatkovne baze}{28}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Točkovanje podobnosti posameznega vozila}{29}{subsection.4.6.3}%
-\contentsline {subsection}{\numberline {4.6.4}Izračun ocenjene cene z uteženim povprečjem}{30}{subsection.4.6.4}%
-\contentsline {section}{\numberline {4.7}Infrastruktura in avtomatizacija}{31}{section.4.7}%
-\contentsline {subsection}{\numberline {4.7.1}Vsebnikizacija razvojnega okolja}{31}{subsection.4.7.1}%
-\contentsline {subsection}{\numberline {4.7.2}Neprekinjena integracija z orodjem GitHub Actions}{32}{subsection.4.7.2}%
-\contentsline {subsection}{\numberline {4.7.3}Namestitev in gostovanje}{34}{subsection.4.7.3}%
-\contentsline {chapter}{\numberline {5}Sklep}{35}{chapter.5}%
-\contentsline {chapter}{Literatura}{39}{chapter*.24}%
-\contentsline {section}{Članki v revijah}{39}{section*.25}%
-\contentsline {section}{Članki v zbornikih konferenc}{41}{section*.33}%
-\contentsline {section}{Ostala literatura}{42}{section*.37}%
-\contentsline {chapter}{Dodatek}{47}{chapter*.94}%
+\contentsline {chapter}{\numberline {3}Tematsko Ozadje}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Oglas in atributi vozila}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Atributi avtomobila}{9}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Zajem podatkov iz spletnih virov}{10}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Javno dostopne podatkovne zbirke}{11}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Dostop prek vmesnikov API}{11}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Samodejni zajem podatkov s spletnih strani}{11}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Razčlenjevanje vsebine HTML}{12}{subsection.3.2.4}%
+\contentsline {chapter}{\numberline {4}Ravoj rešitve}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Zahteve}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Arhitektura}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Pomenmbne tehnologije}{17}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Upravljanje obrazcev s knjižnico React Hook Form}{17}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Predpomnjenje strežniškega stanja s knjižnico TanStack Query}{17}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Testiranje zalednega sistema}{18}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Približno ujemanje nizov s knjižnico RapidFuzz}{18}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Načrtovanje podatkovne baze}{19}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Načrtovanje podatkovne baze aplikacije}{19}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Načrtovanje podatkovne baze odločitvenega modela}{20}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Arhitektura zalednega sistema}{22}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Modul za poizvedbe v podatkovni bazi}{22}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Avtentikacija in avtorizacija uporabnikov}{23}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Asinhrona obdelava podatkov}{25}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Arhitektura uporabniškega vmesnika}{25}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Odjemalska shramba}{26}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Zahtevki API}{27}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Razvojno orodje Vite}{28}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}Evalvacijski sistem}{29}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Algoritem za primerjavo vozil}{30}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Filtriranje kandidatov iz podatkovne baze}{32}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Točkovanje podobnosti posameznega vozila}{33}{subsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.7.4}Izračun ocenjene cene z uteženim povprečjem}{34}{subsection.4.7.4}%
+\contentsline {section}{\numberline {4.8}Infrastruktura in avtomatizacija}{35}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Vsebnikizacija razvojnega okolja}{35}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Neprekinjena integracija}{36}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Namestitev in gostovanje}{38}{subsection.4.8.3}%
+\contentsline {chapter}{\numberline {5}Analiza}{39}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Sklep}{41}{chapter.6}%
+\contentsline {chapter}{Literatura}{45}{chapter*.38}%
+\contentsline {section}{Članki v revijah}{45}{section*.39}%
+\contentsline {section}{Članki v zbornikih konferenc}{47}{section*.47}%
+\contentsline {section}{Ostala literatura}{48}{section*.51}%
+\contentsline {chapter}{Dodatek}{55}{chapter*.111}%

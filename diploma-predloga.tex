@@ -21,6 +21,11 @@
 \documentclass[a4paper,12pt,openright]{book}
 %\documentclass[a4paper, 12pt, openright, draft]{book}  Nalogo preverite tudi z opcijo draft, ki pokaže, katere vrstice so predolge! Pozor, v draft opciji, se slike ne pokažejo!
 
+% \flushbottom (privzeto za book) razteguje presledke, da se besedilo poravna do
+% spodnjega roba strani - to na straneh s slikami povzroči velike umetne praznine.
+% \raggedbottom to prepreči, strani se končajo naravno.
+\raggedbottom
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  PODATKI O DIPLOMI
@@ -126,23 +131,76 @@ dela: načrtovanje podatkovne baze in arhitekture sistema, implementacijo zaledn
 odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infrastrukturo in
 avtomatizacijo namestitve. Diplomsko delo se zaključi s povzetkom doseženih rezultatov,
  kritično presojo omejitev rešitve in smeri za nadaljnje izboljšave.
-% TODO: Add poglavje analiza, simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi. Dodaj poglavje in primerjaj z ostalimi!
-\section{Opis arhitekture sistema}
-\label{sec:arhitektura}
-% ------------------------------------------------------------------do tukaj
 
 \chapter{Pregled področja in sorodnih del}
 \label{ch:sorodna dela}
-% TODO: Dodaj slike, primerjaj boljše da si bralec zna predstavljati zagotovo mobile.de in avto.net
-Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov. Med najbolj znanimi evropskimi ponudniki sta mobile.de~\cite{mobile-de} in AutoScout24~\cite{autoscout24},
- ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. Za slovenski trg je najbolj razširjena platforma Avto.net~\cite{avto-net}, ki predstavlja osrednje
-  mesto za objavo in iskanje rabljenih vozil. Nekatere izmed omenjenih platform uporabnikom ponujajo tudi osnovno oceno primernosti cene vozila. Mobile.de~\cite{mobile-de} na primer pri posameznih oglasih prikazuje informacijo o tem,
-   ali je cena vozila glede na primerljive oglase ugodna, primerna ali previsoka. Takšen pristop uporabnikom omogoča hitrejšo orientacijo na trgu, vendar praviloma ne ponuja možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih podatkov.
-\\
+Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov.
+ Ampak le nekatere imajo možnost vrednotenja vozil in od teh je večina je plačljivih. Med najbolj znanimi evropskimi ponudniki sta mobile.de~\cite{mobile-de} in AutoScout24~\cite{autoscout24},
+ ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. \\
+Za slovenski trg je najbolj razširjena platforma Avto.net~\cite{avto-net}, ki
+predstavlja osrednje mesto za objavo in iskanje rabljenih vozil. Platforma je
+izšla leta 1997 in danes velja za prevladujočo aplikacijo za prodajo vozil na
+slovenskem trgu. Uporabniku omogoča prodajo raznovrstnih vozil (kot so
+avtomobili, motorna kolesa in plovila). Kljub dolgi prisotnosti na trgu ni
+doživela večjih posodobitev, zato je njen uporabniški vmesnik zastarel in ponuja
+precej prostora za izboljšave. Za objavo oglasa se mora uporabnik prijaviti,
+medtem ko za brskanje po oglasih prijava ni potrebna. Prikaz posameznega oglasa
+je predstavljen na sliki~\ref{fig:avto-net-example}.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{primer-avto-net.png}
+  \caption{Primer oglasa na Avto.net}
+  \label{fig:avto-net-example}
+\end{figure}
+Uporabniški vmesnik je pregleden in omogoča enostavno orientacijo, zato
+  se uporabnik na njem hitro znajde. Glavna pomanjkljivost so predvsem manjkajoče
+  dodatne funkcionalnosti, ki bi izboljšale uporabniško izkušnjo. Dober primer je obrazec za objavo oglasa.
+  Vneseni podatki se ob prehodu na
+  naslednji korak ne shranijo, zato ob primeru da se uporabnik vrne na prejšnji korak, mora vnose ponovno vpisati.
+   Obrazec je tudi razmeroma dolg in uporabniku ne prikazuje,
+  koliko korakov ima še do zaključka objave. Platforma sicer dela zanesljivo
+  in zadovoljuje osnovne potrebe uporabnikov, vendar kljub temu ostaja prostor za
+  izboljšave. Uporabniški vmesnik za objavo oglasa je prikazan na
+  sliki~\ref{fig:avto-net-objava}.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{primer-objave-avto-net.png}
+  \caption{Objava oglasa na Avto.net}
+  \label{fig:avto-net-objava}
+\end{figure}
+ Mobile.de~\cite{mobile-de} ima novejši uporabniški vmesnik, ki je bolj pregleden in omogoča enostavno navigacijo čez spletno stran.
+ Omogoča uporabniku da objavi oglas, brska po oglasih in filtrira vozila po različnih kriterijih. Za razliko od Avto.net~\cite{avto-net}, Mobile.de~\cite{mobile-de} omogoča tudi oceno vrednosti vozila.
+  Pri posameznih oglasih prikazuje oceno, ali je cena ugodna, primerna ali previsoka. Ocena je
+  predstavljena s petstopenjsko barvno lestvico: pri ugodni ceni je lestvica
+  obarvana zeleno, pri previsoki pa rdeče, vmesne stopnje pa so označene s
+  prehodnimi barvami. Takšen pristop uporabniku omogoča hitrejše odločanje na
+  trgu, saj mu ni treba ročno primerjati oglasov med seboj. Ocena temelji na
+  samodejni primerjavi s podobnimi vozili v ponudbi, vendar platforma ne ponuja
+  možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih
+  podatkov, kadar oglas še ne obstaja. Prikaz lestvice in osnovnih podatkov
+  vozila je predstavljen na sliki~\ref{fig:mobile-de-example}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{primer-mobile-de.png}
+    \caption{Primer evalvacije cene avtomobila na Mobile.de}
+    \label{fig:mobile-de-example}
+\end{figure}
 Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je Eurotax~\cite{eurotax}, ki se pogosto uporablja v avtomobilski industriji, zavarovalništvu in pri trgovcih z vozili.
  Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
-  Na ameriškem trgu je najbolj razširjena storitev CARFAX~\cite{carfax}, ki poleg vrednotenja ponuja tudi vpogled v zgodovino vozila.
-   Storitev je prilagojeni predvsem severnoameriškemu trgu in zato ni neposredno uporabna za slovenski trg rabljenih vozil.
+Na severnoameriškem trgu je najbolj razširjena storitev CARFAX~\cite{carfax}, ki
+  poleg vrednotenja vozila ponuja predvsem vpogled v njegovo celotno zgodovino.
+  Vsako vozilo je določeno z enolično identifikacijsko številko (VIN), na podlagi
+  katere storitev pripravi poročilo o zgodovini vozila. To poročilo vključuje
+  podatke o prijavljenih prometnih nesrečah in škodi, številu prejšnjih lastnikov,
+  servisni zgodovini, ter zgodovini registracije.
+Poleg zgodovinskega poročila CARFAX ponuja tudi funkcijo vrednotenja vozila, ki oceni vrednost vozila glede na njegov
+  konkreten VIN. Za razliko od preprostih ocen, ki upoštevajo zgolj znamko, model
+  in letnik, ta ocena vključuje tudi prevožene kilometre, zgodovino nesreč in
+  škode, število lastnikov, servisne zapise ter namen uporabe vozila (osebna,
+  najemniška ali komercialna raba). Vrednost se prilagaja tudi glede na regijo,
+  saj se ponudba in povpraševanje razlikujeta po posameznih območjih.
+Kljub obsežni funkcionalnosti je storitev prilagojena predvsem severnoameriškemu
+  trgu, zato ni neposredno uporabna za nas.
 \begin{table}[H]
 \centering
 \caption{Primerjava izbranih obstoječih rešitev za prodajo in vrednotenje vozil.}
@@ -165,13 +223,36 @@ Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča pro
  Namen naše rešitve je združiti obe funkcionalnosti v enotnem prototipu,
   ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, ki so dostopne na trgu.
 
-% TODO: To poglavje mora imeti ccs 5 strani
-
 \chapter{Tematsko Ozadje}
 \label{ch:struktura}
-% TODO: predstavi kaj bos v temu poglavju povedal na kratko
+V tem poglavju predstavimo temeljne pojme, na katerih temelji naše delo. Najprej opišemo,
+ kaj je oglas rabljenega vozila in kateri atributi vozila so za nas relevantni. 
+ Nato pojasnimo, kako ocenimo vozilo na podlagi atributov. V nadaljevanju predstavimo pristope za zajem podatkov,
+  s katerimi smo pridobili gradivo za evalvacijski sistem.
 
-% TODO: Predstavi kaj je oglas, slike, atribute, izbrane specifične tehnologije
+\section{Oglas in atributi vozila}
+Oglas je vsebina, namenjena predstavitvi izdelka ali storitve, ki je naprodaj. V našem primeru obravnavamo oglas za prodajo avtomobila.
+ Vsebovati mora podatek o tem, kateri avtomobil se prodaja, in njegove tehnične značilnosti, ki kupcu pomagajo pri odločitvi o nakupu. 
+ Poleg tega mora oglas vsebovati prodajno ceno in kontaktne podatke prodajalca. Oglas ostane objavljen dokler, se prodajana stvar proda,
+ ali se pa prodajalec odloči da je ne bo prodal.
+
+\subsection{Atributi avtomobila}
+Atributi avtomobila so njegove tehnične ali fizične lastnosti, kot so znamka, model, barva, motor, letnik izdelave,
+ prevoženi kilometri, moč motorja (izražena v kilovatih ali konjskih močeh), število vrat, število sedežev, število lastnikov in cena.
+  V nadaljevanju se osredotočimo predvsem na naslednje atribute: znamko, model, prevožene kilometre, letnik izdelave in ceno, saj jih ocenjujemo kot najpomembnejše.
+Znamka in model služita kot identifikatorja vozila, saj na njuni podlagi vemo, za kateri avtomobil gre.
+ Preostali atributi pa so tisti, ki se med posameznimi primeri istega modela dejansko razlikujejo. 
+ Prevoženi kilometri so pomembni, ker izražajo koliko se je vozilo uporabljalo; večje kot je število prevoženih kilometrov, večja je verjetnost okvar in obrabe. 
+ Letnik izdelave pove starost vozila in s tem nakazuje pričakovane prihodnje stroške vzdrževanja. 
+ Cena je glavni podatek, saj zagotavlja primerjalno vrednost med vozili. Na sliki~\ref{fig:todo} prikazujemo primer oglasa v našem prototipu.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{todo.png}
+    \caption{Primer oglasa vozila v prototipu.}
+    \label{fig:todo}
+\end{figure}
+
 \section{Zajem podatkov iz spletnih virov}
 Zajem podatkov iz spletnih virov predstavlja temeljni korak pri našem pristopu za vrednotenje rabljenih vozil na trgu. 
 Kakovost, obseg in starost zbranih podatkov neposredno
@@ -192,9 +273,12 @@ Za tuje trge sicer obstajajo javno dostopne zbirke oglasov, pridobljenih z
 oglasnih portalov, npr. nemški trg (eBay Kleinanzeigen)~\cite{ebay_de_dataset}, vendar za slovenski trg takšna javna zbirka
 ne obstaja.
 
-\subsection{Dostop preko vmesnikov API}
-% TODO: Dodaj še nekaj besed/opisa o temu
-
+\subsection{Dostop prek vmesnikov API}
+Dostop do podatkov prek vmesnika API običajno poteka tako, da se uporabnik najprej registrira pri ponudniku. 
+Ob registraciji uporabnik prejme nosilni žeton (angl.\ \emph{bearer token}), ki ga mora priložiti v vsakemu zahtevku
+ za namen avtentikacije. Večina vmesnikov API je plačljivih, saj ponudniki ustvarjajo prihodek s prodajo podatkov. 
+ Brezplačni vmesniki so pa pogosto pomanjkljivi in vsebujejo zastarele podatke. V našem primeru smo vmesnike API uporabili
+  predvsem za začetno napolnitev podatkovne baze z vsemi znamkami in modeli vozil, za kar zadostujejo tudi brezplačni ponudniki.
 
 \subsection{Samodejni zajem podatkov s spletnih strani}
 
@@ -245,17 +329,51 @@ se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem j
 Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
 ekosistemom knjižnic, namenjenih analizi podatkov.\\
 
-\section{Zahtevki}
-% TODO: dodaj funkcionalne zahtevke, nefukncionalne
+\section{Zahteve}
+Pred začetkom razvoja smo opredelili zahteve, ki jih delimo na funkcionalne in nefunkcionalne. 
+Pri opredelitvi funkcionalnih zahtev ločimo dve vrsti uporabnikov: anonimnega in registriranega. 
+Anonimni uporabnik lahko dostopa le do pregleda oglasov, medtem ko registriran uporabnik pridobi dostop
+ do celotne funkcionalnosti sistema. Funkcionalne zahteve so naslednje:
+\begin{itemize}
+    \item Uporabnik se lahko registrira.
+    \item Registriran uporabnik se lahko prijavi in odjavi.
+    \item Registriran uporabnik lahko objavi oglas za prodajo svojega vozila.
+    \item Registriran uporabnik lahko za poljubno vozilo, evalvira vrednost.
+    \item Registriran uporabnik lahko všečka oglase drugih uporabnikov.
+    \item Registriran uporabnik lahko pregleduje svoje objavljene in všečkane oglase.
+    \item Anonimni uporabnik lahko pregleduje objavljene oglase, ne more pa jih objavljati, všečkati ali evalvirati vozil.
+\end{itemize}
+Na sliki~\ref{fig:use-case} prikazujemo diagram primerov uporabe, ki povzema interakcije registriranega in anonimnega uporabnika s sistemom.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{use-case.png}
+    \caption{Diagram primerov uporabe za registriranega in anonimnega uporabnika.}
+    \label{fig:use-case}
+\end{figure}
+Nefunkcionalne zahteve opredeljujejo kakovostne lastnosti sistema in so naslednje:
+\begin{itemize}
+    \item Spletna aplikacija je hitra in odzivna.
+    \item Evalvacijski sistem vrne oceno v kratkem času.
+    \item Uporabniški vmesnik je intuitiven in enostaven za uporabo.
+    \item Spletna aplikacija je vizualno privlačna.
+    \item Sistem varuje uporabniške podatke, tako da gesla pred shranjevanjem zgosti in uporablja časovno omejene žetone JWT.
+    \item Sistem ostane odziven tudi pri izvajanju zahtevnejših opravil, saj se ta obdelujejo asinhrono.
+    \item Arhitektura omogoča hitro in vzdržljivo dodajanje novih funkcionalnosti.
+\end{itemize}
 
 \section{Arhitektura}
-% TODO: dodaj sliko, nabor tehnologij. Brez ponavljanja
 Prototip je sestavljen iz uporabniškega vmesnika (odjemalec), strežniškega dela aplikacije (zaledni sistem) in ločenega sistema za vrednotenje vozil.
 Uporabniški vmesnik je razvit z uporabo knjižnice React~\cite{react-docs} in programskega jezika TypeScript~\cite{typescript} v okolju Node.js različice 24~\cite{nodejs}. Zaledni sistem je razvit z uporabo ogrodja Express~\cite{expressjs-docs}
  v programskem jeziku JavaScript~\cite{flanagan2020javascript} v okolju Node.js različice 24~\cite{nodejs}.
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11~\cite{python3.11}.
+Na naslednji sliki~\ref{fig:architecture} je dober prikaz arhitekture.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{arhitektura.png}
+    \caption{Slikovni prikaz arhitekture sistema}
+    \label{fig:architecture}
+\end{figure}
 Za izvajanje posameznih komponent je uporabljena platforma Docker~\cite{docker}.
-\clearpage
 Docker vsebniki:
 \begin{itemize}
     \item Zaledni sistem
@@ -268,22 +386,61 @@ Docker vsebniki:
 Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions~\cite{github-actions-docs}, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
 Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner~\cite{hetzner}. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy~\cite{dokploy}.
 
-\begin{table}[H]
-\centering
-\caption{Pregled tehnologij, uporabljenih v posameznih komponentah sistema.}
-\label{tab:tehnologije}
-\begin{tabularx}{\textwidth}{@{}l X@{}}
-\toprule
-\textbf{Komponenta} & \textbf{Uporabljene tehnologije} \\
-\midrule
-Uporabniški vmesnik & React~\cite{react-docs}, TypeScript~\cite{typescript}, Vite~\cite{vite-docs}, Zustand~\cite{zustand-docs}, Axios~\cite{axios-docs} \\
-Zaledni sistem & Node.js 24~\cite{nodejs}, Express.js~\cite{expressjs-docs}, JavaScript~\cite{flanagan2020javascript}, Sequelize (ORM)~\cite{sequelize-orm}, JWT~\cite{jwt-rfc7519}, bcrypt~\cite{bcrypt-password}, BullMQ~\cite{bullmq-docs}, Redis~\cite{redis-data-store} \\
-Evalvacijski sistem & Python 3.11~\cite{python3.11}, FastAPI~\cite{fastapi-docs}, Alembic~\cite{alembic-docs}, RapidFuzz~\cite{rapidfuzz-docs} \\
-Podatkovna baza & PostgreSQL 16~\cite{postgresql-docs,postgresql-about} \\
-Infrastruktura in avtomatizacija & Docker~\cite{docker}, GitHub Actions~\cite{github-actions-docs}, cron~\cite{cron-man}, Hetzner (VPS)~\cite{hetzner}, Dokploy~\cite{dokploy}, MailHog~\cite{mailhog} \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\section{Pomenmbne tehnologije}
+Poleg temeljnih tehnologij, smo med razvojem uporabili
+še nekaj manjših ampak pomembnih knjižnic in orodij, ki ožje probleme. V
+nadaljevanju jih na kratko predstavimo.
+
+\subsection{Upravljanje obrazcev s knjižnico React Hook Form}
+Uporabniški vmesnik vsebuje več obsežnejših obrazcev za izpolnjevanje. Ročno upravljanje takšnih
+obrazcev v knjižnici React~\cite{react-docs} zahteva, da za vsako polje posebej vzdržujemo stanje, obravnavamo
+dogodke ob spremembi vrednosti in sami zapišemo logiko preverjanja vnosov, kar hitro privede
+do obsežne in težko vzdržljive kode. Zato smo uporabili knjižnico React Hook
+Form~\cite{react-hook-form-docs}.\\
+Knjižnica stanje obrazca upravlja prek nenadzorovanih komponent (angl.\ \textit{uncontrolled
+components}) in referenc, kar pomeni, da se ob vsakem pritisku tipke ne izriše celoten obrazec,
+temveč le tisti deli, ki jih sprememba dejansko zadeva. Posamezno polje prijavimo v obrazec, pri čemer hkrati navedemo pravila preverjanja vnosa (angl.\
+\textit{validation}), na primer obveznost polja, najmanjšo dolžino ali regularni izraz. Napake
+so nato na voljo v objektu \texttt{errors}, iz katerega jih neposredno izpišemo ob pripadajočem
+polju. Preverjanje vnosov na strani odjemalca uporabnika opozori na napake, še preden se
+zahtevek sploh pošlje na strežnik, kar zmanjša število nepotrebnih zahtevkov.
+
+\subsection{Predpomnjenje strežniškega stanja s knjižnico TanStack Query}
+Del podatkov, ki jih prikazuje uporabniški vmesnik, izvira iz zalednega sistema in se
+razmeroma redko spreminja. Značilen primer so seznami znamk in modelov vozil, ki jih
+potrebujemo v skoraj vsakem obrazcu in filtru. Če bi te podatke ob vsakem prikazu komponente
+znova pridobivali s strežnika, bi obremenjevali zaledni sistem in podaljševali
+odzivni čas vmesnika.\\
+Zato smo uporabili knjižnico TanStack Query~\cite{tanstack-query-docs}. Ta odgovore strežnika shrani v predpomnilnik,
+ kjer je vsak odgovor označen s ključem poizvedbe (angl.\ \textit{query
+key}). Ko komponenta zahteva podatke z že znanim ključem, jih knjižnica takoj vrne iz
+predpomnilnika, zahtevek na strežnik pa po potrebi izvede šele v ozadju in prikaz osveži, ko
+prispe nov odgovor. Čas, po katerem se shranjeni podatki obravnavajo kot zastareli, določimo za vsak ključ posebej.
+
+\subsection{Testiranje zalednega sistema}
+Zaledni sistem smo pokrili z avtomatiziranimi testi, ki jih izvajamo z ogrodjem
+Jest~\cite{jest-docs}. Jest je testno ogrodje za okolje Node.js~\cite{nodejs}, ki v enem samem paketu združuje
+izvajalnik testov, knjižnico trditev (angl.\ \textit{assertions}) in podporo za simulacijo
+odvisnosti (angl.\ \textit{mocking}).\\
+Ker večina logike zalednega sistema ni izpostavljena kot posamezna funkcija, temveč kot pot
+vmesnika API, smo ogrodju Jest dodali knjižnico Supertest~\cite{supertest-docs}. Ta omogoča
+pošiljanje zahtevkov HTTP neposredno na aplikacijo Express, ne da bi strežnik dejansko poslušal
+na omrežnih vratih. V testu tako opišemo celotno pot zahtevka: pošljemo zahtevek na določeno
+pot, priložimo žeton JWT ter nato preverimo statusno kodo in vsebino odgovora.
+Testi se izvajajo samodejno na cevovodu neprekinjene integracije ob vsakem zahtevku za
+združitev, kar podrobneje opisujemo v razdelku~\ref{subsec:ci}.
+
+\subsection{Približno ujemanje nizov s knjižnico RapidFuzz}
+\label{subsec:rapidfuzz}
+Imena znamk in modelov vozil so pri različnih spletnih virih zapisana neenotno, zato jih z
+natančnim ujemanjem nizov ni mogoče zanesljivo povezati z imeni v podatkovni bazi. Za takšne
+primere smo uporabili knjižnico RapidFuzz~\cite{rapidfuzz-docs}, ki v jeziku
+Python~\cite{python3.11} omogoča približno ujemanje nizov (angl.\ \textit{fuzzy string
+matching}). Knjižnica podobnost med nizoma izrazi kot oceno med 0 in 100, izračunano na podlagi
+urejevalne razdalje (angl.\ \textit{edit distance}), pri čemer so vse zahtevnejše operacije
+implementirane v jeziku C++~\cite{cpp-standard} in so zato bistveno hitrejše od enakovrednih
+izvedb v jeziku Python. Konkreten postopek ujemanja in izbrane pragove opisujemo v
+razdelku~\ref{subsec:algoritem}.
 
 \section{Načrtovanje podatkovne baze}
 
@@ -366,7 +523,6 @@ obdelavo, normalizirana oblika pa je tista, ki se uporablja v analitičnih poizv
 \section{Arhitektura zalednega sistema}
 Zaledni sistem smo oblikovali z modularno arhitekturo, ki omogoča jasno ločitev odgovornosti (angl.\ \textit{separation of concerns}), 
 kar olajša branje, vzdrževanje in nadaljnjo razširiteljnost kode~\cite{separation-concerns}. 
-% TODO: Dodaj sliko nato sledi opis delov
 \subsection{Modul za poizvedbe v podatkovni bazi}
 Za implementacijo podatkovnih modelov in poizvedb na podatkovno bazo smo uporabili knjižnico Sequelize~\cite{sequelize-orm}. Sequelize~\cite{sequelize-orm} je vmesnik za 
 spreminjanje objektno-relacijskih preslikav (angl.\ \textit{Object-Relational Mapping}), ki omogoča preslikavo objektov iz programske kode v 
@@ -478,8 +634,6 @@ komponenta pa nadrejeni sporoča spremembe prek povratnih funkcij, ki jih nadrej
 navzdol.
 Kot ogrodje za izgradnjo uporabniškega vmesnika smo izbrali React~\cite{react-docs}. V naslednjih podpoglavjih podrobneje
 predstavimo posamezne dele te arhitekture.\\
-
-% TODO: Dodaj sliko in sklic
 
 \subsection{Odjemalska shramba}
 Določene podatke si mora odjemalec zapomniti, kar pomeni, da jih mora shraniti na svoji strani. Prednost
@@ -602,8 +756,8 @@ treba poenotiti kategorije, za tip menjalnika in vrsto goriva, saj so viri te po
 Največji izziv normalizacije predstavlja poimenovanje vozil, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače
  (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}). 
  Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri
-  tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}.
-   Za približno ujemanje smo uporabili knjižnico \texttt{RapidFuzz}~\cite{rapidfuzz-docs}, pri čemer smo prag ujemanja nastavili na 90~\% za znamke in 75~\% za modele.
+  tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}
+   s knjižnico \texttt{RapidFuzz} (razdelek~\ref{subsec:rapidfuzz}). Prag ujemanja smo nastavili na 90~\% za znamke in 75~\% za modele.
     Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir,
      s čimer se sistem sproti uči. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju. Del kode, ki izvaja ujemanje znamke, je prikazan v kodi~\ref{code:brand-matching-python}.
 
@@ -812,6 +966,7 @@ Storitve poveže v skupno omrežje ter doda poimenovan nosilec podatkov za
 shranjevanje naloženih datotek.
 
 \subsection{Neprekinjena integracija}
+\label{subsec:ci}
 Neprekinjena integracija (angl.\ \emph{continuous integration}) je praksa,
 pri kateri se ob vsaki spremembi kode samodejno izvedejo preverjanja (testiranje,
 izgradnja, statična analiza kode). Na ta način napake odkrijemo, še preden se
@@ -879,7 +1034,7 @@ Hetzner pa predstavlja nizek mesečni strošek.
 % TODO: Kontkretnejše predstavi stroške in podaj sliko da vidimo kako izgleda vse
 
 
-% TODO: Manjka Analiza, prikaz rešitve, primerja z obstoječimi ršitvami, simulacija prijave, mnenje uporabnikov, zaznamke ob testiranju in uporabi
+% TODO: Manjka Analiza, prikaz rešitve, primerja z obstoječimi ršitvami, simulacija prijave, mnenje uporabnikov, zaznamke ob testiranju in uporabi Add poglavje , simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi. Dodaj poglavje in primerjaj z ostalimi!
 \chapter{Analiza}
 
 
