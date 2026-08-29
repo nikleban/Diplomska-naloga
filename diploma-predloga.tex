@@ -244,13 +244,12 @@ Znamka in model služita kot identifikatorja vozila, saj na njuni podlagi vemo, 
  Preostali atributi pa so tisti, ki se med posameznimi primeri istega modela dejansko razlikujejo. 
  Prevoženi kilometri so pomembni, ker izražajo koliko se je vozilo uporabljalo; večje kot je število prevoženih kilometrov, večja je verjetnost okvar in obrabe. 
  Letnik izdelave pove starost vozila in s tem nakazuje pričakovane prihodnje stroške vzdrževanja. 
- Cena je glavni podatek, saj zagotavlja primerjalno vrednost med vozili. Na sliki~\ref{fig:todo} prikazujemo primer oglasa v našem prototipu.
-
+ Cena je glavni podatek, saj zagotavlja primerjalno vrednost med vozili. Na sliki~\ref{fig:primer-oglas} prikazujemo primer oglasa v našem prototipu.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{todo.png}
-    \caption{Primer oglasa vozila v prototipu.}
-    \label{fig:todo}
+    \includegraphics[width=0.5\textwidth]{primer-oglas.png}
+    \caption{Primer oglasa na prototipu}
+    \label{fig:primer-oglas}
 \end{figure}
 
 \section{Zajem podatkov iz spletnih virov}
@@ -564,7 +563,8 @@ Postopek avtentikacije je razdeljen na dve fazi. V fazi registracije uporabnik v
 Za zaščito poti vmesnika API smo implementirali sredinski sistem za preverjanje žetonov. Vmesnik je funkcija, ki se izvede pred vsakim zahtevkom in preveri,
  ali je uporabnik v zahtevku poslal veljaven žeton JWT. Dodatna varnostna plast je nastavljena s časovnimi omejitvami žetona, ki zagotavlja,
  da je žeton veljaven samo za določen čas. Po preteku roka veljavnosti se mora uporabnik ponovno avtentificirati in pridobiti nov žeton,
-  kar zmanjšuje tveganje ob morebitnem razkritju starejših žetonov~\cite{jwt-security-best-practices} Koda za prijavo uporabnika je prikayana v naslednji kodi~\ref{code:login}.
+  kar zmanjšuje tveganje ob morebitnem razkritju starejših žetonov~\cite{jwt-security-best-practices} Koda za prijavo uporabnika je prikazana v naslednji kodi~\ref{code:login}.
+  Slika prijave in registracije je pa prikazana v tej sliki~\ref{fig:registration-login}.
 
 \begin{center}
 \captionof{listing}{Koda za prijavo uporabnika.}
@@ -595,6 +595,13 @@ export const loginUserService = async ({ email, password }) => {
 };
 \end{minted}
 \end{center}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{registracija-prijava.png}
+    \caption{Prijava in registracija na prototipu.}
+    \label{fig:registration-login}
+\end{figure}
 
 \subsection{Asinhrona obdelava podatkov}
 Za naloge, ki zahtevajo obsežnejšo obdelavo podatkov ali imajo daljši čas
@@ -739,7 +746,6 @@ Pri tem projektu smo se prvič srečali s tehnologijo cron~\cite{cron-man}. Ta o
   Ti programi se na strežniku izvajajo dnevno oziroma tedensko.
 
 \subsection{Algoritem za primerjavo vozil}
-% TODO: Dodaj sliko algoritma, kako deluje
 Vse podatke, ki so pridobljeni z zajemom s spletnih strani ali z dostopom do javno dostopnih virov, smo morali
 najprej shraniti v nestrukturirani obliki, nato pa jih normalizirati oziroma zapisati v enotno obliko. Za vsak spletni vir smo morali
 napisati ločen postopek normalizacije.
@@ -811,7 +817,19 @@ pripišemo različno utež. V statističnem smislu gre za obliko metode
 $k$-najbližjih sosedov (angl.\ \emph{k-nearest neighbors}, k-NN)~\cite{knn-regression},
  pri kateri namesto ostre meje
 \enquote{sosed / ni sosed} uporabimo zvezno utežno funkcijo, ki pada proti nič,
-ko se primerjano vozilo bolj razlikuje od ocenjevanega.
+ko se primerjano vozilo bolj razlikuje od ocenjevanega.\\
+Rezultat algoritma ni zgolj ena sama cena. Vmesnik \texttt{/valuate} vrne
+ocenjeno (pričakovano) prodajno ceno, poleg nje pa še spodnjo mejo ugodne cene
+(\texttt{goodPrice}), zgornjo mejo precenjene cene (\texttt{badPrice}) in iz
+njiju izpeljano razmerje \texttt{ratio}, ki pove, kako razpršene so cene
+primerljivih vozil na trgu. Pri tem sta pomembni dve podrobnosti, ki ju
+podrobneje obravnavamo v razdelku~\ref{subsec:pricakovana-cena}. Pri izračunani 
+ceni moramo upoštevati popust, saj se uporabljena vozila praviloma prodajo ceneje, 
+kot so oglaševana. Razmerje
+\texttt{ratio} med \texttt{badPrice} in \texttt{goodPrice} je poleg indeksa
+zaupanja drugi pokazatelj kakovosti ocene: meri širino cenovnega razpona
+primerljivih vozil in s tem, koliko prostora ima uporabnik pri
+pogajanju.
 
 \subsection{Filtriranje kandidatov iz podatkovne baze}
 \label{subsec:filtriranje}
@@ -879,6 +897,14 @@ kilometrini pripišemo višjo utež ($60\,\%$) kot letniku ($40\,\%$).
 Vozili istega letnika se tako bolj razlikujeta po dejanski obrabi, če je prvo
 prevozilo $50\,000$~km, drugo pa $200\,000$~km. Vozili s podobno
 kilometrino, a nekoliko različnim letnikom pa ostajata bolj primerljivi.
+Odspodaj je priložena slika, ki grafično prikazuje potek algoritma za evlavacijo
+avtomobila~\ref{fig:algorithm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{algoritem-slika.png}
+\caption{Algoritem za primerjavo vozil}
+\label{fig:algorithm}
+\end{figure}
 
 \subsection{Izračun ocenjene cene z uteženim povprečjem}
 \label{subsec:uteceno-povprecje}
@@ -1030,18 +1056,146 @@ GitHub zajame najnovejšo različico kode in zgradi pripadajočo sliko neposredn
 na strežniku. Tak postopek omogoča, da se vsaka sprememba v produkcijskem okolju
 odrazi v nekaj minutah.\\
 Dokploy je odprtokodno in brezplačno orodje, najem strežnika pri ponudniku
-Hetzner pa predstavlja nizek mesečni strošek.
-% TODO: Kontkretnejše predstavi stroške in podaj sliko da vidimo kako izgleda vse
+Hetzner pa predstavlja nizek mesečni strošek. Najem strežnika Hetzner stane 6.50€ na mesec.
+Levo na sliki~\ref{fig:hezyner-dokploy} je pravljalna stran od Hetzner~\cite{hetzner}, desno je pa uporabniški vmesnik Dokploy~\cite{dokploy}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{primerjava-hetzner-dokploy.png}
+\caption{Upravljalna stran Hetzner in Dokploy}
+\label{fig:hezyner-dokploy}
+\end{figure}
 
-
-% TODO: Manjka Analiza, prikaz rešitve, primerja z obstoječimi ršitvami, simulacija prijave, mnenje uporabnikov, zaznamke ob testiranju in uporabi Add poglavje , simulacija delovanja, mnenje uporabnikov, primerjava z ostalimi. Dodaj poglavje in primerjaj z ostalimi!
+% TODO: Manjka Analiza, primerja z obstoječimi ršitvami, zaznamke ob testiranju , primerjava z ostalimi.
 \chapter{Analiza}
-
-
-
+V tem poglavju predstavimo analizo razvite rešitve. Prototip predstavimo uporabnikom, 
+upoštevamo njihove povratne informacije in na podlagi njih izvedemo izboljšave. 
+Poleg tega prikažemo simulacijo delovanja rešitve ter jo primerjamo z obstoječimi rešitvami. 
+Na koncu ovrednotimo še hitrost in obremenjenost uporabljenega algoritma.
+\section{Simulacija uporabe}
+Uporabnik je ob vstopu usmerjen na glavno stran, kjer sta izpostavljeni možnosti prijave in registracije. 
+Na sliki~\ref{fig:glavna-stran} je prikazana glavna stran prototipa.
+Uporabniku sta na voljo pregled nad novimi objavami vozil in pregled nad vsemi objavljenimi vozili.
+ Vsak oglas lahko odpre in si ga podrobneje ogleda. Po registraciji oziroma prijavi pridobi dostop do preostalih funkcionalnosti.
+Registriran uporabnik lahko objavi oglas prek vodene forme, ki je prikazana na sliki~\ref{fig:objava-oglasa}. 
+Poleg tega lahko ovrednoti poljubno vozilo. Pridobi tudi možnost, da vozila označi z všečki ter da si ogleda pregled nad lastnimi in tujimi všečkanimi vozili.
+Pregled nas svojim profilom, ter všečkanimi vozili je predstavljen na naslednji sliki~\ref{fig:liked-cars}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{glavna-stran.png}
+\caption{Glavna stran prototipa}
+\label{fig:glavna-stran}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{objava-oglasa.png}
+\caption{Vodena forma za objavo oglasa}
+\label{fig:objava-oglasa}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{liked-cars.png}
+\caption{Stran uporabnika, kjer ima prikazane všečkane avte}
+\label{fig:liked-cars}
+\end{figure}
+\section{Mnenje uporabnikov}
+Pri zbiranju mnenj uporabnikov smo v preizkus vključili družinske člane in bližnje prijatelje, katerih starost in računalniška pismenost sta zelo varirala.
+ Vsakemu uporabniku smo dali enaka navodila: naj se registrira, objavi oglas, všečka oglas, v nastavitvah izbere slovenski jezik in ovrednoti poljubno vozilo po lastnem interesu.
+Vsi udeleženci so se po aplikaciji znali premikati brez pomoči, kar potrjuje, da je uporabniški vmesnik dobro zasnovan. 
+Kljub temu so odkrili nekaj pomanjkljivosti, ki smo jih nato odpravili. Naslovi podstrani v glavi na glavni strani so bili premajhni,
+kar smo tudi sami opazili in popravili. Eden od udeležencev je predlagal, naj se pri registraciji doda drugo polje za ponovni vnos gesla,
+ s čimer se uporabnik prepriča o pravilnosti vnosa; predlog smo upoštevali. Večino je motilo, da vmesnik pri prikazu velikih števil 
+ ne uporablja ločil za tisočice, ki bi izboljšala preglednost. Koristen je bil tudi predlog, naj se pod slike oblik vozil v formi za objavo oglasa. Doda opis, ki natančno pojasni posamezno obliko.
+Ob zaključku preizkusa so udeleženci ocenili, da jim je rešitev všeč, hkrati pa opozorili na premajhno število vozil, ki so na voljo za vrednotenje. 
+To pomanjkljivost bomo odpravili v prihodnosti, ko bomo pridobili več podatkov.
+\section{Primerjava rezultata evalvacije}
+\section{Primerjava rezultata evalvacije}
+Zaradi obsežnega nabora znamk in modelov smo za prikaz delovanja izbrali pet znamk (BMW, Audi, Citroën, Peugeot in Toyota),
+ ki so trenutno shranjene v podatkovni bazi. Ta obsega približno 86.000 normaliziranih oglasov. Delovanje evalvacijskega sistema smo primerjali na treh vozilih:
+\begin{itemize}
+    \item Audi A3, letnik 2010, s 200.000 prevoženimi kilometri,
+    \item BMW serije 2, letnik 2013, s 170.000 prevoženimi kilometri,
+    \item Citroën Berlingo, letnik 2017, s 130.000 prevoženimi kilometri.
+\end{itemize}
+Za vsako vozilo smo cene, ki jih predlaga evalvacijski sistem, primerjali s ponudbo na spletnih portalih avto.net in mobile.de. 
+Rezultati so zbrani v tabeli~\ref{tab:evalvacija}.
+\begin{table}[htbp]
+    \centering
+    \caption{Primerjava ocenjenih cen s ponudbo na spletnih portalih (v evrih).}
+    \label{tab:evalvacija}
+    \begin{tabular}{lccc}
+        \toprule
+        & \textbf{Audi A3} & \textbf{BMW serije 2} & \textbf{Citroën Berlingo} \\
+        \midrule
+        avto.net (razpon)        & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
+        mobile.de (razpon)       & 4.500--9.000  & pribl. 11.100  & 8.000--12.000 \\
+        \midrule
+        Sistem --- dobra cena    & 4.500  & 7.600   & 7.600  \\
+        Sistem --- sredinska cena & 6.350  & 9.300   & 9.941  \\
+        Sistem --- slaba cena    & 7.600  & 10.500  & 12.100 \\
+        Raznolikost              & 0,49~\% & 0,31~\% & 45~\% \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Iz rezultatov je razvidno več stvari. Pri vozilih Audi A3 in BMW serije 2 je nizka 
+raznolikost ($0{,}49~\%$ oziroma $0{,}31~\%$), zato se sredinska ocena sistema dobro ujema s cenami na obeh portalih. 
+Nasprotno je pri modelu Citroën Berlingo raznolikost bistveno višja ($45~\%$), kar kaže na razpršeno ponudbo;
+ posledično je razpon med dobro in slabo oceno širši, sredinska ocena pa manj zanesljiva.\\
+Primerjava potrjuje, da lahko uporabnik na podlagi ocene pogosto najde ugodnejše vozilo in pridobi zanesljiv 
+vpogled v njegovo tržno vrednost. Pri interpretaciji rezultatov moramo upoštevati, da je oglaševana 
+cena praviloma višja od dejanske prodajne cene.
+\section{Analiza algoritma}
+\label{sec:analiza-algoritma}
+Hitrost in zmogljivost evalvacijskega algoritma smo izmerili v produkcijskem okolju,
+kjer podatkovna baza vsebuje približno 86.000 normaliziranih oglasov. Izvedli smo dve
+meritvi: mikro-meritev z 2.000 neposrednimi klici funkcije nad naključnimi realnimi
+vhodnimi primeri, pri kateri smo ločeno merili čas poizvedbe SQL in čas točkovanja v
+Pythonu, ter obremenitveni test končne točke \texttt{POST /valuate} pri naraščajoči
+sočasnosti od 1 do 40 vzporednih odjemalcev.
+\subsection{Latenca posamezne evalvacije}
+\begin{table}[htbp]
+    \centering
+    \caption{Latenca posamezne evalvacije (velikost vzorca, $N = 2000$), v milisekundah.}
+    \label{tab:latenca-evalvacije}
+    \begin{tabular}{lrrrr}
+        \toprule
+        Komponenta & p50 & p95 & p99 & Povprečje \\
+        \midrule
+        Skupaj              & 10,1 & 22,6 & 28,6 & 11,7 \\
+        Poizvedba SQL       &  9,6 & 20,6 & 25,8 & 11,0 \\
+        Točkovanje (Python) &  0,5 &  2,3 &  3,2 &  0,7 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Tipična evalvacija traja približno 10 ms, v najslabšem odstotku primerov (p99) pa 29 ms.
+Skoraj celotna latenca (približno 94~\%) je zaradi poizvedbo SQL, medtem ko je točkovanje
+v Pythonu zanemarljivo (povprečno 0,7 ms). Vzrok je pomanjkanje ustreznega indeksa:
+podatkovna baza pri vsaki evalvaciji izvede pregled celotne tabele (približno
+9 MB) in zavrže okoli 85.700 vrstic, ki ne ustrezajo pogojem. Ker so podatki v celoti v
+predpomnilniku, je čas poizvedbe kljub temu stabilen (okoli 6 ms), preostanek pa odpade
+na omrežni obhod do baze.
+\subsection{Obnašanje pod obremenitvijo}
+\begin{table}[htbp]
+    \centering
+    \caption{Prepustnost in latenca končne točke \texttt{/valuate} pri naraščajoči
+    sočasnosti. Latence so v milisekundah.}
+    \label{tab:obremenitev}
+    \begin{tabular}{rrrrr}
+        \toprule
+        Sočasnost & Prepustnost [zaht./s] & p50 & p95 & p99 \\
+        \midrule
+         1 &  15,4 &  65 &  78 &  85 \\
+         5 &  85,4 &  56 &  74 &  85 \\
+        10 & 110,6 &  85 & 133 & 163 \\
+        20 & 114,9 & 153 & 287 & 365 \\
+        40 & 109,9 & 303 & 596 & 814 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Prepustnost narašča približno linearno do sočasnosti 5--10, nato se ustali pri približno
+115 zahtevkih na sekundo, kar je zgornja meja trenutne postavitve z eno samo deljeno
+povezavo do baze in enim procesom strežnika.
 \chapter{Sklep}
 \label{ch:sklep}
-% TODO: med cilji za naprej + rešitev za praktične težave, izpostavi ključne rezultate, analizo narejenegae
 Cilj diplomskega dela je bil na podlagi jassno opredeljenih zahtev razviti prototip, ki uporabnikom omogoča objavo in
 pregled oglasov rabljenih avtomobilov, ter vanjo vgraditi sistem za samodejno ocenjevanje
 tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
@@ -1049,19 +1203,30 @@ delujoč prototip z ločeno odjemalsko, zaledno in evalvacijsko
 komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi "cevovod" za zajem,
 normalizacijo in primerjavo tržnih podatkov po
 pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
-in~\ref{subsec:uteceno-povprecje}).\\
+in~\ref{subsec:uteceno-povprecje}). Prototip je nameščen v produkcijskem okolju in
+podpira vse zastavljene funkcionalne zahteve, od registracije, prijave ter objave in
+pregleda oglasov do všečkanja in vrednotenja poljubnega vozila; izpolnjene so tudi
+nefunkcionalne zahteve glede odzivnosti vmesnika, varovanja uporabniških podatkov s
+zgoščevanjem gesel in časovno omejenimi žetoni ter razširljivosti arhitekture z ločenimi
+komponentami in samodejnimi testi. Podatkovna baza trenutno obsega približno 86.000
+normaliziranih oglasov za pet avtomobilskih znamk.\\
 Hipoteza diplomskega dela je bila, da je mogoče uporabniku na podlagi zbranih tržnih
 podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne
 vrednosti. Sistem na podlagi znamke, modela, letnika in prevoženih
 kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
 zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil.
-Med izdelavo dela smo prepoznali več možnosti za nadaljnji razvoj, ki jih navajamo v
-nadaljevanju.
+Primerjava ocen s ponudbo na avto.net in mobile.de (tabela~\ref{tab:evalvacija})
+je pokazala dobro ujemanje pri vozilih z nizko raznolikostjo ponudbe in širši razpon
+ocene pri modelih z razpršeno ponudbo, preizkus z uporabniki pa je potrdil razumljivost
+in enostavnost uporabniškega vmesnika. Glavne omejitve rešitve so majhen nabor lastnih
+podatkov in s tem odvisnost od zunanjih virov, nižja zanesljivost ocene pri modelih z
+razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
 \begin{itemize}
     \item \textbf{Razširitev nabora vhodnih spremenljivk.} Ko bo na voljo dovolj
     normaliziranih podatkov, bi bilo smiselno v algoritem vključiti dodatne parametre, (kot
     so oprema, vrsta goriva, tip menjalnika in stanje vozila, kar bi izboljšalo natančnost
-    ocene). % TODO: Naslovi probleme dostop do podatkov, velike količine, omejitve
+    ocene). V prihodnjem se bo z velikostjo uporabnikov, večal tudi moj dostop do podatkov in ne
+    bomo rabili biti odvisni od ostalih virov podatkov.
     \item \textbf{Dinamično prilagajanje intervalov primerljivosti.} Namesto fiksnih mej bi
     lahko intervale kilometrine in letnika prilagajali sproti glede na gostoto podatkov v
     posameznem segmentu (na primer širši interval pri redkih modelih in ožji pri pogostih),
