@@ -104,125 +104,130 @@ ker je vsako vozilo unikatno glede na svoje stanje, opremo in zgodovino
 uporabe~\cite{gegic2019car,eurotax}.\\ Najpogostejši pristop k oceni vrednosti je zato primerjava
  primerljivih prodaj podobnih vozil iz obstoječih oglasov, vendar je samostojno izvajanje takšne
 primerjave časovno potratno in nezanesljivo. Oglasi lahko vsebujejo nerealno visoke ali nizke cene,
-uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi glede na te podatke lahko
-ocenili dejansko vrednost vozila. Posledično lahko vozilo prodajo pod njegovo tržno
+uporabniki pa pogosto nimajo dovolj znanja in izkušenj, zato lahko vozilo prodajo pod njegovo tržno
 vrednostjo ali pa ga kupijo po previsoki ceni.\\
-Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, podroben pregled
-in primerjava obstoječih rešitev je predstavljeno v poglavju~\ref{ch:sorodna dela}.
-Kaže, da so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
+Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, vendar so mnoge plačljive, 
+prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
 pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil.\\
-Cilj diplomskega dela je razvoj prototipa za objavo in pregled oglasov
+Cilj diplomskega dela je razvoj prototipa spletne aplikacije za objavo in pregled oglasov
 vozil, ki vsebuje tudi sistem za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
 zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na
 trgu~\cite{laender2002}. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti
 vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.
 Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, da na platformi
-objavijo lastne oglase vozil, tako da bo potreba po podatkih iz zunanjih virov
-postopno upadla, tržno vrednost vozil pa bo mogoče ocenjevati na podlagi oglasov, zbranih
+objavijo lastne oglase vozil, s čemer bo potreba po podatkih iz zunanjih virov
+postopno upadla, tržno vrednost vozil pa bo mogoče ocenjevati na podlagi preverjenih oglasov, ki so zbrani
 znotraj platforme same.\\
 Diplomsko delo temelji na hipotezi, da je mogoče s pomočjo zbranih tržnih podatkov in
 primerjalne analize podobnih vozil uporabniku ponuditi uporabno in dovolj natančno oceno
-tržne vrednosti vozila. Pri tem želimo preveriti, ali integracija takšnega sistema v
+tržne vrednosti vozila. Pri tem želimo preveriti, ali vključitev takšnega sistema v
 prototip izboljša uporabniško izkušnjo pri nakupu in prodaji vozil.\\
-Preostanek diplomskega dela je organiziran na naslednji način. Poglavje~\ref{ch:struktura} predstavi
-teoretična izhodišča in tehnologije, na katerih temelji razvita rešitev, predvsem pa
-postopke zajemanja podatkov s spletnih virov. Poglavje~\ref{ch:metodologija} opiše metodologijo
-dela: načrtovanje podatkovne baze in arhitekture sistema, implementacijo zalednega in
+Preostanek diplomskega dela je organiziran na naslednji način. Prvo poglavje~\ref{ch:sorodne rešitve} 
+predstavi podobne rešitve prodaje in rednotenja vozil. Poglavje~\ref{ch:struktura} predstavi
+podrobneje oglaševanje vozil, na katerih temelji razvita rešitev in
+postopke zajemanja podatkov s spletnih virov. Poglavje~\ref{ch:metodologija} je jedro naše rešitve in opiše
+opredelitev zahtev, načrtovanje podatkovne baze in arhitekture sistema, implementacijo zalednega in
 odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infrastrukturo in
-avtomatizacijo namestitve. Diplomsko delo se zaključi s povzetkom doseženih rezultatov,
+avtomatizacijo namestitve. V poglavju 5~\ref{ch:analiza} je rešitev analizirana, diplomsko delo pa se zaključi s povzetkom doseženih rezultatov,
  kritično presojo omejitev rešitve in smeri za nadaljnje izboljšave.
 
 \chapter{Pregled sorodnih rešitev}
 \label{ch:sorodne rešitve}
 Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled oglasov vozil.
- Pokaže pa se, da imajo le nekatere možnost vrednotenja vozil, od teh pa je večina plačljivih. Med najbolj znanimi tujimi ponudniki sta \textbf{mobile.de}~\cite{mobile-de} in \textbf{AutoScout24}~\cite{autoscout24},
+ Pokaže pa se, da imajo le nekatere možnost vrednotenja vozil, od teh je večina je plačljivih. 
+ Med najbolj znanimi tujimi ponudniki sta \textbf{mobile.de}~\cite{mobile-de} in \textbf{AutoScout24}~\cite{autoscout24},
  ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih.
- Poleg njiju obstaja še vrsta drugih platform, ki uporabnikom bodisi zgolj omogočajo prodajo vozil bodisi ponujajo oceno njihove vrednosti, med njimi \textbf{AutoTrader}~\cite{autotrader}, \textbf{La Centrale}~\cite{lacentrale}, \textbf{Otomoto}~\cite{otomoto}, \textbf{Cars.com}~\cite{cars-com} in \textbf{Kelley Blue Book}~\cite{kbb}. \\
+ Poleg njiju obstaja še vrsta drugih platform, ki uporabnikom bodisi zgolj omogočajo prodajo vozil bodisi ponujajo oceno
+njihove vrednosti, med njimi so \textbf{AutoTrader}~\cite{autotrader}, \textbf{La Centrale}~\cite{lacentrale}, \textbf{Otomoto
+}~\cite{otomoto}, \textbf{Cars.com}~\cite{cars-com} in \textbf{Kelley Blue Book}~\cite{kbb}. \\
 Za slovenski trg je najbolj razširjena platforma \textbf{AvtoNet}~\cite{avto-net}, ki
-predstavlja osrednje mesto za objavo in iskanje rabljenih vozil. Platforma je
+predstavlja naše osrednje mesto za objavo in iskanje rabljenih vozil. Poleg aplikcij obstajajo tudi
+specializirane storitve za vrednotenje vozil, najbolj znani sta \textbf{Eurotax}~\cite{eurotax} in \textbf{CARFAX}~\cite{carfax}.\\
+ Platforma \textbf{AvtoNet}~\cite{avto-net} je
 izšla leta 1997 in danes velja za prevladujočo aplikacijo za prodajo vozil na
 slovenskem trgu. Uporabniku omogoča prodajo raznovrstnih vozil (kot so
 avtomobili, motorna kolesa in plovila). Kljub dolgi prisotnosti na trgu ni
 doživela večjih posodobitev, zato je njen uporabniški vmesnik zastarel in ponuja
 precej prostora za izboljšave. Za objavo oglasa se mora uporabnik prijaviti,
-medtem ko za brskanje po oglasih prijava ni potrebna. Prikaz posameznega oglasa
+medtem ko za brskanje po oglasih prijava ni potrebna. Prikaz posameznega oglasa na \textbf{AvtoNet-u}~\cite{avto-net}
 je predstavljen na sliki~\ref{fig:avto-net-example}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{primer-avto-net.png}
-  \caption{Primer oglasa na AvtoNet}
+  \caption{Primer oglasa na Avto.net-u}
   \label{fig:avto-net-example}
 \end{figure}
 Uporabniški vmesnik je pregleden in omogoča enostavno orientacijo, zato
   se uporabnik na njem hitro znajde. Glavna pomanjkljivost so predvsem manjkajoče
   dodatne funkcionalnosti, ki bi izboljšale uporabniško izkušnjo. Dober primer je obrazec za objavo oglasa.
-  Vneseni podatki se ob prehodu na
-  naslednji korak ne shranijo, zato ob primeru da se uporabnik vrne na prejšnji korak, mora vnose ponovno vpisati.
+  Vneseni podatki se recimo ob prehodu na
+  naslednji korak ne shranijo, zato mora uporabnik ob vrnitvi na prejšnji korak, ponovno vpisati celotno vsebino.
    Obrazec je tudi razmeroma dolg in uporabniku ne prikazuje,
   koliko korakov ima še do zaključka objave. Platforma sicer dela zanesljivo
-  in zadovoljuje osnovne potrebe uporabnikov, vendar kljub temu ostaja prostor za
-  izboljšave. Uporabniški vmesnik za objavo oglasa je prikazan na
+  in zadovoljuje osnovne potrebe uporabnikov. Uporabniški vmesnik za objavo oglasa je prikazan na
   sliki~\ref{fig:avto-net-objava}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{primer-objave-avto-net.png}
-  \caption{Objava oglasa na AvtoNet}
+  \caption{Objava oglasa na Avto.net-u}
   \label{fig:avto-net-objava}
 \end{figure}
- \textbf{Mobile.de}~\cite{mobile-de} ima novejši uporabniški vmesnik, ki je bolj pregleden in omogoča enostavno navigacijo čez spletno stran.
- Omogoča uporabniku da objavi oglas, brska po oglasih in filtrira vozila po različnih kriterijih. Za razliko od \textbf{AvtoNet}~\cite{avto-net}, \textbf{Mobile.de}~\cite{mobile-de} omogoča tudi oceno vrednosti vozila.
-  Pri posameznih oglasih prikazuje oceno, ali je cena ugodna, primerna ali previsoka. Ocena je
-  predstavljena s petstopenjsko barvno lestvico: pri ugodni ceni je lestvica
-  obarvana zeleno, pri previsoki pa rdeče, vmesne stopnje pa so označene s
-  prehodnimi barvami. Takšen pristop uporabniku omogoča hitrejše odločanje na
-  trgu, saj mu ni treba ročno primerjati oglasov med seboj. Ocena temelji na
-  samodejni primerjavi s podobnimi vozili v ponudbi, vendar platforma ne ponuja
+ \textbf{Mobile.de}~\cite{mobile-de} ima novejši uporabniški vmesnik, ki je bolj pregleden in omogoča enostavno navigacijo po spletnem mestu.
+ Uporabniku omogoča da objavi oglas, brska po oglasih in filtrira vozila po različnih kriterijih. Za razliko od \textbf{AvtoNet-a}~\cite{avto-net}, \textbf{Mobile.de}~\cite{mobile-de} omogoča tudi oceno vrednosti vozila.
+  Pri posameznih oglasih prikazuje tudi mnenje, ali je cena ugodna, primerna ali previsoka. Mnenje je
+  predstavljeno z petstopenjsko barvno lestvico: pri ugodni ceni je lestvica
+  obarvana z zeleno, pri previsoki rdeče, ostale stopnje pa so označene z
+  vmesnimi barvami. Takšen pristop uporabniku omogoča hitrejše odločanje, 
+  saj mu ni treba ročno primerjati oglasov med seboj. Ocena temelji na
+  samodejni primerjavi s podobnimi vozili v ponudbi. Pri tem pa platforma ne ponuja
   možnosti samostojnega vrednotenja vozila na podlagi uporabniško vnesenih
-  podatkov, kadar oglas še ne obstaja. Prikaz lestvice in osnovnih podatkov
-  vozila je predstavljen na sliki~\ref{fig:mobile-de-example}.
+  podatkov, kadar oglas še ne obstaja. Prikaz osnovnih podatkov
+  vozila z mnenjem je predstavljen na sliki~\ref{fig:mobile-de-example}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{primer-mobile-de.png}
-    \caption{Primer ocene vrednosti vozila na Mobile.de}
+    \caption{Primer ocene vozila na Mobile.de}
     \label{fig:mobile-de-example}
 \end{figure}
-Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je \textbf{Eurotax}~\cite{eurotax}, ki se pogosto uporablja v industriji vozil, zavarovalništvu in pri trgovcih z vozili.
- Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
-Na severnoameriškem trgu je najbolj razširjena storitev \textbf{CARFAX}~\cite{carfax}, ki
-  poleg vrednotenja vozila ponuja predvsem vpogled v njegovo celotno zgodovino.
+Specializirana storitev za vrednotenje vozil je \textbf{Eurotax}~\cite{eurotax}. Ki se pogosto uporablja v industriji vozil, zavarovalništvu in pri trgovcih z vozili.
+ Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah,
+  vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in
+   omejenega dostopa podrobna analiza delovanja sistema ni mogoča.\\
+Na severnoameriškem trgu je najbolj razširjena tovrstna storitev \textbf{CARFAX}~\cite{carfax}, ki
+  poleg vrednotenja vozila ponuja tudi vpogled v njegovo celotno zgodovino.
   Vsako vozilo je določeno z enolično identifikacijsko številko (VIN), na podlagi
   katere storitev pripravi poročilo o zgodovini vozila. To poročilo vključuje
-  podatke o prijavljenih prometnih nesrečah in škodi, številu prejšnjih lastnikov,
-  servisni zgodovini, ter zgodovini registracije.
-Poleg zgodovinskega poročila CARFAX ponuja tudi funkcijo vrednotenja vozila, ki oceni vrednost vozila glede na njegov
-  konkreten VIN. Za razliko od preprostih ocen, ki upoštevajo zgolj znamko, model
-  in letnik, ta ocena vključuje tudi prevožene kilometre, zgodovino nesreč in
-  škode, število lastnikov, servisne zapise ter namen uporabe vozila (osebna,
+  podatke o številu prejšnih lastnikov, servisni zgodovini, zgodovini registracij, prijavljenih prometnih nesrečah in škodi.
+CARFAX ponuja funkcijo vrednotenja vozila, ki za razliko od preprostih ocen, ki upoštevajo zgolj znamko, model
+  in letnik, vključuje zgodovino vozila, prevožene kilometre, škodo zaradi nesreč,
+   servisne posege ter uporabo vozila (osebna,
   najemniška ali komercialna raba). Vrednost se prilagaja tudi glede na regijo,
   saj se ponudba in povpraševanje razlikujeta po posameznih območjih.
-Kljub obsežni funkcionalnosti je storitev prilagojena predvsem severnoameriškemu
-  trgu, zato ni neposredno uporabna za nas.
+Kljub obsežni funkcionalnosti je storitev žal prilagojena za severnoameriški
+  trg, zato ni neposredno uporabna za nas.
+% TODO: Add picture of carfax
+Pregled obstoječih rešitev~\ref{tab:sorodne-resitve} je pokazal, da večina platform
+ bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje 
+ bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
+ Namen naše rešitve je združiti obe funkcionalnosti v enotnemu prototipu aplikacije,
+  ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila 
+  na podlagi obstoječih primerljivih vozil.
 \begin{table}[H]
 \centering
 \caption{Primerjava izbranih obstoječih rešitev za prodajo in vrednotenje vozil.}
 \label{tab:sorodne-resitve}
 \begin{tabularx}{\textwidth}{@{}l X c X@{}}
 \toprule
-\textbf{Rešitev} & \textbf{Geografski trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
+\textbf{Rešitev} & \textbf{Trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
 \midrule
-\textbf{mobile.de} \cite{mobile-de} & Evropa, najbolj razširjen na nemškem trgu & Da & Osnoven indikator cene (zeleno -- ugodna, rdeče -- precenjena) \\
-\textbf{AutoScout24} \cite{autoscout24} & Evropa--Nemčija, Belgija, Italija & Da & Priporočilo cene ob objavi oglasa \\
-\textbf{AvtoNet} \cite{avto-net} & Slovenija & Da & AvtoNet nima indikatorja ali priporočila za ceno \\
-\textbf{Eurotax} \cite{eurotax} & Evropa--Nemčija, Slovenija, Švica, Italija & Ne & Zelo natančno in podrobno poročilo o ceni, saj sodelujejo z zavarovalnicami \\
-\textbf{CARFAX} \cite{carfax} & ZDA & Ne & Na podlagi VIN številke poišče zgodovino vozila (nesreče, tehnični pregledi) in oceni njegovo vrednost \\
+mobile.de & Evropa, najbolj razširjen na nemškem trgu & Da & Osnoven prikaz cene (zeleno -- ugodna, rdeče -- precenjena) \\
+AutoScout24 & Evropa--Nemčija, Belgija, Italija & Da & Priporočilo cene ob objavi oglasa \\
+Avto.net & Slovenija & Da & Nima \\
+Eurotax & Evropa--Nemčija, Slovenija, Švica, Italija & Ne & Natančno poročilo o ceni \\
+CARFAX & ZDA & Ne & Podrobne ocene glede na VIN \\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\clearpage
-Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča prodajo vozil brez naprednega sistema za vrednotenje bodisi ponuja ločene plačljive storitve za ocenjevanje vrednosti vozil.
- Namen naše rešitve je združiti obe funkcionalnosti v enotnem prototipu,
-  ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, ki so dostopne na trgu.
 
 \chapter{Ozadje}
 \label{ch:struktura}
@@ -366,7 +371,6 @@ Prototip je sestavljen iz uporabniškega vmesnika (odjemalec), strežniškega de
 Uporabniški vmesnik je razvit z uporabo knjižnice React~\cite{react-docs} in programskega jezika TypeScript~\cite{typescript} v okolju Node.js različice 24~\cite{nodejs}. Zaledni sistem je razvit z uporabo ogrodja Express~\cite{expressjs-docs}
  v programskem jeziku JavaScript~\cite{flanagan2020javascript} v okolju Node.js različice 24~\cite{nodejs}.
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11~\cite{python3.11}.
-Za trajno shranjevanje podatkov aplikacija uporablja relacijsko podatkovno bazo PostgreSQL~\cite{postgresql-docs}, za predpomnjenje in upravljanje čakalnih vrst nalog pa podatkovno skladišče Redis~\cite{redis-data-store}.
 Na naslednji sliki~\ref{fig:architecture} je dober prikaz arhitekture.
 \begin{figure}[H]
     \centering
@@ -1069,6 +1073,7 @@ Levo na sliki~\ref{fig:hezyner-dokploy} je pravljalna stran od Hetzner~\cite{het
 
 % TODO: Manjka Analiza, primerja z obstoječimi ršitvami, zaznamke ob testiranju , primerjava z ostalimi.
 \chapter{Analiza}
+\label{ch:analiza}
 V tem poglavju predstavimo analizo razvite rešitve. Prototip predstavimo uporabnikom, 
 upoštevamo njihove povratne informacije in na podlagi njih izvedemo izboljšave. 
 Poleg tega prikažemo simulacijo delovanja rešitve ter jo primerjamo z obstoječimi rešitvami. 
@@ -1117,7 +1122,7 @@ Zaradi obsežnega nabora znamk in modelov smo za prikaz delovanja izbrali pet zn
     \item BMW serije 2, letnik 2013, s 170.000 prevoženimi kilometri,
     \item Citroën Berlingo, letnik 2017, s 130.000 prevoženimi kilometri.
 \end{itemize}
-Za vsako vozilo smo cene, ki jih predlaga sistem za vrednotenje vozil, primerjali s ponudbo na spletnih portalih \textbf{AvtoNet} in mobile.de.
+Za vsako vozilo smo cene, ki jih predlaga sistem za vrednotenje vozil, primerjali s ponudbo na spletnih portalih \textbf{avto.net} in \textbf{mobile.de}.
 Rezultati so zbrani v tabeli~\ref{tab:vrednotenje}.
 \begin{table}[htbp]
     \centering
@@ -1127,7 +1132,7 @@ Rezultati so zbrani v tabeli~\ref{tab:vrednotenje}.
         \toprule
         & \textbf{Audi A3} & \textbf{BMW serije 2} & \textbf{Citroën Berlingo} \\
         \midrule
-        AvtoNet (razpon)         & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
+        avto.net (razpon)        & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
         mobile.de (razpon)       & 4.500--9.000  & pribl. 11.100  & 8.000--12.000 \\
         \midrule
         Sistem --- dobra cena    & 4.500  & 7.600   & 7.600  \\
@@ -1216,7 +1221,7 @@ podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno 
 vrednosti. Sistem na podlagi znamke, modela, letnika in prevoženih
 kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
 zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil.
-Primerjava ocen s ponudbo na \textbf{AvtoNet} in mobile.de (tabela~\ref{tab:vrednotenje})
+Primerjava ocen s ponudbo na avto.net in mobile.de (tabela~\ref{tab:vrednotenje})
 je pokazala dobro ujemanje pri vozilih z nizko raznolikostjo ponudbe in širši razpon
 ocene pri modelih z razpršeno ponudbo, preizkus z uporabniki pa je potrdil razumljivost
 in enostavnost uporabniškega vmesnika. Glavne omejitve rešitve so majhen nabor lastnih
