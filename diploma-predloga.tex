@@ -53,12 +53,12 @@ morda bo zapisal tudi ključno literaturo.}
 {The student shall transcribe the text of the diploma thesis topic from the student information system, where it was entered by the mentor. In a few sentences, they will describe what is expected of the candidate's thesis. What the objectives are, what methods should be used, and perhaps they will also list the key literature.}
 
 % Naslov:
-\newcommand{\ttitle}{Prototip za prodajo in evalvacijo avtomobilov}
-\newcommand{\ttitleEn}{Prototype for car sales and evaluation}
+\newcommand{\ttitle}{Prototip spletne aplikacije za prodajo vozil z ocenjevanjem njihove vrednosti}
+\newcommand{\ttitleEn}{Prototype of a web application for selling vehicles with vehicle valuation}
 
 % Ključne besede:
-\newcommand{\tkeywords}{spletna aplikacija, avtomobili, vrednotenje, React, Express.js, Node.js, PostgreSQL, Docker}
-\newcommand{\tkeywordsEn}{web application, automobiles, evaluation, React, Express.js, Node.js, PostgreSQL, Docker}
+\newcommand{\tkeywords}{spletna aplikacija, vozila, vrednotenje, React, Express.js, Node.js, PostgreSQL, Docker}
+\newcommand{\tkeywordsEn}{web application, vehicles, valuation, React, Express.js, Node.js, PostgreSQL, Docker}
 
 % Zahvala (opcijsko):
 \newcommand{\tzahvala}
@@ -76,10 +76,10 @@ morda bo zapisal tudi ključno literaturo.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\tpovzetek}
-{Diplomsko delo obravnava problem določanja primerne tržne vrednosti rabljenega avtomobila. Pri prodaji ali nakupu vozila uporabniki pogosto nimajo zadostnega pregleda nad trenutnim stanjem na trgu, zato težko ocenijo, ali je določena cena primerna. Posledično lahko vozilo kupijo po previsoki ceni ali ga prodajo pod njegovo dejansko tržno vrednostjo. Za reševanje tega problema smo razvili prototip za objavo in pregled avtomobilskih oglasov, ki uporabnikom omogoča enostavno in varno prodajo ter nakup vozil, ki vsebuje tudi sistem za avtomatsko ocenjevanje vrednosti vozil. Sistem temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in primerjavi vozila s podobnimi vozili na trgu. Pri oceni vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik in prevoženi kilometri. Za pridobivanje podatkov so bili uporabljeni javno dostopni podatkovni viri ter postopki samodejnega zajema podatkov s spletnih strani za prodajo vozil. Zbrane podatke sistem obdela in uporabi za izračun ocenjene tržne vrednosti vozila. Rezultat diplomskega dela je delujoč prototip s podporo za avtomatsko vrednotenje vozil, ki uporabnikom pomaga pri sprejemanju bolj informiranih odločitev pri nakupu ali prodaji avtomobila.}
+{Diplomsko delo obravnava problem določanja ustrezne tržne vrednosti rabljenega vozila, pri prodaji ali nakupu vozila, zaradi nezadostnega pregleda stanja na trgu, stranke težko ocenijo primernost ponujene cene in vozilo kupijo po previsoki ceni ali ga prodajo pod njegovo tržno vrednostjo. Zato smo razvili prototip spletne aplikacije za objavo in pregled oglasov vozil, ki uporabnikom omogoča enostavno in varno prodajo ter nakup vozil. Ključen del predlagane rešitve je sistem za avtomatsko ocenjevanje vrednosti vozil, ki temelji na zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in primerjavi vozila s podobnimi vozili na trgu. Pri oceni vrednosti se upoštevajo ključne lastnosti vozila, kot so znamka, model, letnik in prevoženi kilometri. Za pridobivanje podatkov so bili uporabljeni javno dostopni podatkovni viri ter postopki samodejnega zajema podatkov s spletnih strani za prodajo vozil. Zbrane podatke sistem obdela in uporabi za izračun ocenjene tržne vrednosti vozila. Rezultat diplomskega dela je delujoč prototip spletne aplikacije za prodajo vozil s podporo za samodejno vrednotenje vozil, razvit z uporabo tehnologij React~\cite{react-docs}, TypeScript~\cite{typescript}, Node.js~\cite{nodejs}, Express.js~\cite{expressjs-docs}, Python~\cite{python3.11}, PostgreSQL~\cite{postgresql-docs}, Redis~\cite{redis-data-store} in Docker~\cite{docker}.}
 
 \newcommand{\tabstract}
-{This work addresses the problem of determining the appropriate market value of a used vehicle. When buying or selling a car, users often lack sufficient insight into current market conditions, making it difficult to assess whether a listed price is fair. As a result, vehicles may be purchased at inflated prices or sold below their actual market value. To address this problem, a web application for publishing and browsing vehicle listings was developed, enabling users to buy and sell vehicles in a simple and secure manner, which includes an automated vehicle valuation system. The system is based on the collection of data from external sources, normalization of the acquired data, and comparison of a vehicle with similar vehicles currently available on the market. The valuation process takes into account key vehicle characteristics, including brand, model, year of first registration, and mileage. The required data was obtained from publicly available datasets and through automated data collection from vehicle marketplace websites. The collected data is processed and used to estimate the market value of a vehicle. The result of this thesis is a functional web application with integrated vehicle valuation support that helps users make more informed decisions when buying or selling used vehicles.}
+{This work addresses the problem of determining the appropriate market value of a used vehicle. When buying or selling a vehicle, users often lack sufficient insight into current market conditions, making it difficult to assess whether a listed price is fair. As a result, vehicles may be purchased at inflated prices or sold below their actual market value. To address this problem, a web application for publishing and browsing vehicle listings was developed, enabling users to buy and sell vehicles in a simple and secure manner, which includes an automated vehicle valuation system. The system is based on the collection of data from external sources, normalization of the acquired data, and comparison of a vehicle with similar vehicles currently available on the market. The valuation process takes into account key vehicle characteristics, including brand, model, year of first registration, and mileage. The required data was obtained from publicly available datasets and through automated data collection from vehicle marketplace websites. The collected data is processed and used to estimate the market value of a vehicle. The result of this thesis is a functional web application with integrated vehicle valuation support that helps users make more informed decisions when buying or selling used vehicles.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  VKLJUČITEV NUJNIH ELEMENTOV 2/2
@@ -96,12 +96,12 @@ morda bo zapisal tudi ključno literaturo.}
 
 \chapter{Uvod}
 
-Nakup in prodaja rabljenih avtomobilov predstavljata pomemben del avtomobilskega trga.
+Nakup in prodaja rabljenih vozil predstavljata pomemben del trga rabljenih vozil.
 Pri tem se kupci in prodajalci pogosto srečujejo s težavo določanja primerne tržne
 vrednosti vozila, saj nimajo zadostnega pregleda nad trenutno ponudbo in gibanjem cen na
 trgu. Raznolikost informacij je še posebej izrazita,
 ker je vsako vozilo unikatno glede na svoje stanje, opremo in zgodovino
-uporabe~\cite{gegic2019car,eurotax}. Najpogostejši pristop k oceni vrednosti je zato primerjava
+uporabe~\cite{gegic2019car,eurotax}.\\ Najpogostejši pristop k oceni vrednosti je zato primerjava
  primerljivih prodaj podobnih vozil iz obstoječih oglasov, vendar je samostojno izvajanje takšne
 primerjave časovno potratno in nezanesljivo. Oglasi lahko vsebujejo nerealno visoke ali nizke cene,
 uporabniki pa pogosto nimajo dovolj znanja in izkušenj, da bi glede na te podatke lahko
@@ -111,13 +111,13 @@ Na trgu že obstajajo rešitve za ocenjevanje vrednosti vozil, podroben pregled
 in primerjava obstoječih rešitev je predstavljeno v poglavju~\ref{ch:sorodna dela}.
 Kaže, da so mnoge plačljive, prilagojene tujim trgom ali pa temeljijo na zastarelih podatkih, zaradi česar njihove ocene
 pogosto ne odražajo dejanskega stanja na slovenskem trgu rabljenih vozil.\\
-Cilj diplomskega dela je razvoj prototipa za objavo in pregled avtomobilskih
-oglasov, ki vsebuje tudi sistem za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
+Cilj diplomskega dela je razvoj prototipa za objavo in pregled oglasov
+vozil, ki vsebuje tudi sistem za samodejno ocenjevanje vrednosti vozil. Sistem temelji na
 zbiranju podatkov iz zunanjih virov, njihovi normalizaciji in analizi primerljivih vozil na
 trgu~\cite{laender2002}. Pri določanju ocenjene vrednosti se upoštevajo ključne lastnosti
 vozila, kot so znamka, model, letnik prve registracije in število prevoženih kilometrov.
 Dolgoročni cilj sistema je privabiti zadostno število uporabnikov, da na platformi
-objavijo lastne avtomobilske oglase, tako da bo potreba po podatkih iz zunanjih virov
+objavijo lastne oglase vozil, tako da bo potreba po podatkih iz zunanjih virov
 postopno upadla, tržno vrednost vozil pa bo mogoče ocenjevati na podlagi oglasov, zbranih
 znotraj platforme same.\\
 Diplomsko delo temelji na hipotezi, da je mogoče s pomočjo zbranih tržnih podatkov in
@@ -132,12 +132,13 @@ odjemalskega dela aplikacije, delovanje algoritma za vrednotenje vozil ter infra
 avtomatizacijo namestitve. Diplomsko delo se zaključi s povzetkom doseženih rezultatov,
  kritično presojo omejitev rešitve in smeri za nadaljnje izboljšave.
 
-\chapter{Pregled področja in sorodnih del}
-\label{ch:sorodna dela}
-Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled avtomobilskih oglasov.
- Ampak le nekatere imajo možnost vrednotenja vozil in od teh je večina je plačljivih. Med najbolj znanimi evropskimi ponudniki sta mobile.de~\cite{mobile-de} in AutoScout24~\cite{autoscout24},
- ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih. \\
-Za slovenski trg je najbolj razširjena platforma Avto.net~\cite{avto-net}, ki
+\chapter{Pregled sorodnih rešitev}
+\label{ch:sorodne rešitve}
+Na področju prodaje rabljenih vozil obstaja več spletnih aplikacij, ki uporabnikom omogočajo objavo in pregled oglasov vozil.
+ Pokaže pa se, da imajo le nekatere možnost vrednotenja vozil, od teh pa je večina plačljivih. Med najbolj znanimi tujimi ponudniki sta \textbf{mobile.de}~\cite{mobile-de} in \textbf{AutoScout24}~\cite{autoscout24},
+ ki združujeta veliko število oglasov iz različnih držav ter uporabnikom omogočata filtriranje vozil po številnih kriterijih.
+ Poleg njiju obstaja še vrsta drugih platform, ki uporabnikom bodisi zgolj omogočajo prodajo vozil bodisi ponujajo oceno njihove vrednosti, med njimi \textbf{AutoTrader}~\cite{autotrader}, \textbf{La Centrale}~\cite{lacentrale}, \textbf{Otomoto}~\cite{otomoto}, \textbf{Cars.com}~\cite{cars-com} in \textbf{Kelley Blue Book}~\cite{kbb}. \\
+Za slovenski trg je najbolj razširjena platforma \textbf{AvtoNet}~\cite{avto-net}, ki
 predstavlja osrednje mesto za objavo in iskanje rabljenih vozil. Platforma je
 izšla leta 1997 in danes velja za prevladujočo aplikacijo za prodajo vozil na
 slovenskem trgu. Uporabniku omogoča prodajo raznovrstnih vozil (kot so
@@ -149,7 +150,7 @@ je predstavljen na sliki~\ref{fig:avto-net-example}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{primer-avto-net.png}
-  \caption{Primer oglasa na Avto.net}
+  \caption{Primer oglasa na AvtoNet}
   \label{fig:avto-net-example}
 \end{figure}
 Uporabniški vmesnik je pregleden in omogoča enostavno orientacijo, zato
@@ -165,11 +166,11 @@ Uporabniški vmesnik je pregleden in omogoča enostavno orientacijo, zato
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{primer-objave-avto-net.png}
-  \caption{Objava oglasa na Avto.net}
+  \caption{Objava oglasa na AvtoNet}
   \label{fig:avto-net-objava}
 \end{figure}
- Mobile.de~\cite{mobile-de} ima novejši uporabniški vmesnik, ki je bolj pregleden in omogoča enostavno navigacijo čez spletno stran.
- Omogoča uporabniku da objavi oglas, brska po oglasih in filtrira vozila po različnih kriterijih. Za razliko od Avto.net~\cite{avto-net}, Mobile.de~\cite{mobile-de} omogoča tudi oceno vrednosti vozila.
+ \textbf{Mobile.de}~\cite{mobile-de} ima novejši uporabniški vmesnik, ki je bolj pregleden in omogoča enostavno navigacijo čez spletno stran.
+ Omogoča uporabniku da objavi oglas, brska po oglasih in filtrira vozila po različnih kriterijih. Za razliko od \textbf{AvtoNet}~\cite{avto-net}, \textbf{Mobile.de}~\cite{mobile-de} omogoča tudi oceno vrednosti vozila.
   Pri posameznih oglasih prikazuje oceno, ali je cena ugodna, primerna ali previsoka. Ocena je
   predstavljena s petstopenjsko barvno lestvico: pri ugodni ceni je lestvica
   obarvana zeleno, pri previsoki pa rdeče, vmesne stopnje pa so označene s
@@ -182,12 +183,12 @@ Uporabniški vmesnik je pregleden in omogoča enostavno orientacijo, zato
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{primer-mobile-de.png}
-    \caption{Primer evalvacije cene avtomobila na Mobile.de}
+    \caption{Primer ocene vrednosti vozila na Mobile.de}
     \label{fig:mobile-de-example}
 \end{figure}
-Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je Eurotax~\cite{eurotax}, ki se pogosto uporablja v avtomobilski industriji, zavarovalništvu in pri trgovcih z vozili.
+Poleg spletnih tržnic obstajajo tudi specializirane storitve za vrednotenje vozil. Med najbolj znanimi je \textbf{Eurotax}~\cite{eurotax}, ki se pogosto uporablja v industriji vozil, zavarovalništvu in pri trgovcih z vozili.
  Njegove ocene temeljijo na obsežnih zbirkah podatkov o vozilih in tržnih cenah, vendar je dostop do storitve praviloma plačljiv. Zaradi poslovnega modela in omejenega dostopa podrobna analiza delovanja sistema ni mogoča.
-Na severnoameriškem trgu je najbolj razširjena storitev CARFAX~\cite{carfax}, ki
+Na severnoameriškem trgu je najbolj razširjena storitev \textbf{CARFAX}~\cite{carfax}, ki
   poleg vrednotenja vozila ponuja predvsem vpogled v njegovo celotno zgodovino.
   Vsako vozilo je določeno z enolično identifikacijsko številko (VIN), na podlagi
   katere storitev pripravi poročilo o zgodovini vozila. To poročilo vključuje
@@ -209,11 +210,11 @@ Kljub obsežni funkcionalnosti je storitev prilagojena predvsem severnoameriške
 \toprule
 \textbf{Rešitev} & \textbf{Geografski trg} & \textbf{Prodaja oglasov} & \textbf{Ocena vrednosti vozila} \\
 \midrule
-mobile.de \cite{mobile-de} & Evropa, najbolj razširjen na nemškem trgu & Da & Osnoven indikator cene (zeleno -- ugodna, rdeče -- precenjena) \\
-AutoScout24 \cite{autoscout24} & Evropa--Nemčija, Belgija, Italija & Da & Priporočilo cene ob objavi oglasa \\
-Avto.net \cite{avto-net} & Slovenija & Da & Avtonet nima indikatorja ali priporočila za ceno \\
-Eurotax \cite{eurotax} & Evropa--Nemčija, Slovenija, Švica, Italija & Ne & Zelo natančno in podrobno poročilo o ceni, saj sodelujejo z zavarovalnicami \\
-CARFAX \cite{carfax} & ZDA & Ne & Na podlagi VIN številke poišče zgodovino vozila (nesreče, tehnični pregledi) in oceni njegovo vrednost \\
+\textbf{mobile.de} \cite{mobile-de} & Evropa, najbolj razširjen na nemškem trgu & Da & Osnoven indikator cene (zeleno -- ugodna, rdeče -- precenjena) \\
+\textbf{AutoScout24} \cite{autoscout24} & Evropa--Nemčija, Belgija, Italija & Da & Priporočilo cene ob objavi oglasa \\
+\textbf{AvtoNet} \cite{avto-net} & Slovenija & Da & AvtoNet nima indikatorja ali priporočila za ceno \\
+\textbf{Eurotax} \cite{eurotax} & Evropa--Nemčija, Slovenija, Švica, Italija & Ne & Zelo natančno in podrobno poročilo o ceni, saj sodelujejo z zavarovalnicami \\
+\textbf{CARFAX} \cite{carfax} & ZDA & Ne & Na podlagi VIN številke poišče zgodovino vozila (nesreče, tehnični pregledi) in oceni njegovo vrednost \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -223,24 +224,24 @@ Pregled obstoječih rešitev je pokazal, da večina platform bodisi omogoča pro
  Namen naše rešitve je združiti obe funkcionalnosti v enotnem prototipu,
   ki uporabnikom omogoča objavo vozil, pregled trga in samodejno oceno vrednosti vozila na podlagi primerljivih vozil, ki so dostopne na trgu.
 
-\chapter{Tematsko Ozadje}
+\chapter{Ozadje}
 \label{ch:struktura}
 V tem poglavju predstavimo temeljne pojme, na katerih temelji naše delo. Najprej opišemo,
  kaj je oglas rabljenega vozila in kateri atributi vozila so za nas relevantni. 
  Nato pojasnimo, kako ocenimo vozilo na podlagi atributov. V nadaljevanju predstavimo pristope za zajem podatkov,
-  s katerimi smo pridobili gradivo za evalvacijski sistem.
+  s katerimi smo pridobili gradivo za sistem vrednotenje vozil.
 
 \section{Oglas in atributi vozila}
-Oglas je vsebina, namenjena predstavitvi izdelka ali storitve, ki je naprodaj. V našem primeru obravnavamo oglas za prodajo avtomobila.
- Vsebovati mora podatek o tem, kateri avtomobil se prodaja, in njegove tehnične značilnosti, ki kupcu pomagajo pri odločitvi o nakupu. 
+Oglas je vsebina, namenjena predstavitvi izdelka ali storitve, ki je naprodaj. V našem primeru obravnavamo oglas za prodajo vozila.
+ Vsebovati mora podatek o tem, katero vozilo se prodaja, in njegove tehnične značilnosti, ki kupcu pomagajo pri odločitvi o nakupu. 
  Poleg tega mora oglas vsebovati prodajno ceno in kontaktne podatke prodajalca. Oglas ostane objavljen dokler, se prodajana stvar proda,
  ali se pa prodajalec odloči da je ne bo prodal.
 
-\subsection{Atributi avtomobila}
-Atributi avtomobila so njegove tehnične ali fizične lastnosti, kot so znamka, model, barva, motor, letnik izdelave,
+\subsection{Atributi vozila}
+Atributi vozila so njegove tehnične ali fizične lastnosti, kot so znamka, model, barva, motor, letnik izdelave,
  prevoženi kilometri, moč motorja (izražena v kilovatih ali konjskih močeh), število vrat, število sedežev, število lastnikov in cena.
   V nadaljevanju se osredotočimo predvsem na naslednje atribute: znamko, model, prevožene kilometre, letnik izdelave in ceno, saj jih ocenjujemo kot najpomembnejše.
-Znamka in model služita kot identifikatorja vozila, saj na njuni podlagi vemo, za kateri avtomobil gre.
+Znamka in model služita kot identifikatorja vozila, saj na njuni podlagi vemo, za katero vozilo gre.
  Preostali atributi pa so tisti, ki se med posameznimi primeri istega modela dejansko razlikujejo. 
  Prevoženi kilometri so pomembni, ker izražajo koliko se je vozilo uporabljalo; večje kot je število prevoženih kilometrov, večja je verjetnost okvar in obrabe. 
  Letnik izdelave pove starost vozila in s tem nakazuje pričakovane prihodnje stroške vzdrževanja. 
@@ -314,17 +315,17 @@ strukturah XML in HTML, ki poleg preprostega iskanja po oznakah in razredih
 vsebuje tudi premikanje navzgor po drevesu, iskanje po vsebini besedilnih
 vozlišč ter vgrajene funkcije, (kot sta \texttt{contains()} in
 \texttt{position()}~\cite{darmawan2022}). V kontekstu zajemanja podatkov iz
-avtomobilskih oglasnih portalov to pomeni, da lahko izbirniki iz razčlenjenega
+oglasnih portalov za vozila to pomeni, da lahko izbirniki iz razčlenjenega
 dokumenta izluščimo posamezna podatkovna polja oglasa, kot so naziv vozila,
 cena, letnik, prevoženi kilometri in vrsta goriva.
 
 \chapter{Ravoj rešitve}
 \label{ch:ravoj rešitve}
 Cilj diplomske naloge je bila izdelava prototipa, v katerem bodo uporabniki lahko
-objavljali oglase svojih avtomobilov. Pred začetkom razvoja smo morali izbrati ustrezne
+objavljali oglase svojih vozil. Pred začetkom razvoja smo morali izbrati ustrezne
 tehnologije, kar smo storili na podlagi lastnih izkušenj in predznanja ter pregleda
 različnih forumov in strokovnih člankov. Ko smo zaključili razvoj prototipa, smo
-se lotili razvoja sistema za vrednotenje avtomobilov, napisanega v programskem jeziku Python.
+se lotili razvoja sistema za vrednotenje vozil, napisanega v programskem jeziku Python.
 Python smo izbrali, ker je zelo primeren za obdelavo podatkov in razpolaga z bogatim
 ekosistemom knjižnic, namenjenih analizi podatkov.\\
 
@@ -337,10 +338,10 @@ Anonimni uporabnik lahko dostopa le do pregleda oglasov, medtem ko registriran u
     \item Uporabnik se lahko registrira.
     \item Registriran uporabnik se lahko prijavi in odjavi.
     \item Registriran uporabnik lahko objavi oglas za prodajo svojega vozila.
-    \item Registriran uporabnik lahko za poljubno vozilo, evalvira vrednost.
+    \item Registriran uporabnik lahko za poljubno vozilo oceni njegovo vrednost.
     \item Registriran uporabnik lahko všečka oglase drugih uporabnikov.
     \item Registriran uporabnik lahko pregleduje svoje objavljene in všečkane oglase.
-    \item Anonimni uporabnik lahko pregleduje objavljene oglase, ne more pa jih objavljati, všečkati ali evalvirati vozil.
+    \item Anonimni uporabnik lahko pregleduje objavljene oglase, ne more pa jih objavljati, všečkati ali ocenjevati vrednosti vozil.
 \end{itemize}
 Na sliki~\ref{fig:use-case} prikazujemo diagram primerov uporabe, ki povzema interakcije registriranega in anonimnega uporabnika s sistemom.
 \begin{figure}[H]
@@ -352,7 +353,7 @@ Na sliki~\ref{fig:use-case} prikazujemo diagram primerov uporabe, ki povzema int
 Nefunkcionalne zahteve opredeljujejo kakovostne lastnosti sistema in so naslednje:
 \begin{itemize}
     \item Spletna aplikacija je hitra in odzivna.
-    \item Evalvacijski sistem vrne oceno v kratkem času.
+    \item Sistem za vrednotenje vozil vrne oceno v kratkem času.
     \item Uporabniški vmesnik je intuitiven in enostaven za uporabo.
     \item Spletna aplikacija je vizualno privlačna.
     \item Sistem varuje uporabniške podatke, tako da gesla pred shranjevanjem zgosti in uporablja časovno omejene žetone JWT.
@@ -365,6 +366,7 @@ Prototip je sestavljen iz uporabniškega vmesnika (odjemalec), strežniškega de
 Uporabniški vmesnik je razvit z uporabo knjižnice React~\cite{react-docs} in programskega jezika TypeScript~\cite{typescript} v okolju Node.js različice 24~\cite{nodejs}. Zaledni sistem je razvit z uporabo ogrodja Express~\cite{expressjs-docs}
  v programskem jeziku JavaScript~\cite{flanagan2020javascript} v okolju Node.js različice 24~\cite{nodejs}.
 Sistem za vrednotenje vozil je implementiran kot ločena storitev v programskem jeziku Python različice 3.11~\cite{python3.11}.
+Za trajno shranjevanje podatkov aplikacija uporablja relacijsko podatkovno bazo PostgreSQL~\cite{postgresql-docs}, za predpomnjenje in upravljanje čakalnih vrst nalog pa podatkovno skladišče Redis~\cite{redis-data-store}.
 Na naslednji sliki~\ref{fig:architecture} je dober prikaz arhitekture.
 \begin{figure}[H]
     \centering
@@ -379,15 +381,15 @@ Docker vsebniki:
     \item Postgres:16
     \item redis:7
     \item mailhog
-    \item Evalvacijski sistem
+    \item Sistem za vrednotenje vozil
 \end{itemize}
 
 Razvoj aplikacije je potekal v razvojnem okolju Visual Studio Code. Za avtomatizacijo preverjanja kode, izvajanja testov ter gradnje vsebnikov Docker je bil uporabljen sistem GitHub Actions~\cite{github-actions-docs}, medtem ko so se periodična opravila izvajala s pomočjo časovno načrtovanih opravil (cron).
 Za gostovanje aplikacije je bil uporabljen virtualni strežnik ponudnika Hetzner~\cite{hetzner}. Namestitev in upravljanje aplikacije na strežniku je bilo izvedeno s pomočjo platforme Dokploy~\cite{dokploy}.
 
-\section{Pomenmbne tehnologije}
+\section{Uporabne tehnologije}
 Poleg temeljnih tehnologij, smo med razvojem uporabili
-še nekaj manjših ampak pomembnih knjižnic in orodij, ki ožje probleme. V
+še nekaj manjših ampak uporabnih knjižnic in orodij, ki ožje probleme. V
 nadaljevanju jih na kratko predstavimo.
 
 \subsection{Upravljanje obrazcev s knjižnico React Hook Form}
@@ -446,7 +448,7 @@ razdelku~\ref{subsec:algoritem}.
 
 \subsection{Načrtovanje podatkovne baze aplikacije}
 Pri načrtovanju podatkovne baze smo morali natančno premisliti, kako shranjujemo
-oglase avtomobilov, saj je to ključnega pomena za učinkovito delovanje odločitvenega
+oglase vozil, saj je to ključnega pomena za učinkovito delovanje odločitvenega
 modela. Previsoka stopnja normalizacije bi lahko upočasnila poizvedbe, prenizka pa bi
 vodila do podvajanja podatkov in posledičnih neskladnosti v bazi~\cite{elmasri2015fundamentals}. Zasnovani
 podatkovni načrt je predstavljen na sliki~\ref{fig:er-diagram}.\\
@@ -486,11 +488,11 @@ Entiteta \texttt{User} hrani ključne podatke o registriranih uporabnikih sistem
 \subsection{Načrtovanje podatkovne baze odločitvenega modela}
 V okviru iste podatkovne baze smo dodali ločeno shemo \texttt{market}, ki vsebuje
 dve tabeli. Namenjeni zbiranju in obdelavi tržnih podatkov za sistem vrednotenja
-avtomobilov~\ref{fig:er-diagram-evaluation}..\\
+vozil~\ref{fig:er-diagram-evaluation}..\\
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{ErDiagramEvaluation.png}
-    \caption{ER-diagram evalvacijskega sistema.}
+    \caption{ER-diagram sistema za vrednotenje vozil.}
     \label{fig:er-diagram-evaluation}
 \end{figure}
 Tabela \texttt{RawMarketListing} služi kot neobdelan arhiv vseh oglasov, ki so pridobljeni
@@ -530,7 +532,7 @@ relacijske strukture podatkovne baze~\cite{sequelize-orm}. Tak pristop izboljšu
 avtomatično generiranje poizvedb za različne podatkovne baze ter intuitivnejše upravljanje relacij med entitetami.\\
 Podatkovni modeli so v Sequelize definirani kot razredi, ki predstavljajo tabele v bazi podatkov~\cite{sequelize-orm}
  Vsak model ima atribute, ki ustrezajo stolpcem v tabeli, ter metode za izvajanje temeljnih operacij s podatki (CRUD – Create, Read, Update, Delete). 
- Ključno pri oblikovanju modelov je tudi postavitev indeksov na poljih, ki se pogosto pojavljajo pri poizvedbah (npr. ID avtomobila, izvor oglasa ali časovni žigi).
+ Ključno pri oblikovanju modelov je tudi postavitev indeksov na poljih, ki se pogosto pojavljajo pri poizvedbah (npr. ID vozila, izvor oglasa ali časovni žigi).
   Dobro zasnovani indeksi so bistvenega pomena za zagotavljanje hitrih odgovorov poizvedb pri velikih količinah podatkov~\cite{database-indexing}.
    Primer vzpoztavitve povezave z bazo podatkov je v kodi~\ref{code:db-connection}.
 
@@ -689,10 +691,10 @@ Ovojnico smo nato uporabili pri vsaki definiciji funkcije za pošiljanje zahtevk
 \texttt{res.data}, ki vsebuje dejanski odgovor strežnika. Axios namreč vrne objekt s številnimi dodatnimi
 podatki, ki niso vedno potrebni, zato zaradi preglednosti kode vrnemo le vsebino odgovora~\cite{axios-docs}. Po potrebi lahko
 dostopamo tudi do statusne kode strežnika, glave odgovora in konfiguracije zahtevka. Primer definicije funkcije za
-pridobivanje znamk avtomobilov je prikazan v sliki~\ref{code:api-call}.
+pridobivanje znamk vozil je prikazan v sliki~\ref{code:api-call}.
 
 \begin{center}
-\captionof{listing}{Primer definicije funkcije za pridobivanje znamk avtomobilov.}
+\captionof{listing}{Primer definicije funkcije za pridobivanje znamk vozil.}
 \label{code:api-call}
 \begin{minted}{javascript}
 export const fetchCarBrands = async () => {
@@ -719,12 +721,12 @@ pri katerem se osveži le tisti del kode, ki se je spremenil, brez izgube trenut
 Ta zmožnost je pri razvoju izjemno pomembna, saj občutno pospeši povratno zanko med spremembo in prikazom ter
 tako poveča produktivnost.
 
-\section{Evalvacijski sistem}
-Evalvacijski sistem smo zasnovali kot samostojno storitev, ki smo jo razvili v programskem jeziku Python.
+\section{Sistem za vrednotenje vozil}
+Sistem za vrednotenje vozil smo zasnovali kot samostojno storitev, ki smo jo razvili v programskem jeziku Python.
  Pri razvoju smo z osnovnim jezikom in postopno dodajali pakete glede na potrebe. Za komunikacijo z zalednim
-  sistemom smo potrebovali spletni strežnik, saj je zaledni sistem edini, ki ima dostop do evalvacijskega sistema.
+  sistemom smo potrebovali spletni strežnik, saj je zaledni sistem edini, ki ima dostop do sistema za vrednotenje vozil.
 Za spletni strežnik in vmesnik API smo uporabili ogrodje FastAPI, ki omogoča enostavno izdelavo vmesnikov API v
- jeziku Python~\cite{fastapi-docs}. Na sliki je prikazan primer definicije vmesnika API, ki vrne seznam znamk avtomobilov iz podatkovne baze~\ref{code:api-python}.
+ jeziku Python~\cite{fastapi-docs}. Na sliki je prikazan primer definicije vmesnika API, ki vrne seznam znamk vozil iz podatkovne baze~\ref{code:api-python}.
 \begin{center}
 \captionof{listing}{Primer definicije vmesnika API z ogrodjem FastAPI}
 \label{code:api-python}
@@ -809,8 +811,8 @@ menjalnik, stanje vozila). Dodajanje večjega števila parametrov brez zadostne
 količine normaliziranih podatkov bi namreč vzorec primerljivih vozil dodatno
 skrčilo, zaradi česar bi jih hitro ostalo premalo za smiselno statistično oceno.\\
 Po svoji zasnovi algoritem ustreza pristopu primerljivih prodaj (angl.\
-\emph{comparable sales approach}), ki je uveljavljena metoda vrednotenja v nepremičninski in avtomobilski
-stroki~\cite{cma-appraisal}. Cene predmeta pri tem pristopu ne ocenjujemo na
+\emph{comparable sales approach}), ki je uveljavljena metoda vrednotenja nepremičnin in
+vozil~\cite{cma-appraisal}. Cene predmeta pri tem pristopu ne ocenjujemo na
 podlagi enega samega primerka, temveč na podlagi množice podobnih, dejansko
 prodanih (oz.\ oglaševanih) primerkov, ki jim glede na stopnjo podobnosti
 pripišemo različno utež. V statističnem smislu gre za obliko metode
@@ -897,8 +899,8 @@ kilometrini pripišemo višjo utež ($60\,\%$) kot letniku ($40\,\%$).
 Vozili istega letnika se tako bolj razlikujeta po dejanski obrabi, če je prvo
 prevozilo $50\,000$~km, drugo pa $200\,000$~km. Vozili s podobno
 kilometrino, a nekoliko različnim letnikom pa ostajata bolj primerljivi.
-Odspodaj je priložena slika, ki grafično prikazuje potek algoritma za evlavacijo
-avtomobila~\ref{fig:algorithm}
+Odspodaj je priložena slika, ki grafično prikazuje potek algoritma za vrednotenje
+vozila~\ref{fig:algorithm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{algoritem-slika.png}
@@ -963,7 +965,7 @@ in njihove medsebojne odvisnosti, kar omogoča zagon celotnega okolja z enim
 samim ukazom. To je še posebej uporabno pri razvoju in testiranju. Za lokalno
 preizkušanje pošiljanja elektronske pošte smo uporabili orodje MailHog~\cite{mailhog}, ki
 odhodno pošto prestreže in jo prikaže v spletnem vmesniku, brez
-dejanskega pošiljanja na pravi naslov. Za zaledni in evalvacijski sistem smo napisali
+dejanskega pošiljanja na pravi naslov. Za zaledni sistem in sistem za vrednotenje vozil smo napisali
 ločeni datoteki \texttt{Dockerfile}, v katerih določimo, jezik
 ter okolje sistema ter katere ukaze naj vsebnik ob zagonu izvede.\\
 Ker se storitve med seboj zaganjajo z različnimi hitrostmi, smo za pravilno
@@ -1071,7 +1073,7 @@ V tem poglavju predstavimo analizo razvite rešitve. Prototip predstavimo uporab
 upoštevamo njihove povratne informacije in na podlagi njih izvedemo izboljšave. 
 Poleg tega prikažemo simulacijo delovanja rešitve ter jo primerjamo z obstoječimi rešitvami. 
 Na koncu ovrednotimo še hitrost in obremenjenost uporabljenega algoritma.
-\section{Simulacija uporabe}
+\section{Simulacija uporabe aplikacije}
 Uporabnik je ob vstopu usmerjen na glavno stran, kjer sta izpostavljeni možnosti prijave in registracije. 
 Na sliki~\ref{fig:glavna-stran} je prikazana glavna stran prototipa.
 Uporabniku sta na voljo pregled nad novimi objavami vozil in pregled nad vsemi objavljenimi vozili.
@@ -1094,7 +1096,7 @@ Pregled nas svojim profilom, ter všečkanimi vozili je predstavljen na naslednj
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{liked-cars.png}
-\caption{Stran uporabnika, kjer ima prikazane všečkane avte}
+\caption{Stran uporabnika, kjer ima prikazana všečkana vozila}
 \label{fig:liked-cars}
 \end{figure}
 \section{Mnenje uporabnikov}
@@ -1107,26 +1109,25 @@ kar smo tudi sami opazili in popravili. Eden od udeležencev je predlagal, naj s
  ne uporablja ločil za tisočice, ki bi izboljšala preglednost. Koristen je bil tudi predlog, naj se pod slike oblik vozil v formi za objavo oglasa. Doda opis, ki natančno pojasni posamezno obliko.
 Ob zaključku preizkusa so udeleženci ocenili, da jim je rešitev všeč, hkrati pa opozorili na premajhno število vozil, ki so na voljo za vrednotenje. 
 To pomanjkljivost bomo odpravili v prihodnosti, ko bomo pridobili več podatkov.
-\section{Primerjava rezultata evalvacije}
-\section{Primerjava rezultata evalvacije}
+\section{Primerjava rezultatov vrednotenja}
 Zaradi obsežnega nabora znamk in modelov smo za prikaz delovanja izbrali pet znamk (BMW, Audi, Citroën, Peugeot in Toyota),
- ki so trenutno shranjene v podatkovni bazi. Ta obsega približno 86.000 normaliziranih oglasov. Delovanje evalvacijskega sistema smo primerjali na treh vozilih:
+ ki so trenutno shranjene v podatkovni bazi. Ta obsega približno 86.000 normaliziranih oglasov. Delovanje sistema za vrednotenje vozil smo primerjali na treh vozilih:
 \begin{itemize}
     \item Audi A3, letnik 2010, s 200.000 prevoženimi kilometri,
     \item BMW serije 2, letnik 2013, s 170.000 prevoženimi kilometri,
     \item Citroën Berlingo, letnik 2017, s 130.000 prevoženimi kilometri.
 \end{itemize}
-Za vsako vozilo smo cene, ki jih predlaga evalvacijski sistem, primerjali s ponudbo na spletnih portalih avto.net in mobile.de. 
-Rezultati so zbrani v tabeli~\ref{tab:evalvacija}.
+Za vsako vozilo smo cene, ki jih predlaga sistem za vrednotenje vozil, primerjali s ponudbo na spletnih portalih \textbf{AvtoNet} in mobile.de.
+Rezultati so zbrani v tabeli~\ref{tab:vrednotenje}.
 \begin{table}[htbp]
     \centering
     \caption{Primerjava ocenjenih cen s ponudbo na spletnih portalih (v evrih).}
-    \label{tab:evalvacija}
+    \label{tab:vrednotenje}
     \begin{tabular}{lccc}
         \toprule
         & \textbf{Audi A3} & \textbf{BMW serije 2} & \textbf{Citroën Berlingo} \\
         \midrule
-        avto.net (razpon)        & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
+        AvtoNet (razpon)         & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
         mobile.de (razpon)       & 4.500--9.000  & pribl. 11.100  & 8.000--12.000 \\
         \midrule
         Sistem --- dobra cena    & 4.500  & 7.600   & 7.600  \\
@@ -1145,17 +1146,17 @@ vpogled v njegovo tržno vrednost. Pri interpretaciji rezultatov moramo upoštev
 cena praviloma višja od dejanske prodajne cene.
 \section{Analiza algoritma}
 \label{sec:analiza-algoritma}
-Hitrost in zmogljivost evalvacijskega algoritma smo izmerili v produkcijskem okolju,
+Hitrost in zmogljivost algoritma za vrednotenje vozil smo izmerili v produkcijskem okolju,
 kjer podatkovna baza vsebuje približno 86.000 normaliziranih oglasov. Izvedli smo dve
 meritvi: mikro-meritev z 2.000 neposrednimi klici funkcije nad naključnimi realnimi
 vhodnimi primeri, pri kateri smo ločeno merili čas poizvedbe SQL in čas točkovanja v
 Pythonu, ter obremenitveni test končne točke \texttt{POST /valuate} pri naraščajoči
 sočasnosti od 1 do 40 vzporednih odjemalcev.
-\subsection{Latenca posamezne evalvacije}
+\subsection{Latenca posameznega vrednotenja}
 \begin{table}[htbp]
     \centering
-    \caption{Latenca posamezne evalvacije (velikost vzorca, $N = 2000$), v milisekundah.}
-    \label{tab:latenca-evalvacije}
+    \caption{Latenca posameznega vrednotenja (velikost vzorca, $N = 2000$), v milisekundah.}
+    \label{tab:latenca-vrednotenja}
     \begin{tabular}{lrrrr}
         \toprule
         Komponenta & p50 & p95 & p99 & Povprečje \\
@@ -1166,10 +1167,10 @@ sočasnosti od 1 do 40 vzporednih odjemalcev.
         \bottomrule
     \end{tabular}
 \end{table}
-Tipična evalvacija traja približno 10 ms, v najslabšem odstotku primerov (p99) pa 29 ms.
+Tipično vrednotenje traja približno 10 ms, v najslabšem odstotku primerov (p99) pa 29 ms.
 Skoraj celotna latenca (približno 94~\%) je zaradi poizvedbo SQL, medtem ko je točkovanje
 v Pythonu zanemarljivo (povprečno 0,7 ms). Vzrok je pomanjkanje ustreznega indeksa:
-podatkovna baza pri vsaki evalvaciji izvede pregled celotne tabele (približno
+podatkovna baza pri vsakem vrednotenju izvede pregled celotne tabele (približno
 9 MB) in zavrže okoli 85.700 vrstic, ki ne ustrezajo pogojem. Ker so podatki v celoti v
 predpomnilniku, je čas poizvedbe kljub temu stabilen (okoli 6 ms), preostanek pa odpade
 na omrežni obhod do baze.
@@ -1197,10 +1198,10 @@ povezavo do baze in enim procesom strežnika.
 \chapter{Sklep}
 \label{ch:sklep}
 Cilj diplomskega dela je bil na podlagi jassno opredeljenih zahtev razviti prototip, ki uporabnikom omogoča objavo in
-pregled oglasov rabljenih avtomobilov, ter vanjo vgraditi sistem za samodejno ocenjevanje
+pregled oglasov rabljenih vozil, ter vanjo vgraditi sistem za samodejno ocenjevanje
 tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
-delujoč prototip z ločeno odjemalsko, zaledno in evalvacijsko
-komponento (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi "cevovod" za zajem,
+delujoč prototip z ločeno odjemalsko in zaledno komponento ter komponento za
+vrednotenje vozil (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi "cevovod" za zajem,
 normalizacijo in primerjavo tržnih podatkov po
 pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
 in~\ref{subsec:uteceno-povprecje}). Prototip je nameščen v produkcijskem okolju in
@@ -1209,13 +1210,13 @@ pregleda oglasov do všečkanja in vrednotenja poljubnega vozila; izpolnjene so 
 nefunkcionalne zahteve glede odzivnosti vmesnika, varovanja uporabniških podatkov s
 zgoščevanjem gesel in časovno omejenimi žetoni ter razširljivosti arhitekture z ločenimi
 komponentami in samodejnimi testi. Podatkovna baza trenutno obsega približno 86.000
-normaliziranih oglasov za pet avtomobilskih znamk.\\
+normaliziranih oglasov za pet znamk vozil.\\
 Hipoteza diplomskega dela je bila, da je mogoče uporabniku na podlagi zbranih tržnih
 podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne
 vrednosti. Sistem na podlagi znamke, modela, letnika in prevoženih
 kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
 zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil.
-Primerjava ocen s ponudbo na avto.net in mobile.de (tabela~\ref{tab:evalvacija})
+Primerjava ocen s ponudbo na \textbf{AvtoNet} in mobile.de (tabela~\ref{tab:vrednotenje})
 je pokazala dobro ujemanje pri vozilih z nizko raznolikostjo ponudbe in širši razpon
 ocene pri modelih z razpršeno ponudbo, preizkus z uporabniki pa je potrdil razumljivost
 in enostavnost uporabniškega vmesnika. Glavne omejitve rešitve so majhen nabor lastnih
@@ -1248,14 +1249,14 @@ razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
     koraka sta uvedba centraliziranega beleženja dogodkov in spremljanja delovanja sistema
     (angl.\ \emph{monitoring}) v produkcijskem okolju. To bi olajšalo odkrivanje napak in
     analizo obremenitve sistema, ter razširitev nabora avtomatiziranih testov na
-    evalvacijski in odjemalski del aplikacije, ki v tem trenutku nista pokrita enako
+    del aplikacije za vrednotenje vozil in odjemalski del, ki v tem trenutku nista pokrita enako
     temeljito kot zaledni sistem, za katerega teste ob vsakem zahtevku za združitev že
     izvaja orodje GitHub Actions.
 \end{itemize}
 Skupno gledano diplomsko delo dokazuje, da je zastavljeni koncept prototipa za
 prodajo vozil z vgrajenim, razložljivim sistemom za ocenjevanje tržne vrednosti tehnično izvedljiv.
  Predstavlja trdno osnovo, na kateri je mogoče v prihodnosti graditi
-natančnejši, bolj podatkovno bogat in temeljiteje evalviran sistem.
+natančnejši, bolj podatkovno bogat in temeljiteje ovrednoten sistem.
 
 
 
