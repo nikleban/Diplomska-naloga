@@ -1,0 +1,1070 @@
+% =====================================================================
+%  Poglavje: Analiza in vrednotenje rešitve
+%  Vključeno iz diploma-predloga.tex prek \input{podporno/analiza.tex}
+%
+%  Številke so vpisane iz izhodov skript v CarStockMarketEvaluation/analysis/.
+%  Preostale oznake \res{...} (rdeče) je treba še izpolniti:
+%    - obremenitveni test (benchmarks/loadtest.py)
+%    - sledljivost testov, Jest coverage, Lighthouse
+%    - tabeli udeležencev in najdenih težav
+%  Slike (PDF) iz analysis/out/ prekopiraj v mapo slike/.
+% =====================================================================
+
+\newcommand{\res}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+\chapter{Analiza in vrednotenje rešitve}
+\label{ch:analiza}
+
+V tem poglavju sistematično pregleadamo in analiziramo razvito rešitev. Najprej iz zahtev in
+izhodišč, ki smo si jih zastavili na začetku, izpeljemo raziskovalna vprašanja in za vsako določimo merilo
+uspešnosti (razdelek~\ref{sec:rq}). Nato opišemo merilno okolje in postopke
+(razdelek~\ref{sec:metodologija}) ter natančno definiramo vse uporabljene mere
+(razdelek~\ref{sec:mere}). Sledijo rezultati: značilnosti zbranih
+podatkov~(\ref{sec:podatki}), natančnost ocene
+vrednosti~(\ref{sec:natancnost}), občutljivost algoritma na
+parametre~(\ref{sec:obcutljivost}), latenca posameznega
+vrednotenja~(\ref{sec:latenca}) in obnašanje pod
+obremenitvijo~(\ref{sec:obremenitev}). Zatem preverimo funkcionalne in
+nefunkcionalne zahteve (\ref{sec:funkcionalne}, \ref{sec:nefunkcionalne}) ter
+predstavimo uporabniški preizkus~(\ref{sec:uporabniki}) in simulacijo
+uporabe~(\ref{sec:simulacija}). Poglavje sklenemo z obravnavo groženj
+veljavnosti~(\ref{sec:groznje}) in povzetkom ugotovitev glede na
+zastavljena izhodišča~(\ref{sec:povzetek-analize}).
+
+% =====================================================================
+\section{Raziskovalna vprašanja in merila uspešnosti}
+\label{sec:rq}
+
+Na začetku diplomskega dela (poglavje~\ref{ch:uvod}) smo si zastavili, da je
+mogoče uporabniku na podlagi zbranih tržnih podatkov in primerjave s podobnimi
+vozili ponuditi \emph{uporabno} in \emph{dovolj natančno} oceno tržne vrednosti
+vozila in da vključitev takega sistema izboljša uporabniško izkušnjo. Iz tega
+izhodišča in iz nefunkcionalnih zahtev (razdelek~\ref{sec:zahteve}) izpeljemo
+štiri raziskovalna vprašanja (RV1--RV4) in za vsako določimo merilo uspešnosti.
+
+\emph{Mediana absolutne odstotne napake} (MdAPE) je osrednja mera natančnosti v
+tem poglavju; nanjo se sklicujejo merila uspešnosti in vsi nadaljnji razdelki.
+Izračunamo jo tako, da za vsak testni primer določimo absolutno odstotno napako,
+torej za koliko odstotkov se ocenjena cena razlikuje od dejanske, nato pa čez
+vse primere vzamemo mediano teh vrednosti. MdAPE $=15\,\%$ tako pomeni, da je pri
+polovici vozil ocena znotraj $15\,\%$ od dejanske cene, pri drugi polovici pa je
+odstopanje večje; manjša kot je vrednost, natančnejše so ocene. Mediano
+uporabljamo namesto povprečja, ker je manj občutljiva na posamezne skrajne
+napake. Natančne definicije MdAPE in preostalih mer so v
+razdelku~\ref{sec:mere}.
+
+Raziskovalna vprašanja so:
+
+\begin{itemize}
+  \item \textbf{RV1 --- natančnost ocene.} Kako natančno sistem oceni tržno
+        vrednost vozila v primerjavi z dejanskimi oglasi na trgu?
+        \emph{Merilo:} MdAPE je pri vozilih z vsaj $10$ primerljivimi
+        vozili manjša od $15\,\%$, ocena pa je bistveno natančnejša od
+        preproste (naivne) referenčne metode.
+  \item \textbf{RV2 --- odvisnost natančnosti od podatkov.} Od česa je
+        natančnost ocene najbolj odvisna (velikost vzorca primerljivih vozil,
+        razpršenost ponudbe, segment vozila)?
+  \item \textbf{RV3 --- hitrost in razširljivost.} Ali sistem zadošča
+        nefunkcionalnim zahtevam glede odzivnosti tudi pod sočasno
+        obremenitvijo, in kje je zgornja meja trenutne postavitve?
+  \item \textbf{RV4 --- uporabnost.} Ali ciljni uporabniki znajo brez navodil
+        opraviti glavne naloge (registracija, objava oglasa, vrednotenje)?
+\end{itemize}
+% =====================================================================
+\section{Metodologija in merilno okolje}
+\label{sec:metodologija}
+
+\paragraph{Merilno okolje.}
+Meritve hitrosti (razdelka~\ref{sec:latenca} in~\ref{sec:obremenitev}) so
+izvedene v \emph{produkcijskem} okolju, torej na navideznem zasebnem strežniku
+z dvema procesorskima jedroma in $4$~GB pomnilnika ter s tehnologijami in
+njihovimi različicami, opisanimi v poglavju~\ref{ch:razvoj}
+(razdelek~\ref{sec:namestitev}). Analitične in merilne skripte tečejo nad isto
+podatkovno bazo kot je na produkciji.
+
+\paragraph{Posnetek podatkov.}
+Meritve v tem poglavju temeljijo na posnetku podatkovne baze iz septembra
+$2026$, ki obsega približno $86.000$ normaliziranih oglasov
+(razdelek~\ref{sec:podatki}). Ker se posnetek med analizo ne spreminja, so
+rezultati ponovljivi.
+
+\paragraph{Orodja.}
+Za meritve in analizo v tem poglavju smo napisali namenske skripte, ločene od
+produkcijske kode; ena od njih je dokumentirana kopija ocenjevalnega
+algoritma, parametrizirana za eksperimente. Statistično obdelavo in izris
+grafov smo izvedli s knjižnicama \texttt{NumPy}~\cite{harris2020numpy} in
+\texttt{Matplotlib}~\cite{hunter2007matplotlib}.
+
+\paragraph{Natančnost.}
+Natančnost ocene (razdelek~\ref{sec:natancnost}) merimo z naključno izbranim
+normaliziranim oglasom: njegove atribute (znamka, model, letnik, kilometrina)
+uporabimo kot vhod v algoritem, sam oglas pa izločimo iz primerjalne množice. Nato izračunamo oceno in jo
+primerjamo z \emph{dejansko oglaševano} ceno tega oglasa. Postopek ponovimo za
+$3000$ naključnih oglasov.
+
+% =====================================================================
+\section{Uporabljene mere}
+\label{sec:mere}
+
+\paragraph{Latenca}
+ je čas, ki preteče od trenutka tik pred oddajo zahtevka do
+trenutka, ko odjemalec prejme celoten odgovor. Glede na to, kolikšen del te
+poti zajamemo, ločimo tri vrste:
+\begin{itemize}
+  \item[(a)] \emph{latenca obdelave na strežniku} --- čas izvajanja funkcije
+        za vrednotenje, od začetka do konca, brez omrežja;
+  \item[(b)] \emph{latenca poizvedbe SQL} --- čas izvajanja poizvedbe v podatkovni bazi,
+   od začetka do konca, brez omrežja;
+  \item[(c)] \emph{latenca od konca do konca} (angl.\ \emph{end-to-end}) ---
+        (a) skupaj z omrežnim obhodom med odjemalcem in strežnikom ter
+        obdelavo zahtevka HTTP; to je čas, ki ga zazna uporabnik.
+\end{itemize}
+V razdelku~\ref{sec:latenca} merimo vrsti (a) in (b), v
+razdelku~\ref{sec:obremenitev} pa vrsto (c).
+
+\paragraph{Percentili.}
+\textbf{Percentil} $p_k$ je vrednost, pod katero pade $k\,\%$ meritev. Poročamo
+$p_{50}$ (mediana), $p_{95}$ in $p_{99}$.
+
+\paragraph{Prepustnost, sočasnost, nasičenje.}
+Obnašanje sistema pod obremenitvijo opišemo s tremi količinami:
+\begin{itemize}
+  \item \textbf{prepustnost} --- število uspešno obdelanih zahtevkov na
+        sekundo;
+  \item \textbf{sočasnost} --- število odjemalcev, ki hkrati držijo odprt
+        zahtevek;
+  \item \textbf{nasičenje} (\emph{koleno}) --- točka, v kateri dodatna
+        sočasnost ne poveča več prepustnosti, latenca pa začne naraščati
+        približno linearno.
+\end{itemize}
+Notranjo skladnost meritev preverimo z \textbf{Littlovim zakonom}~\cite{little1961},
+\begin{equation}
+  \label{eq:little}
+  L = \lambda \cdot W,
+\end{equation}
+kjer je $L$ povprečno število zahtevkov v sistemu, $\lambda$ prepustnost in
+$W$ povprečna latenca.
+
+\paragraph{Napaka ocene.}
+Za oglas $i$ z dejansko ceno $p_i$ in ocenjeno ceno $\hat p_i$ definiramo
+absolutno odstotno napako
+\begin{equation}
+  \mathrm{APE}_i = \frac{\lvert \hat p_i - p_i \rvert}{p_i}.
+\end{equation}
+\textbf{MAPE} je povprečje $\mathrm{APE}_i$, \textbf{MdAPE} pa njihova mediana;
+MdAPE je robustnejša na osamelce in je naša glavna mera~\cite{hyndman2006}.
+Poročamo tudi \textbf{MAE} (povprečna absolutna napaka) in \textbf{RMSE}
+(koren povprečne kvadratne napake) v evrih ter \emph{predznačeno} odstotno
+napako, ki pokaže sistematičen odmik ocene navzgor ali navzdol.
+
+\paragraph{Pokritost.}
+\textbf{Pokritost} je delež poizvedb, za katere sistem vrne oceno, torej za
+katere najde vsaj eno (oziroma vsaj $5$ oz.\ $10$) primerljivo vozilo.
+
+\paragraph{Raznolikost ponudbe.}
+\textbf{Raznolikost} (v izvorni kodi \texttt{ratio}) je relativna širina
+cenovnega razpona primerljivih vozil,
+\begin{equation}
+  \label{eq:raznolikost}
+  \mathrm{raznolikost} = \frac{P_{75} - P_{25}}{\hat{p}},
+\end{equation}
+kjer sta $P_{25}$ in $P_{75}$ (v kodi \texttt{goodPrice} in \texttt{badPrice})
+uteženi $25.$ oziroma $75.$ percentil cen primerljivih vozil, $\hat{p}$
+(v kodi \texttt{estimatedPrice}) pa ocenjena cena vozila. Vrednost izražamo v
+odstotkih; enoten zapis uporabljamo v vseh tabelah tega poglavja.
+
+% =====================================================================
+\section{Značilnosti zbranih podatkov}
+\label{sec:podatki}
+\paragraph{Viri in obseg.}
+Velika večina oglasov je bila zajeta z največjega slovenskega spletnega portala
+za prodajo rabljenih vozil (razdelek~\ref{sec:zajem-podatkov}); manjši del
+predstavlja vzorec z večjega nemškega oglasnega portala, ki smo ga uporabili za
+preverjanje delovanja cevovoda na drugačni strukturi vira. Zajem je zajel
+javno dostopne oglase za nekomercialno raziskovalno rabo, z omejeno hitrostjo
+zahtevkov in brez shranjevanja kontaktnih ali osebnih podatkov prodajalcev.
+Po normalizaciji baza obsega $85.846$ oglasov ($83.493$ s slovenskega in
+$2.353$ z nemškega portala) za $10$ znamk vozil; razčlenitev po znamki je v
+tabeli~\ref{tab:podatki-znamke}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Število normaliziranih oglasov po znamki.}
+  \label{tab:podatki-znamke}
+  % vir: analysis/out/dataset_per_brand.csv
+  \begin{tabular}{lr lr}
+    \toprule
+    \textbf{Znamka} & \textbf{Oglasi} & \textbf{Znamka} & \textbf{Oglasi} \\
+    \midrule
+    Volkswagen    & 21.191 & Peugeot     & 7.513 \\
+    Audi          & 11.842 & Citroën     & 6.729 \\
+    BMW           & 10.724 & Ford        & 5.783 \\
+    Renault       & 9.615  & Toyota      & 2.648 \\
+    Mercedes-Benz & 9.355  & Alfa Romeo  & 446 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Porazdelitve ključnih atributov.}
+Slika~\ref{fig:porazdelitve} prikazuje porazdelitve oglaševanih cen, prevožene
+kilometrine in letnika. Porazdelitev cen je izrazito desno asimetrična (dolg
+rep dragih vozil), zato jo prikazujemo na logaritemski osi. Mediana cene je
+$14.890$~EUR (povprečje $18.137$~EUR), mediana kilometrine $159.950$~km,
+mediana letnika pa $2017$; podrobnosti so v tabeli~\ref{tab:podatki-porazdelitve}.
+Zaradi berljivosti so na grafih odrezane skrajne vrednosti (nekaj oglasov ima
+očitno napačno ceno, kilometrino ali letnik); njihovo število je označeno v
+kotu vsakega grafa, celoten razpon pa je razviden iz stolpca \emph{maks.}\ v
+tabeli~\ref{tab:podatki-porazdelitve} in iz obravnave osamelcev v
+tabeli~\ref{tab:osamelci}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Povzetek porazdelitev ključnih numeričnih atributov.}
+  \label{tab:podatki-porazdelitve}
+  % vir: analysis/out/dataset_distribution_summary.json
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    & \textbf{$p_{5}$} & \textbf{mediana} & \textbf{povprečje} & \textbf{$p_{95}$} & \textbf{maks.} \\
+    \midrule
+    cena [EUR]        & 1.550  & 14.890  & 18.137  & 49.014  & 374.000 \\
+    kilometrina [km]  & 26.000 & 159.950 & 169.464 & 334.000 & 1.974.001 \\
+    letnik            & 2005   & 2017    & 2016    & 2024    & 2029 \\
+    moč [kW]          & 56     & 110     & 117     & 221     & 920 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{dataset_price_hist.pdf}
+    \caption{oglaševana cena (log)}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{dataset_km_hist.pdf}
+    \caption{prevoženi kilometri}
+  \end{subfigure}
+  \\[1ex]
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{dataset_year_hist.pdf}
+    \caption{letnik prve registracije}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{dataset_brand_bar.pdf}
+    \caption{oglasi po znamki}
+  \end{subfigure}
+  \caption{Porazdelitve ključnih atributov v normalizirani bazi.}
+  \label{fig:porazdelitve}
+  % vir: analysis/out/dataset_*_hist.pdf, dataset_brand_bar.pdf
+\end{figure}
+
+\paragraph{Pokritost po segmentih.}
+Za pošteno oceno mora imeti algoritem dovolj primerljivih vozil v ožjem
+segmentu (ista znamka in model, podoben letnik in kilometrina).
+Slika~\ref{fig:pokritost} prikazuje toplotno karto za znamki Renault in
+Volkswagen: vrstice so modeli, stolpci letniki, barva pa
+število oglasov v tej kombinaciji. Vidno je, da so pogosti modeli srednjih
+letnikov (npr.\ Volkswagen Golf ali Renault Clio) gosto pokriti, redki modeli
+in skrajni letniki pa le redko, kar neposredno pojasni razlike v zanesljivosti
+ocen (razdelek~\ref{sec:natancnost}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{dataset_coverage_heatmap.pdf}
+  \caption{Pokritost: število oglasov po modelu in letniku za znamki
+  Renault in Volkswagen (po ena znamka na vrstico).}
+  \label{fig:pokritost}
+  % vir: analysis/out/dataset_coverage_heatmap.pdf
+\end{figure}
+
+\paragraph{Osamelci in kakovost podatkov.}
+Postopek normalizacije trenutno ne izvaja filtriranja osamelcev, zato baza
+vsebuje tudi vozila z očitno napačnimi vrednostmi.
+Tabela~\ref{tab:osamelci} prikazuje njihov delež. Kar $10{,}7\,\%$ oglasov ima
+vsaj eno vrednost zunaj smiselnih mej, največ pri kilometrini ($9{,}9\,\%$;
+najvišja zabeležena vrednost je skoraj dva milijona kilometrov) in letniku
+($8{,}1\,\%$; nekaj oglasov ima celo letnik v prihodnosti). Preprost filter po
+interkvartilnem razponu (IQR) na ceni znotraj skupine
+$(\text{znamka},\text{model})$ bi odstranil dodatnih $2{,}2\,\%$ oglasov.
+Vpliv doslednega filtriranja osamelcev na natančnost obravnavamo v
+razdelku~\ref{sec:obcutljivost}, uvedbo takega filtra pa v
+poglavju~\ref{ch:sklep}.
+
+\begin{table}[H]
+  \centering
+  \caption{Osamelci v normalizirani bazi ($85.846$ oglasov).}
+  \label{tab:osamelci}
+  % vir: analysis/out/dataset_outliers.csv
+  \begin{tabularx}{\textwidth}{@{}X r r@{}}
+    \toprule
+    \textbf{Merilo} & \textbf{Št.\ vrstic} & \textbf{Delež} \\
+    \midrule
+    cena zunaj $[500,\ 200.000]$~EUR         & 427   & $0{,}5\,\%$ \\
+    kilometrina zunaj $[1000,\ 500.000]$~km  & 8.495 & $9{,}9\,\%$ \\
+    letnik zunaj $[1990,\ 2027]$             & 6.979 & $8{,}1\,\%$ \\
+    vsaj ena vrednost zunaj mej              & 9.169 & $10{,}7\,\%$ \\
+    dodatno po filtru IQR na ceni            & 1.878 & $2{,}2\,\%$ \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% =====================================================================
+\section{Natančnost ocene vrednosti}
+\label{sec:natancnost}
+
+To je osrednja meritev diplomskega dela: neposredno preverja zastavljeno
+izhodišče o \emph{dovolj natančni} oceni (RV1). Protokol je opisan v
+razdelku~\ref{sec:metodologija}, rezultate pa izdela skripta
+\texttt{analysis/accuracy\_cv.py} nad vzorcem $3000$ oglasov (od tega jih je
+$2986$ dobilo oceno).
+
+\paragraph{Merilo resnice in namerni odmik ocene.}
+Kot merilo resnice uporabljamo \emph{oglaševano} ceno, saj dejanske prodajne
+cene niso javno dostopne. Sistem pa namenoma ne ocenjuje oglaševane cene,
+temveč \emph{pričakovano prodajno ceno}: ker se rabljena vozila v pogajanjih
+praviloma prodajo pod oglaševano ceno, oceno zniža s stopenjskim popustom
+($9$--$15\,\%$ glede na cenovni razred). Zato je pri primerjavi z oglaševano
+ceno pričakovan rahel \emph{negativni} odmik ocene, kar je zaželeno in ne
+pomeni slabše ocene. To lastnost upoštevamo pri branju vseh rezultatov v
+nadaljevanju: napako merimo dvakrat --- proti oglaševani ceni z vključenim
+popustom (kar dejansko vrne sistem) in brez popusta (čista primerjalna
+ocena).
+
+\paragraph{Skupni rezultat.}
+Brez popusta znaša MdAPE predlaganega pristopa $13{,}5\,\%$, MAPE $23{,}8\,\%$,
+MAE $2798$~EUR in RMSE $5151$~EUR; z vključenim namernim popustom je MdAPE
+proti oglaševani ceni $14{,}5\,\%$ (mediana predznačene napake $-6{,}8\,\%$).
+Pokritost je $99{,}5\,\%$ pri $n \ge 1$ in $95{,}7\,\%$ pri $n \ge 10$.
+Slika~\ref{fig:pred-vs-actual} prikazuje napovedano ceno proti dejanski
+($R^2 = 0{,}87$), slika~\ref{fig:ape-hist} pa porazdelitev odstotne napake.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{accuracy_pred_vs_actual.pdf}
+    \caption{napovedano proti dejanskemu}
+    \label{fig:pred-vs-actual}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{accuracy_ape_hist.pdf}
+    \caption{porazdelitev napake}
+    \label{fig:ape-hist}
+  \end{subfigure}
+  \caption{Natančnost ocene vrednosti (leave-one-out, brez popusta).}
+  % vir: analysis/out/accuracy_pred_vs_actual.pdf, accuracy_ape_hist.pdf
+\end{figure}
+
+\paragraph{Primerjava z osnovnimi modeli.}
+Da presodimo, ali je predlagani pristop boljši od trivialnega, ga primerjamo s
+štirimi referenčnimi modeli na istem protokolu in isti množici kandidatov
+(tabela~\ref{tab:baselines}, slika~\ref{fig:baselines}): B0~globalna mediana
+cene za dani model, B1~navadno povprečje cen v filtrirnem oknu, B1m~mediana cen
+v oknu, B2~linearna regresija $\text{cena} \sim \text{letnik} + \text{km}$,
+B3~metoda $k$~najbližjih sosedov ($k = 10$) po standardiziranih letniku in
+kilometrini, ter B4~naš pristop (uteženo povprečje s podobnostnim jedrom, brez
+popusta).
+
+\begin{table}[htbp]
+  \centering
+  \caption{Primerjava natančnosti z osnovnimi modeli (leave-one-out).
+  MdAPE in MAPE sta v odstotkih, MAE in RMSE v evrih.}
+  \label{tab:baselines}
+  % vir: analysis/out/accuracy_overall.csv
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{l r r r r}
+    \toprule
+    \textbf{Model} & \textbf{MdAPE} & \textbf{MAPE} & \textbf{MAE} & \textbf{RMSE} \\
+    \midrule
+    B0 globalna mediana       & 37{,}8 & 95{,}7 & 7395 & 10883 \\
+    B1 povprečje v oknu       & 14{,}2 & 24{,}9 & 2930 & 5333 \\
+    B1m mediana v oknu        & 13{,}1 & 22{,}5 & 2877 & 5561 \\
+    B2 linearna regresija     & 12{,}9 & 22{,}4 & 2677 & 5032 \\
+    B3 $k$-najbližjih sosedov & \textbf{11{,}2} & 21{,}5 & 2497 & 4883 \\
+    B4 naš pristop            & 13{,}5 & 23{,}8 & 2798 & 5151 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{accuracy_baselines.pdf}
+  \caption{MdAPE osnovnih modelov in predlaganega pristopa.}
+  \label{fig:baselines}
+  % vir: analysis/out/accuracy_baselines.pdf
+\end{figure}
+
+Predlagani pristop je \emph{bistveno} boljši od naivne globalne mediane
+($13{,}5\,\%$ proti $37{,}8\,\%$) in primerljiv s preostalimi metodami, ki se
+gibljejo med $11$ in $14\,\%$. Ni pa najboljši: metoda $k$~najbližjih sosedov
+doseže $11{,}2\,\%$, tudi navadna mediana istega okna ($13{,}1\,\%$) je
+malenkost natančnejša. To je pričakovano za zasnovo, katere cilj je
+\emph{razložljivost}: za razliko od naštetih metod predlagani pristop poleg
+točkovne ocene vrne tudi cenovni razpon in indeks zaupanja, uteži pa so
+neposredno interpretabilne. Rezultat hkrati potrjuje smiselnost prehoda na
+metode strojnega učenja, ki jo predlagamo v poglavju~\ref{ch:sklep}: če že
+preprost $k$-NN preseže sedanji pristop, je od zmogljivejših modelov mogoče
+pričakovati še boljše rezultate.
+
+\paragraph{Odvisnost od velikosti vzorca in segmenta (RV2).}
+Slika~\ref{fig:mdape-n} prikazuje MdAPE glede na število primerljivih vozil
+$n$: napaka je pri $n < 10$ okoli $20\,\%$, pri $n \ge 20$ pa se ustali pri
+približno $13\,\%$. To empirično podpira izbiro konstante $20$ v indeksu
+zaupanja (enačba~\ref{eq:confidence}) --- pri toliko primerljivih vozilih je
+ocena že blizu svoje najboljše natančnosti. Slika~\ref{fig:mdape-brand} prikazuje MdAPE po znamki: najbolje se
+odrežejo pogosti, gosto pokriti modeli (Audi $9{,}8\,\%$, Toyota $10{,}8\,\%$,
+Volkswagen $12{,}1\,\%$), najslabše pa Mercedes-Benz ($24{,}9\,\%$), pri
+katerem se pri normalizaciji več različnih modelov zlije v isto kanonično
+ime, kar poslabša izbor primerljivih vozil.
+Tabela~\ref{tab:natancnost-segmenti} kaže še razčlenitev po starosti,
+kilometrini in raznolikosti ponudbe.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{accuracy_mdape_vs_n.pdf}
+    \caption{glede na velikost vzorca $n$}
+    \label{fig:mdape-n}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{accuracy_mdape_by_brand.pdf}
+    \caption{po znamki}
+    \label{fig:mdape-brand}
+  \end{subfigure}
+  \caption{Odvisnost natančnosti ocene od podatkov.}
+  % vir: analysis/out/accuracy_mdape_vs_n.pdf, accuracy_mdape_by_brand.pdf
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Natančnost predlaganega pristopa po segmentih (MdAPE).}
+  \label{tab:natancnost-segmenti}
+  % vir: analysis/out/accuracy_by_age.csv, accuracy_by_km.csv, accuracy_by_ratio.csv
+  \begin{tabularx}{\textwidth}{@{}l X r r@{}}
+    \toprule
+    \textbf{Razčlenitev} & \textbf{Koš} & \textbf{Primeri} & \textbf{MdAPE [\%]} \\
+    \midrule
+    starost [leta] & 0--3   & 367 & 9{,}0 \\
+                   & 4--7   & 921 & 10{,}6 \\
+                   & 8--12  & 932 & 14{,}5 \\
+                   & $13+$  & 766 & 22{,}9 \\
+    \midrule
+    kilometrina    & $<50.000$        & 280  & 9{,}6 \\
+                   & $50.000$--$100.000$  & 449  & 11{,}9 \\
+                   & $100.000$--$150.000$ & 634  & 12{,}4 \\
+                   & $150.000$--$200.000$ & 629  & 13{,}7 \\
+                   & $>200.000$       & 1021 & 16{,}7 \\
+    \midrule
+    raznolikost    & $0$--$0{,}10$    & 88   & 7{,}5 \\
+                   & $0{,}10$--$0{,}25$ & 1002 & 8{,}4 \\
+                   & $0{,}25$--$0{,}50$ & 1613 & 15{,}5 \\
+                   & $>0{,}50$        & 447  & 29{,}7 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Vzorec pokaže jasne zakonitosti: napaka narašča s starostjo vozila ($9\,\%$ pri
+najnovejših, $23\,\%$ pri vozilih, starejših od $13$~let), s prevoženo
+kilometrino in --- najmočneje --- z \emph{raznolikostjo ponudbe}. Pri modelih z
+enotno ponudbo (raznolikost pod $0{,}1$) je MdAPE le $7{,}5\,\%$, pri razpršeni
+ponudbi (nad $0{,}5$) pa $29{,}7\,\%$. To potrjuje, da je raznolikost, ki jo
+sistem uporabniku tudi prikaže, dober vgrajen pokazatelj zanesljivosti
+posamezne ocene.
+
+\paragraph{Vpliv popusta.}
+Slika~\ref{fig:popust} prikazuje predznačeno napako z in brez popusta. Brez
+popusta je ocena rahlo optimistična (mediana $+3{,}8\,\%$ nad oglaševano ceno),
+z namernim popustom pa se premakne na $-6{,}8\,\%$ pod oglaševano ceno. Ta
+premik je skladen z zasnovo sistema, ki cilja pričakovano prodajno in ne
+oglaševane cene; dokončno umerjanje popusta bi bilo mogoče šele s podatki o
+dejanskih prodajah (razdelek~\ref{sec:groznje}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{accuracy_discount_bias.pdf}
+  \caption{Predznačena napaka proti oglaševani ceni, z in brez namernega popusta.}
+  \label{fig:popust}
+  % vir: analysis/out/accuracy_discount_bias.pdf
+\end{figure}
+
+\paragraph{Časovni razrez.}
+Pri napovedovanju najnovejših $10\,\%$ oglasov zgolj iz starejših $90\,\%$
+znaša MdAPE predlaganega pristopa $13{,}0\,\%$ (tabela~\ref{tab:temporal}), kar
+je celo malenkost bolje od rezultata leave-one-out in potrjuje, da ocena ne
+izhaja iz uhajanja informacije.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Natančnost pri časovnem razrezu (napoved najnovejših $10\,\%$).
+  MdAPE in MAPE sta v odstotkih, MAE in RMSE v evrih.}
+  \label{tab:temporal}
+  % vir: analysis/out/accuracy_temporal.csv
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{l r r r r}
+    \toprule
+    \textbf{Model} & \textbf{MdAPE} & \textbf{MAPE} & \textbf{MAE} & \textbf{RMSE} \\
+    \midrule
+    B0 globalna mediana       & 35{,}9 & 74{,}5 & 7596 & 11222 \\
+    B1m mediana v oknu        & 12{,}8 & 19{,}7 & 3088 & 5805 \\
+    B3 $k$-najbližjih sosedov & 10{,}5 & 18{,}2 & 2667 & 4890 \\
+    B4 naš pristop            & 13{,}0 & 20{,}6 & 2994 & 5347 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% =====================================================================
+\section{Občutljivost algoritma na parametre}
+\label{sec:obcutljivost}
+
+Ocenjevalni algoritem vsebuje več hevristično določenih konstant: dovoljeno
+odstopanje kilometrine ($\pm 40.000$~km) in letnika ($\pm 3$~leta), uteži
+delnih ocen ($0{,}6$ in $0{,}4$), oblika padajoče funkcije in stopenjski
+popust. V tem razdelku vsako spreminjamo ob nespremenjenih ostalih in merimo
+MdAPE ter pokritost (vzorec $2000$ oglasov, leave-one-out). Rezultate izdela
+skripta \texttt{analysis/sensitivity.py}.
+
+\paragraph{Okno primerljivosti.}
+Tabela~\ref{tab:sens-okno} in slika~\ref{fig:sens-km} kažeta, da je algoritem
+na širino \emph{kilometrinskega} okna skoraj neobčutljiv: MdAPE se med
+$\pm 10.000$~km in $\pm 80.000$~km giblje le med $13{,}2$ in $13{,}6\,\%$.
+Nasprotno je odvisen od \emph{letnikovega} okna: pri $\pm 1$~letu je MdAPE
+$12{,}6\,\%$, pri $\pm 5$~letih pa $15{,}2\,\%$. Ožje okno da bolj primerljiva
+vozila, a manjši vzorec (nižja pokritost); gre za znano razmerje med
+pristranskostjo in varianco~\cite{bias-variance}. Toplotna karta
+(slika~\ref{fig:sens-heatmap}) potrjuje, da natančnost določa skoraj izključno
+letnikovo okno. Sedanja izbira $\pm 3$~leta je razumen kompromis med
+natančnostjo in pokritostjo; morebitna zožitev na $\pm 2$~leti bi MdAPE
+znižala za približno $0{,}3$~odstotne točke ob še vedno visoki pokritosti.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Občutljivost na širino okna primerljivosti. Pokritost je delež
+  poizvedb z vsaj $5$ primerljivimi vozili.}
+  \label{tab:sens-okno}
+  % vir: analysis/out/sensitivity_km.csv, sensitivity_year.csv
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{l r r r}
+    \toprule
+    \textbf{Parameter} & \textbf{MdAPE [\%]} & \textbf{Pokritost [\%]} & \textbf{Mediana $n$} \\
+    \midrule
+    kilometrina $\pm 10.000$~km & 13{,}2 & 92{,}3 & 53 \\
+    kilometrina $\pm 40.000$~km & 13{,}4 & 98{,}1 & 196 \\
+    kilometrina $\pm 80.000$~km & 13{,}6 & 99{,}0 & 362 \\
+    \midrule
+    letnik $\pm 1$~leto  & 12{,}6 & 95{,}6 & 97 \\
+    letnik $\pm 3$~leta  & 13{,}4 & 98{,}1 & 196 \\
+    letnik $\pm 5$~let   & 15{,}2 & 98{,}5 & 262 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{sensitivity_km.pdf}
+    \caption{okno kilometrine}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{sensitivity_year.pdf}
+    \caption{okno letnika}
+  \end{subfigure}
+  \caption{Občutljivost na širino okna primerljivosti (MdAPE in pokritost).}
+  \label{fig:sens-km}
+  % vir: analysis/out/sensitivity_km.pdf, sensitivity_year.pdf
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{sensitivity_km_year_heatmap.pdf}
+  \caption{MdAPE [\%] po mreži dovoljenih odstopanj kilometrine in letnika.}
+  \label{fig:sens-heatmap}
+  % vir: analysis/out/sensitivity_km_year_heatmap.pdf
+\end{figure}
+
+\paragraph{Uteži, oblika jedra in popust.}
+Tabela~\ref{tab:sens-ostalo} povzema preostale parametre. Razmerje uteži med
+kilometrino in letnikom na natančnost praktično ne vpliva ($13{,}4$ do
+$13{,}6\,\%$ za vsa preizkušena razmerja), prav tako ne zamenjava linearne
+padajoče funkcije z eksponentno ($13{,}4$ proti $13{,}3\,\%$). Edina parametra,
+ki opazno premakneta rezultat, sta torej širina letnikovega okna in namerni
+popust: ta predznačeno napako proti oglaševani ceni premakne iz $+3{,}8\,\%$ v
+$-6{,}8\,\%$, MdAPE pa zviša z $13{,}4$ na $14{,}5\,\%$. Ta premik je posledica
+zavestne odločitve, da sistem ocenjuje pričakovano prodajno in ne oglaševane
+cene, in ne slabše ocene.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Občutljivost na uteži, obliko jedra in popust.}
+  \label{tab:sens-ostalo}
+  % vir: analysis/out/sensitivity_weights.csv, sensitivity_kernel.csv, sensitivity_discount.csv
+  \begin{tabularx}{\textwidth}{@{}l X r >{\raggedleft\arraybackslash}p{2.3cm}@{}}
+    \toprule
+    \textbf{Parameter} & \textbf{Nastavitev} & \textbf{MdAPE [\%]} & \textbf{Predznačena napaka [\%]} \\
+    \midrule
+    uteži (km / letnik) & $0{,}5 / 0{,}5$              & 13{,}4 & $+3{,}7$ \\
+    uteži (km / letnik) & $0{,}6 / 0{,}4$ (privzeto)   & 13{,}4 & $+3{,}8$ \\
+    uteži (km / letnik) & $0{,}8 / 0{,}2$              & 13{,}6 & $+3{,}8$ \\
+    \midrule
+    jedro               & linearno (privzeto)         & 13{,}4 & $+3{,}8$ \\
+    jedro               & eksponentno                 & 13{,}3 & $+3{,}8$ \\
+    \midrule
+    popust              & brez                        & 13{,}4 & $+3{,}8$ \\
+    popust              & stopenjski (privzeto)        & 14{,}5 & $-6{,}8$ \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Sklep o robustnosti.}
+Algoritem je robusten: na večino svojih konstant se skoraj ne odziva, kar
+pomeni, da njihova hevristična izbira ni sporna. Njegova natančnost je odvisna
+predvsem od kakovosti in gostote podatkov (razdelek~\ref{sec:natancnost}), ne
+od finega nastavljanja parametrov.
+
+% =====================================================================
+\section{Latenca posameznega vrednotenja}
+\label{sec:latenca}
+
+Merimo latenco vrste (a) in (b) iz razdelka~\ref{sec:mere}. Meritev izvede
+\texttt{benchmarks/bench\_algo.py}: $2000$ neposrednih klicev funkcije nad
+naključnimi realnimi vhodi (brez HTTP), po $100$ ogrevalnih klicih, ki se ne
+merijo. Ločeno merimo čas poizvedbe SQL, čas točkovanja v Pythonu in čas
+serializacije odgovora.
+
+\paragraph{Ozko grlo: pregled celotne tabele.}
+Prvotna izvedba poizvedbe ni imela ustreznega indeksa.
+Izsek~\ref{lst:explain-before} prikazuje izpis \texttt{EXPLAIN (ANALYZE,
+BUFFERS)}: načrt je \texttt{Seq Scan}, baza pri vsakem vrednotenju prebere
+celotno tabelo in zavrže $85.273$ vrstic, ki ne ustrezajo pogojem
+(\texttt{Rows Removed by Filter}). Ker so podatki v celoti v predpomnilniku
+(\texttt{shared hit}, brez \texttt{read}), je čas stabilen, a raste linearno z
+velikostjo tabele.
+
+\begin{center}
+\captionof{listing}{\texttt{EXPLAIN (ANALYZE, BUFFERS)} pred dodajanjem indeksa.}
+\label{lst:explain-before}
+\begin{minted}{text}
+Seq Scan on normalized_market_listing
+    (cost=0.00..3314.15 rows=12 width=97)
+    (actual time=0.555..6.847 rows=573 loops=1)
+  Filter: ((kilometers >= 18500) AND (kilometers <= 98500)
+       AND (registration_year >= 2019) AND (registration_year <= 2025)
+       AND (brand_name = 'Citroën') AND (model_name = 'C3'))
+  Rows Removed by Filter: 85273
+  Buffers: shared hit=1168
+Execution Time: 6.880 ms
+\end{minted}
+\end{center}
+
+\paragraph{Učinek sestavljenega indeksa.}
+Po dodajanju sestavljenega indeksa na
+$(\text{brand\_name},\ \text{model\_name},\ \text{registration\_year},\
+\text{kilometers})$ se načrt spremeni v \texttt{Bitmap Index Scan}
+(izsek~\ref{lst:explain-after}): baza prebere le nekaj strani indeksa in
+pripadajoče vrstice, čas izvajanja pa pade z $6{,}88$~ms na $0{,}69$~ms.
+Latenca poizvedbe SQL se v mediani zmanjša z $9{,}7$~ms na $2{,}0$~ms
+(tabela~\ref{tab:indeks-pred-po}, slika~\ref{fig:indeks-pred-po}). Pomembneje
+od trenutnega pohitrenja je, da postane čas poizvedbe neodvisen od velikosti
+tabele: namesto $O(\text{tabela})$ postane $O(\text{zadetki})$.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Latenca poizvedbe SQL pred in po dodajanju indeksa, v milisekundah.}
+  \label{tab:indeks-pred-po}
+  % vir: benchmarks/report.md (results_algo_before/after.json)
+  \begin{tabular}{lrrrr}
+    \toprule
+    & \textbf{p50} & \textbf{p95} & \textbf{p99} & \textbf{Povprečje} \\
+    \midrule
+    pred (Seq Scan)  & 9{,}7 & 21{,}0 & 24{,}8 & 11{,}3 \\
+    po (Index Scan)  & 2{,}0 & 8{,}6  & 12{,}5 & 3{,}0 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{latency_index_before_after.pdf}
+  \caption{Latenca poizvedbe SQL pred in po dodajanju sestavljenega indeksa.}
+  \label{fig:indeks-pred-po}
+  % vir: analysis/out/latency_index_before_after.pdf
+\end{figure}
+
+\begin{center}
+\captionof{listing}{\texttt{EXPLAIN (ANALYZE, BUFFERS)} po dodajanju indeksa.}
+\label{lst:explain-after}
+\begin{minted}{text}
+Bitmap Heap Scan on normalized_market_listing
+    (cost=5.84..50.49 rows=12 width=97)
+    (actual time=0.202..0.615 rows=573 loops=1)
+  Recheck Cond: (brand_name = 'Citroën' AND model_name = 'C3'
+       AND registration_year BETWEEN 2019 AND 2025
+       AND kilometers BETWEEN 18500 AND 98500)
+  Buffers: shared hit=195
+  ->  Bitmap Index Scan on idx_nml_valuation
+        (actual time=0.166..0.166 rows=573 loops=1)
+        Buffers: shared hit=6
+Execution Time: 0.688 ms
+\end{minted}
+\end{center}
+
+\paragraph{Razčlenitev latence po komponentah.}
+Tabela~\ref{tab:latenca-vrednotenja} in slika~\ref{fig:latency-breakdown}
+prikazujeta latenco celotnega vrednotenja po dodajanju indeksa. Tipično
+vrednotenje traja $2{,}0$~ms, v najslabšem odstotku primerov (p99) pa
+$13{,}5$~ms. Skoraj celotna latenca ($\approx 88\,\%$ povprečja) odpade na
+poizvedbo SQL; točkovanje v Pythonu ($0{,}4$~ms povprečno) in serializacija
+odgovora ($\approx 0{,}01$~ms) sta zanemarljiva. Poizvedba v povprečju vrne
+$287$ primerljivih vozil (mediana $175$, največ $1495$).
+
+\begin{table}[htbp]
+  \centering
+  \caption{Latenca posameznega vrednotenja po dodajanju indeksa
+  ($N = 2000$), v milisekundah.}
+  \label{tab:latenca-vrednotenja}
+  % vir: benchmarks/report.md (results_algo.json)
+  \begin{tabular}{lrrrr}
+    \toprule
+    \textbf{Komponenta} & \textbf{p50} & \textbf{p95} & \textbf{p99} & \textbf{Povprečje} \\
+    \midrule
+    Skupaj                & 2{,}0  & 9{,}7 & 13{,}5 & 3{,}1 \\
+    Poizvedba SQL         & 1{,}8  & 8{,}4 & 11{,}5 & 2{,}7 \\
+    Točkovanje (Python)   & 0{,}2  & 1{,}2 & 1{,}8  & 0{,}4 \\
+    Serializacija (JSON)  & 0{,}01 & 0{,}02 & 0{,}03 & 0{,}01 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{latency_breakdown.pdf}
+  \caption{Razčlenitev latence posameznega vrednotenja po komponentah.}
+  \label{fig:latency-breakdown}
+  % vir: analysis/out/latency_breakdown.pdf
+\end{figure}
+
+Vrednotenje se torej izvede daleč pod nefunkcionalno zahtevo $2$~s
+(razdelek~\ref{sec:zahteve}); prostora za rast podatkovne baze je ob
+prisotnosti indeksa dovolj.
+
+% =====================================================================
+\section{Obnašanje pod obremenitvijo}
+\label{sec:obremenitev}
+
+Merimo end-to-end latenco (vrsta (c)) in prepustnost končne točke
+\texttt{POST /valuate} pri naraščajoči sočasnosti. Obremenitev ustvarja
+skripta \texttt{benchmarks/loadtest.py} z več vzporednimi odjemalci, ki v
+fiksnem $20$-sekundnem oknu neprekinjeno pošiljajo zahtevke z naključnimi
+realnimi vhodi. Test se samodejno prekine ob deležu napak nad $5\,\%$ ali
+$p_{95}$ nad $5$~s. Med testom vzorčimo tudi zasedenost baze
+(\texttt{pg\_stat\_activity}).
+
+\begin{table}[htbp]
+  \centering
+  \caption{Prepustnost in latenca pri naraščajoči sočasnosti.
+  Latence so v milisekundah, $L$ je ocena po Littlovem zakonu.}
+  \label{tab:obremenitev}
+  % vir: benchmarks/results_load.json (loadtest.py --db-sample)
+  \begin{tabular}{r r r r r r r}
+    \toprule
+    \textbf{Sočasnost} & \textbf{Prep.\ [z/s]} & \textbf{p50} & \textbf{p95} & \textbf{p99}
+      & \textbf{Napake} & \textbf{$L$} \\
+    \midrule
+    1  & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} \\
+    5  & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} \\
+    10 & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} \\
+    20 & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} \\
+    40 & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} & \res{x} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Rezultat.}
+\res{Prepustnost narašča približno linearno do sočasnosti X, nato se ustali pri
+približno X zahtevkih na sekundo. Vse latence ostanejo pod nefunkcionalno
+zahtevo 2~s.}
+
+\paragraph{Skladnost meritve (Littlov zakon).}
+\res{Stolpec $L$ (prepustnost krat povprečna latenca) ostaja blizu nastavljene
+sočasnosti, kar potrjuje notranjo skladnost meritve.}
+
+\paragraph{Dokaz ozkega grla.}
+Teoretični strop postavitve je $1000 / S \approx 324$ vrednotenj na sekundo,
+kjer je $S = 3{,}1$~ms povprečni čas ene evalvacije. Dejanska meja je nižja,
+ker ves promet serializira \emph{ena sama deljena povezava do baze}
+(\texttt{app/database.py}) in en sam strežniški proces.
+\res{To potrjuje vzorčenje baze med testom: število aktivnih poizvedb kljub
+naraščajoči sočasnosti odjemalcev ne preseže X.}
+
+% =====================================================================
+\section{Preverjanje funkcionalnih zahtev}
+\label{sec:funkcionalne}
+
+Tabela~\ref{tab:sledljivost} povezuje vsako funkcionalno zahtevo iz
+razdelka~\ref{sec:zahteve} z načinom preverjanja in izidom.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Sledljivost funkcionalnih zahtev do preverjanja.}
+  \label{tab:sledljivost}
+  % vir: ročni scenariji + imena Jest testov v car-stock-market-be
+  \begin{tabularx}{\textwidth}{@{}X X c@{}}
+    \toprule
+    \textbf{Zahteva} & \textbf{Način preverjanja} & \textbf{Izid} \\
+    \midrule
+    Registracija uporabnika              & \res{test / scenarij} & \res{OK} \\
+    Prijava in odjava                    & \res{test / scenarij} & \res{OK} \\
+    Objava oglasa (le registrirani)      & \res{test / scenarij} & \res{OK} \\
+    Vrednotenje vozila po atributih      & \res{test / scenarij} & \res{OK} \\
+    Všečkanje oglasov                    & \res{test / scenarij} & \res{OK} \\
+    Ažuriranje lastnih/všečkanih oglasov & \res{test / scenarij} & \res{OK} \\
+    Pregled oglasov (anonimni)           & \res{test / scenarij} & \res{OK} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Pokritost testov.}
+Avtomatizirani testi zalednega sistema (Jest + Supertest,
+razdelek~\ref{sec:testiranje-be}) obsegajo \res{X} testov v \res{X} zbirkah in
+pokrivajo \res{X}\,\% stavkov ter \res{X}\,\% vej. Testi se izvedejo ob vsakem
+zahtevku za združitev na cevovodu neprekinjene integracije
+(razdelek~\ref{subsec:ci}).
+
+% =====================================================================
+\section{Preverjanje nefunkcionalnih zahtev}
+\label{sec:nefunkcionalne}
+
+Tabela~\ref{tab:nfr} za vsako nefunkcionalno zahtevo iz
+razdelka~\ref{sec:zahteve} navaja merilo, izmerjeno vrednost in sodbo.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Preverjanje nefunkcionalnih zahtev.}
+  \label{tab:nfr}
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X
+                                 >{\raggedright\arraybackslash}X
+                                 >{\raggedright\arraybackslash}X c@{}}
+    \toprule
+    \textbf{Zahteva} & \textbf{Merilo} & \textbf{Izmerjeno} & \textbf{Sodba} \\
+    \midrule
+    Odziv vmesnika na dejanje uporabnika & $< 100$~ms & \res{x}~ms  & \res{OK} \\
+    Zahtevki HTTP (razen vrednotenja)    & $< 300$~ms & \res{x}~ms ($p_{95}$) & \res{OK} \\
+    Vrednotenje vozila                   & $< 2$~s    & $13{,}5$~ms ($p_{99}$, brez omrežja) & OK \\
+    Vizualna privlačnost / dostopnost    & Lighthouse & \res{x} / \res{x} & \res{OK} \\
+    Prilagodljiva postavitev             & preizkus na več velikostih zaslona & \res{da} & \res{OK} \\
+    Varovanje uporabniških podatkov      & bcrypt, JWT z rokom & \res{opis} & \res{OK} \\
+    Odzivnost pri zahtevnejših opravilih & asinhrona obdelava & \res{opis} & \res{OK} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Meritev odzivnosti vmesnika in endpointov.}
+\res{Odzivnost uporabniškega vmesnika smo izmerili z orodjem Lighthouse na treh
+ključnih straneh; ocene za performanco so X, za dostopnost pa X. Latenco
+glavnih endpointov zalednega sistema smo izmerili z orodjem autocannon:
+$p_{95}$ je v vseh primerih pod X~ms, torej pod zahtevo 300~ms.}
+
+\paragraph{Varnost.}
+Gesla so pred shranjevanjem zgoščena z algoritmom bcrypt
+(razdelek~\ref{sec:avtentikacija}), žetoni JWT imajo rok veljavnosti $7$~dni,
+poti vmesnika API pa ščiti sredinski preverjevalnik žetonov. \res{Orodje
+\texttt{npm audit} ob zadnjem pregledu ni javilo kritičnih ranljivosti v
+odvisnostih.}
+
+% =====================================================================
+\section{Uporabniški preizkus}
+\label{sec:uporabniki}
+
+Izvedli smo formativni uporabniški preizkus~\cite{nielsen1994} z namenom
+odkriti težave uporabnosti, ne pa statistično ovrednotiti izdelka.
+
+\paragraph{Udeleženci in postopek.}
+V preizkus smo vključili \res{N} udeležencev iz kroga družine in bližnjih
+prijateljev, katerih starost in računalniška pismenost sta se med seboj
+razlikovali (tabela~\ref{tab:udelezenci}). Vsak udeleženec je prejel enak
+seznam nalog: registracija, objava oglasa, všečkanje oglasa, izbira
+slovenskega jezika v nastavitvah in vrednotenje poljubnega vozila. Med
+izvajanjem je udeleženec razmišljal na glas, opazovalec pa je beležil, ali je
+nalogo dokončal samostojno, in vsako opaženo težavo.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Udeleženci uporabniškega preizkusa.}
+  \label{tab:udelezenci}
+  \begin{tabular}{c c c l}
+    \toprule
+    \textbf{\#} & \textbf{Starost (razpon)} & \textbf{Rač.\ pismenost (1--5)} & \textbf{Naprava} \\
+    \midrule
+    1 & \res{x} & \res{x} & \res{x} \\
+    2 & \res{x} & \res{x} & \res{x} \\
+    3 & \res{x} & \res{x} & \res{x} \\
+    \res{\dots} & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Rezultati.}
+Vsi udeleženci so vse naloge dokončali brez pomoči, kar potrjuje, da so glavne
+poti v vmesniku dovolj jasne (RV4). Kljub temu so odkrili nekaj
+pomanjkljivosti; tabela~\ref{tab:tezave} jih razvršča po resnosti (lestvica
+$0$--$4$ po Nielsenu~\cite{nielsen1994}) in navaja, ali so bile odpravljene.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Težave, odkrite med uporabniškim preizkusom
+  (resnost po lestvici $0$--$4$).}
+  \label{tab:tezave}
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X c c@{}}
+    \toprule
+    \textbf{Težava} & \textbf{Resnost} & \textbf{Status} \\
+    \midrule
+    Premajhni naslovi podstrani v glavi glavne strani       & \res{x} & odpravljeno \\
+    Manjkajoče polje za ponovni vnos gesla pri registraciji & \res{x} & odpravljeno \\
+    Velika števila brez ločil za tisočice                   & \res{x} & odpravljeno \\
+    Manjkajoč opis pod slikami oblik vozil v obrazcu        & \res{x} & odpravljeno \\
+    Premalo vozil, dostopnih za vrednotenje                 & \res{x} & \res{v načrtu} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Omejitve preizkusa (majhen in priložnostni vzorec, brez standardiziranega
+vprašalnika, brez merjenja časa po nalogah) obravnavamo v
+razdelku~\ref{sec:groznje}.
+
+% =====================================================================
+\section{Simulacija uporabe}
+\label{sec:simulacija}
+
+Za ponazoritev delovanja rešitve povzemamo tipičen potek uporabe. Uporabnik je
+ob vstopu usmerjen na glavno stran (slika~\ref{fig:glavna-stran}), kjer sta
+izpostavljeni prijava in registracija ter pregled novih in vseh objavljenih
+oglasov. Registriran uporabnik lahko objavi oglas prek vodene forme
+(slika~\ref{fig:objava-oglasa}), ovrednoti poljubno vozilo, všečka oglase in si
+ogleda svoj profil z všečkanimi vozili (slika~\ref{fig:liked-cars}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{glavna-stran.png}
+  \caption{Glavna stran prototipa}
+  \label{fig:glavna-stran}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{objava-oglasa.png}
+  \caption{Vodena forma za objavo oglasa}
+  \label{fig:objava-oglasa}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{liked-cars.png}
+  \caption{Stran uporabnika s prikazanimi všečkanimi vozili}
+  \label{fig:liked-cars}
+\end{figure}
+
+\paragraph{Primerjava ocen z obstoječimi portali.}
+Za ilustracijo smo delovanje sistema primerjali s ponudbo na dveh spletnih
+portalih na treh vozilih (tabela~\ref{tab:vrednotenje}). Sistematično in
+kvantitativno oceno natančnosti podaja razdelek~\ref{sec:natancnost}; ta
+primerjava je zgolj kvalitativna ponazoritev.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Primerjava ocenjenih cen s ponudbo na spletnih portalih (v evrih).}
+  \label{tab:vrednotenje}
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabular}{lccc}
+    \toprule
+    & \textbf{Audi A3} & \textbf{BMW ser.\ 2} & \textbf{Citroën Berlingo} \\
+    \midrule
+    slov.\ portal (razpon)     & 4.000--6.000  & 9.000--12.000  & 7.500--10.000 \\
+    nem.\ portal (razpon)      & 4.500--9.000  & pribl.\ 11.100 & 8.000--12.000 \\
+    \midrule
+    Sistem --- dobra cena      & 4.500  & 7.600   & 7.600  \\
+    Sistem --- sredinska cena  & 6.350  & 9.300   & 9.941  \\
+    Sistem --- slaba cena      & 7.600  & 10.500  & 12.100 \\
+    Raznolikost                & $49\,\%$ & $31\,\%$ & $45\,\%$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Pri vozilih z nizko raznolikostjo ponudbe (Audi~A3, BMW serije~2) se sredinska
+ocena dobro ujema s cenami na obeh portalih. Pri modelu Citroën Berlingo je
+raznolikost bistveno višja, zato je razpon med dobro in slabo oceno širši,
+sredinska ocena pa manj zanesljiva --- kar je skladno z ugotovitvijo iz
+razdelka~\ref{sec:natancnost}, da napaka strmo narašča z raznolikostjo ponudbe.
+Pri interpretaciji je treba upoštevati, da sistem ocenjuje pričakovano prodajno
+in ne oglaševano ceno.
+
+% =====================================================================
+\section{Grožnje veljavnosti}
+\label{sec:groznje}
+
+\paragraph{Notranja veljavnost.}
+Kot merilo resnice pri merjenju natančnosti uporabljamo \emph{oglaševano} ceno,
+ne dejanske prodajne cene, ki ni javno dostopna. Namerni popust, s katerim
+sistem cilja pričakovano prodajno ceno, je zato ocenjen in ne umerjen na
+dejanskih prodajah. Isti fizični oglas se lahko pojavi pri več virih; prečno
+preverjanje izloči zapise z istim izvornim oglasom, ne more pa zaznati
+podvojitev med viri.
+
+\paragraph{Zunanja veljavnost.}
+Podatki pokrivajo $10$ znamk in pretežno slovenski trg (z manjšim nemškim
+vzorcem); znamka z največ oglasi na trgu (okoli $8000$ oglasov) v šifrantu ni
+zajeta in je iz analize izpuščena. Uporabniški preizkus je temeljil na majhnem
+in priložnostnem vzorcu.
+
+\paragraph{Konstruktna veljavnost.}
+Pojem \enquote{tržna vrednost} operacionaliziramo kot uteženo povprečje
+oglaševanih cen primerljivih vozil, znižano za pričakovani pogajalski popust;
+\enquote{raznolikost ponudbe} pa kot relativno širino interkvartilnega razpona
+teh cen. Drugačna operacionalizacija bi lahko dala drugačne rezultate.
+
+\paragraph{Zanesljivost.}
+Meritve latence in obremenitve so bile izvedene na deljenem produkcijskem
+strežniku, kjer lahko na rezultate vpliva ozadje. Meritve natančnosti so
+ponovljive nad fiksnim posnetkom baze.
+
+% =====================================================================
+\section{Povzetek ugotovitev}
+\label{sec:povzetek-analize}
+
+Tabela~\ref{tab:rv-povzetek} povzema odgovore na raziskovalna vprašanja glede
+na vnaprej postavljena merila.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Povzetek odgovorov na raziskovalna vprašanja.}
+  \label{tab:rv-povzetek}
+  \begin{tabularx}{\textwidth}{@{}l X c@{}}
+    \toprule
+    \textbf{RV} & \textbf{Glavni rezultat} & \textbf{Sodba} \\
+    \midrule
+    RV1 natančnost & MdAPE $13{,}5\,\%$ ($9$--$10\,\%$ za dobro pokrita vozila),
+                     bistveno bolje od naivne ocene ($37{,}8\,\%$), primerljivo z
+                     drugimi metodami & izpolnjeno \\
+    RV2 odvisnost  & napaka pada z velikostjo vzorca (ustali se pri $n\approx20$),
+                     narašča s starostjo, kilometrino in raznolikostjo ponudbe
+                     ($7{,}5\,\%$ do $29{,}7\,\%$) & pojasnjeno \\
+    RV3 hitrost    & vrednotenje $2$~ms (p50), $13{,}5$~ms (p99); indeks odpravi
+                     odvisnost od velikosti baze; \res{meja X~z/s} & \res{izpolnjeno} \\
+    RV4 uporabnost & vse naloge dokončane brez pomoči; \res{X} težav odpravljenih & izpolnjeno \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Sodba o zastavljenih izhodiščih.}
+Rezultati \emph{potrjujejo} izhodišča, ki smo si jih zastavili na začetku. Sistem na podlagi štirih
+atributov vozila vrne oceno vrednosti z mediano odstotne napake $13{,}5\,\%$
+(brez namernega popusta), pri dobro pokritih vozilih pa $9$--$10\,\%$, kar je
+znotraj zastavljenega praga $15\,\%$ in bistveno bolje od naivne metode.
+Predlagani pristop se med primerljivo natančnimi metodami ne uvršča na prvo
+mesto --- preprost $k$-najbližjih sosedov doseže $11{,}2\,\%$ --- je pa edini,
+ki poleg točkovne ocene vrne tudi razložljiv cenovni razpon in indeks
+zaupanja, ta pa se izkaže za dober pokazatelj dejanske zanesljivosti
+posamezne ocene. Glavne omejitve so odvisnost od enega prevladujočega
+podatkovnega vira, nižja natančnost pri starejših vozilih in modelih z
+razpršeno ponudbo ter merilo resnice, ki temelji na oglaševanih in ne
+prodajnih cenah. Konkretne smeri za izboljšave --- vključno s prehodom na
+metode strojnega učenja, ki jih ta analiza dodatno utemeljuje --- navajamo v
+poglavju~\ref{ch:sklep}.
