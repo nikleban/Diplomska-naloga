@@ -810,12 +810,12 @@ ki jih je treba pred pretvorbo v število odstraniti. Prevoženi kilometri so pr
 (na primer \enquote{123.456~km}). Datum prve registracije je pri enem viru zapisan v obliki \textit{mesec/leto}, pri drugem pa \textit{leto/mesec}. Podobno je bilo 
 treba poenotiti kategorije, za tip menjalnika in vrsto goriva, saj so viri te podatke podajali v različnih jezikih.
 Poseben korak v tej fazi je ujemanje znamke in modela vozila, ki je hkrati največji izziv normalizacije, saj sta ista znamka ali model na različnih virih pogosto zapisana drugače
- (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}).
- Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri
-  tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}
-   s knjižnico \texttt{RapidFuzz} (razdelek~\ref{subsec:rapidfuzz}). Prag ujemanja smo nastavili na 90~\% za znamke in 75~\% za modele.
-    Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir,
-     s čimer se sistem sproti uči. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju. Del kode, ki izvaja ujemanje znamke, je prikazan v kodi~\ref{code:brand-matching-python}.
+ (okrajšave, dodatne besede, jezikovne razlike -- na primer nemško \enquote{3er} ali \enquote{Klasse}/\enquote{class}).\\
+Zato smo zgradili sistem ujemanja, ki surovo ime najprej poskuša natančno ujeti s kanoničnim imenom v podatkovni bazi, nato preveri
+tabelo že znanih psevdonimov (vodeno posebej za vsak vir), šele nazadnje pa uporabi približno (angl. \emph{fuzzy}) ujemanje nizov~\cite{fuzzy-string-matching}
+  s knjižnico \texttt{RapidFuzz} (razdelek~\ref{subsec:rapidfuzz}). Prag ujemanja smo nastavili na 90~\% za znamke in 75~\% za modele.
+  Nižji prag za modele smo izbrali zato, ker so imena modelov krajša in bolj podvržena lažnim ujemanjem. Vsako uspešno približno ujemanje se samodejno shrani kot nov psevdonim za dani vir,
+    s čimer se sistem sproti uči. Tako se vsak naslednji pojav istega zapisa razreši že v fazi iskanja psevdonimov, s čimer se izognemo počasnejšemu približnemu ujemanju. Del kode, ki izvaja ujemanje znamke, je prikazan v kodi~\ref{code:brand-matching-python}.
 
 \begin{center}
 \captionof{listing}{Ujemanje znamke s dejanskim in približnim ujemanjem}
@@ -1115,34 +1115,25 @@ Levo na sliki~\ref{fig:hezyner-dokploy} je upravljalna stran, desno je pa uporab
 
 \chapter{Sklep}
 \label{ch:sklep}
-Cilj diplomskega dela je bil na podlagi jassno opredeljenih zahtev razviti prototip, ki uporabnikom omogoča objavo in
-pregled oglasov rabljenih vozil, ter vanjo vgraditi sistem za samodejno ocenjevanje
-tržne vrednosti vozila na podlagi primerljivih vozil na trgu. Oba cilja sta bila dosežena:
-delujoč prototip z ločeno odjemalsko in zaledno komponento ter komponento za
-vrednotenje vozil (poglavje~\ref{ch:struktura}), zasnovali pa smo tudi "cevovod" za zajem,
-normalizacijo in primerjavo tržnih podatkov po
-pristopu primerljivih prodaj z uteženim povprečjem (razdelka~\ref{subsec:filtriranje}
-in~\ref{subsec:uteceno-povprecje}). Prototip je nameščen v produkcijskem okolju in
-podpira vse zastavljene funkcionalne zahteve, od registracije, prijave ter objave in
-pregleda oglasov do všečkanja in vrednotenja poljubnega vozila; izpolnjene so tudi
-nefunkcionalne zahteve glede odzivnosti vmesnika, varovanja uporabniških podatkov s
-zgoščevanjem gesel in časovno omejenimi žetoni ter razširljivosti arhitekture z ločenimi
-komponentami in samodejnimi testi. Podatkovna baza trenutno obsega približno 86.000
-normaliziranih oglasov za deset znamk vozil.\\
-Na začetku smo si zastavili, da je mogoče uporabniku na podlagi zbranih tržnih
-podatkov in primerjave s podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne
-vrednosti. Sistem na podlagi znamke, modela, letnika in prevoženih
-kilometrov vrne oceno cene skupaj z indeksom zaupanja, ki uporabnika pregledno opozori na
-zanesljivost posamezne ocene glede na velikost vzorca primerljivih vozil.
-Sistematično prečno preverjanje (razdelek~\ref{sec:natancnost}) je pokazalo mediano
-absolutne odstotne napake $13{,}5\,\%$, pri dobro pokritih vozilih pa $9$--$10\,\%$;
-ocena je bistveno natančnejša od naivne referenčne metode in znotraj zastavljenega
-praga $15\,\%$. Napaka strmo narašča z raznolikostjo ponudbe (od $7{,}5\,\%$ pri enotni
-do $29{,}7\,\%$ pri razpršeni ponudbi), zato indeks zaupanja in prikazani cenovni razpon
-uporabnika pregledno opozorita na manj zanesljive ocene. Preizkus z uporabniki je potrdil
-razumljivost in enostavnost uporabniškega vmesnika. Glavne omejitve rešitve so odvisnost
-od enega prevladujočega podatkovnega vira, nižja zanesljivost ocene pri starejših vozilih
-in modelih z razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
+Cilj diplomskega dela je bil razviti prototip spletne aplikacije na podlagi jasno opredeljenih zahtev,
+ ki uporabnikom omogoča objavo in
+pregled oglasov rabljenih vozil, ter vanj vgraditi sistem za samodejno ocenjevanje
+tržne vrednosti vozila, na podlagi primerjanj z ostalimi vozili na trgu. Oba cilja sta bila dosežena:
+rezultat je bil delujoč prototip aplikacije z ločeno odjemalsko in zaledno komponento ter komponento za
+vrednotenje vozil (poglavje~\ref{ch:struktura}). Ta vsebuje cevovod za zajem,
+normalizacijo in primerjavo vozil.
+Prototip aplikacije je trenutno nameščen v produkcijskem okolju in
+podpira vse zastavljene funkcionalne zahteve (registracija, prijava ter objava in
+pregled oglasov do všečkanja in vrednotenja poljubnega vozila). 
+Izpolnjene so tudi nefunkcionalne zahteve, ki smo jih v poglavju~\ref{ch:analiza}
+sistematično preverili in izmerili.\\
+Drugi cilj je bil uporabniku na podlagi zbranih tržnih podatkov in primerjave s
+podobnimi vozili ponuditi uporabno in dovolj natančno oceno tržne vrednosti, je bil
+prav tako dosežen. Uporabniški preizkus
+je potrdil, da ciljni uporabniki brez navodil opravijo vse glavne naloge, vmesnik
+pa je razumljiv in enostaven za uporabo. Glavne omejitve rešitve ostajajo odvisnost
+od enega prevladujočega podatkovnega vira, nižja zanesljivost ocene pri starejših
+vozilih in modelih z razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
 \begin{itemize}
     \item \textbf{Razširitev nabora vhodnih spremenljivk.} Ko bo na voljo dovolj
     normaliziranih podatkov, bi bilo smiselno v algoritem vključiti dodatne parametre, (kot
@@ -1158,18 +1149,21 @@ in modelih z razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
     zato bi bilo smiselno v cevovod dodati samodejno filtriranje osamelcev (npr.\ po
     interkvartilnem razponu). Dopolniti je treba tudi šifrant znamk in modelov (manjkajoča
     prevladujoča znamka, združevanje modelov pri nekaterih znamkah).
-    \item \textbf{Uvedba metod strojnega učenja.} Analiza natančnosti
-    (razdelek~\ref{sec:natancnost}) je pokazala, da že preprosta metoda $k$-najbližjih
-    sosedov preseže sedanji pristop primerljivih prodaj, kar dodatno utemeljuje ta korak.
-    Ko bo obseg lastnih, normaliziranih podatkov zadosten, bi lahko sedanji, razložljivi
-    pristop dopolnili ali nadomestili z zmogljivejšimi modeli (na primer regresijskimi
-    modeli, naključnimi gozdovi ali nevronskimi mrežami), ki bi lahko predstavili bolj
-    zahtevne, nelinearne odvisnosti med lastnostmi vozila in ceno~\cite{gegic2019car}.
-    \item \textbf{Zmanjšanje odvisnosti od zunanjih virov.} Z rastjo števila uporabnikov in
-    oglasov, na platformi, bomo lahko delež zunanjih podatkov
-    postopno zmanjševali in ocene vse bolj gradili na podatkih, ki so zbrani znotraj same
-    aplikacije. To bo izboljšalo tako natančnost kot vzdržnost sistema, saj se s tem
-    zmanjša odvisnost od krhkih postopkov zajema s spletnih strani.
+    \item \textbf{Uvedba metod strojnega učenja in umetne inteligence za vrednotenje.}
+    Sedanji pristop primerljivih prodaj upošteva le štiri atribute vozila in ročno določeno
+    padajočo utežno funkcijo, njegova natančnost pa občutno pade pri modelih z razpršeno
+    ponudbo (razdelek~\ref{sec:natancnost}). Ko bo obseg lastnih, normaliziranih podatkov
+    zadosten, bi bilo treba sedanji, razložljivi pristop dopolniti ali nadomestiti z
+    modeli umetne inteligence (na primer regresijskimi modeli, naključnimi gozdovi ali
+    nevronskimi mrežami), ki znajo zajeti tudi zahtevne, nelinearne odvisnosti med
+    lastnostmi vozila in ceno~\cite{gegic2019car} in oceno sproti umerjati na dejanske
+    prodaje.
+    \item \textbf{Ustrezen vir podatkov za komercialno rabo.} Sedanji zajem javno dostopnih
+    oglasov s spletnih portalov je primeren za raziskovalno rabo, ni pa trdna ali pravno
+    vzdržna podlaga za komercialno storitev. Za pravo aplikacijo bi bilo treba podatke
+    pridobivati na drugačen način --- z dogovorom o souporabi podatkov s portali, prek
+    uradnih vmesnikov ali iz lastnih oglasov, ko bo teh dovolj --- s čimer bi se zmanjšala
+    tudi odvisnost od krhkih postopkov zajema.
     \item \textbf{Postopna migracija zalednega sistema na TypeScript.} Uvedba statičnega
     preverjanja tipov bi dolgoročno izboljšala zanesljivost in vzdržljivost zalednega dela
     aplikacije~\cite{gao2017typescript}.
@@ -1180,6 +1174,13 @@ in modelih z razpršeno ponudbo ter omejen obseg preizkusa z uporabniki.\\
     del aplikacije za vrednotenje vozil in odjemalski del, ki v tem trenutku nista pokrita enako
     temeljito kot zaledni sistem, za katerega teste ob vsakem zahtevku za združitev že
     izvaja orodje GitHub Actions.
+    \item \textbf{Od prototipa do produkcijske aplikacije.} Rezultat tega dela je delujoč
+    prototip, ne pa izdelek, pripravljen za komercialno rabo. Za to bi bilo treba odpraviti
+    ozko grlo, ugotovljeno pri obremenitvenem testu (ena sama deljena povezava do baze in
+    en strežniški proces; razdelek~\ref{sec:obremenitev}) z naborom povezav in več delovnimi
+    procesi, v cevovod dodati filtriranje osamelcev, dopolniti pravne vidike (pogoji
+    uporabe, varstvo osebnih podatkov) in razširiti spremljanje delovanja ter testno
+    pokritost.
 \end{itemize}
 
 

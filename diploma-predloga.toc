@@ -1,0 +1,87 @@
+\babel@toc {american}{}\relax 
+\babel@toc {slovene}{}\relax 
+\contentsline {chapter}{Povzetek}{}{chapter*.1}%
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Abstract}{}{chapter*.2}%
+\babel@toc {slovene}{}\relax 
+\contentsline {chapter}{\numberline {1}Uvod}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Sorodne rešitve}{3}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Ozadje}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Oglas in atributi vozila}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Atributi vozila}{10}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Zajem podatkov iz spletnih virov}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Javno dostopne podatkovne zbirke}{11}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Dostop prek vmesnikov API}{12}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Samodejni zajem podatkov s spletnih strani}{12}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Razčlenjevanje vsebine HTML}{13}{subsection.3.2.4}%
+\contentsline {chapter}{\numberline {4}Razvoj rešitve}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Zahteve}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Arhitektura rešitve}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Uporabne tehnologije}{19}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Upravljanje obrazcev s knjižnico React Hook Form}{20}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Predpomnjenje strežniškega stanja s knjižnico TanStack Query}{20}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Testiranje zalednega sistema}{21}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Približno ujemanje nizov s knjižnico RapidFuzz}{21}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Načrtovanje podatkovne baze}{22}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Načrtovanje podatkovne baze aplikacije}{22}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Načrtovanje podatkovne baze za ovrednotenje vozil}{23}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Arhitektura zalednega sistema}{25}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Modul za poizvedbe v podatkovni bazi}{26}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Avtentikacija in avtorizacija uporabnikov}{27}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Asinhrona obdelava podatkov}{28}{subsection.4.5.3}%
+\contentsline {section}{\numberline {4.6}Arhitektura uporabniškega vmesnika}{29}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Odjemalska shramba}{30}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Zahtevki API}{31}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Razvojno orodje Vite}{32}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}Sistem za vrednotenje vozil}{33}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Algoritem za primerjavo vozil}{34}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Filtriranje kandidatov iz podatkovne baze}{37}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Točkovanje podobnosti posameznega vozila}{38}{subsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.7.4}Izračun ocenjene cene z uteženim povprečjem}{39}{subsection.4.7.4}%
+\contentsline {section}{\numberline {4.8}Infrastruktura in avtomatizacija}{40}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Postavitev razvojnega okolja z vsebnikih}{41}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Neprekinjena integracija}{42}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Namestitev in gostovanje}{43}{subsection.4.8.3}%
+\contentsline {chapter}{\numberline {5}Analiza in vrednotenje rešitve}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Raziskovalna vprašanja in merila uspešnosti}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Metodologija in merilno okolje}{46}{section.5.2}%
+\contentsline {paragraph}{Merilno okolje.}{46}{paragraph*.31}%
+\contentsline {paragraph}{Posnetek podatkov.}{47}{paragraph*.32}%
+\contentsline {paragraph}{Orodja}{47}{paragraph*.33}%
+\contentsline {paragraph}{Natančnost}{47}{paragraph*.34}%
+\contentsline {section}{\numberline {5.3}Uporabljene mere}{47}{section.5.3}%
+\contentsline {paragraph}{Latenca}{47}{paragraph*.35}%
+\contentsline {paragraph}{Percentili.}{48}{paragraph*.39}%
+\contentsline {paragraph}{Prepustnost, sočasnost, nasičenje.}{48}{paragraph*.40}%
+\contentsline {paragraph}{Pokritost}{48}{paragraph*.44}%
+\contentsline {paragraph}{Raznolikost ponudbe}{48}{paragraph*.45}%
+\contentsline {section}{\numberline {5.4}Značilnosti zbranih podatkov}{48}{section.5.4}%
+\contentsline {paragraph}{Viri in obseg.}{48}{paragraph*.46}%
+\contentsline {paragraph}{Porazdelitve ključnih atributov.}{49}{paragraph*.47}%
+\contentsline {paragraph}{Pokritost po segmentih.}{51}{paragraph*.48}%
+\contentsline {paragraph}{Osamelci in kakovost podatkov.}{52}{paragraph*.49}%
+\contentsline {section}{\numberline {5.5}Natančnost ocene vrednosti}{52}{section.5.5}%
+\contentsline {paragraph}{Merilo resnice in namerni odmik ocene.}{52}{paragraph*.50}%
+\contentsline {paragraph}{Skupni rezultat.}{53}{paragraph*.51}%
+\contentsline {paragraph}{Odvisnost od velikosti vzorca in segmenta (RV2).}{53}{paragraph*.52}%
+\contentsline {paragraph}{Vpliv popusta.}{53}{paragraph*.53}%
+\contentsline {section}{\numberline {5.6}Občutljivost algoritma na parametre}{55}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Latenca posameznega vrednotenja}{56}{section.5.7}%
+\contentsline {paragraph}{Vpliv sestavljenega indeksa.}{56}{paragraph*.54}%
+\contentsline {paragraph}{Razčlenitev latence.}{56}{paragraph*.55}%
+\contentsline {section}{\numberline {5.8}Obnašanje pod obremenitvijo}{57}{section.5.8}%
+\contentsline {paragraph}{Rezultat.}{58}{paragraph*.56}%
+\contentsline {paragraph}{Ozko grlo.}{58}{paragraph*.57}%
+\contentsline {section}{\numberline {5.9}Preverjanje nefunkcionalnih zahtev}{58}{section.5.9}%
+\contentsline {paragraph}{Odzivnost vmesnika in zahtevkov.}{58}{paragraph*.58}%
+\contentsline {section}{\numberline {5.10}Preverjanje funkcionalnih zahtev z uporabniškim preizkusom}{60}{section.5.10}%
+\contentsline {paragraph}{Udeleženci in postopek.}{60}{paragraph*.59}%
+\contentsline {paragraph}{Rezultati.}{60}{paragraph*.60}%
+\contentsline {section}{\numberline {5.11}Simulacija uporabe}{61}{section.5.11}%
+\contentsline {paragraph}{Primerjava ocen z obstoječimi portali.}{62}{paragraph*.61}%
+\contentsline {chapter}{\numberline {6}Sklep}{65}{chapter.6}%
+\contentsline {chapter}{Literatura}{69}{chapter*.70}%
+\contentsline {section}{Članki v revijah}{69}{section*.71}%
+\contentsline {section}{Članki v zbornikih konferenc}{71}{section*.81}%
+\contentsline {section}{Ostala literatura}{72}{section*.85}%
+\contentsline {chapter}{Dodatek}{79}{chapter*.155}%

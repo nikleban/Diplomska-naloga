@@ -1,0 +1,2052 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  3 SEP 2026 17:06
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**./diploma-predloga.tex
+(diploma-predloga.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\documentmetad
+ata-support.ltx
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\pdfmanage
+ment-init.sty
+Package: pdfmanagement-init 2026-05-26 v0.97c LaTeX PDF management bundle
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tagpdf\tagpdf-base.sty
+Package: tagpdf-base 2026-05-17 v1.0c part of tagpdf - provide base, no-op vers
+ions of the user commands 
+\c@g__tag_MCID_abs_int=\count276
+\c@g__tag_struct_abs_int=\count277
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\pdfmanage
+ment.ltx
+File: pdfmanagement.ltx 2026-05-26 v0.97c PDF management code
+\g__pdfmanagement_EmbeddedFiles_int=\count278
+\l__pdfmeta_xmp_indent_int=\count279
+\g_pdffile_embed_pdfa_int=\count280
+\g_pdffile_embed_nonpdfa_int=\count281
+\l_pdfoutline_open_int=\count282
+\g__pdfoutline_id_int=\count283
+\g__pdfoutline_current_level_int=\count284
+)))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count285
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\l3backend
+-testphase-pdftex.def
+File: l3backend-pdf-pdftex.def 2026-05-26 v0.97c LaTeX PDF management bundle ba
+ckend support: PDF output (pdfTeX)
+\l__pdf_backend_tmpa_box=\box53
+\l__pdf_backend_tmpb_box=\box54
+\g__pdf_backend_resourceid_int=\count286
+\g__pdf_backend_name_int=\count287
+\g__pdf_backend_page_int=\count288
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-latest.sty
+Package: latex-lab-testphase-latest 2026-05-02 v0.1g latex-lab modules
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tagpdf\tagpdf.sty
+Package: tagpdf 2026-05-17 v1.0c  LaTeX kernel code for PDF tagging 
+\l__tag_tmpa_int=\count289
+\l__tag_tmpa_box=\box55
+\l__tag_tmpb_box=\box56
+\l__tag_loglevel_int=\count290
+\g__tag_unique_cnt_int=\count291
+\l__tag_tag_stop_int=\count292
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tagpdf\tagpdf-mc-code-g
+eneric.sty
+Package: tagpdf-mc-code-generic 2026-05-17 v1.0c part of tagpdf - code related 
+to marking chunks - generic mode
+\g__tag_mc_marks=\marks4
+)
+\g__tag_tree_id_pad_int=\count293
+\c@g__tag_parenttree_obj_int=\count294
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-pdf.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-pdf2.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-mathml.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-latex-book.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-latex.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-latex-lab.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-pdf.def
+
+
+Package tagpdf Info: reading namespace definitions tagpdf-ns-pdf2.def
+
+\g__tag_struct_AFobj_int=\count295
+\g__tag_para_begin_int=\count296
+\g__tag_para_end_int=\count297
+\g__tag_para_main_begin_int=\count298
+\g__tag_para_main_end_int=\count299
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-names.sty
+Package: latex-lab-testphase-names 2026-04-28 v0.8k Code related to the names o
+f tags
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-new-or-2.sty
+Package: latex-lab-testphase-new-or-2 2026-01-16 v0.86d Changes to the output r
+outine
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-foo
+tnotes.ltx
+File: latex-lab-footnotes.ltx 2026-04-28 v0.8p changes to the footnote interfac
+es
+\footnotemargin=\dimen150
+\g_fnote_id_int=\count300
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-block.sty
+Package: latex-lab-testphase-block 2026-05-28 v1.0a blockenv implementation
+
+LaTeX template Info: Declaring template type 'blockenv' taking 4 argument(s)
+(template)           on line 195.
+
+
+LaTeX template Info: Declaring template type 'list' taking 4 argument(s) on
+(template)           line 196.
+
+
+LaTeX template Info: Declaring template type 'captionedtext' taking 4
+(template)           argument(s) on line 197.
+
+
+LaTeX template Info: Declaring template type 'thmstyle' taking 4 argument(s)
+(template)           on line 198.
+
+
+LaTeX template Info: Declaring template type 'block' taking 1 argument(s) on
+(template)           line 199.
+
+
+LaTeX template Info: Declaring template type 'item' taking 1 argument(s) on
+(template)           line 200.
+
+
+LaTeX template Info: Declaring template type 'para' taking 1 argument(s) on
+(template)           line 201.
+
+\c@maxblocklevels=\count301
+\l_para_begin_skip=\skip49
+\l__block_unchained_skip=\skip50
+\l__block_botsep_skip=\skip51
+\l__block_parbotsep_skip=\skip52
+\l__block_parindent_dim=\dimen151
+\l__block_counter_start_int=\count302
+\l__block_one_label_box=\box57
+\g__block_labels_box=\box58
+\l__block_tmpa_skip=\skip53
+\l__block_effective_top_skip=\skip54
+\l__block_effective_bot_skip=\skip55
+\l__block_caption_before_skip=\skip56
+\l__block_caption_after_skip=\skip57
+
+LaTeX template Info: Declaring instance 'flushleft' of type blockenv on line
+(template)           1489.
+
+
+LaTeX template Info: Declaring instance 'flushright' of type blockenv on line
+(template)           1493.
+
+\@descriptiondepth=\count303
+
+LaTeX template Info: Declaring instance 'remark' of type thmstyle on line
+(template)           1791.
+
+
+LaTeX template Info: Declaring instance 'definition' of type thmstyle on line
+(template)           1796.
+
+
+LaTeX template Info: Declaring instance 'legacy2e' of type thmstyle on line
+(template)           1798.
+
+LaTeX Info: Redefining \centering on input line 1894.
+LaTeX Info: Redefining \raggedleft on input line 1895.
+LaTeX Info: Redefining \raggedright on input line 1896.
+LaTeX Info: Redefining \qed on input line 2238.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-enu
+mitem.sty
+Package: latex-lab-enumitem 2026-04-21 v0.80f Emulating enumitem
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-context.sty
+Package: latex-lab-testphase-context 2026-05-26 v0.6a Providing context for ins
+tance, etc.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-ker
+nel-changes.sty
+Package: latex-lab-kernel-changes 2026-04-27 v0.85j General kernel and class ch
+anges
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-sec.sty
+Package: latex-lab-testphase-sec 2026-04-28 v0.84o Code related to the tagging 
+of heading commands
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-sec-template.sty
+Package: latex-lab-testphase-sec-template 2026-05-25 v0.9g heading implementati
+on
+
+LaTeX template Info: Declaring template type 'heading' taking 9 argument(s) on
+(template)           line 177.
+
+
+LaTeX template Info: Declaring template type 'headformat' taking 6 argument(s)
+(template)           on line 178.
+
+\l__head_level_int=\count304
+\l__head_before_skip=\skip58
+\l__head_penalty_int=\count305
+\l__head_after_penalty_skip=\skip59
+\l__head_after_skip=\skip60
+\l__head_heading_indent_dim=\dimen152
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-toc.sty
+Package: latex-lab-testphase-toc 2026-04-28 v0.85k  Code related to the tagging
+ of toc-like lists
+\g__tag_toc_level_int=\count306
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-minipage.sty
+Package: latex-lab-testphase-minipage 2026-04-24 v0.81k Code related to the tag
+ging of minipages and parboxes
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-graphic.sty
+Package: latex-lab-testphase-graphic 2026-04-28 v0.80i Code related to the tagg
+ing of graphics
+\g__tag_graphic_int=\count307
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-float.sty
+Package: latex-lab-testphase-float 2026-04-24 v0.81n Code related to the taggin
+g of floats
+\g__tag_float_int=\count308
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-bib.sty
+Package: latex-lab-testphase-bib 2026-05-28 v0.81f Code related to the tagging 
+of bibliography and cite command
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-text.sty
+Package: latex-lab-testphase-text 2026-04-27 v0.85g Code related to the tagging
+ of various small text commands
+LaTeX Info: Redefining \mbox on input line 108.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-marginpar.sty
+Package: latex-lab-testphase-marginpar 2026-04-24 v0.85i Changes related to the
+ tagging of the margin notes
+\g__kernel_marginpar_int=\count309
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-title.sty
+Package: latex-lab-testphase-title 2026-05-27 v0.85g Changes related to the tag
+ging of the title
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-table.sty
+Package: latex-lab-testphase-table 2026-04-28 v0.85t Code related to the taggin
+g of tables
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2026/02/24 v2.7b Tabular extension package (FMi)
+\col@sep=\dimen153
+\ar@mcellbox=\box59
+\extrarowheight=\dimen154
+\NC@list=\toks17
+\extratabsurround=\skip61
+\backup@length=\skip62
+\ar@cellbox=\box60
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-math.sty
+Package: latex-lab-testphase-math 2025-03-10 v0.8d code related to the math tag
+ging
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-mat
+h.ltx
+File: latex-lab-math.ltx 2026-05-27 v0.7e Grab all the math(s) and tag it
+\l__math_tmpa_skip=\skip63
+\g__math_mathml_total_int=\count310
+\g__math_mathml_int=\count311
+\g__math_math_total_int=\count312
+\g__math_mathml_AF_found_int=\count313
+\g__math_mathml_AF_attached_int=\count314
+\l__math_tmpa_box=\box61
+\l__math_mathstyle_int=\count315
+\g__math_mathchoice_int=\count316
+\l__math_grab_env_int=\count317
+\g__math_postdisplaypenalty_int=\count318
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-mat
+hpkg.ltx
+File: latex-lab-mathpkg.ltx 2026-05-11 v0.1e mathpkg adaptions
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-mat
+hintent.ltx
+File: latex-lab-mathintent.ltx 2026-01-16 v0.1c MathML intent attributes
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-firstaid.sty
+Package: latex-lab-testphase-firstaid 2026-05-23 v0.85w Temporary patches to ex
+ternal packages needed for the tagging project
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-tes
+tphase-tikz.sty
+Package: latex-lab-testphase-tikz 2026-05-12 v0.80i Code related to the tagging
+ of tikz pictures
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\pdfmanage
+ment-firstaid.sty
+Package: pdfmanagement-firstaid 2026-05-26 v0.97c LaTeX PDF management bundle /
+ firstaid-patches
+
+Package pdfmanagement Info: loading pdfmanagement firstaid code for pgf
+
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
+Document Class: book 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\bk12.clo
+File: bk12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count319
+\c@chapter=\count320
+\c@section=\count321
+\c@subsection=\count322
+\c@subsubsection=\count323
+\c@paragraph=\count324
+\c@subparagraph=\count325
+\c@figure=\count326
+\c@table=\count327
+\abovecaptionskip=\skip64
+\belowcaptionskip=\skip65
+\bibindent=\dimen155
+)
+(podporno/preambula.tex
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2026/05/20 v26.8 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count328
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2084.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2086.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2088.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2089.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2090.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2092.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2117.
+\U@D=\dimen156
+\l@unhyphenated=\language79
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count329
+Package babel Info: Configuration files are deprecated, as
+(babel)             they can break document portability.
+(babel)             Reported on input line 4228.
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/sl\babel
+-slovene.tex
+Package babel Info: Name 'slovene' is discouraged.
+(babel)             Prefer 'slovenian' instead.
+(babel)             Reported on input line 16.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel
+-american.tex)
+Package babel Info: Importing font and identification data for slovene
+(babel)             from babel-sl.ini. Reported on input line 4356.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/babel-slovenian\sloveni
+an.ldf
+Language: slovenian 2025/05/10 v1.2p Slovenian support from the babel system
+Package babel Info: Making " an active character on input line 80.
+)
+Package babel Info: Importing font and identification data for american
+(babel)             from babel-en-US.ini. Reported on input line 4356.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\american.
+ldf
+Language: american 2017/06/06 v3.3r English support from the babel system
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
+df
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 108.
+)))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count330
+)
+\MT@toks=\toks21
+\MT@tempbox=\box62
+\MT@count=\count331
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks22
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen157
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count332
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdf
+tex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip66
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen158
+\Gin@req@width=\dimen159
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip67
+\f@nch@offset@elh=\skip68
+\f@nch@offset@erh=\skip69
+\f@nch@offset@olh=\skip70
+\f@nch@offset@orh=\skip71
+\f@nch@offset@elf=\skip72
+\f@nch@offset@erf=\skip73
+\f@nch@offset@olf=\skip74
+\f@nch@offset@orf=\skip75
+\f@nch@height=\skip76
+\f@nch@footalignment=\skip77
+\f@nch@widthL=\skip78
+\f@nch@widthC=\skip79
+\f@nch@widthR=\skip80
+\@temptokenb=\toks23
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks24
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2026/05/19 v2.18d AMS math features
+\@mathmargin=\skip81
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks25
+\ex@=\dimen160
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen161
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count333
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count334
+\leftroot@=\count335
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count336
+\DOTSCASE@=\count337
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box63
+\strutbox@=\box64
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen162
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count338
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count339
+\dotsspace@=\muskip17
+\c@parentequation=\count340
+\dspbrk@lvl=\count341
+\tag@help=\toks26
+\row@=\count342
+\column@=\count343
+\maxfields@=\count344
+\andhelp@=\toks27
+\eqnshift@=\dimen163
+\alignsep@=\dimen164
+\tagshift@=\dimen165
+\tagwidth@=\dimen166
+\totwidth@=\dimen167
+\lineht@=\dimen168
+\@envbody=\toks28
+\multlinegap=\skip82
+\multlinetaggap=\skip83
+\mathdisplay@stack=\toks29
+LaTeX Info: Redefining \[ on input line 2965.
+LaTeX Info: Redefining \] on input line 2966.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex-lab\latex-lab-ams
+math.ltx
+File: latex-lab-amsmath.ltx 2026-04-25 v0.1j amsmath adaptions
+LaTeX Info: Redefining \eqref on input line 58.
+\l__luamml_struct_tmpa_int=\count345
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\color-ltx
+.sty
+Package: color-ltx 2026-05-26 v0.97c Standard LaTeX Color (patched for l3color,
+ part of pdfmanagement-testphase, original version 2022/01/06 v1.3d) (DPC)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 165.
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul.sty
+Package: soul 2026-03-06 v3.2 Permit use of UTF-8 characters in soul (HO)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/soul\soul-ori.sty
+Package: soul-ori 2026-03-06 v3.2 letterspacing/underlining (mf)
+\SOUL@word=\toks30
+\SOUL@lasttoken=\toks31
+\SOUL@syllable=\toks32
+\SOUL@cmds=\toks33
+\SOUL@buffer=\toks34
+\SOUL@token=\toks35
+\SOUL@syllgoal=\dimen169
+\SOUL@syllwidth=\dimen170
+\SOUL@charkern=\dimen171
+\SOUL@hyphkern=\dimen172
+\SOUL@dimen=\dimen173
+\SOUL@dimeni=\dimen174
+\SOUL@minus=\count346
+\SOUL@comma=\count347
+\SOUL@apo=\count348
+\SOUL@grave=\count349
+\SOUL@spaceskip=\skip84
+\SOUL@ttwidth=\dimen175
+\SOUL@uldp=\dimen176
+\SOUL@ulht=\dimen177
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen178
+\captionmargin=\dimen179
+\caption@leftmargin=\dimen180
+\caption@rightmargin=\dimen181
+\caption@width=\dimen182
+\caption@indent=\dimen183
+\caption@parindent=\dimen184
+\caption@hangindent=\dimen185
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count350
+\c@continuedfloat=\count351
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count352
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count353
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.st
+y
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+ (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count354
+\float@exts=\toks36
+\float@box=\box65
+\@float@everytoks=\toks37
+\@floatcapt=\box66
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks38
+\c@algorithm=\count355
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudoc
+ode.sty
+Package: algpseudocode 
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmi
+cx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count356
+\c@ALG@rem=\count357
+\c@ALG@nested=\count358
+\ALG@tlm=\skip85
+\ALG@thistlm=\skip86
+\c@ALG@Lnr=\count359
+\c@ALG@blocknr=\count360
+\c@ALG@storecount=\count361
+\c@ALG@tmpcounter=\count362
+\ALG@tmplength=\skip87
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen186
+\lightrulewidth=\dimen187
+\cmidrulewidth=\dimen188
+\belowrulesep=\dimen189
+\belowbottomsep=\dimen190
+\aboverulesep=\dimen191
+\abovetopsep=\dimen192
+\cmidrulesep=\dimen193
+\cmidrulekern=\dimen194
+\defaultaddspace=\dimen195
+\@cmidla=\count363
+\@cmidlb=\count364
+\@aboverulesep=\dimen196
+\@belowrulesep=\dimen197
+\@thisruleclass=\count365
+\@lastruleclass=\count366
+\@thisrulewidth=\dimen198
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen199
+\TX@old@table=\dimen256
+\TX@old@col=\dimen257
+\TX@target=\dimen258
+\TX@delta=\dimen259
+\TX@cols=\count367
+\TX@ftn=\toks39
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
+Package: biblatex 2025/07/10 v3.21 programmable bibliographies (PK/MW)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count368
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count369
+\c@listtotal=\count370
+\c@listcount=\count371
+\c@liststart=\count372
+\c@liststop=\count373
+\c@citecount=\count374
+\c@citetotal=\count375
+\c@multicitecount=\count376
+\c@multicitetotal=\count377
+\c@instcount=\count378
+\c@maxnames=\count379
+\c@minnames=\count380
+\c@maxitems=\count381
+\c@minitems=\count382
+\c@citecounter=\count383
+\c@maxcitecounter=\count384
+\c@savedcitecounter=\count385
+\c@uniquelist=\count386
+\c@uniquename=\count387
+\c@refsection=\count388
+\c@refsegment=\count389
+\c@maxextratitle=\count390
+\c@maxextratitleyear=\count391
+\c@maxextraname=\count392
+\c@maxextradate=\count393
+\c@maxextraalpha=\count394
+\c@abbrvpenalty=\count395
+\c@highnamepenalty=\count396
+\c@lownamepenalty=\count397
+\c@maxparens=\count398
+\c@parenlevel=\count399
+\blx@tempcnta=\count400
+\blx@tempcntb=\count401
+\blx@tempcntc=\count402
+\c@blx@maxsection=\count403
+\blx@maxsegment@0=\count404
+\blx@notetype=\count405
+\blx@parenlevel@text=\count406
+\blx@parenlevel@foot=\count407
+\blx@sectionciteorder@0=\count408
+\blx@sectionciteorderinternal@0=\count409
+\blx@entrysetcounter=\count410
+\blx@biblioinstance=\count411
+\labelnumberwidth=\skip88
+\labelalphawidth=\skip89
+\biblabelsep=\skip90
+\bibitemsep=\skip91
+\bibnamesep=\skip92
+\bibinitsep=\skip93
+\bibparsep=\skip94
+\bibhang=\skip95
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language80
+\c@mincomprange=\count412
+\c@maxcomprange=\count413
+\c@mincompwidth=\count414
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-dm.def
+File: blx-dm.def 2025/07/10 v3.21 biblatex datamodel (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count415
+\c@savedafterword=\count416
+\c@annotator=\count417
+\c@savedannotator=\count418
+\c@author=\count419
+\c@savedauthor=\count420
+\c@bookauthor=\count421
+\c@savedbookauthor=\count422
+\c@commentator=\count423
+\c@savedcommentator=\count424
+\c@editor=\count425
+\c@savededitor=\count426
+\c@editora=\count427
+\c@savededitora=\count428
+\c@editorb=\count429
+\c@savededitorb=\count430
+\c@editorc=\count431
+\c@savededitorc=\count432
+\c@foreword=\count433
+\c@savedforeword=\count434
+\c@holder=\count435
+\c@savedholder=\count436
+\c@introduction=\count437
+\c@savedintroduction=\count438
+\c@namea=\count439
+\c@savednamea=\count440
+\c@nameb=\count441
+\c@savednameb=\count442
+\c@namec=\count443
+\c@savednamec=\count444
+\c@translator=\count445
+\c@savedtranslator=\count446
+\c@shortauthor=\count447
+\c@savedshortauthor=\count448
+\c@shorteditor=\count449
+\c@savedshorteditor=\count450
+\c@labelname=\count451
+\c@savedlabelname=\count452
+\c@institution=\count453
+\c@savedinstitution=\count454
+\c@lista=\count455
+\c@savedlista=\count456
+\c@listb=\count457
+\c@savedlistb=\count458
+\c@listc=\count459
+\c@savedlistc=\count460
+\c@listd=\count461
+\c@savedlistd=\count462
+\c@liste=\count463
+\c@savedliste=\count464
+\c@listf=\count465
+\c@savedlistf=\count466
+\c@location=\count467
+\c@savedlocation=\count468
+\c@organization=\count469
+\c@savedorganization=\count470
+\c@origlocation=\count471
+\c@savedoriglocation=\count472
+\c@origpublisher=\count473
+\c@savedorigpublisher=\count474
+\c@publisher=\count475
+\c@savedpublisher=\count476
+\c@language=\count477
+\c@savedlanguage=\count478
+\c@origlanguage=\count479
+\c@savedoriglanguage=\count480
+\c@pageref=\count481
+\c@savedpageref=\count482
+\shorthandwidth=\skip96
+\shortjournalwidth=\skip97
+\shortserieswidth=\skip98
+\shorttitlewidth=\skip99
+\shortauthorwidth=\skip100
+\shorteditorwidth=\skip101
+\locallabelnumberwidth=\skip102
+\locallabelalphawidth=\skip103
+\localshorthandwidth=\skip104
+\localshortjournalwidth=\skip105
+\localshortserieswidth=\skip106
+\localshorttitlewidth=\skip107
+\localshortauthorwidth=\skip108
+\localshorteditorwidth=\skip109
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-compat.def
+File: blx-compat.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.def
+File: biblatex.def 2025/07/10 v3.21 biblatex compatibility (PK/MW)
+\c@textcitecount=\count483
+\c@textcitetotal=\count484
+\c@textcitemaxnames=\count485
+\c@biburlbigbreakpenalty=\count486
+\c@biburlbreakpenalty=\count487
+\c@biburlnumpenalty=\count488
+\c@biburlucpenalty=\count489
+\c@biburllcpenalty=\count490
+\biburlbigskip=\muskip19
+\biburlnumskip=\muskip20
+\biburlucskip=\muskip21
+\biburllcskip=\muskip22
+\c@smartand=\count491
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\numeric.bb
+x
+File: numeric.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\standard.b
+bx
+File: standard.bbx 2025/07/10 v3.21 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count492
+\c@bbx:relatedtotal=\count493
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\numeric.cb
+x
+File: numeric.cbx 2025/07/10 v3.21 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Document encoding is UTF8 ....
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2026-05-26 L3 programming layer (loader) 
+)
+Package biblatex Info: ... and expl3
+(biblatex)             2026-05-26 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-case-expl3
+.sty
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
+Package: siunitx 2026-05-15 v3.5.5 A comprehensive (SI) units package
+\l__siunitx_number_uncert_offset_int=\count494
+\l__siunitx_number_exponent_fixed_int=\count495
+\l__siunitx_number_min_decimal_int=\count496
+\l__siunitx_number_min_integer_int=\count497
+\l__siunitx_number_round_precision_int=\count498
+\l__siunitx_number_lower_threshold_int=\count499
+\l__siunitx_number_upper_threshold_int=\count500
+\l__siunitx_number_group_first_int=\count501
+\l__siunitx_number_group_size_int=\count502
+\l__siunitx_number_group_min_int=\count503
+\l__siunitx_number_group_minimum_int=\count504
+\l__siunitx_compound_count_int=\count505
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/translations\translatio
+ns.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
+ (CN)
+)
+\l__siunitx_table_tmp_box=\box67
+\l__siunitx_table_tmp_dim=\dimen260
+\l__siunitx_table_column_width_dim=\dimen261
+\l__siunitx_table_integer_box=\box68
+\l__siunitx_table_decimal_box=\box69
+\l__siunitx_table_uncert_box=\box70
+\l__siunitx_table_before_box=\box71
+\l__siunitx_table_after_box=\box72
+\l__siunitx_table_before_dim=\dimen262
+\l__siunitx_table_carry_dim=\dimen263
+\l__siunitx_unit_tmp_int=\count506
+\l__siunitx_unit_position_int=\count507
+\l__siunitx_unit_total_int=\count508
+\l__siunitx_sexagesimal_tmp_dim=\dimen264
+\l__siunitx_sexagesimal_marker_box=\box73
+\l__siunitx_sexagesimal_unit_box=\box74
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count509
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen265
+\Hy@linkcounter=\count510
+\Hy@pagecounter=\count511
+ (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count512
+ (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4070.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4070.
+Package hyperref Info: Hyper figures OFF on input line 4199.
+Package hyperref Info: Link nesting OFF on input line 4204.
+Package hyperref Info: Hyper index ON on input line 4207.
+Package hyperref Info: Plain pages OFF on input line 4214.
+Package hyperref Info: Backreferencing OFF on input line 4219.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4466.
+\c@Hy@tempcnt=\count513
+LaTeX Info: Redefining \url on input line 4805.
+\XeTeXLinkMargin=\dimen266
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count514
+\Field@Width=\dimen267
+\Fld@charsize=\dimen268
+Package hyperref Info: Hyper figures OFF on input line 6091.
+Package hyperref Info: Link nesting OFF on input line 6096.
+Package hyperref Info: Hyper index ON on input line 6099.
+Package hyperref Info: backreferencing OFF on input line 6106.
+Package hyperref Info: Link coloring ON on input line 6109.
+Package hyperref Info: Link coloring with OCG OFF on input line 6116.
+Package hyperref Info: PDF/A mode ON on input line 6119.
+\Hy@abspage=\count515
+\c@Item=\count516
+)
+Package hyperref Info: Driver (custom): hgeneric-testphase.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\hgeneric-
+testphase.def
+File: hgeneric-testphase.def 2026-05-26 v0.97c generic Hyperref driver for the 
+LaTeX PDF management bundle
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pdfmanagement\hyperref-
+colorschemes.def)
+LaTeX Info: Redefining \href on input line 262.
+LaTeX Info: Redefining \url on input line 348.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2026-05-21 v1.32 PDF bookmarks (HO)
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
+File: bkm-pdftex.def 2026-05-21 v1.32 bookmark driver for pdfTeX (HO)
+\BKM@id=\count517
+))
+\l__hyp_tmpa_box=\box75
+\l__hyp_tmpa_int=\count518
+\l__hyp_dest_box=\box76
+\g__hyp_linknestlevel_int=\count519
+\HyAnn@Count=\count520
+\Fld@listcount=\count521
+\Hy@SectionHShift=\skip110
+)
+\c@izrek=\count522
+\c@trditev=\count523
+\countA=\count524
+ (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/xmpincl\xmpincl.sty
+Package: xmpincl 2021/09/22 v2.4 Include XMP data in pdflatex
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/minted\minted.sty
+Package: minted 2026/03/03 v3.8.0 Yet another Pygments shim for LaTeX
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/catchfile\catchfile.s
+ty
+Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
+) (C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/fvextra\fvextra.sty
+Package: fvextra 2026/02/25 v1.14.0 fvextra - extensions and patches for fancyv
+rb
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
+Package: fancyvrb 2026/04/16 4.6a verbatim text (tvz,hv)
+\FV@CodeLineNo=\count525
+\FV@InFile=\read4
+\FV@TabBox=\box77
+\c@FancyVerbLine=\count526
+\FV@StepNumber=\count527
+\FV@OutFile=\write4
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/lineno\lineno.sty
+Package: lineno 2026/03/08 line numbers on paragraphs v5.9
+\linenopenalty=\count528
+\output=\toks40
+\linenoprevgraf=\count529
+\linenumbersep=\dimen269
+\linenumberwidth=\dimen270
+\c@linenumber=\count530
+\c@pagewiselinenumber=\count531
+\c@LN@truepage=\count532
+\c@internallinenumber=\count533
+\c@internallinenumbers=\count534
+\quotelinenumbersep=\dimen271
+\bframerule=\dimen272
+\bframesep=\dimen273
+\bframebox=\box78
+\@LN@amsmath@ams@eqpen=\count535
+)
+\c@FancyVerbWriteLine=\count536
+\c@FancyVerbBufferLine=\count537
+\c@FV@TrueTabGroupLevel=\count538
+\c@FV@TrueTabCounter=\count539
+\FV@TabBox@Group=\box79
+\FV@bgcolorstructbox=\box80
+\FV@TmpLength=\skip111
+\c@FV@HighlightLinesStart=\count540
+\c@FV@HighlightLinesStop=\count541
+\FV@LoopCount=\count542
+\FV@NCharsBox=\box81
+\FV@BreakIndent=\dimen274
+\FV@BreakIndentNChars=\count543
+\FV@BreakSymbolSepLeft=\dimen275
+\FV@BreakSymbolSepLeftNChars=\count544
+\FV@BreakSymbolSepRight=\dimen276
+\FV@BreakSymbolSepRightNChars=\count545
+\FV@BreakSymbolIndentLeft=\dimen277
+\FV@BreakSymbolIndentLeftNChars=\count546
+\FV@BreakSymbolIndentRight=\dimen278
+\FV@BreakSymbolIndentRightNChars=\count547
+\c@FancyVerbLineBreakLast=\count548
+\FV@LineBox=\box82
+\FV@LineIndentBox=\box83
+\c@FV@BreakBufferDepth=\count549
+\FV@LineWidth=\dimen279
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/latex2pydata\latex2pyda
+ta.sty
+Package: latex2pydata 2026/02/25 v0.7.0 latex2pydata - write data to file in Py
+thon literal format
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.s
+ty
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+.code.tex
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+libraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks43
+)))
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/pgfopts\pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks44
+\pgfopts@list@add@b@toks=\toks45
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/tools\shellesc.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+\c@minted@FancyVerbLineTemp=\count550
+\@float@every@listing=\toks46
+\c@listing=\count551
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.sty
+Package: csquotes 2026-05-19 v5.2p context-sensitive quotations (JAW)
+\csq@reset=\count552
+\csq@gtype=\count553
+\csq@glevel=\count554
+\csq@qlevel=\count555
+\csq@maxlvl=\count556
+\csq@tshold=\count557
+\csq@ltx@everypar=\toks47
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.def
+File: csquotes.def 2026-05-19 v5.2p csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Enabling multilingual quotes.
+)
+Package csquotes Info: Redefining alias 'slovene' -> 'german'.
+)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+ (diploma-predloga.aux
+Package babel Info: 'slovene' activates 'slovene' shorthands.
+(babel)             Reported on input line 12.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel
+-english.tex)
+Package babel Info: Importing data for english
+(babel)             from babel-en.ini. Reported on input line 62.
+)
+\openout1 = `diploma-predloga.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Info: Redefining \microtypecontext on input line 70.
+Package microtype Info: Applying patch `item' on input line 70.
+Package microtype Info: Applying patch `toc' on input line 70.
+Package microtype Info: Applying patch `eqnum' on input line 70.
+Package microtype Info: Applying patch `footnote' on input line 70.
+Package microtype Info: Applying patch `verbatim' on input line 70.
+LaTeX Info: Redefining \microtypesetup on input line 70.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: No font expansion.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count558
+\scratchdimen=\dimen280
+\scratchbox=\box84
+\nofMPsegments=\count559
+\nofMParguments=\count560
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count561
+\MPscratchDim=\dimen281
+\MPnumerator=\count562
+\makeMPintoPDFobject=\count563
+\everyMPtoPDFconversion=\toks49
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\american.l
+bx
+File: american.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\english.lb
+x
+File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\english.lb
+x
+File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+))
+Package biblatex Info: Trying to load language 'slovene'...
+Package biblatex Info: ... file 'slovene.lbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\slovene.lb
+x
+File: slovene.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\english.lb
+x
+File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `diploma-predloga.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'diploma-predloga.bbl' found.
+ (diploma-predloga.bbl)
+Package biblatex Info: Reference section=0 on input line 70.
+Package biblatex Info: Reference segment=0 on input line 70.
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\tran
+slations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: no dictionary file `translations-basic-dictionary-sl
+ovenian.trsl' found. on input line 70.
+Package hyperref Info: Link coloring ON on input line 70.
+<<sRGB.icc>>
+(podporno/naslovnestrani.tex [1
+
+
+{C:/Users/nikka/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<./podporno/cc_cc_30.pdf, id=23, 25.27844pt x 25.27844pt>
+File: ./podporno/cc_cc_30.pdf Graphic file (type pdf)
+<use ./podporno/cc_cc_30.pdf>
+Package pdftex.def Info: ./podporno/cc_cc_30.pdf  used on input line 49.
+(pdftex.def)             Requested size: 18.74585pt x 18.74585pt.
+<./podporno/cc_by_30.pdf, id=24, 18.74034pt x 18.73953pt>
+File: ./podporno/cc_by_30.pdf Graphic file (type pdf)
+<use ./podporno/cc_by_30.pdf>
+Package pdftex.def Info: ./podporno/cc_by_30.pdf  used on input line 49.
+(pdftex.def)             Requested size: 18.74028pt x 18.73947pt.
+<./podporno/cc_sa_30.pdf, id=25, 18.73955pt x 18.73994pt>
+File: ./podporno/cc_sa_30.pdf Graphic file (type pdf)
+<use ./podporno/cc_sa_30.pdf>
+Package pdftex.def Info: ./podporno/cc_sa_30.pdf  used on input line 49.
+(pdftex.def)             Requested size: 18.73949pt x 18.73988pt.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+
+
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(C:\Users\nikka\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.68 \clearemptydoublepage
+                           [2 <./podporno/cc_cc_30.pdf> <./podporno/cc_by_30.pd
+f
+
+pdfTeX warning: pdflatex (file ./podporno/cc_by_30.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
+> <./podporno/cc_sa_30.pdf
+
+pdfTeX warning: pdflatex (file ./podporno/cc_sa_30.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 77--83
+
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.100 \clearemptydoublepage
+                            [3
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.100 \clearemptydoublepage
+                            [4
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.109 \clearemptydoublepage
+                            [5]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.109 \clearemptydoublepage
+                            [6
+
+] (diploma-predloga.toc
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.58 ...ilnosti zbranih podatkov}{48}{section.5.4}
+                                                  % [7
+
+])
+\tf@toc=\write5
+\openout5 = `diploma-predloga.toc'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.118 \clearemptydoublepage
+                            [8]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.137 \clearemptydoublepage
+                            [9
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.137 \clearemptydoublepage
+                            [10
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.154 \newpage
+               [11
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \scan_stop: 
+l.158 \clearemptydoublepage
+                            [12]) [1
+
+
+
+] [2]
+<./slike/primer-avto-net.png, id=200, 684.30656pt x 225.09094pt>
+File: ./slike/primer-avto-net.png Graphic file (type png)
+<use ./slike/primer-avto-net.png>
+Package pdftex.def Info: ./slike/primer-avto-net.png  used on input line 155.
+(pdftex.def)             Requested size: 350.99762pt x 115.45773pt.
+ [3
+
+]
+<./slike/primer-objave-avto-net.png, id=216, 615.0478pt x 530.73282pt>
+File: ./slike/primer-objave-avto-net.png Graphic file (type png)
+<use ./slike/primer-objave-avto-net.png>
+Package pdftex.def Info: ./slike/primer-objave-avto-net.png  used on input line
+ 170.
+(pdftex.def)             Requested size: 350.99762pt x 302.88527pt.
+ [4 <./slike/primer-avto-net.png>]
+<./slike/primer-mobile-de.png, id=228, 395.22656pt x 211.54031pt>
+File: ./slike/primer-mobile-de.png Graphic file (type png)
+<use ./slike/primer-mobile-de.png>
+Package pdftex.def Info: ./slike/primer-mobile-de.png  used on input line 187.
+(pdftex.def)             Requested size: 195.0pt x 104.37222pt.
+[5 <./slike/primer-objave-avto-net.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Evropa, naj-bolj
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 228--228
+\T1/cmr/m/n/12 raz-²ir-jen na nem-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Osnoven pri-kaz
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+\T1/cmr/m/n/12 cene (ze-leno --
+ []
+
+
+Underfull \hbox (badness 5802) in paragraph at lines 228--228
+\T1/cmr/m/n/12 ugo-dna, rde£e --
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Priporo£ilo cene
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+\T1/cmr/m/n/12 Slo-ve-nija, ’vica,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
+[]|\T1/cmr/m/n/12 Podrobne ocene
+ []
+
+
+Overfull \hbox (9.17825pt too wide) in paragraph at lines 191--229
+\T1/cmr/m/n/12 Na se-ver-no-a-me-ri-²kem trgu je naj-bolj raz-²ir-jena to-vr-st
+na sto-ri-tev \T1/cmr/bx/n/12 CAR-FAX \T1/cmr/m/n/12 [[][]9[][]],
+ []
+
+[6 <./slike/primer-mobile-de.png>] [7] [8
+
+]
+<./slike/primer-oglas.png, id=259, 1595.9625pt x 1196.47pt>
+File: ./slike/primer-oglas.png Graphic file (type png)
+<use ./slike/primer-oglas.png>
+Package pdftex.def Info: ./slike/primer-oglas.png  used on input line 265.
+(pdftex.def)             Requested size: 312.00119pt x 233.90405pt.
+ [9] [10] [11 <./slike/primer-oglas.png>] [12] [13] [14
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 342--350
+
+ []
+
+[15]
+<./slike/use-case.png, id=333, 526.21594pt x 526.96875pt>
+File: ./slike/use-case.png Graphic file (type png)
+<use ./slike/use-case.png>
+Package pdftex.def Info: ./slike/use-case.png  used on input line 369.
+(pdftex.def)             Requested size: 312.00119pt x 312.46075pt.
+ [16] [17 <./slike/use-case.png>]
+<./slike/arhitektura.png, id=363, 923.70094pt x 523.20468pt>
+File: ./slike/arhitektura.png Graphic file (type png)
+<use ./slike/arhitektura.png>
+Package pdftex.def Info: ./slike/arhitektura.png  used on input line 400.
+(pdftex.def)             Requested size: 350.99762pt x 198.81186pt.
+ [18]
+Overfull \hbox (2.52672pt too wide) in paragraph at lines 415--415
+[]\T1/cmr/bx/n/14.4 Upravljanje obraz-cev s knji-ºnico Re-act Hook Form 
+ []
+
+
+Overfull \hbox (6.83989pt too wide) in paragraph at lines 416--429
+\T1/cmr/m/n/12 Uporabni²ki vme-snik vse-buje ve£ ob-se-ºnej-²ih obraz-cev za iz
+-pol-nje-va-nje. Ro£no
+ []
+
+[19 <./slike/arhitektura.png>]
+Overfull \hbox (3.4752pt too wide) in paragraph at lines 430--430
+[]\T1/cmr/bx/n/14.4 Predpomnjenje stre-ºni-²kega sta-nja s knji-ºnico Tan-
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 471--476
+
+ []
+
+[21]
+<./slike/ErDiagramMain.png, id=419, 1043.39813pt x 768.62157pt>
+File: ./slike/ErDiagramMain.png Graphic file (type png)
+<use ./slike/ErDiagramMain.png>
+Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 479.
+(pdftex.def)             Requested size: 350.99762pt x 258.56001pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--493
+
+ []
+
+[22 <./slike/ErDiagramMain.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 494--500
+
+ []
+
+<./slike/ErDiagramEvaluation.png, id=429, 498.06075pt x 347.49825pt>
+File: ./slike/ErDiagramEvaluation.png Graphic file (type png)
+<use ./slike/ErDiagramEvaluation.png>
+Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 51
+4.
+(pdftex.def)             Requested size: 350.99762pt x 244.90144pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 509--517
+
+ []
+
+[23]
+Overfull \hbox (43.92282pt too wide) in paragraph at lines 528--544
+\T1/cmr/m/n/12 ogla-sov, ki so ve-zani na ta-belo \T1/cmtt/m/n/12 RawMarketList
+ing \T1/cmr/m/n/12 prek tu-jega klju£a \T1/cmtt/m/n/12 raw_listing_id\T1/cmr/m/
+n/12 .
+ []
+
+[24 <./slike/ErDiagramEvaluation.png>]
+<./slike/zaledni-sistem.png, id=449, 1143.52219pt x 498.36188pt>
+File: ./slike/zaledni-sistem.png Graphic file (type png)
+<use ./slike/zaledni-sistem.png>
+Package pdftex.def Info: ./slike/zaledni-sistem.png  used on input line 551.
+(pdftex.def)             Requested size: 350.99762pt x 152.9697pt.
+ [25 <./slike/zaledni-sistem.png>]
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
+t line 569.
+\pydata@fh@0=\write6
+\openout6 = `_55F9811064D628AD6F94DD8FFA30621C.data.minted'.
+
+runsystem(latexminted config  --timestamp 20260903170639 55F9811064D628AD6F94DD
+8FFA30621C)...executed.
+
+
+(_55F9811064D628AD6F94DD8FFA30621C.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20260903170639 55F9811064D628AD6
+F94DD8FFA30621C)...executed.
+
+
+(_minted/friendly.style.minted)
+(_minted/9EBF1D48BB718BC84AF0D41EC2774446.highlight.minted
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+) [26]
+(_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [27])
+<./slike/registracija-prijava.png, id=494, 1915.155pt x 827.09pt>
+File: ./slike/registracija-prijava.png Graphic file (type png)
+<use ./slike/registracija-prijava.png>
+Package pdftex.def Info: ./slike/registracija-prijava.png  used on input line 6
+32.
+(pdftex.def)             Requested size: 350.99762pt x 151.58315pt.
+ [28 <./slike/registracija-prijava.png (PNG copy)>]
+<./slike/odjemalec-arhitektura.jpg, id=510, 1541.76pt x 1027.84pt>
+File: ./slike/odjemalec-arhitektura.jpg Graphic file (type jpg)
+<use ./slike/odjemalec-arhitektura.jpg>
+Package pdftex.def Info: ./slike/odjemalec-arhitektura.jpg  used on input line 
+678.
+(pdftex.def)             Requested size: 350.99762pt x 233.99864pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 664--681
+
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 683--701
+
+ []
+
+[30 <./slike/odjemalec-arhitektura.jpg>]
+(_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted [31])
+(_minted/6CE3C6D87E11620A2AD9084611D3D17D.highlight.minted) [32]
+(_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted) [33]
+<./slike/algoritem-slika.png, id=575, 1156.32pt x 651.93562pt>
+File: ./slike/algoritem-slika.png Graphic file (type png)
+<use ./slike/algoritem-slika.png>
+Package pdftex.def Info: ./slike/algoritem-slika.png  used on input line 789.
+(pdftex.def)             Requested size: 312.00119pt x 175.9056pt.
+
+Overfull \hbox (3.85373pt too wide) in paragraph at lines 793--819
+\T1/cmr/m/n/12 Za vsako vo-zilo nor-ma-li-zi-ramo in shra-nimo ceno, pre-vo-ºen
+e ki-lo-me-tre, znamko,
+ []
+
+[34 <./slike/algoritem-slika.png>] [35]
+(_minted/F2FBFF134874532CED79A3A7B024C6DB.highlight.minted) [36] [37]
+(_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.minted) [38]
+Overfull \hbox (3.5887pt too wide) in paragraph at lines 957--968
+[]\T1/cmr/m/n/12 Uporaba ute-ºe-nega pov-pre-£ja na-me-sto na-va-dnega arit-me-
+ti£-nega je klju£na:
+ []
+
+[39] [40]
+Overfull \hbox (3.55794pt too wide) in paragraph at lines 1004--1038
+\T1/cmr/m/n/12 Za vseb-ni-ki-za-cijo ra-zvoj-nega oko-lja smo upo-ra-bili orodj
+e Doc-ker Com-pose [[][]17[][]],
+ []
+
+[41]
+Overfull \hbox (2.12369pt too wide) in paragraph at lines 1049--1053
+[]\T1/cmr/bx/n/12 Potek dela \T1/cmr/m/n/12 (angl. \T1/cmr/m/it/12 wor-kflow\T1
+/cmr/m/n/12 ) je do-lo-£en v da-to-teki \T1/cmtt/m/n/12 .yml \T1/cmr/m/n/12 v m
+api \T1/cmtt/m/n/12 .github
+ []
+
+[42]
+<./slike/ci-cd.png, id=669, 864.22874pt x 437.83575pt>
+File: ./slike/ci-cd.png Graphic file (type png)
+<use ./slike/ci-cd.png>
+Package pdftex.def Info: ./slike/ci-cd.png  used on input line 1082.
+(pdftex.def)             Requested size: 312.00119pt x 158.06168pt.
+<./slike/primerjava-hetzner-dokploy.png, id=673, 1678.27pt x 944.52875pt>
+File: ./slike/primerjava-hetzner-dokploy.png Graphic file (type png)
+<use ./slike/primerjava-hetzner-dokploy.png>
+Package pdftex.def Info: ./slike/primerjava-hetzner-dokploy.png  used on input 
+line 1109.
+(pdftex.def)             Requested size: 350.99762pt x 197.53539pt.
+ [43 <./slike/ci-cd.png>] (podporno/analiza.tex [44 <./slike/primerjava-hetzner
+-dokploy.png (PNG copy)>] [45
+
+] [46] [47] [48]
+<./slike/dataset_price_hist.pdf, id=759, 390.80066pt x 277.42761pt>
+File: ./slike/dataset_price_hist.pdf Graphic file (type pdf)
+<use ./slike/dataset_price_hist.pdf>
+Package pdftex.def Info: ./slike/dataset_price_hist.pdf  used on input line 204
+.
+(pdftex.def)             Requested size: 187.19833pt x 132.88858pt.
+<./slike/dataset_km_hist.pdf, id=760, 382.17468pt x 279.89778pt>
+File: ./slike/dataset_km_hist.pdf Graphic file (type pdf)
+<use ./slike/dataset_km_hist.pdf>
+Package pdftex.def Info: ./slike/dataset_km_hist.pdf  used on input line 208.
+(pdftex.def)             Requested size: 187.19833pt x 137.09985pt.
+<./slike/dataset_year_hist.pdf, id=761, 399.44232pt x 262.54012pt>
+File: ./slike/dataset_year_hist.pdf Graphic file (type pdf)
+<use ./slike/dataset_year_hist.pdf>
+Package pdftex.def Info: ./slike/dataset_year_hist.pdf  used on input line 213.
+
+(pdftex.def)             Requested size: 187.19833pt x 123.03732pt.
+<./slike/dataset_brand_bar.pdf, id=762, 399.44232pt x 282.81493pt>
+File: ./slike/dataset_brand_bar.pdf Graphic file (type pdf)
+<use ./slike/dataset_brand_bar.pdf>
+Package pdftex.def Info: ./slike/dataset_brand_bar.pdf  used on input line 217.
+
+(pdftex.def)             Requested size: 187.19833pt x 132.53896pt.
+ [49] [50 <./slike/dataset_price_hist.pdf> <./slike/dataset_km_hist.pdf> <./sli
+ke/dataset_year_hist.pdf> <./slike/dataset_brand_bar.pdf>]
+<./slike/dataset_coverage_heatmap.pdf, id=940, 543.0385pt x 514.32103pt>
+File: ./slike/dataset_coverage_heatmap.pdf Graphic file (type pdf)
+<use ./slike/dataset_coverage_heatmap.pdf>
+Package pdftex.def Info: ./slike/dataset_coverage_heatmap.pdf  used on input li
+ne 255.
+(pdftex.def)             Requested size: 390.0pt x 369.37697pt.
+ [51 <./slike/dataset_coverage_heatmap.pdf>]
+[52]
+<./slike/accuracy_pred_vs_actual.pdf, id=1018, 386.36221pt x 266.60216pt>
+File: ./slike/accuracy_pred_vs_actual.pdf Graphic file (type pdf)
+<use ./slike/accuracy_pred_vs_actual.pdf>
+Package pdftex.def Info: ./slike/accuracy_pred_vs_actual.pdf  used on input lin
+e 315.
+(pdftex.def)             Requested size: 253.49762pt x 174.92061pt.
+<./slike/accuracy_mdape_vs_n.pdf, id=1022, 381.81396pt x 264.23395pt>
+File: ./slike/accuracy_mdape_vs_n.pdf Graphic file (type pdf)
+<use ./slike/accuracy_mdape_vs_n.pdf>
+Package pdftex.def Info: ./slike/accuracy_mdape_vs_n.pdf  used on input line 33
+4.
+(pdftex.def)             Requested size: 187.19833pt x 129.54832pt.
+<./slike/accuracy_mdape_by_brand.pdf, id=1023, 381.81396pt x 283.2227pt>
+File: ./slike/accuracy_mdape_by_brand.pdf Graphic file (type pdf)
+<use ./slike/accuracy_mdape_by_brand.pdf>
+Package pdftex.def Info: ./slike/accuracy_mdape_by_brand.pdf  used on input lin
+e 339.
+(pdftex.def)             Requested size: 187.19833pt x 138.85812pt.
+<./slike/accuracy_discount_bias.pdf, id=1025, 387.93057pt x 262.90083pt>
+File: ./slike/accuracy_discount_bias.pdf Graphic file (type pdf)
+<use ./slike/accuracy_discount_bias.pdf>
+Package pdftex.def Info: ./slike/accuracy_discount_bias.pdf  used on input line
+ 353.
+(pdftex.def)             Requested size: 272.99881pt x 185.02016pt.
+ [53 <./slike/accuracy_pred_vs_actual.pdf>] [54 <./slike/accuracy_mdape_vs_n.pd
+f> <./slike/accuracy_mdape_by_brand.pdf> <./slike/accuracy_discount_bias.pdf>] 
+[55]
+<./slike/latency_index_before_after.pdf, id=1249, 381.94695pt x 250.0542pt>
+File: ./slike/latency_index_before_after.pdf Graphic file (type pdf)
+<use ./slike/latency_index_before_after.pdf>
+Package pdftex.def Info: ./slike/latency_index_before_after.pdf  used on input 
+line 422.
+(pdftex.def)             Requested size: 234.00238pt x 153.20055pt.
+
+Overfull \hbox (11.59158pt too wide) in paragraph at lines 429--433
+[] \T1/cmr/bx/n/12 Raz-£le-ni-tev la-tence.[] \T1/cmr/m/n/12 Po do-da-ja-nju in
+-de-ksa ti-pi£no vre-dno-te-nje traja $\OT1/cmr/m/n/12 2[]0$ \T1/cmr/m/n/12 ms,
+
+ []
+
+[56 <./slike/latency_index_before_after.pdf>]
+Overfull \hbox (84.32391pt too wide) in paragraph at lines 460--465
+\T1/cmtt/m/n/12 /valuate \T1/cmr/m/n/12 pri na-ra-²£a-jo£i so-£a-sno-sti. Obre-
+me-ni-tev ustvarja skripta \T1/cmtt/m/n/12 benchmarks/loadtest.py
+ []
+
+[57] [58] [59] [60]
+<./slike/glavna-stran.png, id=1298, 1508.63625pt x 893.3375pt>
+File: ./slike/glavna-stran.png Graphic file (type png)
+<use ./slike/glavna-stran.png>
+Package pdftex.def Info: ./slike/glavna-stran.png  used on input line 596.
+(pdftex.def)             Requested size: 350.99762pt x 207.83513pt.
+<./slike/objava-oglasa.png, id=1299, 1493.58pt x 884.30376pt>
+File: ./slike/objava-oglasa.png Graphic file (type png)
+<use ./slike/objava-oglasa.png>
+Package pdftex.def Info: ./slike/objava-oglasa.png  used on input line 602.
+(pdftex.def)             Requested size: 350.99762pt x 207.81142pt.
+<./slike/liked-cars.png, id=1300, 1506.62875pt x 904.37875pt>
+File: ./slike/liked-cars.png Graphic file (type png)
+<use ./slike/liked-cars.png>
+Package pdftex.def Info: ./slike/liked-cars.png  used on input line 608.
+(pdftex.def)             Requested size: 350.99762pt x 210.67987pt.
+ [61 <./slike/glavna-stran.png>]
+Overfull \hbox (8.6414pt too wide) in paragraph at lines 623--636
+ [][] 
+ []
+
+) [62 <./slike/objava-oglasa.png> <./slike/liked-cars.png>] [63] [64
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1118--1138
+
+ []
+
+[65] [66] [67] [68
+
+]
+
+Package biblatex Warning: Split bibliography detected.
+(biblatex)                Many simple split bibliography setups with
+(biblatex)                non-overlapping bibliographies benefit from
+(biblatex)                setting 'defernumbers=true'.
+(biblatex)                See the documentation for details.
+(biblatex)                This warning can be suppressed with
+(biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
+
+
+Overfull \hbox (16.97412pt too wide) in paragraph at lines 1203--1203
+\T1/cmr/m/n/12 pa-ra-me-tric Re-gres-sion^^P. V: \T1/cmr/m/it/12 The Ame-ri-can
+ Sta-ti-sti-cian \T1/cmr/m/n/12 46.3 (1992), str. 175^^U
+ []
+
+[69] [70]
+
+Package biblatex Warning: Split bibliography detected.
+(biblatex)                Many simple split bibliography setups with
+(biblatex)                non-overlapping bibliographies benefit from
+(biblatex)                setting 'defernumbers=true'.
+(biblatex)                See the documentation for details.
+(biblatex)                This warning can be suppressed with
+(biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
+
+
+Overfull \hbox (4.49577pt too wide) in paragraph at lines 1209--1209
+[]\T1/cmr/m/n/12 Niels Pro-vos in Da-vid Ma-zières. ^^R  A Future-Adaptable Pas
+-sword Scheme^^P.
+ []
+
+[71]
+
+Package biblatex Warning: Split bibliography detected.
+(biblatex)                Many simple split bibliography setups with
+(biblatex)                non-overlapping bibliographies benefit from
+(biblatex)                setting 'defernumbers=true'.
+(biblatex)                See the documentation for details.
+(biblatex)                This warning can be suppressed with
+(biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
+
+
+Overfull \hbox (3.72275pt too wide) in paragraph at lines 1215--1215
+[]\T1/cmr/m/n/12 Sequelize Con-tri-bu-tors. \T1/cmr/m/it/12 Seque-lize Do-cu-me
+n-ta-tion\T1/cmr/m/n/12 . Do-sto-pano: ju-nij 2024.
+ []
+
+[72]
+Overfull \hbox (7.75374pt too wide) in paragraph at lines 1215--1215
+\T1/cmtt/m/n/12 articles / continuousIntegration . html$[][]\T1/cmr/m/n/12 . Do
+-sto-pano: 2026-08-01. 2006. 
+ []
+
+[73]
+Overfull \hbox (10.32468pt too wide) in paragraph at lines 1215--1215
+[]\T1/cmr/m/n/12 ISO/IEC. \T1/cmr/m/it/12 ISO/IEC 14882:2020 -- Pro-gram-ming l
+an-gu-a-ges -- C++\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https :
+ []
+
+[74]
+Overfull \hbox (12.8271pt too wide) in paragraph at lines 1215--1215
+\T1/cmr/m/it/12 Ideas Be-h-ind Re-li-a-ble, Sca-la-ble, and Ma-in-ta-in-a-ble S
+y-stems\T1/cmr/m/n/12 . 1. izd. O'Reilly
+ []
+
+[75]
+Overfull \hbox (14.08875pt too wide) in paragraph at lines 1215--1215
+[]\T1/cmr/m/n/12 RapidFuzz Con-tri-bu-tors. \T1/cmr/m/it/12 Ra-pi-dFuzz Do-cu-m
+en-ta-tion\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / rapidfuzz .
+ []
+
+[76] [77] [78] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted
+[79
+
+]) (_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [80]) [81]
+(diploma-predloga.aux)
+ ***********
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+ ***********
+Package logreq Info: Writing requests to 'diploma-predloga.run.xml'.
+\openout1 = `diploma-predloga.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 41065 strings out of 467509
+ 944397 string characters out of 5408780
+ 1966520 words of memory out of 5000000
+ 69323 multiletter control sequences out of 15000+600000
+ 672491 words of font info for 98 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 80i,12n,84p,1497b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit
+1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tctt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ectt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecrm0600.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\nikka\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\nikka\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsl1200.pk> <C:\Users\nikka\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\nikka\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\
+nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\
+Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk
+> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1
+200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600
+\ectt1095.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/
+dpi600\ecti1095.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknapp
+en/ec/dpi600\ecrm1095.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/
+jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/l
+jfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\nikka\AppData\Local\MiKTeX\font
+s/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\nikka\AppData\Local\MiKTe
+X\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\nikka\AppData\Local
+\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1440.pk><C:/Users/nikka/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/nikka
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Us
+ers/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmmi6.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmmi8.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr8.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/nikka/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
+Output written on diploma-predloga.pdf (93 pages, 13580197 bytes).
+PDF statistics:
+ 2669 PDF objects out of 2984 (max. 8388607)
+ 434 named destinations out of 1000 (max. 500000)
+ 16839 words of extra memory for PDF output out of 17280 (max. 10000000)
+
