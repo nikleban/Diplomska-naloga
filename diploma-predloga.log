@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  3 SEP 2026 17:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.20)  4 SEP 2026 09:38
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1495,7 +1495,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \scan_stop: 
-l.58 ...ilnosti zbranih podatkov}{48}{section.5.4}
+l.58 ...ilnosti zbranih podatkov}{46}{section.5.4}
                                                   % [7
 
 ])
@@ -1544,182 +1544,143 @@ l.158 \clearemptydoublepage
 
 
 ] [2]
-<./slike/primer-avto-net.png, id=200, 684.30656pt x 225.09094pt>
+<./slike/primer-avto-net.png, id=197, 684.30656pt x 225.09094pt>
 File: ./slike/primer-avto-net.png Graphic file (type png)
 <use ./slike/primer-avto-net.png>
-Package pdftex.def Info: ./slike/primer-avto-net.png  used on input line 155.
+Package pdftex.def Info: ./slike/primer-avto-net.png  used on input line 152.
 (pdftex.def)             Requested size: 350.99762pt x 115.45773pt.
  [3
 
 ]
-<./slike/primer-objave-avto-net.png, id=216, 615.0478pt x 530.73282pt>
+<./slike/primer-objave-avto-net.png, id=213, 615.0478pt x 530.73282pt>
 File: ./slike/primer-objave-avto-net.png Graphic file (type png)
 <use ./slike/primer-objave-avto-net.png>
 Package pdftex.def Info: ./slike/primer-objave-avto-net.png  used on input line
- 170.
-(pdftex.def)             Requested size: 350.99762pt x 302.88527pt.
- [4 <./slike/primer-avto-net.png>]
-<./slike/primer-mobile-de.png, id=228, 395.22656pt x 211.54031pt>
+ 167.
+(pdftex.def)             Requested size: 234.00238pt x 201.92351pt.
+<./slike/primer-mobile-de.png, id=218, 395.22656pt x 211.54031pt>
 File: ./slike/primer-mobile-de.png Graphic file (type png)
 <use ./slike/primer-mobile-de.png>
-Package pdftex.def Info: ./slike/primer-mobile-de.png  used on input line 187.
-(pdftex.def)             Requested size: 195.0pt x 104.37222pt.
-[5 <./slike/primer-objave-avto-net.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Evropa, naj-bolj
- []
+Package pdftex.def Info: ./slike/primer-mobile-de.png  used on input line 184.
+(pdftex.def)             Requested size: 234.00238pt x 125.24667pt.
+ [4 <./slike/primer-avto-net.png> <./slike/primer-objave-avto-net.png>]
+<./slike/carfax.jpg, id=234, 250.9375pt x 167.12437pt>
+File: ./slike/carfax.jpg Graphic file (type jpg)
+<use ./slike/carfax.jpg>
+Package pdftex.def Info: ./slike/carfax.jpg  used on input line 209.
+(pdftex.def)             Requested size: 350.99762pt x 233.79144pt.
 
-
-Underfull \hbox (badness 1365) in paragraph at lines 228--228
-\T1/cmr/m/n/12 raz-²ir-jen na nem-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Osnoven pri-kaz
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-\T1/cmr/m/n/12 cene (ze-leno --
- []
-
-
-Underfull \hbox (badness 5802) in paragraph at lines 228--228
-\T1/cmr/m/n/12 ugo-dna, rde£e --
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Priporo£ilo cene
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Evropa--Nem£ija,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-\T1/cmr/m/n/12 Slo-ve-nija, ’vica,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--228
-[]|\T1/cmr/m/n/12 Podrobne ocene
- []
-
-
-Overfull \hbox (9.17825pt too wide) in paragraph at lines 191--229
+Overfull \hbox (9.17825pt too wide) in paragraph at lines 188--212
 \T1/cmr/m/n/12 Na se-ver-no-a-me-ri-²kem trgu je naj-bolj raz-²ir-jena to-vr-st
-na sto-ri-tev \T1/cmr/bx/n/12 CAR-FAX \T1/cmr/m/n/12 [[][]9[][]],
+na sto-ri-tev \T1/cmr/bx/n/12 CAR-FAX \T1/cmr/m/n/12 [[][]7[][]],
  []
 
-[6 <./slike/primer-mobile-de.png>] [7] [8
-
-]
-<./slike/primer-oglas.png, id=259, 1595.9625pt x 1196.47pt>
+[5 <./slike/primer-mobile-de.png>] [6 <./slike/carfax.jpg>]
+<./slike/primer-oglas.png, id=249, 1595.9625pt x 1196.47pt>
 File: ./slike/primer-oglas.png Graphic file (type png)
 <use ./slike/primer-oglas.png>
-Package pdftex.def Info: ./slike/primer-oglas.png  used on input line 265.
+Package pdftex.def Info: ./slike/primer-oglas.png  used on input line 234.
 (pdftex.def)             Requested size: 312.00119pt x 233.90405pt.
- [9] [10] [11 <./slike/primer-oglas.png>] [12] [13] [14
+ [7
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 342--350
+] [8 <./slike/primer-oglas.png>] [9] [10] [11] [12
 
- []
-
-[15]
-<./slike/use-case.png, id=333, 526.21594pt x 526.96875pt>
+] [13]
+<./slike/use-case.png, id=326, 526.21594pt x 526.96875pt>
 File: ./slike/use-case.png Graphic file (type png)
 <use ./slike/use-case.png>
-Package pdftex.def Info: ./slike/use-case.png  used on input line 369.
+Package pdftex.def Info: ./slike/use-case.png  used on input line 351.
 (pdftex.def)             Requested size: 312.00119pt x 312.46075pt.
- [16] [17 <./slike/use-case.png>]
-<./slike/arhitektura.png, id=363, 923.70094pt x 523.20468pt>
+ [14 <./slike/use-case.png>]
+<./slike/arhitektura.png, id=344, 923.70094pt x 523.20468pt>
 File: ./slike/arhitektura.png Graphic file (type png)
 <use ./slike/arhitektura.png>
-Package pdftex.def Info: ./slike/arhitektura.png  used on input line 400.
-(pdftex.def)             Requested size: 350.99762pt x 198.81186pt.
- [18]
-Overfull \hbox (2.52672pt too wide) in paragraph at lines 415--415
+Package pdftex.def Info: ./slike/arhitektura.png  used on input line 383.
+(pdftex.def)             Requested size: 390.0pt x 220.90207pt.
+ [15]
+Overfull \hbox (3.32889pt too wide) in paragraph at lines 387--391
+[]\T1/cmr/m/n/12 Posamezne kom-po-nente te-£ejo v lo-£e-nih vseb-ni-kih na plat
+-formi Doc-ker [[][]14[][]]
+ []
+
+
+Overfull \hbox (2.52672pt too wide) in paragraph at lines 398--398
 []\T1/cmr/bx/n/14.4 Upravljanje obraz-cev s knji-ºnico Re-act Hook Form 
  []
 
 
-Overfull \hbox (6.83989pt too wide) in paragraph at lines 416--429
+Overfull \hbox (6.83989pt too wide) in paragraph at lines 399--412
 \T1/cmr/m/n/12 Uporabni²ki vme-snik vse-buje ve£ ob-se-ºnej-²ih obraz-cev za iz
 -pol-nje-va-nje. Ro£no
  []
 
-[19 <./slike/arhitektura.png>]
-Overfull \hbox (3.4752pt too wide) in paragraph at lines 430--430
+[16 <./slike/arhitektura.png>]
+Overfull \hbox (3.4752pt too wide) in paragraph at lines 413--413
 []\T1/cmr/bx/n/14.4 Predpomnjenje stre-ºni-²kega sta-nja s knji-ºnico Tan-
  []
 
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 471--476
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 450--455
 
  []
 
-[21]
-<./slike/ErDiagramMain.png, id=419, 1043.39813pt x 768.62157pt>
+[18]
+<./slike/ErDiagramMain.png, id=402, 1043.39813pt x 768.62157pt>
 File: ./slike/ErDiagramMain.png Graphic file (type png)
 <use ./slike/ErDiagramMain.png>
-Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 479.
+Package pdftex.def Info: ./slike/ErDiagramMain.png  used on input line 458.
 (pdftex.def)             Requested size: 350.99762pt x 258.56001pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 484--493
+Underfull \hbox (badness 10000) in paragraph at lines 463--472
 
  []
 
-[22 <./slike/ErDiagramMain.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 494--500
+
+Underfull \hbox (badness 10000) in paragraph at lines 473--479
 
  []
 
-<./slike/ErDiagramEvaluation.png, id=429, 498.06075pt x 347.49825pt>
+[19 <./slike/ErDiagramMain.png>]
+<./slike/ErDiagramEvaluation.png, id=412, 498.06075pt x 347.49825pt>
 File: ./slike/ErDiagramEvaluation.png Graphic file (type png)
 <use ./slike/ErDiagramEvaluation.png>
-Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 51
-4.
+Package pdftex.def Info: ./slike/ErDiagramEvaluation.png  used on input line 49
+3.
 (pdftex.def)             Requested size: 350.99762pt x 244.90144pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 509--517
+Underfull \hbox (badness 10000) in paragraph at lines 488--496
 
  []
 
-[23]
-Overfull \hbox (43.92282pt too wide) in paragraph at lines 528--544
-\T1/cmr/m/n/12 ogla-sov, ki so ve-zani na ta-belo \T1/cmtt/m/n/12 RawMarketList
-ing \T1/cmr/m/n/12 prek tu-jega klju£a \T1/cmtt/m/n/12 raw_listing_id\T1/cmr/m/
-n/12 .
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 507--519
+
  []
 
-[24 <./slike/ErDiagramEvaluation.png>]
-<./slike/zaledni-sistem.png, id=449, 1143.52219pt x 498.36188pt>
+[21 <./slike/ErDiagramEvaluation.png>]
+<./slike/zaledni-sistem.png, id=431, 1143.52219pt x 498.36188pt>
 File: ./slike/zaledni-sistem.png Graphic file (type png)
 <use ./slike/zaledni-sistem.png>
-Package pdftex.def Info: ./slike/zaledni-sistem.png  used on input line 551.
-(pdftex.def)             Requested size: 350.99762pt x 152.9697pt.
- [25 <./slike/zaledni-sistem.png>]
+Package pdftex.def Info: ./slike/zaledni-sistem.png  used on input line 527.
+(pdftex.def)             Requested size: 390.0pt x 169.9655pt.
+
+Overfull \hbox (10.72928pt too wide) in paragraph at lines 532--542
+\T1/cmr/m/n/12 smo upo-ra-bili knji-ºnico Seque-lize [[][]11[][]]. Seque-lize j
+e orodje za objektno-relacijsko
+ []
+
+[22 <./slike/zaledni-sistem.png>]
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
-t line 569.
+t line 545.
 \pydata@fh@0=\write6
 \openout6 = `_55F9811064D628AD6F94DD8FFA30621C.data.minted'.
 
-runsystem(latexminted config  --timestamp 20260903170639 55F9811064D628AD6F94DD
+runsystem(latexminted config  --timestamp 20260904093800 55F9811064D628AD6F94DD
 8FFA30621C)...executed.
 
 
 (_55F9811064D628AD6F94DD8FFA30621C.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20260903170639 55F9811064D628AD6
+runsystem(latexminted cleanconfig  --timestamp 20260904093800 55F9811064D628AD6
 F94DD8FFA30621C)...executed.
 
 
@@ -1731,144 +1692,139 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) [26]
-(_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [27])
-<./slike/registracija-prijava.png, id=494, 1915.155pt x 827.09pt>
+) [23]
+(_minted/E4779A03DF5F4F3A5E206C2B9E1D55E8.highlight.minted [24])
+<./slike/registracija-prijava.png, id=473, 1915.155pt x 827.09pt>
 File: ./slike/registracija-prijava.png Graphic file (type png)
 <use ./slike/registracija-prijava.png>
 Package pdftex.def Info: ./slike/registracija-prijava.png  used on input line 6
-32.
+08.
 (pdftex.def)             Requested size: 350.99762pt x 151.58315pt.
- [28 <./slike/registracija-prijava.png (PNG copy)>]
-<./slike/odjemalec-arhitektura.jpg, id=510, 1541.76pt x 1027.84pt>
+ [25 <./slike/registracija-prijava.png (PNG copy)>]
+<./slike/odjemalec-arhitektura.jpg, id=489, 1541.76pt x 1027.84pt>
 File: ./slike/odjemalec-arhitektura.jpg Graphic file (type jpg)
 <use ./slike/odjemalec-arhitektura.jpg>
 Package pdftex.def Info: ./slike/odjemalec-arhitektura.jpg  used on input line 
-678.
-(pdftex.def)             Requested size: 350.99762pt x 233.99864pt.
+655.
+(pdftex.def)             Requested size: 390.0pt x 259.9863pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--681
-
- []
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 683--701
+Underfull \hbox (badness 10000) in paragraph at lines 640--658
 
  []
 
-[30 <./slike/odjemalec-arhitektura.jpg>]
-(_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted [31])
-(_minted/6CE3C6D87E11620A2AD9084611D3D17D.highlight.minted) [32]
-(_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted) [33]
-<./slike/algoritem-slika.png, id=575, 1156.32pt x 651.93562pt>
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 660--677
+
+ []
+
+[27 <./slike/odjemalec-arhitektura.jpg>]
+(_minted/2D2CBEED59426B36784DF93A0117A238.highlight.minted [28])
+(_minted/6CE3C6D87E11620A2AD9084611D3D17D.highlight.minted) [29]
+(_minted/3D03B7A77EB3C4EA20FD6FDFAF9574C6.highlight.minted) [30]
+<./slike/algoritem-slika.png, id=544, 1156.32pt x 651.93562pt>
 File: ./slike/algoritem-slika.png Graphic file (type png)
 <use ./slike/algoritem-slika.png>
-Package pdftex.def Info: ./slike/algoritem-slika.png  used on input line 789.
+Package pdftex.def Info: ./slike/algoritem-slika.png  used on input line 764.
 (pdftex.def)             Requested size: 312.00119pt x 175.9056pt.
-
-Overfull \hbox (3.85373pt too wide) in paragraph at lines 793--819
-\T1/cmr/m/n/12 Za vsako vo-zilo nor-ma-li-zi-ramo in shra-nimo ceno, pre-vo-ºen
-e ki-lo-me-tre, znamko,
+ [31 <./slike/algoritem-slika.png>] (_minted/F2FBFF134874532CED79A3A7B024C6DB.h
+ighlight.minted [32]) [33] (_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.
+minted [34])
+Overfull \hbox (2.51344pt too wide) in paragraph at lines 906--906
+[]\T1/cmr/bx/n/14.4 Izra£un pri-£a-ko-vane pro-dajne cene z ute-ºe-nim pov-
  []
 
-[34 <./slike/algoritem-slika.png>] [35]
-(_minted/F2FBFF134874532CED79A3A7B024C6DB.highlight.minted) [36] [37]
-(_minted/81A443C7C22D65B5BAC03F4DB2629C29.highlight.minted) [38]
-Overfull \hbox (3.5887pt too wide) in paragraph at lines 957--968
+[35]
+Overfull \hbox (3.5887pt too wide) in paragraph at lines 920--931
 []\T1/cmr/m/n/12 Uporaba ute-ºe-nega pov-pre-£ja na-me-sto na-va-dnega arit-me-
 ti£-nega je klju£na:
  []
 
-[39] [40]
-Overfull \hbox (3.55794pt too wide) in paragraph at lines 1004--1038
-\T1/cmr/m/n/12 Za vseb-ni-ki-za-cijo ra-zvoj-nega oko-lja smo upo-ra-bili orodj
-e Doc-ker Com-pose [[][]17[][]],
- []
-
-[41]
-Overfull \hbox (2.12369pt too wide) in paragraph at lines 1049--1053
+[36] [37] [38]
+Overfull \hbox (2.12369pt too wide) in paragraph at lines 1012--1016
 []\T1/cmr/bx/n/12 Potek dela \T1/cmr/m/n/12 (angl. \T1/cmr/m/it/12 wor-kflow\T1
 /cmr/m/n/12 ) je do-lo-£en v da-to-teki \T1/cmtt/m/n/12 .yml \T1/cmr/m/n/12 v m
 api \T1/cmtt/m/n/12 .github
  []
 
-[42]
-<./slike/ci-cd.png, id=669, 864.22874pt x 437.83575pt>
+<./slike/ci-cd.png, id=625, 864.22874pt x 437.83575pt>
 File: ./slike/ci-cd.png Graphic file (type png)
 <use ./slike/ci-cd.png>
-Package pdftex.def Info: ./slike/ci-cd.png  used on input line 1082.
+Package pdftex.def Info: ./slike/ci-cd.png  used on input line 1045.
 (pdftex.def)             Requested size: 312.00119pt x 158.06168pt.
-<./slike/primerjava-hetzner-dokploy.png, id=673, 1678.27pt x 944.52875pt>
+[39]
+<./slike/primerjava-hetzner-dokploy.png, id=639, 1678.27pt x 944.52875pt>
 File: ./slike/primerjava-hetzner-dokploy.png Graphic file (type png)
 <use ./slike/primerjava-hetzner-dokploy.png>
 Package pdftex.def Info: ./slike/primerjava-hetzner-dokploy.png  used on input 
-line 1109.
+line 1072.
 (pdftex.def)             Requested size: 350.99762pt x 197.53539pt.
- [43 <./slike/ci-cd.png>] (podporno/analiza.tex [44 <./slike/primerjava-hetzner
--dokploy.png (PNG copy)>] [45
+ [40 <./slike/ci-cd.png>] (podporno/analiza.tex [41 <./slike/primerjava-hetzner
+-dokploy.png (PNG copy)>] [42
 
-] [46] [47] [48]
-<./slike/dataset_price_hist.pdf, id=759, 390.80066pt x 277.42761pt>
+] [43] [44] [45] [46]
+<./slike/dataset_price_hist.pdf, id=723, 390.80066pt x 277.42761pt>
 File: ./slike/dataset_price_hist.pdf Graphic file (type pdf)
 <use ./slike/dataset_price_hist.pdf>
-Package pdftex.def Info: ./slike/dataset_price_hist.pdf  used on input line 204
+Package pdftex.def Info: ./slike/dataset_price_hist.pdf  used on input line 212
 .
 (pdftex.def)             Requested size: 187.19833pt x 132.88858pt.
-<./slike/dataset_km_hist.pdf, id=760, 382.17468pt x 279.89778pt>
+<./slike/dataset_km_hist.pdf, id=724, 382.17468pt x 279.89778pt>
 File: ./slike/dataset_km_hist.pdf Graphic file (type pdf)
 <use ./slike/dataset_km_hist.pdf>
-Package pdftex.def Info: ./slike/dataset_km_hist.pdf  used on input line 208.
+Package pdftex.def Info: ./slike/dataset_km_hist.pdf  used on input line 216.
 (pdftex.def)             Requested size: 187.19833pt x 137.09985pt.
-<./slike/dataset_year_hist.pdf, id=761, 399.44232pt x 262.54012pt>
+<./slike/dataset_year_hist.pdf, id=725, 399.44232pt x 262.54012pt>
 File: ./slike/dataset_year_hist.pdf Graphic file (type pdf)
 <use ./slike/dataset_year_hist.pdf>
-Package pdftex.def Info: ./slike/dataset_year_hist.pdf  used on input line 213.
+Package pdftex.def Info: ./slike/dataset_year_hist.pdf  used on input line 221.
 
 (pdftex.def)             Requested size: 187.19833pt x 123.03732pt.
-<./slike/dataset_brand_bar.pdf, id=762, 399.44232pt x 282.81493pt>
+<./slike/dataset_brand_bar.pdf, id=726, 399.44232pt x 282.81493pt>
 File: ./slike/dataset_brand_bar.pdf Graphic file (type pdf)
 <use ./slike/dataset_brand_bar.pdf>
-Package pdftex.def Info: ./slike/dataset_brand_bar.pdf  used on input line 217.
+Package pdftex.def Info: ./slike/dataset_brand_bar.pdf  used on input line 225.
 
 (pdftex.def)             Requested size: 187.19833pt x 132.53896pt.
- [49] [50 <./slike/dataset_price_hist.pdf> <./slike/dataset_km_hist.pdf> <./sli
-ke/dataset_year_hist.pdf> <./slike/dataset_brand_bar.pdf>]
-<./slike/dataset_coverage_heatmap.pdf, id=940, 543.0385pt x 514.32103pt>
+ [47]
+<./slike/dataset_coverage_heatmap.pdf, id=738, 543.0385pt x 514.32103pt>
 File: ./slike/dataset_coverage_heatmap.pdf Graphic file (type pdf)
 <use ./slike/dataset_coverage_heatmap.pdf>
 Package pdftex.def Info: ./slike/dataset_coverage_heatmap.pdf  used on input li
-ne 255.
+ne 245.
 (pdftex.def)             Requested size: 390.0pt x 369.37697pt.
- [51 <./slike/dataset_coverage_heatmap.pdf>]
-[52]
-<./slike/accuracy_pred_vs_actual.pdf, id=1018, 386.36221pt x 266.60216pt>
+ [48 <./slike/dataset_price_hist.pdf> <./slike/dataset_km_hist.pdf> <./slike/da
+taset_year_hist.pdf> <./slike/dataset_brand_bar.pdf>] [49 <./slike/dataset_cove
+rage_heatmap.pdf>]
+<./slike/accuracy_pred_vs_actual.pdf, id=974, 386.36221pt x 266.60216pt>
 File: ./slike/accuracy_pred_vs_actual.pdf Graphic file (type pdf)
 <use ./slike/accuracy_pred_vs_actual.pdf>
 Package pdftex.def Info: ./slike/accuracy_pred_vs_actual.pdf  used on input lin
-e 315.
+e 307.
 (pdftex.def)             Requested size: 253.49762pt x 174.92061pt.
-<./slike/accuracy_mdape_vs_n.pdf, id=1022, 381.81396pt x 264.23395pt>
+
+[50]
+<./slike/accuracy_mdape_vs_n.pdf, id=985, 381.81396pt x 264.23395pt>
 File: ./slike/accuracy_mdape_vs_n.pdf Graphic file (type pdf)
 <use ./slike/accuracy_mdape_vs_n.pdf>
-Package pdftex.def Info: ./slike/accuracy_mdape_vs_n.pdf  used on input line 33
-4.
+Package pdftex.def Info: ./slike/accuracy_mdape_vs_n.pdf  used on input line 32
+6.
 (pdftex.def)             Requested size: 187.19833pt x 129.54832pt.
-<./slike/accuracy_mdape_by_brand.pdf, id=1023, 381.81396pt x 283.2227pt>
+<./slike/accuracy_mdape_by_brand.pdf, id=986, 381.81396pt x 283.2227pt>
 File: ./slike/accuracy_mdape_by_brand.pdf Graphic file (type pdf)
 <use ./slike/accuracy_mdape_by_brand.pdf>
 Package pdftex.def Info: ./slike/accuracy_mdape_by_brand.pdf  used on input lin
-e 339.
+e 331.
 (pdftex.def)             Requested size: 187.19833pt x 138.85812pt.
-<./slike/accuracy_discount_bias.pdf, id=1025, 387.93057pt x 262.90083pt>
+<./slike/accuracy_discount_bias.pdf, id=988, 387.93057pt x 262.90083pt>
 File: ./slike/accuracy_discount_bias.pdf Graphic file (type pdf)
 <use ./slike/accuracy_discount_bias.pdf>
 Package pdftex.def Info: ./slike/accuracy_discount_bias.pdf  used on input line
- 353.
+ 345.
 (pdftex.def)             Requested size: 272.99881pt x 185.02016pt.
- [53 <./slike/accuracy_pred_vs_actual.pdf>] [54 <./slike/accuracy_mdape_vs_n.pd
+ [51 <./slike/accuracy_pred_vs_actual.pdf>] [52 <./slike/accuracy_mdape_vs_n.pd
 f> <./slike/accuracy_mdape_by_brand.pdf> <./slike/accuracy_discount_bias.pdf>] 
-[55]
-<./slike/latency_index_before_after.pdf, id=1249, 381.94695pt x 250.0542pt>
+[53]
+<./slike/latency_index_before_after.pdf, id=1207, 381.94695pt x 250.0542pt>
 File: ./slike/latency_index_before_after.pdf Graphic file (type pdf)
 <use ./slike/latency_index_before_after.pdf>
 Package pdftex.def Info: ./slike/latency_index_before_after.pdf  used on input 
@@ -1881,41 +1837,36 @@ Overfull \hbox (11.59158pt too wide) in paragraph at lines 429--433
 
  []
 
-[56 <./slike/latency_index_before_after.pdf>]
-Overfull \hbox (84.32391pt too wide) in paragraph at lines 460--465
-\T1/cmtt/m/n/12 /valuate \T1/cmr/m/n/12 pri na-ra-²£a-jo£i so-£a-sno-sti. Obre-
-me-ni-tev ustvarja skripta \T1/cmtt/m/n/12 benchmarks/loadtest.py
- []
-
-[57] [58] [59] [60]
-<./slike/glavna-stran.png, id=1298, 1508.63625pt x 893.3375pt>
+[54 <./slike/latency_index_before_after.pdf>] [55] [56] [57] [58]
+<./slike/glavna-stran.png, id=1255, 1508.63625pt x 893.3375pt>
 File: ./slike/glavna-stran.png Graphic file (type png)
 <use ./slike/glavna-stran.png>
-Package pdftex.def Info: ./slike/glavna-stran.png  used on input line 596.
+Package pdftex.def Info: ./slike/glavna-stran.png  used on input line 593.
 (pdftex.def)             Requested size: 350.99762pt x 207.83513pt.
-<./slike/objava-oglasa.png, id=1299, 1493.58pt x 884.30376pt>
+<./slike/objava-oglasa.png, id=1256, 1493.58pt x 884.30376pt>
 File: ./slike/objava-oglasa.png Graphic file (type png)
 <use ./slike/objava-oglasa.png>
-Package pdftex.def Info: ./slike/objava-oglasa.png  used on input line 602.
+Package pdftex.def Info: ./slike/objava-oglasa.png  used on input line 599.
 (pdftex.def)             Requested size: 350.99762pt x 207.81142pt.
-<./slike/liked-cars.png, id=1300, 1506.62875pt x 904.37875pt>
+<./slike/liked-cars.png, id=1257, 1506.62875pt x 904.37875pt>
 File: ./slike/liked-cars.png Graphic file (type png)
 <use ./slike/liked-cars.png>
-Package pdftex.def Info: ./slike/liked-cars.png  used on input line 608.
+Package pdftex.def Info: ./slike/liked-cars.png  used on input line 605.
 (pdftex.def)             Requested size: 350.99762pt x 210.67987pt.
- [61 <./slike/glavna-stran.png>]
-Overfull \hbox (8.6414pt too wide) in paragraph at lines 623--636
+ [59 <./slike/glavna-stran.png>] [60 <./slike/objava-oglasa.png> <./slike/liked
+-cars.png>]
+Overfull \hbox (2.76784pt too wide) in paragraph at lines 625--638
  [][] 
  []
 
-) [62 <./slike/objava-oglasa.png> <./slike/liked-cars.png>] [63] [64
+) [61] [62
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1138
+Underfull \hbox (badness 10000) in paragraph at lines 1081--1099
 
  []
 
-[65] [66] [67] [68
+[63] [64] [65] [66
 
 ]
 
@@ -1927,13 +1878,7 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                This warning can be suppressed with
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
-
-Overfull \hbox (16.97412pt too wide) in paragraph at lines 1203--1203
-\T1/cmr/m/n/12 pa-ra-me-tric Re-gres-sion^^P. V: \T1/cmr/m/it/12 The Ame-ri-can
- Sta-ti-sti-cian \T1/cmr/m/n/12 46.3 (1992), str. 175^^U
- []
-
-[69] [70]
+[67] [68]
 
 Package biblatex Warning: Split bibliography detected.
 (biblatex)                Many simple split bibliography setups with
@@ -1944,12 +1889,12 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (4.49577pt too wide) in paragraph at lines 1209--1209
+Overfull \hbox (4.49577pt too wide) in paragraph at lines 1163--1163
 []\T1/cmr/m/n/12 Niels Pro-vos in Da-vid Ma-zières. ^^R  A Future-Adaptable Pas
 -sword Scheme^^P.
  []
 
-[71]
+[69]
 
 Package biblatex Warning: Split bibliography detected.
 (biblatex)                Many simple split bibliography setups with
@@ -1960,39 +1905,27 @@ Package biblatex Warning: Split bibliography detected.
 (biblatex)                '\BiblatexSplitbibDefernumbersWarningOff'.
 
 
-Overfull \hbox (3.72275pt too wide) in paragraph at lines 1215--1215
+Overfull \hbox (3.72275pt too wide) in paragraph at lines 1169--1169
 []\T1/cmr/m/n/12 Sequelize Con-tri-bu-tors. \T1/cmr/m/it/12 Seque-lize Do-cu-me
 n-ta-tion\T1/cmr/m/n/12 . Do-sto-pano: ju-nij 2024.
  []
 
-[72]
-Overfull \hbox (7.75374pt too wide) in paragraph at lines 1215--1215
+[70]
+Overfull \hbox (7.75374pt too wide) in paragraph at lines 1169--1169
 \T1/cmtt/m/n/12 articles / continuousIntegration . html$[][]\T1/cmr/m/n/12 . Do
 -sto-pano: 2026-08-01. 2006. 
  []
 
-[73]
-Overfull \hbox (10.32468pt too wide) in paragraph at lines 1215--1215
-[]\T1/cmr/m/n/12 ISO/IEC. \T1/cmr/m/it/12 ISO/IEC 14882:2020 -- Pro-gram-ming l
-an-gu-a-ges -- C++\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https :
- []
-
-[74]
-Overfull \hbox (12.8271pt too wide) in paragraph at lines 1215--1215
-\T1/cmr/m/it/12 Ideas Be-h-ind Re-li-a-ble, Sca-la-ble, and Ma-in-ta-in-a-ble S
-y-stems\T1/cmr/m/n/12 . 1. izd. O'Reilly
- []
-
-[75]
-Overfull \hbox (14.08875pt too wide) in paragraph at lines 1215--1215
+[71] [72]
+Overfull \hbox (14.08875pt too wide) in paragraph at lines 1169--1169
 []\T1/cmr/m/n/12 RapidFuzz Con-tri-bu-tors. \T1/cmr/m/it/12 Ra-pi-dFuzz Do-cu-m
 en-ta-tion\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / rapidfuzz .
  []
 
-[76] [77] [78] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted
-[79
+[73] [74] (_minted/3A6CFDBEDA27FF82AC2416CC3FF1D3D7.highlight.minted [75
 
-]) (_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [80]) [81]
+])
+(_minted/47B95D2C9C2FF0663C3C2B598B0697BE.highlight.minted [76]) [77]
 (diploma-predloga.aux)
  ***********
 LaTeX2e <2026-06-01>
@@ -2003,13 +1936,13 @@ Package logreq Info: Writing requests to 'diploma-predloga.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41065 strings out of 467509
- 944397 string characters out of 5408780
- 1966520 words of memory out of 5000000
- 69323 multiletter control sequences out of 15000+600000
+ 41007 strings out of 467509
+ 942393 string characters out of 5408780
+ 1964440 words of memory out of 5000000
+ 69298 multiletter control sequences out of 15000+600000
  672491 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,12n,84p,1497b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,12n,84p,1494b,2966s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit
 1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tctt1000.pk> <C:\Users\nikka\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -2044,9 +1977,9 @@ blic/amsfonts/cm/cmr12.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmr8.pfb><C:/Users/nikka/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/nikka/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on diploma-predloga.pdf (93 pages, 13580197 bytes).
+Output written on diploma-predloga.pdf (89 pages, 13598004 bytes).
 PDF statistics:
- 2669 PDF objects out of 2984 (max. 8388607)
- 434 named destinations out of 1000 (max. 500000)
- 16839 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 2580 PDF objects out of 2984 (max. 8388607)
+ 401 named destinations out of 1000 (max. 500000)
+ 16844 words of extra memory for PDF output out of 17280 (max. 10000000)
 

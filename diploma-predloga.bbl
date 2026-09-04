@@ -19,37 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{knn-regression}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=cad61a47625b1e92c61c63cd7d69b25b}{%
-           family={Altman},
-           familyi={A\bibinitperiod},
-           given={N.\bibnamedelimi S.},
-           giveni={N\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \strng{namehash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{fullhash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{fullhashraw}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{bibnamehash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{authorbibnamehash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{authornamehash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{authorfullhash}{cad61a47625b1e92c61c63cd7d69b25b}
-      \strng{authorfullhashraw}{cad61a47625b1e92c61c63cd7d69b25b}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The American Statistician}
-      \field{number}{3}
-      \field{title}{An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression}
-      \field{volume}{46}
-      \field{year}{1992}
-      \field{pages}{175\bibrangedash 185}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1080/00031305.1992.10475879
-      \endverb
-    \endentry
     \entry{autotrader}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=3fb439f09fcb89981f3d65e92ff76d12}{%
@@ -221,42 +190,6 @@
       \field{note}{Uradna dokumentacija}
       \field{title}{lxml -- {XML} and {HTML} with {Python}}
       \field{year}{2024}
-    \endentry
-    \entry{weighted-mean}{book}{}{}
-      \name{author}{2}{}{%
-        {{hash=3af7fac3e5ffc763bb2cfa87639c0823}{%
-           family={Bevington},
-           familyi={B\bibinitperiod},
-           given={Philip\bibnamedelima R.},
-           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=2eac1b7bdc675e68adcd0c934422c86a}{%
-           family={Robinson},
-           familyi={R\bibinitperiod},
-           given={D.\bibnamedelimi Keith},
-           giveni={D\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {New York, NY}%
-      }
-      \list{publisher}{1}{%
-        {McGraw-Hill}%
-      }
-      \strng{namehash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{fullhash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{fullhashraw}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{bibnamehash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{authorbibnamehash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{authornamehash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{authorfullhash}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \strng{authorfullhashraw}{0c1cf78c11001c2873f6ac5cbc682fdd}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{3}
-      \field{isbn}{9780072472271}
-      \field{title}{Data Reduction and Error Analysis for the Physical Sciences}
-      \field{year}{2003}
     \endentry
     \entry{carfax}{misc}{}{}
       \name{author}{1}{}{%
@@ -853,63 +786,6 @@
       \field{title}{{GitHub Actions} Documentation}
       \field{year}{2024}
     \endentry
-    \entry{golang-docs}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=8b36e9207c24c76e6719268e49201d94}{%
-           family={{Google}},
-           familyi={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{fullhash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{fullhashraw}{8b36e9207c24c76e6719268e49201d94}
-      \strng{bibnamehash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{authorbibnamehash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{authornamehash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{authorfullhash}{8b36e9207c24c76e6719268e49201d94}
-      \strng{authorfullhashraw}{8b36e9207c24c76e6719268e49201d94}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://go.dev}}
-      \field{note}{Uradna dokumentacija}
-      \field{title}{The {Go} Programming Language}
-      \field{year}{2024}
-    \endentry
-    \entry{oauth2-rfc6749}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=645c23d98c8c0ad0899cb4be651e6a02}{%
-           family={Hardt},
-           familyi={H\bibinitperiod},
-           given={Dick},
-           giveni={D\bibinitperiod}}}%
-      }
-      \strng{namehash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{fullhash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{fullhashraw}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{bibnamehash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{authorbibnamehash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{authornamehash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{authorfullhash}{645c23d98c8c0ad0899cb4be651e6a02}
-      \strng{authorfullhashraw}{645c23d98c8c0ad0899cb4be651e6a02}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{RFC 6749, Internet Engineering Task Force (IETF)}
-      \field{month}{10}
-      \field{title}{The {OAuth} 2.0 Authorization Framework}
-      \field{year}{2012}
-      \verb{doi}
-      \verb 10.17487/RFC6749
-      \endverb
-      \verb{urlraw}
-      \verb https://www.rfc-editor.org/rfc/rfc6749
-      \endverb
-      \verb{url}
-      \verb https://www.rfc-editor.org/rfc/rfc6749
-      \endverb
-    \endentry
     \entry{harris2020numpy}{article}{}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -1141,29 +1017,6 @@
       \field{title}{{ISO} 3779:2009 -- Road vehicles -- Vehicle identification number ({VIN}) -- Content and structure}
       \field{year}{2009}
     \endentry
-    \entry{cpp-standard}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=0828a8408614177181026ea908d5594a}{%
-           family={{ISO/IEC}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \strng{namehash}{0828a8408614177181026ea908d5594a}
-      \strng{fullhash}{0828a8408614177181026ea908d5594a}
-      \strng{fullhashraw}{0828a8408614177181026ea908d5594a}
-      \strng{bibnamehash}{0828a8408614177181026ea908d5594a}
-      \strng{authorbibnamehash}{0828a8408614177181026ea908d5594a}
-      \strng{authornamehash}{0828a8408614177181026ea908d5594a}
-      \strng{authorfullhash}{0828a8408614177181026ea908d5594a}
-      \strng{authorfullhashraw}{0828a8408614177181026ea908d5594a}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.iso.org/standard/79358.html}}
-      \field{note}{Mednarodni standard programskega jezika C++}
-      \field{title}{{ISO/IEC} 14882:2020 -- Programming languages -- {C++}}
-      \field{year}{2020}
-    \endentry
     \entry{janssen2012open}{article}{}{}
       \name{author}{3}{}{%
         {{hash=c1fd42806e363295bda101989363522c}{%
@@ -1279,121 +1132,6 @@
       \verb{url}
       \verb https://www.kbb.com
       \endverb
-    \endentry
-    \entry{devops-handbook}{book}{}{}
-      \name{author}{5}{}{%
-        {{hash=8e1c949be5801a6f56b7ac5df47a58a9}{%
-           family={Kim},
-           familyi={K\bibinitperiod},
-           given={Gene},
-           giveni={G\bibinitperiod}}}%
-        {{hash=9e89d796d06f74d6551850b1c3bff900}{%
-           family={Humble},
-           familyi={H\bibinitperiod},
-           given={Jez},
-           giveni={J\bibinitperiod}}}%
-        {{hash=a0f7c9b6bc980e2a3126cc043f559c07}{%
-           family={Debois},
-           familyi={D\bibinitperiod},
-           given={Patrick},
-           giveni={P\bibinitperiod}}}%
-        {{hash=a09b6fdd8891cc3ae443eb45fd16799b}{%
-           family={Willis},
-           familyi={W\bibinitperiod},
-           given={John},
-           giveni={J\bibinitperiod}}}%
-        {{hash=0dc9ac8a967e13c60fcfaedde74976f2}{%
-           family={Forsgren},
-           familyi={F\bibinitperiod},
-           given={Nicole},
-           giveni={N\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Portland, OR}%
-      }
-      \list{publisher}{1}{%
-        {IT Revolution Press}%
-      }
-      \strng{namehash}{cda42d3f8ab5c70c86ed7bed1e19371e}
-      \strng{fullhash}{b2fa1457f77128d4fe695284c6a72c66}
-      \strng{fullhashraw}{b2fa1457f77128d4fe695284c6a72c66}
-      \strng{bibnamehash}{cda42d3f8ab5c70c86ed7bed1e19371e}
-      \strng{authorbibnamehash}{cda42d3f8ab5c70c86ed7bed1e19371e}
-      \strng{authornamehash}{cda42d3f8ab5c70c86ed7bed1e19371e}
-      \strng{authorfullhash}{b2fa1457f77128d4fe695284c6a72c66}
-      \strng{authorfullhashraw}{b2fa1457f77128d4fe695284c6a72c66}
-      \field{sortinit}{K}
-      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{2}
-      \field{isbn}{9781950508402}
-      \field{title}{The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations}
-      \field{year}{2021}
-    \endentry
-    \entry{kleppmann2017designing}{book}{}{}
-      \name{author}{1}{}{%
-        {{hash=34b8d5b1d29d175527a6642f3ec8a76d}{%
-           family={Kleppmann},
-           familyi={K\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {O'Reilly Media}%
-      }
-      \strng{namehash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{fullhash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{fullhashraw}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{bibnamehash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{authorbibnamehash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{authornamehash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{authorfullhash}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \strng{authorfullhashraw}{34b8d5b1d29d175527a6642f3ec8a76d}
-      \field{sortinit}{K}
-      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{1}
-      \field{isbn}{978-1449373320}
-      \field{title}{Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems}
-      \field{year}{2017}
-    \endentry
-    \entry{kotler2016marketing}{book}{}{}
-      \name{author}{2}{}{%
-        {{hash=68992773d1a840399049c9a31388c032}{%
-           family={Kotler},
-           familyi={K\bibinitperiod},
-           given={Philip},
-           giveni={P\bibinitperiod}}}%
-        {{hash=6d980ed30f2f84f3da5c4c9f1b5ec537}{%
-           family={Keller},
-           familyi={K\bibinitperiod},
-           given={Kevin\bibnamedelima Lane},
-           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Harlow}%
-      }
-      \list{publisher}{1}{%
-        {Pearson Education}%
-      }
-      \strng{namehash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{fullhash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{fullhashraw}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{bibnamehash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{authorbibnamehash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{authornamehash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{authorfullhash}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \strng{authorfullhashraw}{e4bc457d9431d9b4acfa6b223e91a5da}
-      \field{sortinit}{K}
-      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{edition}{15}
-      \field{isbn}{9781292092621}
-      \field{title}{Marketing Management}
-      \field{year}{2016}
     \endentry
     \entry{lacentrale}{misc}{}{}
       \name{author}{1}{}{%
@@ -1646,29 +1384,6 @@
       \verb{url}
       \verb https://www.mobile.de
       \endverb
-    \endentry
-    \entry{esmodules-mdn}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=fd2e1bf0766fdefa8b13261277cd4f7e}{%
-           family={{Mozilla Developer Network}},
-           familyi={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{fullhash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{fullhashraw}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{bibnamehash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{authorbibnamehash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{authornamehash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{authorfullhash}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \strng{authorfullhashraw}{fd2e1bf0766fdefa8b13261277cd4f7e}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules}}
-      \field{note}{Tehnična dokumentacija}
-      \field{title}{JavaScript modules}
-      \field{year}{2024}
     \endentry
     \entry{fuzzy-string-matching}{article}{}{}
       \name{author}{1}{}{%
@@ -2268,36 +1983,6 @@
       \verb https://www.postgresql.org/docs/current/intro-whatis.html
       \endverb
     \endentry
-    \entry{tungate2007adland}{book}{}{}
-      \name{author}{1}{}{%
-        {{hash=b637de71cad819c26d7b330dd9a52fea}{%
-           family={Tungate},
-           familyi={T\bibinitperiod},
-           given={Mark},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {London}%
-      }
-      \list{publisher}{1}{%
-        {Kogan Page}%
-      }
-      \strng{namehash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{fullhash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{fullhashraw}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{bibnamehash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{authorbibnamehash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{authornamehash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{authorfullhash}{b637de71cad819c26d7b330dd9a52fea}
-      \strng{authorfullhashraw}{b637de71cad819c26d7b330dd9a52fea}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{isbn}{9780749448370}
-      \field{title}{Adland: A Global History of Advertising}
-      \field{year}{2007}
-    \endentry
     \entry{vite-docs}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=da8d88ece546832ef85a3e2a2d0fa09e}{%
@@ -2369,29 +2054,6 @@
       \field{title}{{webpack} -- Module Bundler}
       \field{year}{2024}
     \endentry
-    \entry{webstorage-spec}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=4eff95d9319057962e5e815abde2ab62}{%
-           family={{WHATWG}},
-           familyi={W\bibinitperiod}}}%
-      }
-      \strng{namehash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{fullhash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{fullhashraw}{4eff95d9319057962e5e815abde2ab62}
-      \strng{bibnamehash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{authorbibnamehash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{authornamehash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{authorfullhash}{4eff95d9319057962e5e815abde2ab62}
-      \strng{authorfullhashraw}{4eff95d9319057962e5e815abde2ab62}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://html.spec.whatwg.org/multipage/webstorage.html}}
-      \field{note}{Uradna specifikacija}
-      \field{title}{HTML Living Standard -- Web Storage}
-      \field{year}{2024}
-    \endentry
     \entry{twelve-factor}{online}{}{}
       \name{author}{1}{}{%
         {{hash=78c94d63299ff16130ed37a90dc97dcd}{%
@@ -2408,7 +2070,6 @@
       \strng{authornamehash}{78c94d63299ff16130ed37a90dc97dcd}
       \strng{authorfullhash}{78c94d63299ff16130ed37a90dc97dcd}
       \strng{authorfullhashraw}{78c94d63299ff16130ed37a90dc97dcd}
-      \field{extraname}{1}
       \field{sortinit}{W}
       \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
       \field{labelnamesource}{author}
@@ -2421,37 +2082,6 @@
       \endverb
       \verb{url}
       \verb https://12factor.net/
-      \endverb
-    \endentry
-    \entry{logging-practices}{online}{}{}
-      \name{author}{1}{}{%
-        {{hash=78c94d63299ff16130ed37a90dc97dcd}{%
-           family={Wiggins},
-           familyi={W\bibinitperiod},
-           given={Adam},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{fullhash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{fullhashraw}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{bibnamehash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{authorbibnamehash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{authornamehash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{authorfullhash}{78c94d63299ff16130ed37a90dc97dcd}
-      \strng{authorfullhashraw}{78c94d63299ff16130ed37a90dc97dcd}
-      \field{extraname}{2}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Dostopano: 22. 8. 2026}
-      \field{title}{The Twelve-Factor App -- {XI}. Logs}
-      \field{year}{2017}
-      \verb{urlraw}
-      \verb https://12factor.net/logs
-      \endverb
-      \verb{url}
-      \verb https://12factor.net/logs
       \endverb
     \endentry
   \enddatalist

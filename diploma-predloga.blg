@@ -1,18 +1,17 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'diploma-predloga.blg'
-[90] biber-MSWIN64:342> INFO - === 
-[131] Biber.pm:421> INFO - Reading 'diploma-predloga.bcf'
-[231] Biber.pm:1002> INFO - Found 81 citekeys in bib section 0
-[241] Biber.pm:4487> INFO - Processing section 0
-[251] Biber.pm:4678> INFO - Looking for bibtex file 'literatura.bib' for section 0
-[332] bibtex.pm:1713> INFO - LaTeX decoding ...
-[390] bibtex.pm:1519> INFO - Found BibTeX data source 'literatura.bib'
-[627] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[628] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[628] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[628] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[676] bbl.pm:676> INFO - Writing 'diploma-predloga.bbl' with encoding 'UTF-8'
-[702] bbl.pm:779> INFO - Output to diploma-predloga.bbl
-[702] Biber.pm:132> WARN - legacy month field 'October' in entry 'oauth2-rfc6749' is not an integer - this will probably not sort properly.
-[703] Biber.pm:132> WARN - legacy month field 'May' in entry 'jwt-rfc7519' is not an integer - this will probably not sort properly.
-[703] Biber.pm:134> INFO - WARNINGS: 2
+[115] biber-MSWIN64:342> INFO - === 
+[160] Biber.pm:421> INFO - Reading 'diploma-predloga.bcf'
+[282] Biber.pm:1002> INFO - Found 69 citekeys in bib section 0
+[295] Biber.pm:4487> INFO - Processing section 0
+[307] Biber.pm:4678> INFO - Looking for bibtex file 'literatura.bib' for section 0
+[372] bibtex.pm:1713> INFO - LaTeX decoding ...
+[421] bibtex.pm:1519> INFO - Found BibTeX data source 'literatura.bib'
+[622] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[623] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[624] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[624] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[666] bbl.pm:676> INFO - Writing 'diploma-predloga.bbl' with encoding 'UTF-8'
+[687] bbl.pm:779> INFO - Output to diploma-predloga.bbl
+[688] Biber.pm:132> WARN - legacy month field 'May' in entry 'jwt-rfc7519' is not an integer - this will probably not sort properly.
+[688] Biber.pm:134> INFO - WARNINGS: 1
